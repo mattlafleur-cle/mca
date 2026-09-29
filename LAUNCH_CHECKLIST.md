@@ -1,33 +1,33 @@
 # Launch checklist
 
-Nothing on this list has been signed off. Since 2026-09-29 the review site is live at https://maplecreekadvisors.com (at Matt's direction), but it stays unindexed and unannounced until every item is checked by the founders. Each item notes where the setting lives.
+Nothing on this list has been signed off. Since 2026-09-29 the review site is live at https://maplecreekadvisors.com (at Matt's direction), and it stays unindexed until the remaining items are checked. Each item notes where the setting lives.
 
 ## Name and relationship
 
 - [x] **Displayed name.** "Maple Creek Advisors," matching the domain (Matt, 2026-09-29).
-- [ ] **Legal name.** Check availability with the Ohio Secretary of State and for trademark conflicts, and confirm Josh agrees. Setting: `siteName` in `site.config.mjs`, then run `npm run og-image`.
+- [ ] **Legal name.** Check availability with the Ohio Secretary of State and for trademark conflicts. Setting: `siteName` in `site.config.mjs`, then run `npm run og-image`.
 - [ ] **Combination status.** Confirm the combination is effective before the site goes public. The copy describes the practice as it would exist at launch, but it does not say a transaction has closed.
-- [ ] **Relationship wording.** Approve the About page "Why the two of us" section and the Home page integrated section. Copy: `about.together` and `home.integrated*` in `src/content.mjs`.
+- [x] **Relationship wording.** Approve the About page "Why the two of us" section and the Home page integrated section. Copy: `about.together` and `home.integrated*` in `src/content.mjs`. Approved: Josh greenlit the full site on 2026-09-29 (reported by Matt).
 - [ ] **Footer copyright line.** It shows the working name. Confirm it matches the legal or registered trade name.
 
 ## Services and claims
 
-- [ ] **Service menu and scope.** Approve all four services and their "Work can include" lists. Copy: `services.sections` in `src/content.mjs`.
-- [ ] **Scope exclusion line.** Services says "Tax preparation and attest services (audits, reviews, and compilations) are not part of this service menu." Confirm this is accurate for the new practice, or remove or revise it.
+- [x] **Service menu and scope.** Approve all four services and their "Work can include" lists. Copy: `services.sections` in `src/content.mjs`. Approved: Josh greenlit the full site on 2026-09-29 (reported by Matt).
+- [x] **Scope exclusion line.** Services says "Tax preparation and attest services (audits, reviews, and compilations) are not part of this service menu." Confirm this is accurate for the new practice, or remove or revise it. Approved: Josh greenlit the full site on 2026-09-29 (reported by Matt).
 - [ ] **CPA title in a non-CPA firm's marketing.** Matt's name appears without the CPA suffix (his direction, 2026-09-29), but his bio still says he is a CPA licensed in Ohio and California. Confirm how Ohio and California accountancy rules treat the use of the CPA title in the marketing of a firm that is not registered as a CPA firm, and whether any firm registration or disclaimer is needed. The site does not describe the practice itself as a CPA firm.
-- [ ] **"Fractional CFO."** Used as a service category only. Confirm the founders are comfortable with the term.
+- [x] **"Fractional CFO."** Used as a service category only. Confirm the founders are comfortable with the term. Approved: Josh greenlit the full site on 2026-09-29 (reported by Matt).
 - [ ] **No prices.** None are published. Decide whether that stays the case.
 
 ## People
 
-- [ ] **Josh's bio.** Verify titles, chronology (built and sold a construction company), current programs, and the BUILD description. Setting: `founders` in `site.config.mjs`.
-- [ ] **Matt's bio.** Verify "CPA licensed in Ohio and California" and "more than 12 years of experience," and approve the wording.
+- [x] **Josh's bio.** Verify titles, chronology (built and sold a construction company), current programs, and the BUILD description. Setting: `founders` in `site.config.mjs`. Approved: Josh greenlit the full site on 2026-09-29 (reported by Matt).
+- [x] **Matt's bio.** Verify "CPA licensed in Ohio and California" and "more than 12 years of experience," and approve the wording. Approved: Josh greenlit the full site on 2026-09-29 (reported by Matt).
 - [ ] **Photos.** None are used. Josh has speaking photographs in the project archive; confirm publication rights before adding any. See `src/assets/photos/README.md`.
 
 ## BUILD
 
-- [ ] **BUILD destination.** The BUILD page links to https://www.maplecreekcoaching.com/build/, which was live on 2026-09-29. Josh should confirm this is the right destination and that it will stay current. Setting: `build` in `site.config.mjs` (`showPage: false` removes the page).
-- [ ] **BUILD description.** Approve the wording. It says BUILD is associated with Josh's work, separate from advisory engagements, and not a required step. It does not describe BUILD's legal structure, fees, or event schedule.
+- [x] **BUILD destination.** The BUILD page links to https://www.maplecreekcoaching.com/build/, which was live on 2026-09-29. Josh should confirm this is the right destination and that it will stay current. Setting: `build` in `site.config.mjs` (`showPage: false` removes the page). Approved: Josh greenlit the full site on 2026-09-29 (reported by Matt).
+- [x] **BUILD description.** Approve the wording. It says BUILD is associated with Josh's work, separate from advisory engagements, and not a required step. It does not describe BUILD's legal structure, fees, or event schedule. Approved: Josh greenlit the full site on 2026-09-29 (reported by Matt).
 
 ## Contact
 
@@ -42,7 +42,7 @@ Nothing on this list has been signed off. Since 2026-09-29 the review site is li
 - [x] **Domain.** maplecreekadvisors.com, chosen by Matt on 2026-09-29 and set as `canonicalDomain`.
 - [ ] **Hosting.** Currently GitHub Pages from Matt's public `mca` repository. Confirm this is the long-term home, whether the repository should stay public, and whether review should sit behind a login (Cloudflare Pages with Access).
 - [x] **DNS and HTTPS.** Hostinger records point to GitHub Pages, the site loads at https://maplecreekadvisors.com, and Enforce HTTPS is on (confirmed 2026-09-29).
-- [ ] **Josh has seen it.** The review site is reachable by anyone with the link. Confirm Josh is comfortable with that before it is shared beyond the two of you.
+- [x] **Josh has seen it.** The review site is reachable by anyone with the link. Confirm Josh is comfortable with that before it is shared beyond the two of you. Approved: Josh greenlit the full site on 2026-09-29 (reported by Matt).
 - [x] **Link preview image.** `src/assets/og-image.png` exists. Regenerate after any name change.
 - [ ] **Indexing.** Set `allowIndexing: true` only at launch. This removes `noindex` and builds `sitemap.xml`. Then submit the sitemap in Google Search Console.
 - [ ] **Analytics and privacy.** None are included. If added, document the data flow, consent requirements, and a privacy page that describes the actual handling.

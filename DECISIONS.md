@@ -19,3 +19,4 @@ Choices made in the first build, with the reason for each. Founders can reverse 
 | 2026-09-29 | Kept the displayed name "Maple Creek Advisory" even though the domain says "Advisors." | Name is a founder decision. Flagged in the launch checklist. Superseded below. |
 | 2026-09-29 | Renamed the site to "Maple Creek Advisors." | Direct instruction from Matt, matching the domain. |
 | 2026-09-29 | Show Matt's name as "Matt LaFleur" with no ", CPA" suffix. | Direct instruction from Matt. His bio still states the CPA license as a fact. |
+| 2026-09-29 | Josh approved the site content (bios, services, BUILD, relationship wording, public review URL). | Reported by Matt. Legal-name, combination, CPA-title, contact, and booking items remain open. |
