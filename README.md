@@ -79,7 +79,7 @@ Pages: Home, Services, How We Work, About, BUILD, Contact, and a 404 page.
 ### One-time GitHub Pages and DNS setup
 
 1. In GitHub, open the `mca` repository, then **Settings > Pages**. Under **Build and deployment**, set **Source** to **GitHub Actions**.
-2. Re-run the latest **Deploy site** workflow from the **Actions** tab, or push any change.
+2. Push any change to the site branch to start a fresh deploy. Or re-run the latest **Deploy site** run: open the **Actions** tab, click the run, then use **Re-run jobs > Re-run all jobs** at the top right (under the **...** menu on a phone).
 3. In **Settings > Pages > Custom domain**, enter `maplecreekadvisors.com` and save.
 4. In Hostinger, open **Domains > maplecreekadvisors.com > DNS / Nameservers**. Delete the existing parking `A` record(s) for `@` and any `CNAME` or `A` record for `www`, then add:
 
