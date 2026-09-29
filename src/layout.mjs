@@ -135,7 +135,7 @@ function footer(site, link) {
       <ul>${site.contact.recipients.map((e) => `<li><a href="mailto:${esc(e)}">${esc(e)}</a></li>`).join('')}</ul>
     </div>
   </div>
-  <div class="wrap footer-base"><p>&copy; ${year} ${esc(site.siteName)}</p></div>
+  <div class="wrap footer-base"><p>&copy; ${year} ${esc(site.siteName)}</p>${site.footerNote ? `<p>${esc(site.footerNote)}</p>` : ''}</div>
 </footer>`;
 }
 

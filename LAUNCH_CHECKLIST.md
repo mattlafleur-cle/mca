@@ -14,7 +14,7 @@ Nothing on this list has been signed off. Since 2026-09-29 the review site is li
 
 - [x] **Service menu and scope.** Approve all four services and their "Work can include" lists. Copy: `services.sections` in `src/content.mjs`. Approved: Josh greenlit the full site on 2026-09-29 (reported by Matt).
 - [x] **Scope exclusion line.** Services says "Tax preparation and attest services (audits, reviews, and compilations) are not part of this service menu." Confirm this is accurate for the new practice, or remove or revise it. Approved: Josh greenlit the full site on 2026-09-29 (reported by Matt).
-- [ ] **CPA title in a non-CPA firm's marketing.** Matt's name appears without the CPA suffix (his direction, 2026-09-29), but his bio still says he is a CPA licensed in Ohio and California. Confirm how Ohio and California accountancy rules treat the use of the CPA title in the marketing of a firm that is not registered as a CPA firm, and whether any firm registration or disclaimer is needed. The site does not describe the practice itself as a CPA firm.
+- [x] **CPA title in a non-CPA firm's marketing.** Resolved 2026-09-29: Matt's name appears without the CPA suffix, his bio keeps the license as an individual fact, and every page footer says "Maple Creek Advisors is not a registered CPA firm and does not provide attest services." The site never uses "accountant" or "auditor" to describe the practice (see Ohio R.C. 4701.14(C) and (G)). Setting: `footerNote` in `site.config.mjs`.
 - [x] **"Fractional CFO."** Used as a service category only. Confirm the founders are comfortable with the term. Approved: Josh greenlit the full site on 2026-09-29 (reported by Matt).
 - [ ] **No prices.** None are published. Decide whether that stays the case.
 

@@ -20,3 +20,4 @@ Choices made in the first build, with the reason for each. Founders can reverse 
 | 2026-09-29 | Renamed the site to "Maple Creek Advisors." | Direct instruction from Matt, matching the domain. |
 | 2026-09-29 | Show Matt's name as "Matt LaFleur" with no ", CPA" suffix. | Direct instruction from Matt. His bio still states the CPA license as a fact. |
 | 2026-09-29 | Josh approved the site content (bios, services, BUILD, relationship wording, public review URL). | Reported by Matt. Legal-name, combination, CPA-title, contact, and booking items remain open. |
+| 2026-09-29 | Footer disclosure on every page: not a registered CPA firm, no attest services. | Matt's direction, to close the CPA-title question under Ohio R.C. 4701.14. `npm run check` fails if any page is missing it. |

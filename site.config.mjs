@@ -10,6 +10,10 @@ export default {
   // Short line used in the footer and default meta description.
   tagline: 'Coaching, financial clarity, and practical operating guidance for owner-led businesses.',
 
+  // Disclosure shown in every page footer. Added 2026-09-29 at Matt's direction so the individual CPA
+  // license in his bio is not read as the practice holding itself out as a CPA firm (Ohio R.C. 4701.14).
+  footerNote: 'Maple Creek Advisors is not a registered CPA firm and does not provide attest services.',
+
   // Domain the site is served from (no trailing slash). Set 2026-09-29 at Matt's direction so the
   // founders can review the live site on the real domain. Hosting: GitHub Pages (see README).
   // Set to null to drop canonical tags and absolute Open Graph URLs.

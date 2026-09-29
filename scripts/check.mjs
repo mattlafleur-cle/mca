@@ -77,6 +77,7 @@ for (const file of files) {
   if (/application\/ld\+json/.test(html)) errors.push(`${rel}: structured data present; confirm entity details first`);
   if (/googletagmanager|google-analytics|gtag\(|plausible|fbq\(|hotjar/i.test(html)) errors.push(`${rel}: tracking script found`);
 
+  if (site.footerNote && !html.includes(site.footerNote)) errors.push(`${rel}: footer disclosure missing`);
   const h1s = html.match(/<h1[\s>]/g) || [];
   if (h1s.length !== 1) errors.push(`${rel}: expected one h1, found ${h1s.length}`);
   let prev = 0;

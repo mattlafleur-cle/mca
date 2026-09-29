@@ -528,7 +528,7 @@ main:focus { outline: none; }
 .footer-nav a:hover,
 .footer-contact a:hover { color: var(--evergreen); text-decoration: underline; }
 .footer-contact { display: grid; gap: 0.5rem; align-content: start; }
-.footer-base { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); color: var(--ink-muted); font-size: 0.9rem; }
+.footer-base { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); color: var(--ink-muted); font-size: 0.9rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 2rem; }
 @media (max-width: 48rem) { .footer-inner { grid-template-columns: minmax(0, 1fr); } }
 
 /* Motion ----------------------------------------------------------------- */
