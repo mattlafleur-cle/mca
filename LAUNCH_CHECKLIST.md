@@ -40,7 +40,7 @@ Nothing on this list has been signed off. Since 2026-09-29 the review site is li
 
 - [x] **Domain.** maplecreekadvisors.com, chosen by Matt on 2026-09-29 and set as `canonicalDomain`.
 - [ ] **Hosting.** Currently GitHub Pages from Matt's public `mca` repository. Confirm this is the long-term home, whether the repository should stay public, and whether review should sit behind a login (Cloudflare Pages with Access).
-- [ ] **DNS and HTTPS.** Complete the one-time setup in the README, then confirm https://maplecreekadvisors.com and https://www.maplecreekadvisors.com both load with a valid certificate.
+- [x] **DNS and HTTPS.** Hostinger records point to GitHub Pages, the site loads at https://maplecreekadvisors.com, and Enforce HTTPS is on (confirmed 2026-09-29).
 - [ ] **Josh has seen it.** The review site is reachable by anyone with the link. Confirm Josh is comfortable with that before it is shared beyond the two of you.
 - [x] **Link preview image.** `src/assets/og-image.png` exists. Regenerate after any name change.
 - [ ] **Indexing.** Set `allowIndexing: true` only at launch. This removes `noindex` and builds `sitemap.xml`. Then submit the sitemap in Google Search Console.
