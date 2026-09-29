@@ -96,7 +96,7 @@ for (const file of files) {
     if (!label) errors.push(`${rel}: link without text`);
     if (/^(click here|here|read more|learn more)$/i.test(label)) errors.push(`${rel}: vague link text "${label}"`);
   }
-  if (!site.bookingUrl && /Schedule a time|Book a call|Book now/i.test(text)) errors.push(`${rel}: booking action shown without an approved booking URL`);
+  if (!site.bookingUrl && /Schedule a (time|conversation)|Book a call|Book now/i.test(text)) errors.push(`${rel}: booking action shown without an approved booking URL`);
 
   for (const [re, name] of banned) if (re.test(text)) errors.push(`${rel}: contains ${name}: "${text.match(re)[0]}"`);
 
@@ -116,8 +116,10 @@ for (const file of files) {
     if (hash && !idsByFile.get(target)?.has(hash)) errors.push(`${rel}: missing anchor #${hash} in ${href}`);
   }
 
-  if (rel !== '404.html' && !/href="\/contact\/"[^>]*>Start a conversation</.test(html) && !rel.startsWith('contact'))
-    errors.push(`${rel}: primary action "Start a conversation" missing`);
+  const ctaHref = (site.bookingUrl || '/contact/').replace(/[.*+?^${}()|[\]\\/]/g, '\\$&');
+  const ctaText = site.bookingUrl ? 'Schedule a conversation' : 'Start a conversation';
+  if (rel !== '404.html' && !new RegExp(`href="${ctaHref}"[^>]*>${ctaText}<`).test(html))
+    errors.push(`${rel}: primary action "${ctaText}" missing`);
 }
 
 for (const [t, where] of titles) if (where.length > 1) errors.push(`duplicate title "${t}" on ${where.join(', ')}`);

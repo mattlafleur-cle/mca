@@ -242,11 +242,15 @@ export default function content(site) {
     contact: {
       title: `Contact | ${name}`,
       description:
-        'Tell us what you are working through. Email Josh Muller and Matt LaFleur to start a conversation about leadership, the numbers, or the way the business runs.',
+        'Schedule an intro conversation or email Josh Muller and Matt LaFleur about leadership, the numbers, or the way your business runs.',
       eyebrow: 'Contact',
       headline: 'Tell us what you are working through.',
       lead:
         'Whether the first question is about leadership, the numbers, or the way the business runs, we can start with a conversation.',
+      bookHeading: 'Pick a time to talk',
+      book: (length) =>
+        `Choose a time for a ${length} intro conversation about your business and whether we are a good fit. You will get a calendar invitation right away.`,
+      writeHeading: 'Prefer to write?',
       howHeading: 'Send us a note',
       how: 'A few sentences about your business and what prompted you to reach out are enough. Your email goes to both Josh and Matt.',
       buttonText: 'Email Josh and Matt',

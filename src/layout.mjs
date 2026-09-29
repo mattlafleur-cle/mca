@@ -27,6 +27,13 @@ export function createLinker(site, mode) {
       const base = mode === 'artifact' ? r.file : r.path;
       return anchor ? `${base}#${anchor}` : base;
     },
+    // Primary call to action: the booking page when one is configured, otherwise the Contact page.
+    cta() {
+      return site.bookingUrl || this.page('contact');
+    },
+    ctaText() {
+      return site.bookingUrl ? 'Schedule a conversation' : 'Start a conversation';
+    },
     asset(file) {
       return mode === 'artifact' ? `assets/${file}` : `/assets/${file}`;
     },
@@ -96,8 +103,10 @@ function markSvg() {
   return `<svg class="mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M4 8 C 14 8, 16 16, 22 16 M4 24 C 14 24, 16 16, 22 16 M22 16 L 29 16"/><circle cx="22" cy="16" r="2.6"/></svg>`;
 }
 
-export function ctaButton(link, { variant = 'primary', text = 'Start a conversation' } = {}) {
-  return `<a class="button button-${variant}" href="${esc(link.page('contact'))}">${esc(text)}</a>`;
+export function ctaButton(link, { variant = 'primary', text } = {}) {
+  const href = link.cta();
+  const external = /^https?:/.test(href) ? ' rel="noopener"' : '';
+  return `<a class="button button-${variant}" href="${esc(href)}"${external}>${esc(text || link.ctaText())}</a>`;
 }
 
 function header(site, link, current) {
@@ -111,7 +120,7 @@ function header(site, link, current) {
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" class="site-nav" aria-label="Main">
       <ul>${navItems}</ul>
-      <a class="button button-primary nav-cta" href="${esc(link.page('contact'))}"${current === 'contact' ? ' aria-current="page"' : ''}>Start a conversation</a>
+      ${ctaButton(link).replace('class="button button-primary"', 'class="button button-primary nav-cta"')}
     </nav>
   </div>
 </header>`;

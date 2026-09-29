@@ -485,7 +485,11 @@ main:focus { outline: none; }
   border-top: 4px solid var(--evergreen);
   min-width: 0;
 }
-.contact-card > p { color: var(--ink-muted); }
+.contact-card p { color: var(--ink-muted); }
+.contact-book,
+.contact-write { display: grid; gap: 1rem; }
+.contact-book + .contact-write { padding-top: 1.25rem; border-top: 1px solid var(--rule); }
+.contact-write h2 { font-size: var(--step-1); }
 .contact-addresses { display: grid; gap: 0.6rem; justify-items: start; padding-top: 1.25rem; border-top: 1px solid var(--rule); }
 .contact-addresses ul { list-style: none; display: grid; gap: 0.25rem; }
 .contact-addresses a { overflow-wrap: anywhere; font-size: 1.05rem; }

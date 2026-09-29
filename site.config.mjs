@@ -48,9 +48,11 @@ export default {
     responseTime: null,
   },
 
-  // LAUNCH GATE: scheduling link for the new practice. Leave null until approved and tested.
-  // While null, no booking button appears anywhere.
-  bookingUrl: null,
+  // Scheduling page for intro conversations (Matt's Fantastical Openings link, set 2026-09-29).
+  // While set, every primary button goes here. Set to null to send buttons to the Contact page instead.
+  bookingUrl: 'https://fantastical.app/mattlafleur/maple-creek-advisors',
+  // Must match the meeting length configured in Fantastical.
+  bookingLength: '20-minute',
 
   // BUILD owner community. The page links out only to the destination below.
   // Verified live on 2026-09-29 (HTTP 200, current BUILD content on Josh's Maple Creek Coaching site).

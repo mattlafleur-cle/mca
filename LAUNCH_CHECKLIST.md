@@ -34,7 +34,7 @@ Nothing on this list has been signed off. Since 2026-09-29 the review site is li
 - [ ] **Shared inbox.** The contact path is a temporary email link to both legacy addresses (josh@maplecreekcoaching.com and matt@forestcity.pro). Create and test a shared address for the new brand, then replace `contact.recipients` in `site.config.mjs`.
 - [ ] **Test the contact path end to end.** Send a message from a phone and a desktop email client and confirm both founders receive it.
 - [ ] **Response time.** None is promised. Add `contact.responseTime` only if the founders commit to one.
-- [ ] **Booking link.** None is shown. Add `bookingUrl` only after a scheduling page for the new brand exists and has been tested. Do not reuse either founder's existing booking link without agreement.
+- [x] **Booking link.** https://fantastical.app/mattlafleur/maple-creek-advisors (20-minute intro conversation, Matt's Fantastical Openings), set 2026-09-29. Every primary button now says "Schedule a conversation" and opens it; email stays on the Contact page as a backup. If the meeting length changes in Fantastical, update `bookingLength` in `site.config.mjs`.
 - [ ] **Address and phone.** None are shown. Decide whether either should appear.
 
 ## Domain, indexing, and hosting
@@ -51,6 +51,6 @@ Nothing on this list has been signed off. Since 2026-09-29 the review site is li
 ## Final review
 
 - [ ] Review every page on a phone and a desktop.
-- [ ] Click every "Start a conversation" button and every link.
+- [ ] Click every "Schedule a conversation" button and every link.
 - [ ] Read all copy once more against the actual launch state.
 - [ ] Run `npm run check` and `npm run screenshots` on the final build.

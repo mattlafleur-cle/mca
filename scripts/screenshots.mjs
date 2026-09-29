@@ -78,7 +78,7 @@ try {
 
       // Contact path: the email action goes to every configured recipient.
       await page.goto(`http://localhost:${port}/contact/`, { waitUntil: 'networkidle' });
-      const href = await page.getAttribute('.contact-card .button-primary', 'href');
+      const href = await page.getAttribute('.contact-card a[href^="mailto:"].button', 'href');
       if (!href?.startsWith('mailto:') || !href.includes('josh@') || !href.includes('matt@')) problems.push(`contact: unexpected email action ${href}`);
       // Skip link moves focus to main content.
       await page.keyboard.press('Tab');

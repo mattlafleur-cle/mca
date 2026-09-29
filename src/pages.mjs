@@ -285,19 +285,25 @@ ${closing(link, copy.home.closingHeading, copy.home.closingBody)}`;
 
 export function contact({ site, link, copy }) {
   const c = copy.contact;
-  const booking = site.bookingUrl
-    ? `<a class="button button-secondary" href="${esc(site.bookingUrl)}" rel="noopener">Schedule a time</a>`
-    : '';
   const response = site.contact.responseTime ? `<p class="contact-response">${esc(site.contact.responseTime)}</p>` : '';
+  const booking = site.bookingUrl
+    ? `<div class="contact-book">
+      <h2 id="book-heading">${esc(c.bookHeading)}</h2>
+      <p>${esc(c.book(site.bookingLength))}</p>
+      <div class="actions">${ctaButton(link)}</div>
+    </div>`
+    : '';
   return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, seed: 21 })}
-<section class="section" aria-labelledby="send-heading">
+<section class="section" aria-labelledby="${site.bookingUrl ? 'book-heading' : 'send-heading'}">
   <div class="wrap contact-grid">
     <div class="contact-card">
-      <h2 id="send-heading">${esc(c.howHeading)}</h2>
+      ${booking}
+      <div class="contact-write">
+      <h2 id="send-heading">${esc(site.bookingUrl ? c.writeHeading : c.howHeading)}</h2>
       <p>${esc(c.how)}</p>
       <div class="actions">
-        <a class="button button-primary" href="${esc(mailtoHref(site))}">${esc(c.buttonText)}</a>
-        ${booking}
+        <a class="button button-${site.bookingUrl ? 'secondary' : 'primary'}" href="${esc(mailtoHref(site))}">${esc(c.buttonText)}</a>
+      </div>
       </div>
       <div class="contact-addresses">
         <p class="footer-label" id="addresses-label">Email addresses</p>
@@ -325,7 +331,7 @@ export function notFound({ site, link, copy }) {
     ['services', 'Services'],
     ['howWeWork', 'How we work'],
     ['about', 'About Josh and Matt'],
-    ['contact', 'Start a conversation'],
+    ['contact', 'Contact Josh and Matt'],
   ];
   return `${pageHero({
     eyebrow: 'Page not found',
