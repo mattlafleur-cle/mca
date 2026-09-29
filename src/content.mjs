@@ -191,7 +191,7 @@ export default function content(site) {
     about: {
       title: `About Josh Muller and Matt LaFleur | ${name}`,
       description:
-        'Meet Josh Muller, business coach and former construction company owner, and Matt LaFleur, CPA and financial and operating adviser.',
+        'Meet Josh Muller, business coach and former construction company owner, and Matt LaFleur, a CPA and financial and operating adviser.',
       eyebrow: 'About',
       headline: 'Building a better business means working with the owner, the team, and the facts at the same time.',
       togetherHeading: 'Why the two of us',

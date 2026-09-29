@@ -16,4 +16,6 @@ Choices made in the first build, with the reason for each. Founders can reverse 
 | 2026-09-29 | Google Fonts for type. | Simple, and required by the private preview host. Self-hosting is documented as an option. |
 | 2026-09-29 | Serve the review site at maplecreekadvisors.com now, deployed by GitHub Actions to GitHub Pages. | Newer direct instruction from Matt, replacing the brief's "do not deploy" so the founders can review on the fly. The domain was parked at Hostinger with no site to replace. The repository is public, so Pages is free. |
 | 2026-09-29 | Keep `noindex` on every page; allow crawling in robots.txt. | Launch signoffs are still open. Crawlers must be able to read `noindex` for it to work on a live domain. |
-| 2026-09-29 | Kept the displayed name "Maple Creek Advisory" even though the domain says "Advisors." | Name is a founder decision. Flagged in the launch checklist. |
+| 2026-09-29 | Kept the displayed name "Maple Creek Advisory" even though the domain says "Advisors." | Name is a founder decision. Flagged in the launch checklist. Superseded below. |
+| 2026-09-29 | Renamed the site to "Maple Creek Advisors." | Direct instruction from Matt, matching the domain. |
+| 2026-09-29 | Show Matt's name as "Matt LaFleur" with no ", CPA" suffix. | Direct instruction from Matt. His bio still states the CPA license as a fact. |

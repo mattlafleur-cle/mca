@@ -4,7 +4,8 @@ Nothing on this list has been signed off. Since 2026-09-29 the review site is li
 
 ## Name and relationship
 
-- [ ] **Business name.** Choose "Maple Creek Advisory," "Maple Creek Advisors," or another name. The domain is maplecreekadvisors.com, while the site currently says "Maple Creek Advisory"; decide whether they should match. Check name availability with the Ohio Secretary of State and for trademark conflicts. Setting: `siteName` in `site.config.mjs`, then run `npm run og-image`.
+- [x] **Displayed name.** "Maple Creek Advisors," matching the domain (Matt, 2026-09-29).
+- [ ] **Legal name.** Check availability with the Ohio Secretary of State and for trademark conflicts, and confirm Josh agrees. Setting: `siteName` in `site.config.mjs`, then run `npm run og-image`.
 - [ ] **Combination status.** Confirm the combination is effective before the site goes public. The copy describes the practice as it would exist at launch, but it does not say a transaction has closed.
 - [ ] **Relationship wording.** Approve the About page "Why the two of us" section and the Home page integrated section. Copy: `about.together` and `home.integrated*` in `src/content.mjs`.
 - [ ] **Footer copyright line.** It shows the working name. Confirm it matches the legal or registered trade name.
@@ -13,7 +14,7 @@ Nothing on this list has been signed off. Since 2026-09-29 the review site is li
 
 - [ ] **Service menu and scope.** Approve all four services and their "Work can include" lists. Copy: `services.sections` in `src/content.mjs`.
 - [ ] **Scope exclusion line.** Services says "Tax preparation and attest services (audits, reviews, and compilations) are not part of this service menu." Confirm this is accurate for the new practice, or remove or revise it.
-- [ ] **CPA title in a non-CPA firm's marketing.** Matt's individual credential appears as "Matt LaFleur, CPA." Confirm how Ohio and California accountancy rules treat the use of the CPA title in the marketing of a firm that is not registered as a CPA firm, and whether any firm registration or disclaimer is needed. The site does not describe the practice itself as a CPA firm.
+- [ ] **CPA title in a non-CPA firm's marketing.** Matt's name appears without the CPA suffix (his direction, 2026-09-29), but his bio still says he is a CPA licensed in Ohio and California. Confirm how Ohio and California accountancy rules treat the use of the CPA title in the marketing of a firm that is not registered as a CPA firm, and whether any firm registration or disclaimer is needed. The site does not describe the practice itself as a CPA firm.
 - [ ] **"Fractional CFO."** Used as a service category only. Confirm the founders are comfortable with the term.
 - [ ] **No prices.** None are published. Decide whether that stays the case.
 

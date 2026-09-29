@@ -1,8 +1,8 @@
-# Maple Creek Advisory website (first build, private preview)
+# Maple Creek Advisors website
 
 This is the first public-facing website for the proposed combined advisory practice of Josh Muller and Matt LaFleur. It is served at **https://maplecreekadvisors.com** for founder review, and every push to the site branch redeploys it automatically. It is not yet launched: pages carry `noindex`, and the site does not claim that the business combination is complete.
 
-"Maple Creek Advisory" is a working name. It is set in one place (`site.config.mjs`) so it can change after the founders decide.
+The name "Maple Creek Advisors" is set in one place (`site.config.mjs`). After changing it, run `npm run og-image` to refresh the link preview image.
 
 ## Why this stack
 

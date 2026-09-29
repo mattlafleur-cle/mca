@@ -3,8 +3,9 @@
 // Items marked "LAUNCH GATE" are listed in LAUNCH_CHECKLIST.md and need founder signoff.
 
 export default {
-  // LAUNCH GATE: displayed business name. "Maple Creek Advisors" is the other name under discussion.
-  siteName: 'Maple Creek Advisory',
+  // Displayed business name, chosen by Matt on 2026-09-29 to match the domain.
+  // LAUNCH GATE: confirm the legal or registered trade name matches before launch.
+  siteName: 'Maple Creek Advisors',
 
   // Short line used in the footer and default meta description.
   tagline: 'Coaching, financial clarity, and practical operating guidance for owner-led businesses.',
@@ -76,7 +77,6 @@ export default {
     {
       id: 'matt',
       name: 'Matt LaFleur',
-      credential: 'CPA',
       role: 'Financial clarity and operations',
       photo: null,
       short:
