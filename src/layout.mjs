@@ -40,9 +40,9 @@ export function createLinker(site, mode) {
   };
 }
 
-export function mailtoHref(site) {
+export function mailtoHref(site, topic) {
   const to = site.contact.recipients.join(',');
-  const subject = encodeURIComponent(site.contact.emailSubject);
+  const subject = encodeURIComponent(topic ? `${site.contact.emailSubject}: ${topic}` : site.contact.emailSubject);
   return `mailto:${to}?subject=${subject}`;
 }
 

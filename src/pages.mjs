@@ -73,9 +73,25 @@ export function home({ site, link, copy }) {
 
 <section class="section" aria-labelledby="situations-heading">
   <div class="wrap">
-    <h2 id="situations-heading" class="section-title">${esc(c.situationsHeading)}</h2>
-    <ul class="situations">
-      ${c.situations.map((s) => `<li>${esc(s)}</li>`).join('')}
+    <div class="section-head">
+      <p class="eyebrow">${esc(c.chooserEyebrow)}</p>
+      <h2 id="situations-heading" class="section-title">${esc(c.situationsHeading)}</h2>
+      <p>${esc(c.chooserIntro)}</p>
+    </div>
+    <ul class="chooser">
+      ${c.situations
+        .map(
+          (s) => `<li><a class="chooser-card" href="${esc(link.page('services', s.anchor))}">
+        <span class="chooser-text">${esc(s.text)}</span>
+        <span class="chooser-path"><span class="chooser-label">${esc(c.chooserStartLabel)}</span> ${esc(s.start)}</span>
+      </a></li>`,
+        )
+        .join('')}
+    </ul>
+    <div class="chooser-unsure">
+      <p>${esc(c.chooserUnsure)}</p>
+      ${ctaButton(link, { variant: 'secondary' })}
+    </div>
     </ul>
   </div>
 </section>
@@ -139,6 +155,10 @@ export function services({ site, link, copy }) {
       <h2 id="${esc(s.id)}-heading">${esc(s.title)}</h2>
       ${paras(s.body)}
       ${s.note ? `<p class="service-note">${esc(s.note)}</p>` : ''}
+      <div class="service-actions">
+        ${ctaButton(link, { variant: s.id === 'integrated' ? 'light' : 'primary', text: s.cta })}
+        <a class="service-email" href="${esc(mailtoHref(site, s.emailSubject))}">${esc(c.emailPrompt)}</a>
+      </div>
     </div>
     <div class="service-list">
       <h3>${esc(s.listHeading)}</h3>

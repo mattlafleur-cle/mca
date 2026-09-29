@@ -18,12 +18,17 @@ export default function content(site) {
       audience:
         'For owners and leadership teams of owner-led companies, especially trades, construction, and service businesses.',
       situationsHeading: 'When the business needs more than another report or another opinion.',
+      chooserEyebrow: 'Where are you stuck?',
+      chooserIntro: 'Pick the one that sounds most like your week. Each one points to a sensible place to start.',
+      // Each situation links to the Services section where that work usually starts.
       situations: [
-        'Your team is growing, but decisions still come back to you.',
-        'You have financial reports, but not a clear view of what to do next.',
-        'You are deciding what to change, what to protect, and who should own the next step.',
-        'You want an experienced thinking partner who understands both the people and the numbers.',
+        { text: 'Your team is growing, but decisions still come back to you.', anchor: 'coaching', start: 'Coaching and leadership' },
+        { text: 'You have financial reports, but not a clear view of what to do next.', anchor: 'financial-clarity', start: 'Financial clarity' },
+        { text: 'You are deciding what to change, what to protect, and who should own the next step.', anchor: 'financial-operations', start: 'Operating support' },
+        { text: 'You want an experienced thinking partner who understands both the people and the numbers.', anchor: 'integrated', start: 'Josh and Matt together' },
       ],
+      chooserStartLabel: 'Start with',
+      chooserUnsure: 'Not sure which one fits? That is what the first conversation is for.',
       pillarsHeading: 'Two perspectives. One practical path forward.',
       pillarsIntro: 'Start with the part of the business that needs attention first. You do not need all three.',
       pillars: [
@@ -69,6 +74,8 @@ export default function content(site) {
       sections: [
         {
           id: 'coaching',
+          cta: 'Talk through a leadership question',
+          emailSubject: 'Coaching and leadership',
           lane: 'Led by Josh',
           title: 'Business coaching and leadership',
           body: [
@@ -85,6 +92,8 @@ export default function content(site) {
         },
         {
           id: 'financial-clarity',
+          cta: 'Talk through your numbers',
+          emailSubject: 'Financial clarity',
           lane: 'Led by Matt',
           title: 'Financial clarity and fractional CFO support',
           body: [
@@ -100,6 +109,8 @@ export default function content(site) {
         },
         {
           id: 'financial-operations',
+          cta: 'Talk through your financial operations',
+          emailSubject: 'Bookkeeping and financial operations',
           lane: 'Led by Matt',
           title: 'Bookkeeping and financial operations',
           body: [
@@ -116,6 +127,8 @@ export default function content(site) {
         },
         {
           id: 'integrated',
+          cta: 'Talk through a decision with both of us',
+          emailSubject: 'Working with Josh and Matt together',
           lane: 'Josh and Matt together',
           title: 'Integrated advisory',
           body: [
@@ -130,6 +143,7 @@ export default function content(site) {
           ],
         },
       ],
+      emailPrompt: 'Prefer to write? Email Josh and Matt',
       scopeHeading: 'Scope comes first',
       scope:
         'The right starting point depends on your business. We will agree on the people, questions, and work involved before an engagement begins.',
