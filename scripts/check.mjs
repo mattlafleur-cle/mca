@@ -130,7 +130,8 @@ if (/<form\b/.test(contactHtml)) errors.push('contact form present; only ship a 
 
 // Robots and sitemap.
 const robots = await readFile(path.join(dist, 'robots.txt'), 'utf8');
-if (!(site.allowIndexing && site.canonicalDomain) && !/Disallow: \//.test(robots)) errors.push('robots.txt does not block crawling for a preview');
+if (!(site.allowIndexing && site.canonicalDomain) && /Disallow: \/\s/.test(robots)) errors.push('robots.txt blocks crawling, which hides the noindex tags from search engines');
+if (!(site.allowIndexing && site.canonicalDomain) && (await exists(path.join(dist, 'sitemap.xml')))) errors.push('sitemap.xml built before indexing is approved');
 if (!site.canonicalDomain && (await exists(path.join(dist, 'sitemap.xml')))) errors.push('sitemap.xml built without an approved domain');
 
 // Contrast for the color pairs the design relies on (WCAG 2.2 AA: 4.5 for text, 3 for large text and UI).

@@ -14,3 +14,6 @@ Choices made in the first build, with the reason for each. Founders can reverse 
 | 2026-09-29 | Single light theme. | Brand site with a fixed palette; one well-tested theme is easier to keep accessible. |
 | 2026-09-29 | Indexing off by default; canonical, sitemap, and absolute Open Graph URLs only after a domain is approved. | Keeps previews out of search results and avoids inventing a canonical host. |
 | 2026-09-29 | Google Fonts for type. | Simple, and required by the private preview host. Self-hosting is documented as an option. |
+| 2026-09-29 | Serve the review site at maplecreekadvisors.com now, deployed by GitHub Actions to GitHub Pages. | Newer direct instruction from Matt, replacing the brief's "do not deploy" so the founders can review on the fly. The domain was parked at Hostinger with no site to replace. The repository is public, so Pages is free. |
+| 2026-09-29 | Keep `noindex` on every page; allow crawling in robots.txt. | Launch signoffs are still open. Crawlers must be able to read `noindex` for it to work on a live domain. |
+| 2026-09-29 | Kept the displayed name "Maple Creek Advisory" even though the domain says "Advisors." | Name is a founder decision. Flagged in the launch checklist. |

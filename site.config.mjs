@@ -9,14 +9,19 @@ export default {
   // Short line used in the footer and default meta description.
   tagline: 'Coaching, financial clarity, and practical operating guidance for owner-led businesses.',
 
-  // LAUNCH GATE: approved production domain, e.g. 'https://www.example.com' (no trailing slash).
-  // While null: no canonical tags, no sitemap, no absolute Open Graph URLs.
-  canonicalDomain: null,
+  // Domain the site is served from (no trailing slash). Set 2026-09-29 at Matt's direction so the
+  // founders can review the live site on the real domain. Hosting: GitHub Pages (see README).
+  // Set to null to drop canonical tags and absolute Open Graph URLs.
+  canonicalDomain: 'https://maplecreekadvisors.com',
 
-  // LAUNCH GATE: search indexing. Keep false for every preview. Set true only for the approved
-  // production deploy AND only when canonicalDomain is set. While false, every page carries
-  // noindex and robots.txt disallows all crawling.
+  // LAUNCH GATE: search indexing. Keep false while the founders are still reviewing. Set true only
+  // after launch signoff (it requires canonicalDomain). While false, every page carries noindex.
+  // robots.txt still allows crawling so search engines can see that noindex and drop the pages;
+  // blocking crawling would hide the noindex and can leave bare URLs in results.
   allowIndexing: false,
+
+  // Link preview image in src/assets/. Regenerate with `npm run og-image` after a name change.
+  ogImage: 'og-image.png',
 
   // LAUNCH GATE: third-party analytics. Keep null until approved. No tracking script is included
   // anywhere in this build, and this setting is not wired to any provider yet (see README).

@@ -3,6 +3,7 @@
 //   node scripts/build.mjs --mode=artifact  -> dist-artifact/ with flat files (services.html) for a private preview
 import { mkdir, rm, writeFile, readdir, copyFile, stat } from 'node:fs/promises';
 import path from 'node:path';
+import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import site from '../site.config.mjs';
 import makeContent from '../src/content.mjs';
@@ -19,6 +20,7 @@ function validateConfig() {
   if (site.canonicalDomain && !/^https:\/\/[^/]+$/.test(site.canonicalDomain))
     problems.push('canonicalDomain must look like https://www.example.com with no trailing slash.');
   if (!site.contact.recipients.length) problems.push('contact.recipients is empty; the site would have no working contact path.');
+  if (site.ogImage && !existsSync(path.join(root, 'src/assets', site.ogImage))) problems.push(`ogImage ${site.ogImage} is missing from src/assets/. Run npm run og-image.`);
   if (site.analytics) problems.push('analytics is set, but no analytics integration exists yet. See README before enabling.');
   if (problems.length) {
     console.error('Configuration problems:\n- ' + problems.join('\n- '));
@@ -58,12 +60,13 @@ async function main() {
 
   await copyDir(path.join(root, 'src/assets'), path.join(outDir, 'assets'));
 
-  // robots.txt and sitemap.xml: crawling stays blocked until the approved production settings are in place.
+  // robots.txt and sitemap.xml. Before launch, pages carry noindex and robots.txt allows crawling so that
+  // noindex is seen. The sitemap is built only once indexing is approved.
   if (mode === 'site') {
     const indexing = site.allowIndexing && site.canonicalDomain;
     const robots = indexing
       ? `User-agent: *\nAllow: /\n\nSitemap: ${site.canonicalDomain}/sitemap.xml\n`
-      : 'User-agent: *\nDisallow: /\n';
+      : '# Pre-launch review: every page carries a noindex meta tag. Crawling is allowed so that tag is honored.\nUser-agent: *\nAllow: /\n';
     await writeFile(path.join(outDir, 'robots.txt'), robots);
     written.push('robots.txt');
     if (indexing) {
@@ -82,7 +85,7 @@ async function main() {
   let bytes = 0;
   for (const rel of written) bytes += (await stat(path.join(outDir, rel))).size;
   console.log(`Built ${written.length} files (${(bytes / 1024).toFixed(1)} KB of HTML/text) into ${path.relative(root, outDir)}/ [${mode} mode]`);
-  if (!site.allowIndexing) console.log('Indexing is OFF: every page carries noindex and robots.txt blocks crawling.');
+  if (!site.allowIndexing) console.log('Indexing is OFF: every page carries noindex.');
 }
 
 main().catch((err) => {

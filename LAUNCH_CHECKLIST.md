@@ -1,10 +1,10 @@
 # Launch checklist
 
-Nothing on this list has been signed off. The site stays private, unindexed, and undeployed until every item is checked by the founders. Each item notes where the setting lives.
+Nothing on this list has been signed off. Since 2026-09-29 the review site is live at https://maplecreekadvisors.com (at Matt's direction), but it stays unindexed and unannounced until every item is checked by the founders. Each item notes where the setting lives.
 
 ## Name and relationship
 
-- [ ] **Business name.** Choose "Maple Creek Advisory," "Maple Creek Advisors," or another name. Check name availability with the Ohio Secretary of State, trademark conflicts, and domain availability. Setting: `siteName` in `site.config.mjs`.
+- [ ] **Business name.** Choose "Maple Creek Advisory," "Maple Creek Advisors," or another name. The domain is maplecreekadvisors.com, while the site currently says "Maple Creek Advisory"; decide whether they should match. Check name availability with the Ohio Secretary of State and for trademark conflicts. Setting: `siteName` in `site.config.mjs`, then run `npm run og-image`.
 - [ ] **Combination status.** Confirm the combination is effective before the site goes public. The copy describes the practice as it would exist at launch, but it does not say a transaction has closed.
 - [ ] **Relationship wording.** Approve the About page "Why the two of us" section and the Home page integrated section. Copy: `about.together` and `home.integrated*` in `src/content.mjs`.
 - [ ] **Footer copyright line.** It shows the working name. Confirm it matches the legal or registered trade name.
@@ -38,10 +38,12 @@ Nothing on this list has been signed off. The site stays private, unindexed, and
 
 ## Domain, indexing, and hosting
 
-- [ ] **Domain.** Choose and purchase the domain, then set `canonicalDomain` in `site.config.mjs`.
-- [ ] **Hosting account.** Choose who owns the hosting account and deploy only after approval. Do not replace either founder's existing live site.
-- [ ] **Open Graph image.** Add `src/assets/og-image.png` (1200 x 630) or remove the `og:image` line.
-- [ ] **Indexing.** Set `allowIndexing: true` only for the approved production deploy. This also builds `sitemap.xml` and opens `robots.txt`.
+- [x] **Domain.** maplecreekadvisors.com, chosen by Matt on 2026-09-29 and set as `canonicalDomain`.
+- [ ] **Hosting.** Currently GitHub Pages from Matt's public `mca` repository. Confirm this is the long-term home, whether the repository should stay public, and whether review should sit behind a login (Cloudflare Pages with Access).
+- [ ] **DNS and HTTPS.** Complete the one-time setup in the README, then confirm https://maplecreekadvisors.com and https://www.maplecreekadvisors.com both load with a valid certificate.
+- [ ] **Josh has seen it.** The review site is reachable by anyone with the link. Confirm Josh is comfortable with that before it is shared beyond the two of you.
+- [x] **Link preview image.** `src/assets/og-image.png` exists. Regenerate after any name change.
+- [ ] **Indexing.** Set `allowIndexing: true` only at launch. This removes `noindex` and builds `sitemap.xml`. Then submit the sitemap in Google Search Console.
 - [ ] **Analytics and privacy.** None are included. If added, document the data flow, consent requirements, and a privacy page that describes the actual handling.
 - [ ] **Fonts.** Decide whether to keep Google Fonts or self-host (see README).
 

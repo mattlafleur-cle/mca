@@ -10,6 +10,7 @@
     "build:artifact": "node scripts/build.mjs --mode=artifact",
     "check": "node scripts/build.mjs && node scripts/check.mjs",
     "preview": "node scripts/build.mjs && node scripts/serve.mjs",
-    "screenshots": "node scripts/screenshots.mjs"
+    "screenshots": "node scripts/screenshots.mjs",
+    "og-image": "node scripts/og-image.mjs"
   }
 }

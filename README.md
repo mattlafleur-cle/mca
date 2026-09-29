@@ -1,6 +1,6 @@
 # Maple Creek Advisory website (first build, private preview)
 
-This is the first public-facing website for the proposed combined advisory practice of Josh Muller and Matt LaFleur. It is a **private preview for founder review**. It has not been deployed, no domain or DNS has been touched, and the site does not claim that the business combination is complete.
+This is the first public-facing website for the proposed combined advisory practice of Josh Muller and Matt LaFleur. It is served at **https://maplecreekadvisors.com** for founder review, and every push to the site branch redeploys it automatically. It is not yet launched: pages carry `noindex`, and the site does not claim that the business combination is complete.
 
 "Maple Creek Advisory" is a working name. It is set in one place (`site.config.mjs`) so it can change after the founders decide.
 
@@ -17,6 +17,7 @@ The site is plain static HTML built by a small Node script that has **no depende
 | `npm run check` | Builds, then checks links, anchors, headings, titles, descriptions, alt text, indexing safety, the contact path, banned wording, and color contrast. Fails on any problem. |
 | `npm run screenshots` | Optional. Renders every page at desktop and phone widths with Playwright, tests the mobile menu and skip link with the keyboard, and fails on console errors or horizontal scrolling. Screenshots go to `screenshots/` (not committed). Needs Playwright installed locally or globally. |
 | `npm run build:artifact` | Builds a flat-file copy into `dist-artifact/` for sharing as a private hosted preview (see below). |
+| `npm run og-image` | Regenerates `src/assets/og-image.png`, the link preview image. Run it after changing the name or tagline. Needs Playwright. |
 
 ## Where to edit
 
@@ -62,18 +63,39 @@ Pages: Home, Services, How We Work, About, BUILD, Contact, and a 404 page.
 
 ## Search, analytics, and privacy
 
-- **Indexing is off.** While `allowIndexing` is `false` (the default), every page carries `noindex, nofollow`, `robots.txt` blocks all crawling, and no sitemap is built. The local server also sends `X-Robots-Tag: noindex`.
-- **Canonical tags, `og:url`, `og:image`, and `sitemap.xml`** are emitted only after `canonicalDomain` is set. Indexing requires both `canonicalDomain` and `allowIndexing: true`; the build refuses the second without the first.
+- **Indexing is off.** While `allowIndexing` is `false` (the default), every page carries `noindex, nofollow` and no sitemap is built. `robots.txt` allows crawling on purpose: search engines have to fetch a page to see its `noindex` tag, and blocking them can leave bare URLs in results. Anyone with the link can still open the site.
+- **Canonical tags and Open Graph URLs and image** use `canonicalDomain` (`https://maplecreekadvisors.com`). `sitemap.xml` is built only when `allowIndexing` is also `true`.
 - **No structured data** (for example `LocalBusiness`) is emitted, because the address, phone, and legal entity are not confirmed.
 - **No analytics, cookies, or trackers.** The contact path is a plain email link, so the site collects no data itself. That is why there is no privacy page yet. If analytics or a form is added later, document what it collects and add a privacy page that describes the actual data handling.
 - **Web fonts** load from Google Fonts, which means visitors' browsers request font files from Google. If the founders prefer no third-party requests at all, download the two families (Bricolage Grotesque, Source Serif 4) and self-host them in `src/assets/fonts/`.
-- **Open Graph image:** `og:image` points at `/assets/og-image.png`, which does not exist yet. Add a 1200 x 630 image there before launch, or remove that line in `src/layout.mjs`.
+- **Link preview image:** `src/assets/og-image.png` (1200 x 630) shows the name and tagline. Regenerate it with `npm run og-image` after changing either.
 
 ## Preview and deployment
 
 - **Local:** `npm run preview`.
-- **Shared private preview:** `npm run build:artifact` produces a flat-file version that works on hosts without clean-URL support. It has been published as a private claude.ai artifact for founder review (link shared separately). It is not public and not indexed.
-- **Production (not done, requires approval):** any static host works (Cloudflare Pages, Netlify, GitHub Pages, S3). Build command `npm run build`, output directory `dist`. Use the host's password protection or preview-deploy feature for any further review builds. Before a production deploy, complete every item in `LAUNCH_CHECKLIST.md`, then set `canonicalDomain` and `allowIndexing` deliberately.
+- **Live review site:** GitHub Pages, deployed by `.github/workflows/deploy.yml`. Every push to `claude/maple-creek-advisory-site` (or `main`) builds the site, runs `npm run check`, and publishes `dist/` only if the checks pass. A failed check leaves the previous version live.
+- **Private preview (earlier):** `npm run build:artifact` produces a flat-file copy that was shared as a private claude.ai artifact. The live domain replaces it for day-to-day review.
+
+### One-time GitHub Pages and DNS setup
+
+1. In GitHub, open the `mca` repository, then **Settings > Pages**. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+2. Re-run the latest **Deploy site** workflow from the **Actions** tab, or push any change.
+3. In **Settings > Pages > Custom domain**, enter `maplecreekadvisors.com` and save.
+4. In Hostinger, open **Domains > maplecreekadvisors.com > DNS / Nameservers**. Delete the existing parking `A` record(s) for `@` and any `CNAME` or `A` record for `www`, then add:
+
+   | Type | Name | Points to |
+   | --- | --- | --- |
+   | A | @ | 185.199.108.153 |
+   | A | @ | 185.199.109.153 |
+   | A | @ | 185.199.110.153 |
+   | A | @ | 185.199.111.153 |
+   | CNAME | www | mattlafleur-cle.github.io |
+
+   Leave any `MX` or `TXT` records alone. Those handle email.
+5. Once GitHub shows the DNS check as successful (minutes to a few hours), tick **Enforce HTTPS**.
+6. Recommended: verify the domain in your GitHub account (**Settings > Pages > Add a domain**) so no one else can point a GitHub Pages site at it.
+
+The repository is public, so the source, copy, and configuration (including the contact addresses) are public too. If the founders want the review site behind a login, move hosting to Cloudflare Pages with Cloudflare Access; the build does not change.
 
 There are no environment variables. All settings are in `site.config.mjs`.
 
