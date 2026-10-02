@@ -93,7 +93,7 @@ export default {
     {
       id: 'matt',
       name: 'Matt LaFleur',
-      role: 'Financial clarity and operations',
+      role: 'Financial clarity, strategy, and operations',
       photo: null,
       short:
         'Matt is a CPA and financial and operating adviser with more than 12 years of experience. He helps owners understand their numbers and use them to make decisions.',
