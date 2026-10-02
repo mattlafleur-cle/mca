@@ -22,7 +22,7 @@ Nothing on this list has been signed off. Since 2026-09-29 the review site is li
 
 - [x] **Josh's bio.** Verify titles, chronology (built and sold a construction company), current programs, and the BUILD description. Setting: `founders` in `site.config.mjs`. Approved: Josh greenlit the full site on 2026-09-29 (reported by Matt).
 - [x] **Matt's bio.** Verify "CPA licensed in Ohio and California" and "more than 14 years of experience" (updated by Matt 2026-10-02), and approve the wording. Approved: Josh greenlit the full site on 2026-09-29 (reported by Matt).
-- [ ] **Photos.** None are used. Josh has speaking photographs in the project archive; confirm publication rights before adding any. See `src/assets/photos/README.md`.
+- [x] **Photos.** Founder portraits added 2026-10-02 from photos Matt supplied. A professional headshot of Josh would be an upgrade over the cropped family photo.
 
 ## BUILD
 

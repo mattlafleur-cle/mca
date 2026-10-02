@@ -444,7 +444,7 @@ main:focus { outline: none; }
 .person-text { display: grid; gap: 0.6rem; }
 .person h3 { font-size: clamp(1.5rem, 1.2rem + 1vw, 1.9rem); }
 .person p:not(.person-role) { color: var(--ink-muted); }
-.portrait { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: var(--paper-deep); max-width: 100%; }
+.portrait { width: clamp(7.5rem, 6rem + 4vw, 10rem); height: auto; aspect-ratio: 1; border-radius: 50%; object-fit: cover; background: var(--paper); max-width: 100%; }
 @media (max-width: 44rem) { .people { grid-template-columns: minmax(0, 1fr); } }
 
 /* Closing ---------------------------------------------------------------- */
