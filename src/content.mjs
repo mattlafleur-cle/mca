@@ -297,7 +297,7 @@ export default function content(site) {
         'BUILD is a peer community convened by Josh Muller. It is where owners meet, build trust, and learn from one another. When an owner wants help doing the work itself, that is where advisory work with Josh and Matt comes in.',
         'The two are separate. You do not need to take part in BUILD before working with us, and you do not need to be a client to take part in BUILD.',
       ],
-      linkIntro: 'The current schedule and details are published on the Maple Creek Coaching site.',
+      linkIntro: 'The current schedule and details are on the BUILD website.',
     },
 
     contact: {

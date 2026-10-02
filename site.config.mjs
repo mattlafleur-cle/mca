@@ -55,13 +55,13 @@ export default {
   bookingLength: '20-minute',
 
   // BUILD owner community. The page links out only to the destination below.
-  // Verified live on 2026-09-29 (HTTP 200, current BUILD content on Josh's Maple Creek Coaching site).
+  // BUILD's own website, set 2026-10-02 at Matt's direction (verified live that day). Every external BUILD link uses this.
   // LAUNCH GATE: Josh should confirm this is the destination he wants to use.
   // Set showPage to false to drop the standalone page; About keeps a short BUILD section either way.
   build: {
     showPage: true,
-    url: 'https://www.maplecreekcoaching.com/build/',
-    urlLabel: 'Visit BUILD on the Maple Creek Coaching site',
+    url: 'https://buildowners.com/',
+    urlLabel: 'Visit the BUILD website',
     // From the BUILD plan Matt shared on 2026-10-02. Update as gatherings change.
     fullName: 'Business United in Leadership Development',
     gatherings: [

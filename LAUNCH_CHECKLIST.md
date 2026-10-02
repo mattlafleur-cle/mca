@@ -26,7 +26,7 @@ Nothing on this list has been signed off. Since 2026-09-29 the review site is li
 
 ## BUILD
 
-- [x] **BUILD destination.** The BUILD page links to https://www.maplecreekcoaching.com/build/, which was live on 2026-09-29. Josh should confirm this is the right destination and that it will stay current. Setting: `build` in `site.config.mjs` (`showPage: false` removes the page). Approved: Josh greenlit the full site on 2026-09-29 (reported by Matt).
+- [x] **BUILD destination.** Every external BUILD link points to https://buildowners.com/ (Matt, 2026-10-02; earlier it pointed to maplecreekcoaching.com/build/). Setting: `build` in `site.config.mjs` (`showPage: false` removes the page). Approved: Josh greenlit the full site on 2026-09-29 (reported by Matt).
 - [x] **BUILD description.** Approve the wording. It says BUILD is associated with Josh's work, separate from advisory engagements, and not a required step. It does not describe BUILD's legal structure, fees, or event schedule. Approved: Josh greenlit the full site on 2026-09-29 (reported by Matt).
 
 - [ ] **BUILD gatherings list.** The BUILD page lists breakfast (Akron, Independence), lunch (Akron), and happy hour (Akron, Norton / Cuyahoga Falls), taken from the BUILD plan dated 2026-10-02. Keep `build.gatherings` in `site.config.mjs` current as locations change.
