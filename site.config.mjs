@@ -81,7 +81,7 @@ export default {
     {
       id: 'josh',
       name: 'Josh Muller',
-      role: 'Coaching and leadership',
+      role: 'Coaching, leadership, and vision',
       photo: null,
       short:
         'Josh built and sold a construction company before he started coaching owners and facilitating leadership teams. He knows the weight of owner decisions because he has carried it.',
