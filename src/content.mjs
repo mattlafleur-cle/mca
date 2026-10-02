@@ -16,7 +16,7 @@ export default function content(site) {
       lead:
         'Running a business asks a lot of you. Josh Muller brings coaching and leadership experience from building a company himself. Matt LaFleur brings financial clarity and practical operating guidance. Together, they help owners turn what is happening in the business into a plan they can act on.',
       audience:
-        'For owners and leadership teams of owner-led companies, especially trades, construction, and service businesses.',
+        'For business owners and entrepreneurs who feel stuck and want a clear next step, whatever the industry.',
       situationsHeading: 'When the business needs more than another report or another opinion.',
       chooserEyebrow: 'Where are you stuck?',
       chooserIntro: 'Pick the one that sounds most like your week. Each one points to a sensible place to start.',
