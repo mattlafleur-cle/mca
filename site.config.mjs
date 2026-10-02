@@ -96,9 +96,9 @@ export default {
       role: 'Financial clarity, strategy, and operations',
       photo: null,
       short:
-        'Matt is a CPA, an entrepreneur, and a financial and operating adviser with more than 12 years of experience. He helps owners understand their numbers and use them to make decisions.',
+        'Matt is a CPA, an entrepreneur, and a financial and operating adviser with more than 14 years of experience. He helps owners understand their numbers and use them to make decisions.',
       bio: [
-        'Matt founded Forest City CPA and works as a financial and operating adviser. He is a CPA licensed in Ohio and California, with more than 12 years of experience in accounting, financial reporting, and advisory work.',
+        'Matt founded Forest City CPA and works as a financial and operating adviser. He is a CPA licensed in Ohio and California, with more than 14 years of experience in accounting, financial reporting, and advisory work.',
         'He works with owners to understand their numbers, make financial information more useful, and bring structure to consequential decisions. He also facilitates BUILD alongside Josh.',
       ],
     },
