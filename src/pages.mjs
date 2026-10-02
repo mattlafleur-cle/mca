@@ -81,7 +81,7 @@ export function home({ site, link, copy }) {
     <ul class="chooser">
       ${c.situations
         .map(
-          (s) => `<li><a class="chooser-card" href="${esc(link.page('services', s.anchor))}">
+          (s) => `<li><a class="chooser-card" href="${esc(s.page ? link.page(s.page) : link.page('services', s.anchor))}">
         <span class="chooser-text">${esc(s.text)}</span>
         <span class="chooser-path"><span class="chooser-label">${esc(c.chooserStartLabel)}</span> ${esc(s.start)}</span>
       </a></li>`,
@@ -108,7 +108,7 @@ export function home({ site, link, copy }) {
           (p) => `<article class="pillar">
         <h3>${esc(p.title)}</h3>
         <p>${esc(p.body)}</p>
-        <a class="text-link" href="${esc(link.page('services', p.anchor))}">${esc(p.linkText)}</a>
+        <a class="text-link" href="${esc(p.page ? link.page(p.page) : link.page('services', p.anchor))}">${esc(p.linkText)}</a>
       </article>`,
         )
         .join('')}
@@ -184,6 +184,7 @@ export function services({ site, link, copy }) {
         ${ctaButton(link, { variant: s.id === 'integrated' ? 'light' : 'primary', text: s.cta })}
         <a class="service-email" href="${esc(mailtoHref(site, s.emailSubject))}">${esc(c.emailPrompt)}</a>
       </div>
+      ${s.page ? `<a class="text-link${s.id === 'integrated' ? ' text-link-light' : ''}" href="${esc(link.page(s.page))}">${esc(s.pageLinkText)}</a>` : ''}
     </div>
     <div class="service-list">
       <h3>${esc(s.listHeading)}</h3>
@@ -473,3 +474,49 @@ export function notFound({ site, link, copy }) {
     seed: 17,
   })}`;
 }
+
+// Dedicated service pages share one layout.
+function servicePage(key) {
+  return ({ site, link, copy }) => {
+    const c = copy[key];
+    const sections = c.sections
+      .map(
+        (sec, i) => `<section class="section${i % 2 ? ' section-alt' : ''}" aria-labelledby="${key}-s${i}">
+  <div class="wrap svc-block">
+    <h2 id="${key}-s${i}" class="section-title">${esc(sec.heading)}</h2>
+    ${sec.paras ? paras(sec.paras) : ''}
+    ${sec.list ? `<ul class="check-list">${sec.list.map((it) => `<li>${esc(it)}</li>`).join('')}</ul>` : ''}
+    ${sec.note ? `<p class="service-note">${esc(sec.note)}</p>` : ''}
+    ${sec.link && link.has(sec.link.key) ? `<a class="text-link" href="${esc(link.page(sec.link.key))}">${esc(sec.link.text)}</a>` : ''}
+  </div>
+</section>`,
+      )
+      .join('\n');
+    const others = ['coaching', 'fractionalCfo', 'advisory'].filter((k) => k !== key && link.has(k));
+    return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `<div class="actions">${ctaButton(link)}</div>`, seed: key.length * 3 })}
+${sections}
+<section class="section section-dark" aria-labelledby="${key}-faq">
+  <div class="wrap faq-wrap">
+    <h2 id="${key}-faq" class="section-title">Common questions</h2>
+    <div class="faq">
+      ${c.faq.map((f) => `<div class="faq-item"><h3>${esc(f.q)}</h3><p>${esc(f.a)}</p></div>`).join('')}
+    </div>
+  </div>
+</section>
+<section class="section" aria-labelledby="${key}-related">
+  <div class="wrap svc-related">
+    <h2 id="${key}-related" class="section-title">Related services</h2>
+    <ul>
+      ${others.map((k) => `<li><a class="text-link" href="${esc(link.page(k))}">${esc(copy[k].eyebrow)}</a></li>`).join('')}
+      <li><a class="text-link" href="${esc(link.page('services'))}">All services</a></li>
+    </ul>
+  </div>
+</section>
+
+${closing(link, copy.home.closingHeading, copy.home.closingBody)}`;
+  };
+}
+
+export const coaching = servicePage('coaching');
+export const fractionalCfo = servicePage('fractionalCfo');
+export const advisory = servicePage('advisory');

@@ -3,15 +3,18 @@
 // House style: plain English, no em dashes, no guaranteed outcomes, no claims that the
 // practice has formally combined, no prices.
 
+import servicePages from './service-pages.mjs';
+
 export default function content(site) {
   const name = site.siteName;
 
   return {
+    ...servicePages(site),
     home: {
-      title: `${name} | Coaching and financial clarity for owners`,
+      title: `Business Coaching and Fractional CFO in Northeast Ohio | ${name}`,
       description:
-        'Coaching, financial clarity, and practical operating guidance for owners of growing, owner-led businesses in Northeast Ohio. Start with a conversation.',
-      eyebrow: 'For owners building the next stage',
+        'Business coaching, advisory, and fractional CFO services for owners and entrepreneurs in Akron, Cleveland, Cuyahoga Falls, Elyria, and Northeast Ohio.',
+      eyebrow: 'Business coaching, advisory, and fractional CFO in Northeast Ohio',
       headline: 'Build a stronger business with clearer numbers and better decisions.',
       lead:
         'Josh Muller brings coaching and leadership from building a company himself. Matt LaFleur brings financial clarity and practical operating guidance. Together, they help owners and entrepreneurs see where the business stands and build a plan to get where they want to go.',
@@ -22,10 +25,10 @@ export default function content(site) {
       chooserIntro: 'Pick the one that sounds most like your week. Each one points to a sensible place to start.',
       // Each situation links to the Services section where that work usually starts.
       situations: [
-        { text: 'Your team is growing, but decisions still come back to you.', anchor: 'coaching', start: 'Coaching and leadership' },
-        { text: 'You have financial reports, but not a clear view of what to do next.', anchor: 'financial-clarity', start: 'Financial clarity' },
+        { text: 'Your team is growing, but decisions still come back to you.', page: 'coaching', start: 'Business coaching' },
+        { text: 'You have financial reports, but not a clear view of what to do next.', page: 'fractionalCfo', start: 'Fractional CFO support' },
         { text: 'You are deciding what to change, what to protect, and who should own the next step.', anchor: 'financial-operations', start: 'Operating support' },
-        { text: 'You want an experienced thinking partner who understands both the people and the numbers.', anchor: 'integrated', start: 'Josh and Matt together' },
+        { text: 'You want an experienced thinking partner who understands both the people and the numbers.', page: 'advisory', start: 'Business advisory' },
       ],
       chooserStartLabel: 'Start with',
       chooserUnsure: 'Not sure which one fits? That is what the first conversation is for.',
@@ -35,14 +38,14 @@ export default function content(site) {
         {
           title: 'Coaching and leadership',
           body: 'Work through the decisions, habits, team dynamics, and accountability that shape how the business runs.',
-          anchor: 'coaching',
-          linkText: 'More about coaching and leadership',
+          page: 'coaching',
+          linkText: 'More about business coaching',
         },
         {
           title: 'Financial clarity',
           body: 'See what the numbers mean, strengthen forecasting and reporting, and use them to make timely decisions.',
-          anchor: 'financial-clarity',
-          linkText: 'More about financial clarity',
+          page: 'fractionalCfo',
+          linkText: 'More about fractional CFO support',
         },
         {
           title: 'Operating support',
@@ -97,9 +100,9 @@ export default function content(site) {
     },
 
     services: {
-      title: `Services | ${name}`,
+      title: `Business Coaching, Advisory, and Fractional CFO | ${name}`,
       description:
-        'Business coaching and leadership, fractional CFO support, bookkeeping and financial operations, and integrated advisory for owner-led businesses.',
+        'Business coaching, fractional CFO support, bookkeeping and financial operations, and integrated business advisory for owner-led businesses across Northeast Ohio.',
       eyebrow: 'Services',
       headline: 'Start with your most pressing question.',
       lead:
@@ -107,6 +110,8 @@ export default function content(site) {
       sections: [
         {
           id: 'coaching',
+          page: 'coaching',
+          pageLinkText: 'Business coaching in detail',
           cta: 'Talk through a leadership question',
           emailSubject: 'Coaching and leadership',
           lane: 'Led by Josh',
@@ -126,6 +131,8 @@ export default function content(site) {
         },
         {
           id: 'financial-clarity',
+          page: 'fractionalCfo',
+          pageLinkText: 'Fractional CFO services in detail',
           cta: 'Talk through your numbers',
           emailSubject: 'Financial clarity',
           lane: 'Led by Matt',
@@ -161,6 +168,8 @@ export default function content(site) {
         },
         {
           id: 'integrated',
+          page: 'advisory',
+          pageLinkText: 'Business advisory in detail',
           cta: 'Talk through a decision with both of us',
           emailSubject: 'Working with Josh and Matt together',
           lane: 'Josh and Matt together',
@@ -226,12 +235,12 @@ export default function content(site) {
           a: 'It is a conversation about what you need and whether we are a good fit. We will ask questions and share how we might help. It is not a free assessment or a sales pitch.',
         },
         {
-          q: 'Do you only work with construction businesses?',
-          a: 'No. Trades, construction, and service companies are familiar territory, but other owner-led firms can be a good fit too.',
+          q: 'Do you work with businesses in my industry?',
+          a: 'Very likely. We work with owner-led businesses across many industries. What matters most is an owner who wants to make better decisions and is ready to act on them.',
         },
         {
-          q: 'Do you work with businesses outside Northeast Ohio?',
-          a: 'Yes. We are based in Northeast Ohio, and much of the work can happen remotely.',
+          q: 'Where are you located, and do you work outside Northeast Ohio?',
+          a: 'We have offices in Cuyahoga Falls and Elyria and work with owners across Northeast Ohio. Much of the work can also happen remotely, so owners elsewhere are welcome too.',
         },
       ],
     },
@@ -249,7 +258,7 @@ export default function content(site) {
       ],
       whoHeading: 'Who we work with',
       who:
-        'Owners and leadership teams of owner-led businesses, typically 5 to 50 people, especially in the trades, construction, and service industries. Our home base is Northeast Ohio, and much of the work can also happen remotely.',
+        'Business owners, entrepreneurs, and leadership teams of owner-led companies, typically 5 to 50 people, in any industry. We have offices in Cuyahoga Falls and Elyria, work across Northeast Ohio, and much of the work can also happen remotely.',
       valuesHeading: 'What we care about',
       values: [
         { title: 'Honest conversations', body: 'We say what we see, respectfully, and expect the same from you.' },
@@ -325,7 +334,7 @@ export default function content(site) {
       linkIntro: 'The current schedule, the Toolbox, and more are on the BUILD website.',
     },
     contact: {
-      title: `Contact | ${name}`,
+      title: `Contact ${name} | Cuyahoga Falls and Elyria, Ohio`,
       description:
         'Schedule an intro conversation or email Josh Muller and Matt LaFleur about leadership, the numbers, or the way your business runs.',
       eyebrow: 'Contact',

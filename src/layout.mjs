@@ -8,6 +8,10 @@ export function routes(site) {
   const list = [
     { key: 'home', label: 'Home', path: '/', file: 'index.html', out: 'index.html' },
     { key: 'services', label: 'Services', path: '/services/', file: 'services.html', out: 'services/index.html' },
+    // Dedicated service pages: linked from Services, Home, and the footer, not the top menu.
+    { key: 'coaching', label: 'Business coaching', path: '/business-coaching/', file: 'business-coaching.html', out: 'business-coaching/index.html', service: true },
+    { key: 'fractionalCfo', label: 'Fractional CFO', path: '/fractional-cfo/', file: 'fractional-cfo.html', out: 'fractional-cfo/index.html', service: true },
+    { key: 'advisory', label: 'Business advisory', path: '/business-advisory/', file: 'business-advisory.html', out: 'business-advisory/index.html', service: true },
     { key: 'howWeWork', label: 'How We Work', path: '/how-we-work/', file: 'how-we-work.html', out: 'how-we-work/index.html' },
     { key: 'about', label: 'About', path: '/about/', file: 'about.html', out: 'about/index.html' },
     { key: 'build', label: 'BUILD', path: '/build/', file: 'build.html', out: 'build/index.html' },
@@ -110,7 +114,7 @@ export function ctaButton(link, { variant = 'primary', text } = {}) {
 }
 
 function header(site, link, current) {
-  const items = routes(site).filter((r) => !r.hidden && r.key !== 'home' && r.key !== 'contact');
+  const items = routes(site).filter((r) => !r.hidden && !r.service && r.key !== 'home' && r.key !== 'contact');
   const navItems = items
     .map((r) => `<li><a href="${esc(link.page(r.key))}"${r.key === current ? ' aria-current="page"' : ''}>${esc(r.label)}</a></li>`)
     .join('');
@@ -127,7 +131,8 @@ function header(site, link, current) {
 }
 
 function footer(site, link) {
-  const items = routes(site).filter((r) => !r.hidden);
+  const items = routes(site).filter((r) => !r.hidden && !r.service);
+  const services = routes(site).filter((r) => r.service);
   const year = new Date().getFullYear();
   return `<footer class="site-footer">
   <div class="wrap footer-inner">
@@ -138,14 +143,74 @@ function footer(site, link) {
     </div>
     <nav class="footer-nav" aria-label="Footer">
       <ul>${items.map((r) => `<li><a href="${esc(link.page(r.key))}">${esc(r.label)}</a></li>`).join('')}</ul>
+      <ul>${services.map((r) => `<li><a href="${esc(link.page(r.key))}">${esc(r.label)}</a></li>`).join('')}</ul>
     </nav>
     <div class="footer-contact">
       <p class="footer-label">Email</p>
       <ul>${site.contact.recipients.map((e) => `<li><a href="mailto:${esc(e)}">${esc(e)}</a></li>`).join('')}</ul>
     </div>
   </div>
+  ${site.location.areasServed?.length ? `<div class="wrap footer-areas"><p><span class="footer-label">Areas we serve</span> ${esc(site.location.areasServed.join(', '))}, and communities across ${esc(site.location.region)}.</p></div>` : ''}
   <div class="wrap footer-base"><p>&copy; ${year} ${esc(site.siteName)}</p>${site.footerNote ? `<p>${esc(site.footerNote)}</p>` : ''}</div>
 </footer>`;
+}
+
+// Structured data (schema.org JSON-LD) so search engines and AI tools can identify the business,
+// its founders, its services, and where it works. No street address or phone until they are confirmed.
+export function structuredData(site, route, meta) {
+  if (!site.canonicalDomain) return [];
+  const base = site.canonicalDomain;
+  const orgId = `${base}/#organization`;
+  const person = (f) => ({
+    '@type': 'Person',
+    '@id': `${base}/about/#${f.id}`,
+    name: f.name,
+    jobTitle: f.role,
+    worksFor: { '@id': orgId },
+    ...(site.profiles?.[f.id] ? { sameAs: [site.profiles[f.id]] } : {}),
+  });
+  const areas = [
+    { '@type': 'AdministrativeArea', name: `${site.location.region}` },
+    ...(site.location.areasServed || []).map((town) => ({ '@type': 'City', name: `${town}, Ohio` })),
+  ];
+  const org = {
+    '@type': 'ProfessionalService',
+    '@id': orgId,
+    name: site.siteName,
+    url: `${base}/`,
+    description: site.tagline,
+    image: site.ogImage ? `${base}/assets/${site.ogImage}` : undefined,
+    areaServed: areas,
+    location: (site.location.offices || []).map((town) => ({
+      '@type': 'Place',
+      name: `${site.siteName}, ${town}`,
+      address: { '@type': 'PostalAddress', addressLocality: town, addressRegion: 'OH', addressCountry: 'US' },
+    })),
+    founder: site.founders.map(person),
+    knowsAbout: ['Business coaching', 'Fractional CFO services', 'Business advisory', 'Strategic planning', 'Leadership team facilitation', 'Financial reporting', 'Cash flow forecasting'],
+    ...(site.bookingUrl ? { potentialAction: { '@type': 'ScheduleAction', target: site.bookingUrl, name: 'Schedule a conversation' } } : {}),
+  };
+  const graph = [org, { '@type': 'WebSite', '@id': `${base}/#website`, url: `${base}/`, name: site.siteName, publisher: { '@id': orgId } }];
+  if (route.service && meta.serviceType) {
+    graph.push({
+      '@type': 'Service',
+      '@id': `${base}${route.path}#service`,
+      name: meta.serviceType,
+      serviceType: meta.serviceType,
+      description: meta.description,
+      provider: { '@id': orgId },
+      areaServed: areas,
+      url: `${base}${route.path}`,
+    });
+  }
+  if (meta.faq?.length) {
+    graph.push({
+      '@type': 'FAQPage',
+      '@id': `${base}${route.path}#faq`,
+      mainEntity: meta.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    });
+  }
+  return [{ '@context': 'https://schema.org', '@graph': graph }];
 }
 
 export function pageShell({ site, link, mode, route, meta, body }) {
@@ -174,6 +239,9 @@ export function pageShell({ site, link, mode, route, meta, body }) {
     `<link rel="stylesheet" href="${fonts}">`,
     `<link rel="stylesheet" href="${esc(link.asset('site.css'))}">`,
     `<script>document.documentElement.classList.add('js')</script>`,
+    ...(mode === 'site' && route.key !== 'notFound'
+      ? structuredData(site, route, meta).map((d) => `<script type="application/ld+json">${JSON.stringify(d).replace(/</g, '\\u003c')}</script>`)
+      : []),
   ]
     .filter(Boolean)
     .join('\n');

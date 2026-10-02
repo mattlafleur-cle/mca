@@ -61,11 +61,17 @@ DECISIONS.md           choices made in this build and why
 
 Pages: Home, Services, How We Work, About, BUILD, Contact, and a 404 page.
 
+## Search (SEO)
+
+- **Indexing is on** (`allowIndexing: true`). The build publishes `sitemap.xml`, `robots.txt` pointing to it, and `llms.txt`, a plain summary for AI assistants.
+- **Service pages:** `/business-coaching/`, `/fractional-cfo/`, and `/business-advisory/` each target a search phrase plus the region. Their copy lives in `src/service-pages.mjs`.
+- **Structured data:** every page carries schema.org JSON-LD describing the business, founders, offices (town only), areas served, and booking action. Service pages add Service and FAQPage data. Street address and phone are left out until confirmed; add them to `site.config.mjs` first.
+- **Areas served:** `location.areasServed` in `site.config.mjs` feeds the footer, structured data, and `llms.txt`. Add towns as the practice expands.
+
 ## Search, analytics, and privacy
 
-- **Indexing is off.** While `allowIndexing` is `false` (the default), every page carries `noindex, nofollow` and no sitemap is built. `robots.txt` allows crawling on purpose: search engines have to fetch a page to see its `noindex` tag, and blocking them can leave bare URLs in results. Anyone with the link can still open the site.
+- **Indexing:** with `allowIndexing` set to `false`, every page would carry `noindex` and no sitemap is built. It is currently `true`.
 - **Canonical tags and Open Graph URLs and image** use `canonicalDomain` (`https://maplecreekadvisors.com`). `sitemap.xml` is built only when `allowIndexing` is also `true`.
-- **No structured data** (for example `LocalBusiness`) is emitted, because the address, phone, and legal entity are not confirmed.
 - **No analytics, cookies, or trackers.** The contact path is a plain email link, so the site collects no data itself. That is why there is no privacy page yet. If analytics or a form is added later, document what it collects and add a privacy page that describes the actual data handling.
 - **Web fonts** load from Google Fonts, which means visitors' browsers request font files from Google. If the founders prefer no third-party requests at all, download the two families (Bricolage Grotesque, Source Serif 4) and self-host them in `src/assets/fonts/`.
 - **Link preview image:** `src/assets/og-image.png` (1200 x 630) shows the name and tagline. Regenerate it with `npm run og-image` after changing either.

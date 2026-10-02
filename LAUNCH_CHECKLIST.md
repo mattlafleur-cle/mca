@@ -46,7 +46,11 @@ Nothing on this list has been signed off. Since 2026-09-29 the review site is li
 - [x] **DNS and HTTPS.** Hostinger records point to GitHub Pages, the site loads at https://maplecreekadvisors.com, and Enforce HTTPS is on (confirmed 2026-09-29).
 - [x] **Josh has seen it.** The review site is reachable by anyone with the link. Confirm Josh is comfortable with that before it is shared beyond the two of you. Approved: Josh greenlit the full site on 2026-09-29 (reported by Matt).
 - [x] **Link preview image.** `src/assets/og-image.png` exists. Regenerate after any name change.
-- [ ] **Indexing.** Set `allowIndexing: true` only at launch. This removes `noindex` and builds `sitemap.xml`. Then submit the sitemap in Google Search Console.
+- [x] **Indexing.** Turned on 2026-10-02. Submit `https://maplecreekadvisors.com/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
+- [ ] **Google Search Console.** Add maplecreekadvisors.com as a Domain property, verify it with the TXT record in Hostinger, and submit the sitemap.
+- [ ] **Bing Webmaster Tools.** Import the site from Google Search Console.
+- [ ] **Google Business Profile.** Set up the Cuyahoga Falls office, and Elyria if it is staffed. Then add street addresses and a phone number to `site.config.mjs` so the site and the profile match exactly.
+- [ ] **Links from your other sites.** Link to maplecreekadvisors.com from Maple Creek Coaching, Forest City CPA, and buildowners.com.
 - [ ] **Analytics and privacy.** None are included. If added, document the data flow, consent requirements, and a privacy page that describes the actual handling.
 - [ ] **Fonts.** Decide whether to keep Google Fonts or self-host (see README).
 

@@ -622,6 +622,13 @@ main:focus { outline: none; }
 
 .not-found-links { list-style: none; display: grid; gap: 0.75rem; margin-top: 0.5rem; }
 
+/* Dedicated service pages ---------------------------------------------- */
+.svc-block { display: grid; gap: 1.1rem; justify-items: start; }
+.svc-block > * { max-width: 46rem; width: 100%; }
+.svc-block p { color: var(--ink-muted); }
+.section-dark .faq-item p { color: var(--on-dark-muted); }
+.svc-related ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.75rem 2rem; margin-top: 1.25rem; }
+
 /* Footer ----------------------------------------------------------------- */
 .site-footer { background: var(--paper); border-top: 1px solid var(--rule); padding-block: 3.5rem 2rem; font-size: 1rem; }
 .footer-inner { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); gap: 2rem 3rem; }
@@ -635,8 +642,11 @@ main:focus { outline: none; }
   font-size: 1.15rem;
   color: var(--evergreen);
 }
+.footer-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.35rem 1.5rem; align-content: start; }
 .footer-nav ul,
-.footer-contact ul { list-style: none; display: grid; gap: 0.35rem; }
+.footer-contact ul { list-style: none; display: grid; gap: 0.35rem; align-content: start; }
+.footer-areas { margin-top: 2rem; color: var(--ink-muted); font-size: 0.92rem; }
+.footer-areas .footer-label { margin-right: 0.5rem; }
 .footer-nav a,
 .footer-contact a { color: var(--ink); text-decoration: none; overflow-wrap: anywhere; display: inline-block; padding-block: 0.2rem; }
 .footer-nav a:hover,

@@ -69,7 +69,35 @@ async function main() {
       : '# Pre-launch review: every page carries a noindex meta tag. Crawling is allowed so that tag is honored.\nUser-agent: *\nAllow: /\n';
     await writeFile(path.join(outDir, 'robots.txt'), robots);
     written.push('robots.txt');
+    // llms.txt: a plain-language summary that AI assistants and answer engines can read quickly.
     if (indexing) {
+      const svc = routes(site).filter((r) => r.service);
+      const lines = [
+        `# ${site.siteName}`,
+        '',
+        `> ${site.tagline} ${site.location.serviceLine}`,
+        '',
+        `${site.siteName} is an advisory practice led by ${site.founders.map((f) => f.name).join(' and ')}. ${site.footerNote || ''}`.trim(),
+        '',
+        '## Services',
+        ...svc.map((r) => `- [${copy[r.key].eyebrow}](${site.canonicalDomain}${r.path}): ${copy[r.key].description}`),
+        `- [All services](${site.canonicalDomain}/services/)`,
+        '',
+        '## About',
+        `- [Josh Muller and Matt LaFleur](${site.canonicalDomain}/about/)`,
+        `- [How we work](${site.canonicalDomain}/how-we-work/)`,
+        `- [BUILD owner community](${site.canonicalDomain}/build/)`,
+        '',
+        '## Areas served',
+        `${(site.location.areasServed || []).join(', ')}, and communities across ${site.location.region}.`,
+        '',
+        '## Contact',
+        site.bookingUrl ? `- Schedule a conversation: ${site.bookingUrl}` : `- Contact: ${site.canonicalDomain}/contact/`,
+        `- Email: ${site.contact.recipients.join(', ')}`,
+        '',
+      ];
+      await writeFile(path.join(outDir, 'llms.txt'), lines.join('\n'));
+      written.push('llms.txt');
       const urls = routes(site)
         .filter((r) => !r.hidden)
         .map((r) => `  <url><loc>${site.canonicalDomain}${r.path}</loc></url>`)

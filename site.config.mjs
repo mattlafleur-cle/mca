@@ -23,7 +23,7 @@ export default {
   // after launch signoff (it requires canonicalDomain). While false, every page carries noindex.
   // robots.txt still allows crawling so search engines can see that noindex and drop the pages;
   // blocking crawling would hide the noindex and can leave bare URLs in results.
-  allowIndexing: false,
+  allowIndexing: true, // Turned on 2026-10-02 at Matt's direction.
 
   // Link preview image in src/assets/. Regenerate with `npm run og-image` after a name change.
   ogImage: 'og-image.png',
@@ -35,7 +35,19 @@ export default {
   // Location language shown in the footer and About page. No street address or phone is published.
   location: {
     region: 'Northeast Ohio',
-    serviceLine: 'Based in Northeast Ohio. Working with owners in person and remotely.',
+    serviceLine: 'Offices in Cuyahoga Falls and Elyria. Working with owners across Northeast Ohio, in person and remotely.',
+    // Office towns (confirmed by Matt, 2026-10-02). Street addresses and phone are not published yet.
+    offices: ['Cuyahoga Falls', 'Elyria'],
+    // Towns named on the site and in structured data. Add towns as the practice expands.
+    areasServed: [
+      'Akron', 'Cuyahoga Falls', 'Cleveland', 'Elyria', 'Independence', 'Stow', 'Hudson', 'Kent', 'Medina',
+      'Lorain', 'Avon', 'Westlake', 'Strongsville', 'Brecksville', 'Twinsburg', 'Canton',
+    ],
+  },
+  // Public profiles used to connect the founders to the business in search results.
+  profiles: {
+    josh: 'https://www.linkedin.com/in/joshmuller/',
+    matt: 'https://www.linkedin.com/in/mattlafleurcleveland/',
   },
 
   // LAUNCH GATE: contact channel. No shared inbox or tested form exists yet, so the site uses a

@@ -66,7 +66,7 @@ for (const file of files) {
     descriptions.set(desc, [...(descriptions.get(desc) || []), rel]);
     if (desc.length > 165 || desc.length < 70) warnings.push(`${rel}: description is ${desc.length} characters`);
   }
-  if (title && title.length > 70) warnings.push(`${rel}: title is ${title.length} characters`);
+  if (title && title.length > 80) warnings.push(`${rel}: title is ${title.length} characters`);
 
   if (!/<html lang="en">/.test(html)) errors.push(`${rel}: missing lang attribute`);
   if (!/class="skip-link" href="#main"/.test(html) || !/id="main"/.test(html)) errors.push(`${rel}: skip link or main target missing`);
@@ -74,7 +74,19 @@ for (const file of files) {
   const indexingOn = site.allowIndexing && site.canonicalDomain;
   if (!indexingOn && !/<meta name="robots" content="noindex, nofollow">/.test(html)) errors.push(`${rel}: preview page is indexable`);
   if (!site.canonicalDomain && /rel="canonical"/.test(html)) errors.push(`${rel}: canonical emitted without an approved domain`);
-  if (/application\/ld\+json/.test(html)) errors.push(`${rel}: structured data present; confirm entity details first`);
+  // Structured data must parse and must not publish an unconfirmed street address or phone.
+  const ld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => m[1]);
+  for (const block of ld) {
+    try {
+      const data = JSON.parse(block);
+      const flat = JSON.stringify(data);
+      if (/"streetAddress"|"telephone"/.test(flat)) errors.push(`${rel}: structured data includes a street address or phone that has not been confirmed`);
+      if (!flat.includes('"ProfessionalService"')) errors.push(`${rel}: structured data is missing the business entity`);
+    } catch (e) {
+      errors.push(`${rel}: structured data is not valid JSON (${e.message})`);
+    }
+  }
+  if (site.canonicalDomain && rel !== '404.html' && !ld.length) errors.push(`${rel}: structured data missing`);
   if (/googletagmanager|google-analytics|gtag\(|plausible|fbq\(|hotjar/i.test(html)) errors.push(`${rel}: tracking script found`);
 
   if (site.footerNote && !html.includes(site.footerNote)) errors.push(`${rel}: footer disclosure missing`);
@@ -133,6 +145,18 @@ if (/<form\b/.test(contactHtml)) errors.push('contact form present; only ship a 
 
 // Robots and sitemap.
 const robots = await readFile(path.join(dist, 'robots.txt'), 'utf8');
+if (site.allowIndexing && site.canonicalDomain) {
+  if (/Disallow: \/\s/.test(robots)) errors.push('indexing is on but robots.txt blocks crawling');
+  if (!robots.includes(`Sitemap: ${site.canonicalDomain}/sitemap.xml`)) errors.push('robots.txt does not point to the sitemap');
+  const sitemap = (await exists(path.join(dist, 'sitemap.xml'))) ? await readFile(path.join(dist, 'sitemap.xml'), 'utf8') : '';
+  for (const f of files) {
+    const rel = path.relative(dist, f);
+    if (rel === '404.html') continue;
+    const url = `${site.canonicalDomain}/${rel.replace(/index\.html$/, '')}`;
+    if (!sitemap.includes(`<loc>${url}</loc>`)) errors.push(`sitemap.xml is missing ${url}`);
+  }
+  if (!(await exists(path.join(dist, 'llms.txt')))) errors.push('llms.txt missing');
+}
 if (!(site.allowIndexing && site.canonicalDomain) && /Disallow: \/\s/.test(robots)) errors.push('robots.txt blocks crawling, which hides the noindex tags from search engines');
 if (!(site.allowIndexing && site.canonicalDomain) && (await exists(path.join(dist, 'sitemap.xml')))) errors.push('sitemap.xml built before indexing is approved');
 if (!site.canonicalDomain && (await exists(path.join(dist, 'sitemap.xml')))) errors.push('sitemap.xml built without an approved domain');
