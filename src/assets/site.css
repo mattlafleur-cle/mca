@@ -564,13 +564,9 @@ main:focus { outline: none; }
 .parts h4 { font-family: var(--font-display); font-weight: 650; font-size: 1.2rem; margin: 0; }
 .parts p { color: var(--ink-muted); }
 @media (max-width: 48rem) { .parts { grid-template-columns: minmax(0, 1fr); } }
-.steps-five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .section-dark .step { border-top-color: var(--maple); }
 .section-dark .step-num { color: var(--maple); }
 .section-dark .step p { color: var(--on-dark-muted); }
-@media (max-width: 60rem) { .steps-five { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 36rem) { .steps-five { grid-template-columns: minmax(0, 1fr); } }
-.toolbox { margin-top: clamp(2rem, 1.5rem + 2vw, 3rem); padding-top: 1.5rem; border-top: 1px solid rgba(243, 238, 226, 0.22); display: grid; gap: 0.6rem; max-width: 46rem; }
 .retreat { margin-top: clamp(2rem, 1.5rem + 2vw, 3rem); padding: 1.5rem; background: var(--paper-card); border: 1px solid var(--rule); border-left: 3px solid var(--maple); display: grid; gap: 0.5rem; max-width: 46rem; }
 .retreat p { color: var(--ink-muted); }
 @media (max-width: 36rem) { .gatherings > div { grid-template-columns: minmax(0, 1fr); } }

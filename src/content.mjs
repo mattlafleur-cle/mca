@@ -292,18 +292,6 @@ export default function content(site) {
       roomHeading: 'The room',
       roomIntro: 'BUILD meets around Northeast Ohio in a few formats, so owners can join the way that fits their week.',
       roomNote: 'Dates, places, and details change, so check the current schedule on the BUILD website.',
-      methodHeading: 'The method: the Five A’s',
-      methodIntro: 'Every BUILD room, and much of the deeper work, follows the same five steps.',
-      method: [
-        { title: 'Awareness', body: 'Get the truth on the table.' },
-        { title: 'Analysis', body: 'Sort what matters from what is noise.' },
-        { title: 'Alignment', body: 'Put it on a timeline everyone can see.' },
-        { title: 'Action', body: 'One owner, one date, one definition of done.' },
-        { title: 'Accountability', body: 'Keep score in the open.' },
-      ],
-      toolboxHeading: 'The BUILD Toolbox',
-      toolbox:
-        'Sixty-five practical tools for the problems owners run into. Each one is written the same way: what it is, when to run it, how to run it, what you end up holding, what to watch out for, and where it came from.',
       guideHeading: 'The guides',
       guides: [
         { name: 'Josh Muller', role: 'Founder', body: 'Josh created BUILD after building and selling a construction business of his own. He helps owners ask better questions, tackle what is holding them back, and lead with purpose.' },

@@ -358,19 +358,6 @@ export function build({ site, link, copy }) {
   </div>
 </section>
 ${room}
-<section class="section section-dark" aria-labelledby="method-heading">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 id="method-heading" class="section-title">${esc(c.methodHeading)}</h2>
-      <p>${esc(c.methodIntro)}</p>
-    </div>
-    <ol class="steps steps-five">${numbered(c.method)}</ol>
-    <div class="toolbox">
-      <h3>${esc(c.toolboxHeading)}</h3>
-      <p>${esc(c.toolbox)}</p>
-    </div>
-  </div>
-</section>
 <section class="section" aria-labelledby="guides-heading">
   <div class="wrap">
     <h2 id="guides-heading" class="section-title">${esc(c.guideHeading)}</h2>
