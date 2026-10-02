@@ -30,3 +30,4 @@ Choices made in the first build, with the reason for each. Founders can reverse 
 | 2026-10-02 | Site names offices in Cuyahoga Falls and Elyria and lists areas served across Northeast Ohio. No street address or phone in structured data. | Office towns confirmed by Matt. Street addresses and phone not yet provided. `npm run check` fails if an unconfirmed address or phone appears. |
 | 2026-10-02 | Broadened audience: About "Who we work with" and the industry FAQ no longer emphasize construction and trades. | Consistent with Matt's direction to apply broadly to owners and entrepreneurs. |
 | 2026-10-02 | Removed the Five A's and BUILD Toolbox section from the BUILD page. | Matt's direction. Brief mentions of the method remain in the "A method" card, Retreat to Advance, and the About BUILD paragraph. |
+| 2026-10-02 | Replaced remaining Five A's and Toolbox mentions with "a practical method." | Matt's direction. |

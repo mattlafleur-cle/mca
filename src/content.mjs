@@ -268,14 +268,14 @@ export default function content(site) {
       ],
       buildHeading: 'BUILD',
       buildBody:
-        'Josh created BUILD (Business United in Leadership Development), and Matt facilitates it with him. BUILD combines a peer community of owners with a practical method, the Five A’s. It is open to owners whether or not they work with us.',
+        'Josh created BUILD (Business United in Leadership Development), and Matt facilitates it with him. BUILD combines a peer community of owners with a practical method. It is open to owners whether or not they work with us.',
       buildLink: 'About BUILD',
     },
 
     build: {
       title: `BUILD: a room, a method, and a guide | ${name}`,
       description:
-        'BUILD combines a peer community of business owners with a practical method, the Five A’s, led by Josh Muller and Matt LaFleur.',
+        'BUILD combines a peer community of business owners with a practical method, led by Josh Muller and Matt LaFleur.',
       eyebrow: 'BUILD',
       headline: 'Never build alone.',
       lead:
@@ -286,7 +286,7 @@ export default function content(site) {
       partsHeading: 'Three parts that work together',
       parts: [
         { title: 'A room', body: 'Regular gatherings where owners trade honest ideas with peers who carry the same weight.' },
-        { title: 'A method', body: 'The Five A’s, a simple sequence for turning what is happening in the business into action.' },
+        { title: 'A method', body: 'A practical method for turning what is happening in the business into action.' },
         { title: 'A guide', body: 'Josh and Matt facilitate the work: guides, not heroes, who hand you the map and point out the cliff.' },
       ],
       roomHeading: 'The room',
@@ -298,12 +298,12 @@ export default function content(site) {
         { name: 'Matt LaFleur', role: 'Facilitator', body: 'Matt brings the financial and operating view to the room, helping owners turn big ideas into clear priorities and practical next steps.' },
       ],
       retreatHeading: 'Retreat to Advance',
-      retreat: 'Once a year, BUILD steps away for two days to work through all Five A’s at full depth: take stock of the season, distill what matters, and reset the year ahead.',
+      retreat: 'Once a year, BUILD steps away for two days to work through a practical method at full depth: take stock of the season, distill what matters, and reset the year ahead.',
       journeyHeading: 'How owners get involved',
       journey: [
         { title: 'Learn', body: 'Hear about BUILD from another owner, a referral, or online.' },
         { title: 'Attend', body: 'Come to a breakfast, lunch, happy hour, or workshop. There is no commitment.' },
-        { title: 'Engage', body: 'Keep showing up, use the method and the tools, and build real relationships.' },
+        { title: 'Engage', body: 'Keep showing up, put a practical method to work, and build real relationships.' },
         { title: 'Lead and give', body: 'In time, help host a gathering, mentor another owner, or share what you have learned.' },
       ],
       valuesHeading: 'What BUILD stands for',
@@ -319,7 +319,7 @@ export default function content(site) {
         'BUILD and Maple Creek Advisors share the same people and the same practical approach. In BUILD, owners work through it together, with peers in the room. In an advisory engagement, Josh and Matt work through it with one owner or one leadership team, on that business’s own decisions and numbers.',
         'Either can come first. You do not need to take part in BUILD before working with us, and you do not need to be a client to take part in BUILD.',
       ],
-      linkIntro: 'The current schedule, the Toolbox, and more are on the BUILD website.',
+      linkIntro: 'The current schedule and more are on the BUILD website.',
     },
     contact: {
       title: `Contact ${name} | Cuyahoga Falls and Elyria, Ohio`,
