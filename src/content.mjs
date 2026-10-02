@@ -14,7 +14,7 @@ export default function content(site) {
       eyebrow: 'For owners building the next stage',
       headline: 'Build a stronger business with clearer numbers and better decisions.',
       lead:
-        'Running a business asks a lot of you. Josh Muller brings coaching and leadership experience from building a company himself. Matt LaFleur brings financial clarity and practical operating guidance. Together, they help owners turn what is happening in the business into a plan they can act on.',
+        'Josh Muller brings coaching and leadership from building a company himself. Matt LaFleur brings financial clarity and practical operating guidance. Together, they help owners and entrepreneurs see where the business stands and build a plan to get where they want to go.',
       audience:
         'For business owners and entrepreneurs who feel stuck and want a clear next step, whatever the industry.',
       situationsHeading: 'When the business needs more than another report or another opinion.',
