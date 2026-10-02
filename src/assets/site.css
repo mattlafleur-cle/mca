@@ -235,6 +235,7 @@ main:focus { outline: none; }
 .section-title { max-width: 22em; }
 .section-head { display: grid; gap: 1rem; margin-bottom: clamp(2rem, 1.5rem + 2vw, 3rem); max-width: 44rem; }
 .section-head p { color: var(--ink-muted); }
+.section-dark .section-head p { color: var(--on-dark-muted); }
 .section-head-row { max-width: none; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 1rem 2rem; }
 
 /* Home hero -------------------------------------------------------------- */
@@ -553,7 +554,23 @@ main:focus { outline: none; }
 .gatherings { margin: 0; display: grid; border-top: 1px solid var(--rule); align-content: start; }
 .gatherings > div { padding: 1rem 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: minmax(0, 9rem) minmax(0, 1fr); gap: 0.25rem 1.5rem; }
 .gatherings dt { font-family: var(--font-display); font-weight: 650; font-size: 1.15rem; }
-.gatherings dd { margin: 0; color: var(--ink-muted); }
+.gatherings dd { margin: 0; color: var(--ink-muted); display: grid; gap: 0.2rem; }
+.gathering-places { font-family: var(--font-display); font-size: 0.95rem; color: var(--evergreen); }
+.parts-heading { margin-top: 1.5rem; font-size: var(--step-1); }
+.parts { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 0.5rem + 1.5vw, 1.75rem); }
+.parts li { display: grid; gap: 0.5rem; align-content: start; padding-top: 1rem; border-top: 2px solid var(--evergreen); min-width: 0; }
+.parts h4 { font-family: var(--font-display); font-weight: 650; font-size: 1.2rem; margin: 0; }
+.parts p { color: var(--ink-muted); }
+@media (max-width: 48rem) { .parts { grid-template-columns: minmax(0, 1fr); } }
+.steps-five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.section-dark .step { border-top-color: var(--maple); }
+.section-dark .step-num { color: var(--maple); }
+.section-dark .step p { color: var(--on-dark-muted); }
+@media (max-width: 60rem) { .steps-five { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 36rem) { .steps-five { grid-template-columns: minmax(0, 1fr); } }
+.toolbox { margin-top: clamp(2rem, 1.5rem + 2vw, 3rem); padding-top: 1.5rem; border-top: 1px solid rgba(243, 238, 226, 0.22); display: grid; gap: 0.6rem; max-width: 46rem; }
+.retreat { margin-top: clamp(2rem, 1.5rem + 2vw, 3rem); padding: 1.5rem; background: var(--paper-card); border: 1px solid var(--rule); border-left: 3px solid var(--maple); display: grid; gap: 0.5rem; max-width: 46rem; }
+.retreat p { color: var(--ink-muted); }
 @media (max-width: 36rem) { .gatherings > div { grid-template-columns: minmax(0, 1fr); } }
 
 .build-values { list-style: none; border-top: 1px solid var(--rule); }

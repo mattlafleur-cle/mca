@@ -310,51 +310,95 @@ export function build({ site, link, copy }) {
     ? `<p>${esc(c.linkIntro)}</p>
       <p><a class="button button-secondary" href="${esc(site.build.url)}" rel="noopener">${esc(site.build.urlLabel)}</a></p>`
     : '';
-  const gatherings = site.build.gatherings?.length
-    ? `<section class="section section-alt" aria-labelledby="gatherings-heading">
-  <div class="wrap two-col">
-    <div>
-      <h2 id="gatherings-heading" class="section-title">${esc(c.gatheringsHeading)}</h2>
-      <p>${esc(c.gatheringsIntro)}</p>
-      <p>${esc(c.gatheringsNote)}</p>
-    </div>
-    <dl class="gatherings">
-      ${site.build.gatherings.map((g) => `<div><dt>${esc(g.format)}</dt><dd>${esc(g.places)}</dd></div>`).join('')}
-    </dl>
-  </div>
-</section>`
-    : '';
   const hero = pageHero({
     eyebrow: site.build.fullName ? `BUILD: ${site.build.fullName}` : c.eyebrow,
     headline: c.headline,
     lead: c.lead,
     seed: 13,
   });
+  const room = site.build.gatherings?.length
+    ? `<section class="section section-alt" aria-labelledby="room-heading">
+  <div class="wrap two-col">
+    <div>
+      <h2 id="room-heading" class="section-title">${esc(c.roomHeading)}</h2>
+      <p>${esc(c.roomIntro)}</p>
+      <p>${esc(c.roomNote)}</p>
+    </div>
+    <dl class="gatherings">
+      ${site.build.gatherings
+        .map(
+          (g) => `<div><dt>${esc(g.format)}</dt><dd><span>${esc(g.detail)}</span>${g.places ? `<span class="gathering-places">${esc(g.places)}</span>` : ''}</dd></div>`,
+        )
+        .join('')}
+    </dl>
+  </div>
+</section>`
+    : '';
+  const numbered = (items) =>
+    items
+      .map(
+        (s, i) => `<li class="step">
+        <span class="step-num" aria-hidden="true">${i + 1}</span>
+        <h3>${esc(s.title)}</h3>
+        <p>${esc(s.body)}</p>
+      </li>`,
+      )
+      .join('');
+
   return `${hero}
 <section class="section" aria-labelledby="promise-heading">
   <div class="wrap promise">
     <h2 id="promise-heading" class="eyebrow">${esc(c.promiseHeading)}</h2>
     <p class="promise-text">${esc(c.promise)}</p>
+    <h3 class="parts-heading">${esc(c.partsHeading)}</h3>
+    <ul class="parts">
+      ${c.parts.map((pt) => `<li><h4>${esc(pt.title)}</h4><p>${esc(pt.body)}</p></li>`).join('')}
+    </ul>
   </div>
 </section>
-${gatherings}
-<section class="section" aria-labelledby="journey-heading">
+${room}
+<section class="section section-dark" aria-labelledby="method-heading">
   <div class="wrap">
-    <h2 id="journey-heading" class="section-title">${esc(c.journeyHeading)}</h2>
-    <ol class="steps">
-      ${c.journey
+    <div class="section-head">
+      <h2 id="method-heading" class="section-title">${esc(c.methodHeading)}</h2>
+      <p>${esc(c.methodIntro)}</p>
+    </div>
+    <ol class="steps steps-five">${numbered(c.method)}</ol>
+    <div class="toolbox">
+      <h3>${esc(c.toolboxHeading)}</h3>
+      <p>${esc(c.toolbox)}</p>
+    </div>
+  </div>
+</section>
+<section class="section" aria-labelledby="guides-heading">
+  <div class="wrap">
+    <h2 id="guides-heading" class="section-title">${esc(c.guideHeading)}</h2>
+    <div class="people guides">
+      ${c.guides
         .map(
-          (s, i) => `<li class="step">
-        <span class="step-num" aria-hidden="true">${i + 1}</span>
-        <h3>${esc(s.title)}</h3>
-        <p>${esc(s.body)}</p>
-      </li>`,
+          (g) => `<article class="person">
+        <div class="person-text">
+          <p class="person-role">${esc(g.role)}</p>
+          <h3>${esc(g.name)}</h3>
+          <p>${esc(g.body)}</p>
+        </div>
+      </article>`,
         )
         .join('')}
-    </ol>
+    </div>
+    <div class="retreat">
+      <h3>${esc(c.retreatHeading)}</h3>
+      <p>${esc(c.retreat)}</p>
+    </div>
   </div>
 </section>
-<section class="section section-alt" aria-labelledby="build-values-heading">
+<section class="section section-alt" aria-labelledby="journey-heading">
+  <div class="wrap">
+    <h2 id="journey-heading" class="section-title">${esc(c.journeyHeading)}</h2>
+    <ol class="steps">${numbered(c.journey)}</ol>
+  </div>
+</section>
+<section class="section" aria-labelledby="build-values-heading">
   <div class="wrap two-col">
     <div>
       <h2 id="build-values-heading" class="section-title">${esc(c.valuesHeading)}</h2>

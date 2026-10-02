@@ -259,29 +259,54 @@ export default function content(site) {
       ],
       buildHeading: 'BUILD',
       buildBody:
-        'Josh also convenes BUILD (Business United in Leadership Development), a peer community where business owners learn from one another. It is associated with Josh’s work and is open to owners whether or not they work with us.',
+        'Josh created BUILD (Business United in Leadership Development), and Matt facilitates it with him. BUILD combines a peer community of owners with a practical method, the Five A’s. It is open to owners whether or not they work with us.',
       buildLink: 'About BUILD',
     },
 
     build: {
-      title: `BUILD owner community | ${name}`,
+      title: `BUILD: a room, a method, and a guide | ${name}`,
       description:
-        'BUILD brings business owners together to learn from one another, ask better questions, and form useful relationships.',
+        'BUILD combines a peer community of business owners with a practical method, the Five A’s, led by Josh Muller and Matt LaFleur.',
       eyebrow: 'BUILD',
       headline: 'Never build alone.',
       lead:
-        'BUILD brings owners together to learn from one another, ask better questions, and form useful relationships.',
+        'BUILD is a room, a method, and a guide. Owners meet peers who understand the work, use a practical method to decide what comes next, and get guidance from people who have done it.',
       promiseHeading: 'The promise',
       promise:
         'BUILD exists to help business owners grow stronger businesses and stronger leaders through community, accountability, education, and strategic relationships.',
-      gatheringsHeading: 'Where owners gather',
-      gatheringsIntro: 'BUILD meets around Northeast Ohio in a few simple formats.',
-      gatheringsNote: 'Dates and details change, so check the current schedule before you go.',
+      partsHeading: 'Three parts that work together',
+      parts: [
+        { title: 'A room', body: 'Regular gatherings where owners trade honest ideas with peers who carry the same weight.' },
+        { title: 'A method', body: 'The Five A’s, a simple sequence for turning what is happening in the business into action.' },
+        { title: 'A guide', body: 'Josh and Matt facilitate the work: guides, not heroes, who hand you the map and point out the cliff.' },
+      ],
+      roomHeading: 'The room',
+      roomIntro: 'BUILD meets around Northeast Ohio in a few formats, so owners can join the way that fits their week.',
+      roomNote: 'Dates, places, and details change, so check the current schedule on the BUILD website.',
+      methodHeading: 'The method: the Five A’s',
+      methodIntro: 'Every BUILD room, and much of the deeper work, follows the same five steps.',
+      method: [
+        { title: 'Awareness', body: 'Get the truth on the table.' },
+        { title: 'Analysis', body: 'Sort what matters from what is noise.' },
+        { title: 'Alignment', body: 'Put it on a timeline everyone can see.' },
+        { title: 'Action', body: 'One owner, one date, one definition of done.' },
+        { title: 'Accountability', body: 'Keep score in the open.' },
+      ],
+      toolboxHeading: 'The BUILD Toolbox',
+      toolbox:
+        'Sixty-five practical tools for the problems owners run into. Each one is written the same way: what it is, when to run it, how to run it, what you end up holding, what to watch out for, and where it came from.',
+      guideHeading: 'The guides',
+      guides: [
+        { name: 'Josh Muller', role: 'Founder', body: 'Josh created BUILD after building and selling a construction business of his own. He helps owners ask better questions, tackle what is holding them back, and lead with purpose.' },
+        { name: 'Matt LaFleur', role: 'Facilitator', body: 'Matt brings the financial and operating view to the room, helping owners turn big ideas into clear priorities and practical next steps.' },
+      ],
+      retreatHeading: 'Retreat to Advance',
+      retreat: 'Once a year, BUILD steps away for two days to work through all Five A’s at full depth: take stock of the season, distill what matters, and reset the year ahead.',
       journeyHeading: 'How owners get involved',
       journey: [
         { title: 'Learn', body: 'Hear about BUILD from another owner, a referral, or online.' },
-        { title: 'Attend', body: 'Come to a breakfast, lunch, or happy hour. There is no commitment.' },
-        { title: 'Engage', body: 'Keep showing up, trade ideas with peers, and build real relationships.' },
+        { title: 'Attend', body: 'Come to a breakfast, lunch, happy hour, or workshop. There is no commitment.' },
+        { title: 'Engage', body: 'Keep showing up, use the method and the tools, and build real relationships.' },
         { title: 'Lead and give', body: 'In time, help host a gathering, mentor another owner, or share what you have learned.' },
       ],
       valuesHeading: 'What BUILD stands for',
@@ -292,14 +317,13 @@ export default function content(site) {
         'Building better businesses',
         'Building a better life',
       ],
-      relationHeading: 'How BUILD relates to our advisory work',
+      relationHeading: 'How BUILD and Maple Creek Advisors fit together',
       relation: [
-        'BUILD is a peer community convened by Josh Muller. It is where owners meet, build trust, and learn from one another. When an owner wants help doing the work itself, that is where advisory work with Josh and Matt comes in.',
-        'The two are separate. You do not need to take part in BUILD before working with us, and you do not need to be a client to take part in BUILD.',
+        'BUILD and Maple Creek Advisors share the same people and the same practical approach. In BUILD, owners work through it together, with peers in the room. In an advisory engagement, Josh and Matt work through it with one owner or one leadership team, on that business’s own decisions and numbers.',
+        'Either can come first. You do not need to take part in BUILD before working with us, and you do not need to be a client to take part in BUILD.',
       ],
-      linkIntro: 'The current schedule and details are on the BUILD website.',
+      linkIntro: 'The current schedule, the Toolbox, and more are on the BUILD website.',
     },
-
     contact: {
       title: `Contact | ${name}`,
       description:

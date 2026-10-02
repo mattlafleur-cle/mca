@@ -54,7 +54,7 @@ export default {
   // Must match the meeting length configured in Fantastical.
   bookingLength: '20-minute',
 
-  // BUILD owner community. The page links out only to the destination below.
+  // BUILD: peer community plus method, led by Josh and Matt. The page links out only to the destination below.
   // BUILD's own website, set 2026-10-02 at Matt's direction (verified live that day). Every external BUILD link uses this.
   // LAUNCH GATE: Josh should confirm this is the destination he wants to use.
   // Set showPage to false to drop the standalone page; About keeps a short BUILD section either way.
@@ -62,12 +62,15 @@ export default {
     showPage: true,
     url: 'https://buildowners.com/',
     urlLabel: 'Visit the BUILD website',
-    // From the BUILD plan Matt shared on 2026-10-02. Update as gatherings change.
+    // Formats from buildowners.com and places from the BUILD plan Matt shared, both 2026-10-02.
+    // Leave places empty where none is set. Update as gatherings change.
     fullName: 'Business United in Leadership Development',
     gatherings: [
-      { format: 'Breakfast', places: 'Akron and Independence' },
-      { format: 'Lunch', places: 'Akron' },
-      { format: 'Happy hour', places: 'Akron and Norton / Cuyahoga Falls' },
+      { format: 'Breakfast', detail: 'Monthly, first thing. The mastermind feel, opened up to more people.', places: 'Akron and Independence' },
+      { format: 'Lunch', detail: 'A noon table for owners who cannot do mornings.', places: 'Akron' },
+      { format: 'Happy hour', detail: 'Relaxed networking with other owners.', places: 'Akron and Norton / Cuyahoga Falls' },
+      { format: 'Workshop', detail: 'Quarterly, built around one specific need, with a speaker and lunch.', places: '' },
+      { format: 'Mastermind Club', detail: 'Five to eight owners, monthly, in depth. Members join one at a time.', places: '' },
     ],
   },
 
@@ -84,7 +87,7 @@ export default {
         'Josh built and sold a construction company before he started coaching owners and facilitating leadership teams. He knows the weight of owner decisions because he has carried it.',
       bio: [
         'Josh founded Maple Creek Coaching after building and selling a construction company of his own. That experience shapes how he works: he knows the pressure, risk, and responsibility of leading an owner-led business.',
-        'Today he coaches owners, facilitates leadership team meetings and planning sessions, and convenes BUILD, a peer community for business owners. His work centers on honest conversations, strong relationships, and turning insight into action.',
+        'Today he coaches owners, facilitates leadership team meetings and planning sessions, and created BUILD, a peer community and practical method for business owners. His work centers on honest conversations, strong relationships, and turning insight into action.',
       ],
     },
     {
@@ -96,7 +99,7 @@ export default {
         'Matt is a CPA and financial and operating adviser with more than 12 years of experience. He helps owners understand their numbers and use them to make decisions.',
       bio: [
         'Matt founded Forest City CPA and works as a financial and operating adviser. He is a CPA licensed in Ohio and California, with more than 12 years of experience in accounting, financial reporting, and advisory work.',
-        'He works with owners to understand their numbers, make financial information more useful, and bring structure to consequential decisions.',
+        'He works with owners to understand their numbers, make financial information more useful, and bring structure to consequential decisions. He also facilitates BUILD alongside Josh.',
       ],
     },
   ],
