@@ -62,6 +62,13 @@ export default {
     showPage: true,
     url: 'https://www.maplecreekcoaching.com/build/',
     urlLabel: 'Visit BUILD on the Maple Creek Coaching site',
+    // From the BUILD plan Matt shared on 2026-10-02. Update as gatherings change.
+    fullName: 'Business United in Leadership Development',
+    gatherings: [
+      { format: 'Breakfast', places: 'Akron and Independence' },
+      { format: 'Lunch', places: 'Akron' },
+      { format: 'Happy hour', places: 'Akron and Norton / Cuyahoga Falls' },
+    ],
   },
 
   // Founder details used on Home and About. LAUNCH GATE: each founder approves their own bio.

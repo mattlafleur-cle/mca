@@ -116,6 +116,31 @@ export function home({ site, link, copy }) {
   </div>
 </section>
 
+<section class="section" aria-labelledby="stages-heading">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">${esc(c.stagesEyebrow)}</p>
+      <h2 id="stages-heading" class="section-title">${esc(c.stagesHeading)}</h2>
+      <p>${esc(c.stagesIntro)}</p>
+    </div>
+    <ol class="stages">
+      ${c.stages
+        .map(
+          (st, i) => `<li class="stage">
+        <p class="stage-num" aria-hidden="true">${i + 1}</p>
+        <h3>${esc(st.name)}</h3>
+        <p class="stage-summary">${esc(st.summary)}</p>
+        <dl class="stage-questions">
+          <div><dt>${esc(c.stagesPeopleLabel)}</dt><dd>${esc(st.people)}</dd></div>
+          <div><dt>${esc(c.stagesNumbersLabel)}</dt><dd>${esc(st.numbers)}</dd></div>
+        </dl>
+      </li>`,
+        )
+        .join('')}
+    </ol>
+  </div>
+</section>
+
 <section class="section section-dark" aria-labelledby="integrated-heading">
   <div class="wrap integrated">
     <div class="integrated-copy">
@@ -285,8 +310,51 @@ export function build({ site, link, copy }) {
     ? `<p>${esc(c.linkIntro)}</p>
       <p><a class="button button-secondary" href="${esc(site.build.url)}" rel="noopener">${esc(site.build.urlLabel)}</a></p>`
     : '';
-  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, seed: 13 })}
-<section class="section" aria-labelledby="build-values-heading">
+  const gatherings = site.build.gatherings?.length
+    ? `<section class="section section-alt" aria-labelledby="gatherings-heading">
+  <div class="wrap two-col">
+    <div>
+      <h2 id="gatherings-heading" class="section-title">${esc(c.gatheringsHeading)}</h2>
+      <p>${esc(c.gatheringsIntro)}</p>
+      <p>${esc(c.gatheringsNote)}</p>
+    </div>
+    <dl class="gatherings">
+      ${site.build.gatherings.map((g) => `<div><dt>${esc(g.format)}</dt><dd>${esc(g.places)}</dd></div>`).join('')}
+    </dl>
+  </div>
+</section>`
+    : '';
+  const hero = pageHero({
+    eyebrow: site.build.fullName ? `BUILD: ${site.build.fullName}` : c.eyebrow,
+    headline: c.headline,
+    lead: c.lead,
+    seed: 13,
+  });
+  return `${hero}
+<section class="section" aria-labelledby="promise-heading">
+  <div class="wrap promise">
+    <h2 id="promise-heading" class="eyebrow">${esc(c.promiseHeading)}</h2>
+    <p class="promise-text">${esc(c.promise)}</p>
+  </div>
+</section>
+${gatherings}
+<section class="section" aria-labelledby="journey-heading">
+  <div class="wrap">
+    <h2 id="journey-heading" class="section-title">${esc(c.journeyHeading)}</h2>
+    <ol class="steps">
+      ${c.journey
+        .map(
+          (s, i) => `<li class="step">
+        <span class="step-num" aria-hidden="true">${i + 1}</span>
+        <h3>${esc(s.title)}</h3>
+        <p>${esc(s.body)}</p>
+      </li>`,
+        )
+        .join('')}
+    </ol>
+  </div>
+</section>
+<section class="section section-alt" aria-labelledby="build-values-heading">
   <div class="wrap two-col">
     <div>
       <h2 id="build-values-heading" class="section-title">${esc(c.valuesHeading)}</h2>

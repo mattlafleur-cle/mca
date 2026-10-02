@@ -51,6 +51,39 @@ export default function content(site) {
           linkText: 'More about operating support',
         },
       ],
+      stagesEyebrow: 'Wherever the business is right now',
+      stagesHeading: 'Every stage asks new questions of the owner.',
+      stagesIntro:
+        'Owner-led businesses tend to move through four stages. At each one, the hard questions show up on both the people side and the numbers side.',
+      stagesPeopleLabel: 'People side',
+      stagesNumbersLabel: 'Numbers side',
+      // Stage names follow the business stages Josh uses in his BUILD work.
+      stages: [
+        {
+          name: 'Startup',
+          summary: 'Build the foundation and get traction.',
+          people: 'Who do you need beside you, and what can only you do?',
+          numbers: 'Are the books set up to tell you whether this is working?',
+        },
+        {
+          name: 'Grow up',
+          summary: 'Strengthen systems, team, and offers.',
+          people: 'Which decisions should stop coming back to you?',
+          numbers: 'Which work makes money, and which only keeps you busy?',
+        },
+        {
+          name: 'Scale up',
+          summary: 'Increase impact, revenue, and reach.',
+          people: 'Can your leaders carry the next level without you in every room?',
+          numbers: 'Can cash and capacity support the growth you are planning?',
+        },
+        {
+          name: 'Hand off',
+          summary: 'Build a business that runs without you.',
+          people: 'Who leads when you step back, and are they ready?',
+          numbers: 'Would the financials hold up for a buyer, a successor, or a lender?',
+        },
+      ],
       integratedHeading: 'The people side and the numbers side belong in the same conversation.',
       integratedBody: [
         'Josh and Matt can work with an owner together when leadership, operations, and financial decisions intersect. They can also start in the part of the business that needs attention first.',
@@ -86,6 +119,7 @@ export default function content(site) {
             'One-to-one owner coaching',
             'Leadership team facilitation',
             'Planning conversations and planning sessions',
+            'Strategic planning retreats for owners and leadership teams',
             'Decision support on hard calls',
             'Accountability for the commitments you make',
           ],
@@ -225,7 +259,7 @@ export default function content(site) {
       ],
       buildHeading: 'BUILD',
       buildBody:
-        'Josh also convenes BUILD, a peer community where business owners learn from one another. It is associated with Josh’s work and is open to owners whether or not they work with us.',
+        'Josh also convenes BUILD (Business United in Leadership Development), a peer community where business owners learn from one another. It is associated with Josh’s work and is open to owners whether or not they work with us.',
       buildLink: 'About BUILD',
     },
 
@@ -237,6 +271,19 @@ export default function content(site) {
       headline: 'Never build alone.',
       lead:
         'BUILD brings owners together to learn from one another, ask better questions, and form useful relationships.',
+      promiseHeading: 'The promise',
+      promise:
+        'BUILD exists to help business owners grow stronger businesses and stronger leaders through community, accountability, education, and strategic relationships.',
+      gatheringsHeading: 'Where owners gather',
+      gatheringsIntro: 'BUILD meets around Northeast Ohio in a few simple formats.',
+      gatheringsNote: 'Dates and details change, so check the current schedule before you go.',
+      journeyHeading: 'How owners get involved',
+      journey: [
+        { title: 'Learn', body: 'Hear about BUILD from another owner, a referral, or online.' },
+        { title: 'Attend', body: 'Come to a breakfast, lunch, or happy hour. There is no commitment.' },
+        { title: 'Engage', body: 'Keep showing up, trade ideas with peers, and build real relationships.' },
+        { title: 'Lead and give', body: 'In time, help host a gathering, mentor another owner, or share what you have learned.' },
+      ],
       valuesHeading: 'What BUILD stands for',
       values: [
         'Building relationships',
@@ -247,10 +294,10 @@ export default function content(site) {
       ],
       relationHeading: 'How BUILD relates to our advisory work',
       relation: [
-        'BUILD is a peer community convened by Josh Muller. It is associated with Josh’s work, and it is separate from advisory engagements.',
-        'You do not need to take part in BUILD before working with us, and you do not need to be a client to take part in BUILD.',
+        'BUILD is a peer community convened by Josh Muller. It is where owners meet, build trust, and learn from one another. When an owner wants help doing the work itself, that is where advisory work with Josh and Matt comes in.',
+        'The two are separate. You do not need to take part in BUILD before working with us, and you do not need to be a client to take part in BUILD.',
       ],
-      linkIntro: 'Current gatherings and details are published on the Maple Creek Coaching site.',
+      linkIntro: 'The current schedule and details are published on the Maple Creek Coaching site.',
     },
 
     contact: {
