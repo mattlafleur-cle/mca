@@ -26,7 +26,7 @@
   --step-3: clamp(2.2rem, 1.3rem + 3.6vw, 3.9rem);
 
   --gutter: clamp(1rem, 4vw, 2.5rem);
-  --space-section: clamp(3.5rem, 2.5rem + 4vw, 6.5rem);
+  --space-section: clamp(2.5rem, 1.75rem + 2.5vw, 4.25rem);
   --radius: 4px;
   color-scheme: light;
 }
@@ -276,7 +276,7 @@ main:focus { outline: none; }
   position: relative;
   overflow: hidden;
   background: var(--paper-deep);
-  padding-block: clamp(3rem, 2rem + 4vw, 5.5rem);
+  padding-block: clamp(2.5rem, 1.75rem + 3vw, 4.5rem) clamp(2rem, 1.5rem + 2vw, 3.5rem);
   border-bottom: 1px solid var(--rule);
 }
 .page-hero-inner { position: relative; z-index: 1; display: grid; gap: 1.25rem; }
@@ -458,7 +458,7 @@ main:focus { outline: none; }
 .contours-closing .contour-accent { stroke: var(--maple); opacity: 0.55; }
 
 /* Services --------------------------------------------------------------- */
-.service { padding-block: clamp(3rem, 2rem + 3vw, 5rem); border-bottom: 1px solid var(--rule); }
+.service { padding-block: clamp(2.25rem, 1.5rem + 2vw, 3.5rem); border-bottom: 1px solid var(--rule); }
 .service-alt { background: var(--paper-deep); }
 .service-inner { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(1.75rem, 1rem + 4vw, 5rem); align-items: start; }
 .service-main { display: grid; gap: 1.1rem; min-width: 0; max-width: 40rem; }
