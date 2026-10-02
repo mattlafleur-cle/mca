@@ -298,7 +298,8 @@ export default function content(site) {
         { name: 'Matt LaFleur', role: 'Facilitator', body: 'Matt brings the financial and operating view to the room, helping owners turn big ideas into clear priorities and practical next steps.' },
       ],
       retreatHeading: 'Retreat to Advance',
-      retreat: 'Once a year, BUILD steps away for two days to work through a practical method at full depth: take stock of the season, distill what matters, and reset the year ahead.',
+      retreat: 'Once a year, BUILD steps away for two days to go deeper: take stock of the season, distill what matters, and reset the year ahead.',
+      retreatLink: 'Retreat to Advance details on the BUILD website',
       journeyHeading: 'How owners get involved',
       journey: [
         { title: 'Learn', body: 'Hear about BUILD from another owner, a referral, or online.' },

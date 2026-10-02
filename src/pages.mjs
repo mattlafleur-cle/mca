@@ -377,6 +377,7 @@ ${room}
     <div class="retreat">
       <h3>${esc(c.retreatHeading)}</h3>
       <p>${esc(c.retreat)}</p>
+      ${site.build.url ? `<p><a class="text-link" href="${esc(site.build.url)}" rel="noopener">${esc(c.retreatLink)}</a></p>` : ''}
     </div>
   </div>
 </section>
