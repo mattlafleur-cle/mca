@@ -94,7 +94,7 @@ export default {
       id: 'josh',
       name: 'Josh Muller',
       role: 'Coaching, leadership, and vision',
-      photo: null,
+      photo: { src: 'photos/josh-muller.jpg', width: 480, height: 480, alt: 'Josh Muller, smiling, outdoors in front of green trees' },
       short:
         'Josh built and sold a construction company before he started coaching owners and facilitating leadership teams. He knows the weight of owner decisions because he has carried it.',
       bio: [
@@ -106,7 +106,7 @@ export default {
       id: 'matt',
       name: 'Matt LaFleur',
       role: 'Financial clarity, strategy, and operations',
-      photo: null,
+      photo: { src: 'photos/matt-lafleur.jpg', width: 480, height: 480, alt: 'Matt LaFleur, smiling, outdoors with trees and water behind him' },
       short:
         'Matt is a CPA, an entrepreneur, and a financial and operating adviser with more than 14 years of experience. He helps owners understand their numbers and use them to make decisions.',
       bio: [
