@@ -444,7 +444,7 @@ main:focus { outline: none; }
 .person-text { display: grid; gap: 0.6rem; }
 .person h3 { font-size: clamp(1.5rem, 1.2rem + 1vw, 1.9rem); }
 .person p:not(.person-role) { color: var(--ink-muted); }
-.portrait { width: clamp(7.5rem, 6rem + 4vw, 10rem); height: auto; aspect-ratio: 1; border-radius: 50%; object-fit: cover; background: var(--paper); max-width: 100%; }
+.portrait { width: clamp(4rem, 3.25rem + 2vw, 5.5rem); height: auto; aspect-ratio: 1; border-radius: 50%; object-fit: cover; background: var(--paper); max-width: 100%; }
 @media (max-width: 44rem) { .people { grid-template-columns: minmax(0, 1fr); } }
 
 /* Closing ---------------------------------------------------------------- */
@@ -527,6 +527,9 @@ main:focus { outline: none; }
 .bios { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 1rem + 4vw, 5rem); }
 .bio { display: grid; gap: 1rem; align-content: start; padding-top: 1.5rem; border-top: 2px solid var(--evergreen); min-width: 0; }
 .bio p:not(.person-role) { color: var(--ink-muted); }
+.bio-text { display: grid; gap: 1rem; align-content: start; min-width: 0; }
+/* Portrait sits beside the name and bio. */
+.bio.has-photo { grid-template-columns: auto minmax(0, 1fr); column-gap: clamp(1rem, 0.75rem + 1vw, 1.5rem); align-items: start; }
 @media (max-width: 48rem) { .bios { grid-template-columns: minmax(0, 1fr); } }
 
 .two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 1rem + 4vw, 5rem); }

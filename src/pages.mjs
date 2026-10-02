@@ -42,8 +42,7 @@ export function home({ site, link, copy }) {
   const c = copy.home;
   const founders = site.founders
     .map(
-      (f) => `<article class="person${f.photo ? ' has-photo' : ''}">
-      ${portrait(f, link)}
+      (f) => `<article class="person">
       <div class="person-text">
         <p class="person-role">${esc(f.role)}</p>
         <h3>${esc(founderName(f))}</h3>
@@ -252,9 +251,11 @@ export function about({ site, link, copy }) {
     .map(
       (f) => `<article class="bio${f.photo ? ' has-photo' : ''}" id="${esc(f.id)}" aria-labelledby="${esc(f.id)}-name">
       ${portrait(f, link)}
-      <p class="person-role">${esc(f.role)}</p>
-      <h2 id="${esc(f.id)}-name">${esc(founderName(f))}</h2>
-      ${paras(f.bio)}
+      <div class="bio-text">
+        <p class="person-role">${esc(f.role)}</p>
+        <h2 id="${esc(f.id)}-name">${esc(founderName(f))}</h2>
+        ${paras(f.bio)}
+      </div>
     </article>`,
     )
     .join('');
