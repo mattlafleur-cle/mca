@@ -26,7 +26,7 @@ const port = 4179;
 const server = spawn(process.execPath, [path.join(root, 'scripts/serve.mjs'), String(port)], { stdio: 'pipe' });
 await new Promise((r) => server.stdout.once('data', r));
 
-const pages = ['/', '/services/', '/business-coaching/', '/fractional-cfo/', '/business-advisory/', '/how-we-work/', '/about/', '/build/', '/contact/', '/church/', '/does-not-exist/'];
+const pages = ['/', '/services/', '/business-coaching/', '/fractional-cfo/', '/business-advisory/', '/how-we-work/', '/about/', '/build/', '/contact/', '/church/', '/carts/', '/does-not-exist/'];
 const viewports = [
   { name: 'desktop', width: 1366, height: 900 },
   { name: 'phone', width: 390, height: 844 },

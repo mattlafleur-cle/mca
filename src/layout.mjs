@@ -18,6 +18,7 @@ export function routes(site) {
     { key: 'contact', label: 'Contact', path: '/contact/', file: 'contact.html', out: 'contact/index.html' },
     // Standalone page for churches: published and indexed, but not linked from the menu, footer, or Home.
     { key: 'church', label: 'Churches', path: '/church/', file: 'church.html', out: 'church/index.html', standalone: true },
+    { key: 'carts', label: 'Golf cart businesses', path: '/carts/', file: 'carts.html', out: 'carts/index.html', standalone: true },
     { key: 'notFound', label: 'Page not found', path: '/404.html', file: '404.html', out: '404.html', hidden: true },
   ];
   return list.filter((r) => r.key !== 'build' || site.build.showPage);
