@@ -509,3 +509,116 @@ ${closing(link, copy.home.closingHeading, copy.home.closingBody)}`;
 export const coaching = servicePage('coaching');
 export const fractionalCfo = servicePage('fractionalCfo');
 export const advisory = servicePage('advisory');
+
+// Standalone page for churches and ministries (/church/).
+export function church({ site, link, copy }) {
+  const c = copy.church;
+  const verse = (v, cls = '') =>
+    `<blockquote class="verse${cls}"><p>${esc(v.text)}</p><footer><cite>${esc(v.ref)}</cite> <span class="verse-version">(NIV)</span></footer></blockquote>`;
+
+  const services = c.services
+    .map(
+      (s, i) => `<section class="service${i % 2 ? ' service-alt' : ''}${s.lane === 'Josh and Matt together' ? ' service-integrated' : ''}" aria-labelledby="church-svc-${i}">
+  <div class="wrap service-inner">
+    <div class="service-main">
+      <p class="lane-chip">${esc(s.lane)}</p>
+      <h3 class="service-title" id="church-svc-${i}">${esc(s.title)}</h3>
+      <p>${esc(s.body)}</p>
+      ${s.note ? `<p class="service-note">${esc(s.note)}</p>` : ''}
+      <div class="service-actions">${ctaButton(link, { variant: s.lane === 'Josh and Matt together' ? 'light' : 'primary' })}</div>
+    </div>
+    <div class="service-list">
+      <h4>Work can include</h4>
+      <ul>${s.items.map((it) => `<li>${esc(it)}</li>`).join('')}</ul>
+    </div>
+  </div>
+</section>`,
+    )
+    .join('\n');
+
+  const people = site.founders
+    .map(
+      (f) => `<article class="bio${f.photo ? ' has-photo' : ''}">
+      ${f.photo ? `<img class="portrait" src="${esc(link.asset(f.photo.src))}" width="${esc(f.photo.width)}" height="${esc(f.photo.height)}" alt="${esc(f.photo.alt)}" loading="lazy" decoding="async">` : ''}
+      <div class="bio-text">
+        <p class="person-role">${esc(f.role)}</p>
+        <h3>${esc(f.name)}</h3>
+        <p>${esc(f.short)}</p>
+      </div>
+    </article>`,
+    )
+    .join('');
+
+  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `<div class="actions">${ctaButton(link)}</div>${verse(c.verse, ' verse-hero')}`, seed: 19 })}
+
+<section class="section" aria-labelledby="church-situations">
+  <div class="wrap svc-block">
+    <h2 id="church-situations" class="section-title">${esc(c.situationsHeading)}</h2>
+    <p>${esc(c.situationsIntro)}</p>
+    <ul class="check-list">${c.situations.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>
+  </div>
+</section>
+
+<section class="section section-alt church-services-head" aria-labelledby="church-services">
+  <div class="wrap svc-block">
+    <h2 id="church-services" class="section-title">${esc(c.servicesHeading)}</h2>
+    <p>${esc(c.servicesIntro)}</p>
+  </div>
+</section>
+${services}
+
+<section class="section" aria-labelledby="church-values">
+  <div class="wrap two-col">
+    <div>
+      <h2 id="church-values" class="section-title">${esc(c.valuesHeading)}</h2>
+      ${verse(c.stewardshipVerse)}
+    </div>
+    <dl class="values">
+      ${c.values.map((v) => `<div><dt>${esc(v.title)}</dt><dd>${esc(v.body)}</dd></div>`).join('')}
+    </dl>
+  </div>
+</section>
+
+<section class="section section-alt" aria-labelledby="church-steps">
+  <div class="wrap">
+    <h2 id="church-steps" class="section-title">${esc(c.stepsHeading)}</h2>
+    <ol class="steps">
+      ${c.steps
+        .map(
+          (s, i) => `<li class="step">
+        <span class="step-num" aria-hidden="true">${i + 1}</span>
+        <h3>${esc(s.title)}</h3>
+        <p>${esc(s.body)}</p>
+      </li>`,
+        )
+        .join('')}
+    </ol>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="church-people">
+  <div class="wrap">
+    <h2 id="church-people" class="section-title">${esc(c.peopleHeading)}</h2>
+    <div class="bios church-bios">${people}</div>
+  </div>
+</section>
+
+<section class="section section-dark" aria-labelledby="church-faq">
+  <div class="wrap faq-wrap">
+    <h2 id="church-faq" class="section-title">Common questions</h2>
+    <div class="faq">
+      ${c.faq.map((f) => `<div class="faq-item"><h3>${esc(f.q)}</h3><p>${esc(f.a)}</p></div>`).join('')}
+    </div>
+  </div>
+</section>
+
+<section class="closing" aria-labelledby="closing-heading">
+  <div class="wrap closing-inner">
+    <h2 id="closing-heading">${esc(c.closingHeading)}</h2>
+    <p>${esc(c.closingBody)}</p>
+    <div class="actions">${ctaButton(link, { variant: 'light' })}</div>
+    ${verse(c.closingVerse, ' verse-dark')}
+  </div>
+  ${contourSvg({ width: 1200, height: 360, lines: 9, seed: 23, className: 'contours contours-closing' })}
+</section>`;
+}

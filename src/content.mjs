@@ -4,12 +4,14 @@
 // practice has formally combined, no prices.
 
 import servicePages from './service-pages.mjs';
+import churchContent from './church-content.mjs';
 
 export default function content(site) {
   const name = site.siteName;
 
   return {
     ...servicePages(site),
+    church: churchContent(site),
     home: {
       title: `Business Coaching and Fractional CFO in Northeast Ohio | ${name}`,
       description:

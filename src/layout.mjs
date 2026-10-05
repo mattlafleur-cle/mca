@@ -16,6 +16,8 @@ export function routes(site) {
     { key: 'about', label: 'About', path: '/about/', file: 'about.html', out: 'about/index.html' },
     { key: 'build', label: 'BUILD', path: '/build/', file: 'build.html', out: 'build/index.html' },
     { key: 'contact', label: 'Contact', path: '/contact/', file: 'contact.html', out: 'contact/index.html' },
+    // Standalone page for churches: published and indexed, but not linked from the menu, footer, or Home.
+    { key: 'church', label: 'Churches', path: '/church/', file: 'church.html', out: 'church/index.html', standalone: true },
     { key: 'notFound', label: 'Page not found', path: '/404.html', file: '404.html', out: '404.html', hidden: true },
   ];
   return list.filter((r) => r.key !== 'build' || site.build.showPage);
@@ -114,7 +116,7 @@ export function ctaButton(link, { variant = 'primary', text } = {}) {
 }
 
 function header(site, link, current) {
-  const items = routes(site).filter((r) => !r.hidden && !r.service && r.key !== 'home' && r.key !== 'contact');
+  const items = routes(site).filter((r) => !r.hidden && !r.service && !r.standalone && r.key !== 'home' && r.key !== 'contact');
   const navItems = items
     .map((r) => `<li><a href="${esc(link.page(r.key))}"${r.key === current ? ' aria-current="page"' : ''}>${esc(r.label)}</a></li>`)
     .join('');
@@ -131,7 +133,7 @@ function header(site, link, current) {
 }
 
 function footer(site, link) {
-  const items = routes(site).filter((r) => !r.hidden && !r.service);
+  const items = routes(site).filter((r) => !r.hidden && !r.service && !r.standalone);
   const services = routes(site).filter((r) => r.service);
   const year = new Date().getFullYear();
   return `<footer class="site-footer">
@@ -191,7 +193,7 @@ export function structuredData(site, route, meta) {
     ...(site.bookingUrl ? { potentialAction: { '@type': 'ScheduleAction', target: site.bookingUrl, name: 'Schedule a conversation' } } : {}),
   };
   const graph = [org, { '@type': 'WebSite', '@id': `${base}/#website`, url: `${base}/`, name: site.siteName, publisher: { '@id': orgId } }];
-  if (route.service && meta.serviceType) {
+  if ((route.service || route.standalone) && meta.serviceType) {
     graph.push({
       '@type': 'Service',
       '@id': `${base}${route.path}#service`,
