@@ -640,7 +640,36 @@ main:focus { outline: none; }
 .service-title { font-size: var(--step-2); }
 .service-list h4 { font-family: var(--font-display); font-weight: 500; font-size: var(--step--1); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin: 0 0 0.75rem; }
 .service-integrated .service-list h4 { color: var(--on-dark-muted); }
-.industry-services-head { padding-bottom: 0; }
+.industry-services-head { padding-bottom: clamp(0.5rem, 0.25rem + 1vw, 1.5rem); }
+
+/* Golf cart page: season timeline and departments ---------------------- */
+.eyebrow-light { color: var(--maple); }
+.season-chart { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(0.25rem, 0.1rem + 0.6vw, 0.6rem); align-items: end; height: clamp(7rem, 5rem + 6vw, 10rem); }
+.season-month { display: grid; grid-template-rows: 1fr auto; height: 100%; gap: 0.5rem; min-width: 0; }
+.season-bar { align-self: end; display: block; width: 100%; border-radius: 3px 3px 0 0; background: var(--maple); }
+.season-bar.lvl-1 { height: 22%; opacity: 0.45; }
+.season-bar.lvl-2 { height: 45%; opacity: 0.65; }
+.season-bar.lvl-3 { height: 72%; opacity: 0.85; }
+.season-bar.lvl-4 { height: 100%; }
+.season-label { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--on-dark-muted); text-align: center; }
+.season-phases { list-style: none; margin-top: 1.5rem; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0 clamp(0.25rem, 0.1rem + 0.6vw, 0.6rem); }
+.season-phases li { grid-column: span var(--span); padding-top: 0.9rem; border-top: 2px solid rgba(243, 238, 226, 0.35); display: grid; gap: 0.35rem; align-content: start; min-width: 0; padding-right: 0.75rem; }
+.season-phases h3 { font-size: 1.05rem; color: var(--on-dark); }
+.season-phases p { font-size: 0.95rem; line-height: 1.45; color: var(--on-dark-muted); }
+.season-label .m-short { display: none; }
+@media (max-width: 40rem) { .season-label .m-full { display: none; } .season-label .m-short { display: inline; } }
+.season-note { margin-top: 1.75rem; font-size: 0.92rem; font-style: italic; color: var(--on-dark-muted); }
+@media (max-width: 52rem) {
+  .season-phases { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .season-phases li { grid-column: auto; padding-block: 0.85rem; }
+}
+.departments { list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(0.75rem, 0.5rem + 1vw, 1.25rem); }
+.departments li { display: grid; gap: 0.5rem; align-content: start; padding: 1.25rem 1.1rem 1.35rem; background: var(--paper-card); border: 1px solid var(--rule); border-top: 3px solid var(--maple); min-width: 0; }
+.dept-num { font-family: var(--font-display); font-weight: 650; font-size: 0.85rem; letter-spacing: 0.08em; color: var(--maple-ink); font-variant-numeric: tabular-nums; }
+.departments h3 { font-size: 1.15rem; }
+.departments p { color: var(--ink-muted); font-size: 0.98rem; line-height: 1.5; }
+@media (max-width: 60rem) { .departments { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 36rem) { .departments { grid-template-columns: minmax(0, 1fr); } }
 .industry-services-head + .service { border-top: 0; }
 .industry-bios .bio h3 { font-size: clamp(1.4rem, 1.2rem + 0.8vw, 1.8rem); }
 

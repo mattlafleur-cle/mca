@@ -28,6 +28,35 @@ export default function cartsContent(site) {
       'You are planning for growth, a partner change, or an eventual sale.',
     ],
 
+    // Season timeline: qualitative intensity (1 to 4) by month. Illustrative, not data.
+    season: {
+      eyebrow: 'The golf cart year',
+      heading: 'Twelve months, one selling season.',
+      intro: 'A typical Northeast Ohio year. Every business is a little different, but the shape is familiar: most of the year is spent preparing for a few very busy months.',
+      months: [
+        ['Jan', 1], ['Feb', 1], ['Mar', 2], ['Apr', 3], ['May', 4], ['Jun', 4],
+        ['Jul', 4], ['Aug', 3], ['Sep', 2], ['Oct', 2], ['Nov', 1], ['Dec', 1],
+      ],
+      phases: [
+        { span: 2, name: 'Plan', body: 'Set targets, order inventory, and train the team.' },
+        { span: 2, name: 'Ramp up', body: 'Preorders, prep, and staffing for spring.' },
+        { span: 3, name: 'Peak season', body: 'Sales, deliveries, and a full service bay.' },
+        { span: 2, name: 'Steady', body: 'Service, accessories, and used carts.' },
+        { span: 3, name: 'Off-season', body: 'Storage, winter service, and the next plan.' },
+      ],
+      note: 'Illustrative. We help you plan cash, inventory, and staffing around your own calendar.',
+    },
+
+    departmentsHeading: 'Five businesses under one roof',
+    departmentsIntro: 'Each part of a golf cart business has its own margins, inventory, and people needs. We help you see how each one performs.',
+    departments: [
+      { name: 'New carts', body: 'Inventory, floor plan cost, and gross profit per unit.' },
+      { name: 'Used carts', body: 'Trade-ins, reconditioning, and how fast units turn.' },
+      { name: 'Service', body: 'Technician time, scheduling, and the busy-season backlog.' },
+      { name: 'Parts', body: 'Stock levels, turns, and what sits on the shelf.' },
+      { name: 'Accessories', body: 'Pricing, attach rates, and custom builds.' },
+    ],
+
     servicesHeading: 'How we serve golf cart businesses',
     servicesIntro:
       'Some owners need a coach and a stronger leadership team. Some need CFO-level guidance on inventory, cash, and margins. Many need both, working together.',

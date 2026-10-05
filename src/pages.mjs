@@ -561,6 +561,34 @@ function industryPage(key) {
   </div>
 </section>
 
+${c.season ? `<section class="section section-dark season" aria-labelledby="${key}-season">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow eyebrow-light">${esc(c.season.eyebrow)}</p>
+      <h2 id="${key}-season" class="section-title">${esc(c.season.heading)}</h2>
+      <p>${esc(c.season.intro)}</p>
+    </div>
+    <div class="season-chart" aria-hidden="true">
+      ${c.season.months.map(([m, lvl]) => `<div class="season-month"><span class="season-bar lvl-${lvl}"></span><span class="season-label"><span class="m-full">${esc(m)}</span><span class="m-short">${esc(m[0])}</span></span></div>`).join('')}
+    </div>
+    <ol class="season-phases">
+      ${c.season.phases.map((ph) => `<li style="--span:${ph.span}"><h3>${esc(ph.name)}</h3><p>${esc(ph.body)}</p></li>`).join('')}
+    </ol>
+    <p class="season-note">${esc(c.season.note)}</p>
+  </div>
+</section>` : ''}
+${c.departments ? `<section class="section" aria-labelledby="${key}-departments">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="${key}-departments" class="section-title">${esc(c.departmentsHeading)}</h2>
+      <p>${esc(c.departmentsIntro)}</p>
+    </div>
+    <ul class="departments">
+      ${c.departments.map((d) => `<li><h3>${esc(d.name)}</h3><p>${esc(d.body)}</p></li>`).join('')}
+    </ul>
+  </div>
+</section>` : ''}
+
 <section class="section section-alt industry-services-head" aria-labelledby="${key}-services">
   <div class="wrap svc-block">
     <h2 id="${key}-services" class="section-title">${esc(c.servicesHeading)}</h2>
