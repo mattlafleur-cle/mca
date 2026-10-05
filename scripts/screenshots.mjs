@@ -6,6 +6,7 @@ import { mkdir } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import site from '../site.config.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
@@ -79,7 +80,7 @@ try {
       // Contact path: the email action goes to every configured recipient.
       await page.goto(`http://localhost:${port}/contact/`, { waitUntil: 'networkidle' });
       const href = await page.getAttribute('.contact-card a[href^="mailto:"].button', 'href');
-      if (!href?.startsWith('mailto:') || !href.includes('josh@') || !href.includes('matt@')) problems.push(`contact: unexpected email action ${href}`);
+      if (!href?.startsWith('mailto:') || !site.contact.recipients.every((e) => href.includes(e))) problems.push(`contact: unexpected email action ${href}`);
       // Skip link moves focus to main content.
       await page.keyboard.press('Tab');
       await page.keyboard.press('Enter');
