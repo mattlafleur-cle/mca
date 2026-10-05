@@ -19,8 +19,6 @@ export function routes(site) {
     // Standalone page for churches: published and indexed, but not linked from the menu, footer, or Home.
     { key: 'church', label: 'Churches', path: '/church/', file: 'church.html', out: 'church/index.html', standalone: true },
     { key: 'carts', label: 'Golf cart businesses', path: '/carts/', file: 'carts.html', out: 'carts/index.html', standalone: true },
-    // Private type comparison page: not linked, not in the sitemap, and marked noindex.
-    { key: 'typeTest', label: 'Type options', path: '/type-test/', file: 'type-test.html', out: 'type-test/index.html', hidden: true, noindex: true },
     { key: 'notFound', label: 'Page not found', path: '/404.html', file: '404.html', out: '404.html', hidden: true },
   ];
   return list.filter((r) => r.key !== 'build' || site.build.showPage);
@@ -221,8 +219,6 @@ export function structuredData(site, route, meta) {
 export function pageShell({ site, link, mode, route, meta, body }) {
   const robots = site.allowIndexing && site.canonicalDomain && !route.noindex ? 'index, follow' : 'noindex, nofollow';
   const canonical = site.canonicalDomain && route.key !== 'notFound' ? `${site.canonicalDomain}${route.path}` : null;
-  const fonts =
-    'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap';
   const head = [
     `<title>${esc(meta.title)}</title>`,
     `<meta name="description" content="${esc(meta.description)}">`,
@@ -239,9 +235,10 @@ export function pageShell({ site, link, mode, route, meta, body }) {
     site.canonicalDomain && site.ogImage ? `<meta name="twitter:card" content="summary_large_image">` : '',
     `<meta name="theme-color" content="#1d3a2f">`,
     `<link rel="icon" href="${esc(link.asset('favicon.svg'))}" type="image/svg+xml">`,
-    `<link rel="preconnect" href="https://fonts.googleapis.com">`,
-    `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`,
-    `<link rel="stylesheet" href="${fonts}">`,
+    // Fonts are self-hosted (src/assets/fonts), so no requests go to third-party font services.
+    `<link rel="preload" href="${esc(link.asset('fonts/big-shoulders-display-normal-832b15.woff2'))}" as="font" type="font/woff2" crossorigin>`,
+    `<link rel="preload" href="${esc(link.asset('fonts/libre-franklin-normal-f2d133.woff2'))}" as="font" type="font/woff2" crossorigin>`,
+    `<link rel="stylesheet" href="${esc(link.asset('fonts/fonts.css'))}">`,
     `<link rel="stylesheet" href="${esc(link.asset('site.css'))}">`,
     `<script>document.documentElement.classList.add('js')</script>`,
     ...(mode === 'site' && route.key !== 'notFound'

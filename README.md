@@ -73,7 +73,7 @@ Pages: Home, Services, How We Work, About, BUILD, Contact, and a 404 page.
 - **Indexing:** with `allowIndexing` set to `false`, every page would carry `noindex` and no sitemap is built. It is currently `true`.
 - **Canonical tags and Open Graph URLs and image** use `canonicalDomain` (`https://maplecreekadvisors.com`). `sitemap.xml` is built only when `allowIndexing` is also `true`.
 - **No analytics, cookies, or trackers.** The contact path is a plain email link, so the site collects no data itself. That is why there is no privacy page yet. If analytics or a form is added later, document what it collects and add a privacy page that describes the actual data handling.
-- **Web fonts** load from Google Fonts, which means visitors' browsers request font files from Google. If the founders prefer no third-party requests at all, download the two families (Bricolage Grotesque, Source Serif 4) and self-host them in `src/assets/fonts/`.
+- **Web fonts** are self-hosted in `src/assets/fonts/` (Big Shoulders Display for headlines, Libre Franklin for text and interface; both SIL Open Font License, Latin subsets). The site makes no requests to third-party font services.
 - **Link preview image:** `src/assets/og-image.png` (1200 x 630) shows the name and tagline. Regenerate it with `npm run og-image` after changing either.
 
 ## Preview and deployment

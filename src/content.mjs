@@ -13,10 +13,6 @@ export default function content(site) {
   return {
     ...servicePages(site),
     church: churchContent(site),
-    typeTest: {
-      title: `Type options | ${name}`,
-      description: 'A private comparison of type pairings for the Maple Creek Advisors website. Not linked or indexed.',
-    },
     carts: cartsContent(site),
     home: {
       title: `Business Coaching and Fractional CFO in Northeast Ohio | ${name}`,
