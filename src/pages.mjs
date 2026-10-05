@@ -538,6 +538,14 @@ function industryPage(key) {
     )
     .join('\n');
 
+  const cards = (items) =>
+    `<ul class="departments" style="--cols:${items.length === 6 ? 3 : items.length}">
+      ${items.map((d) => `<li><h3>${esc(d.name)}</h3>${d.meta ? `<p class="card-meta">${esc(d.meta)}</p>` : ''}<p>${esc(d.body)}</p>${d.link ? `<p><a class="text-link" href="${esc(d.link.href)}" rel="noopener">${esc(d.link.label)}</a></p>` : ''}</li>`).join('')}
+    </ul>`;
+  const extLinks = (links) =>
+    links?.length ? `<div class="actions">${links.map((l) => `<a class="button button-${l.variant || 'secondary'}" href="${esc(l.href)}" rel="noopener">${esc(l.label)}</a>`).join('')}</div>` : '';
+  const showEvents = c.events && new Date() <= new Date(c.events.until);
+
   const people = site.founders
     .map(
       (f) => `<article class="bio${f.photo ? ' has-photo' : ''}">
@@ -551,13 +559,17 @@ function industryPage(key) {
     )
     .join('');
 
-  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `<div class="actions">${ctaButton(link)}</div>${c.verse ? verse(c.verse, ' verse-hero') : ''}`, seed: c.seed || 19 })}
+  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `<div class="actions">${ctaButton(link)}${c.heroLink ? `<a class="button button-secondary" href="${esc(c.heroLink.href)}" rel="noopener">${esc(c.heroLink.label)}</a>` : ''}</div>${c.verse ? verse(c.verse, ' verse-hero') : ''}`, seed: c.seed || 19 })}
 
 <section class="section" aria-labelledby="${key}-situations">
   <div class="wrap svc-block">
     <h2 id="${key}-situations" class="section-title">${esc(c.situationsHeading)}</h2>
     <p>${esc(c.situationsIntro)}</p>
-    <ul class="check-list">${c.situations.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>
+    ${c.situationsOrdered
+      ? `<ol class="question-list">${c.situations.map((s) => `<li>${esc(s)}</li>`).join('')}</ol>`
+      : `<ul class="check-list">${c.situations.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>`}
+    ${c.situationsNote ? `<p class="situations-note">${esc(c.situationsNote)}</p>` : ''}
+    ${extLinks(c.situationsLinks)}
   </div>
 </section>
 
@@ -583,9 +595,8 @@ ${c.departments ? `<section class="section" aria-labelledby="${key}-departments"
       <h2 id="${key}-departments" class="section-title">${esc(c.departmentsHeading)}</h2>
       <p>${esc(c.departmentsIntro)}</p>
     </div>
-    <ul class="departments">
-      ${c.departments.map((d) => `<li><h3>${esc(d.name)}</h3><p>${esc(d.body)}</p></li>`).join('')}
-    </ul>
+    ${cards(c.departments)}
+    ${extLinks(c.departmentsLinks)}
   </div>
 </section>` : ''}
 
@@ -596,8 +607,27 @@ ${c.departments ? `<section class="section" aria-labelledby="${key}-departments"
   </div>
 </section>
 ${services}
-
-<section class="section" aria-labelledby="${key}-values">
+${showEvents ? `<section class="section section-alt" aria-labelledby="${key}-events">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">${esc(c.events.eyebrow)}</p>
+      <h2 id="${key}-events" class="section-title">${esc(c.events.heading)}</h2>
+      <p>${esc(c.events.intro)}</p>
+    </div>
+    ${cards(c.events.items)}
+    <div class="actions">${ctaButton(link)}</div>
+  </div>
+</section>` : ''}
+${c.audiences ? `<section class="section" aria-labelledby="${key}-audiences">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="${key}-audiences" class="section-title">${esc(c.audiencesHeading)}</h2>
+      <p>${esc(c.audiencesIntro)}</p>
+    </div>
+    ${cards(c.audiences)}
+  </div>
+</section>` : ''}
+${c.values ? `<section class="section" aria-labelledby="${key}-values">
   <div class="wrap two-col">
     <div>
       <h2 id="${key}-values" class="section-title">${esc(c.valuesHeading)}</h2>
@@ -607,7 +637,7 @@ ${services}
       ${c.values.map((v) => `<div><dt>${esc(v.title)}</dt><dd>${esc(v.body)}</dd></div>`).join('')}
     </dl>
   </div>
-</section>
+</section>` : ''}
 
 <section class="section section-alt" aria-labelledby="${key}-steps">
   <div class="wrap">

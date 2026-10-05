@@ -2,6 +2,8 @@
 // Same house rules as the rest of the site: no prices, no guaranteed outcomes, no client names,
 // no claims of specific golf cart industry history that the founders have not provided.
 
+const CARTS_URL = 'https://maplecreekcarts.com/';
+
 export default function cartsContent(site) {
   const name = site.siteName;
   const region = site.location.region;
@@ -9,24 +11,29 @@ export default function cartsContent(site) {
   return {
     seed: 27,
     title: `Golf Cart Business Advisory and Fractional CFO | ${name}`,
-    description: `Coaching, fractional CFO, and operating advisory for golf cart dealers, builders, service shops, and accessory businesses in ${region} and beyond.`,
+    description: `Coaching, fractional CFO, and operating advisory for golf cart dealers, facilities, builders, shops, and fleets, from the team behind Maple Creek Carts.`,
     serviceType: 'Golf cart business advisory and fractional CFO services',
-    eyebrow: 'For golf cart dealers, builders, and service businesses',
-    headline: 'Run a stronger golf cart business, in season and out.',
+    eyebrow: 'Advisory and fractional CFO for the golf cart industry',
+    headline: 'Grow the golf cart business you have already built.',
     lead:
-      'Golf cart businesses juggle inventory, a busy service bay, parts and accessories, customer financing, and a selling season that can arrive all at once. Josh Muller brings leadership and coaching experience from building and selling a company of his own. Matt LaFleur brings CFO-level financial clarity. Together, we help owners see which parts of the business make money, plan for the seasons, and build a team that does not need the owner in every decision.',
+      'Maple Creek Carts is where golf cart businesses learn the business: a curriculum in sales, service, business operations, and leadership. This is where we apply it to yours. Josh Muller coaches owners and their managers. Matt LaFleur brings fractional CFO work that puts every department on real numbers. Same curriculum, same two people, working directly with you and your team.',
+    heroLink: { href: CARTS_URL, label: 'Visit Maple Creek Carts' },
 
-    situationsHeading: 'Where golf cart owners bring us in',
-    situationsIntro: 'If any of these sound familiar, a conversation is a good place to start.',
+    situationsHeading: 'Eight questions every dealer principal should be able to answer',
+    situationsIntro: 'A well-run golf cart business can answer each of these quickly. The ones that take longer show where to start.',
+    situationsOrdered: true,
     situations: [
-      'Spring arrives and sales, service, and accessory orders all hit at once.',
-      'Inventory and floor plan costs are tying up cash you need somewhere else.',
-      'You are not sure which side of the business really makes money: new carts, used carts, service, parts, or accessories.',
-      'The service department is busy, but it is hard to tell whether it is profitable.',
-      'Every decision still runs through the owner.',
-      'You are weighing a new location, a new brand, a rental fleet, or building your own carts.',
-      'You are planning for growth, a partner change, or an eventual sale.',
+      'What is your gross profit per unit on new carts, and on used?',
+      'Which department paid for the others last year?',
+      'How long has your oldest unit been on floor plan, and what has it cost you so far?',
+      'What share of your technicians\u2019 paid hours did you actually bill?',
+      'How much cash do you need on hand in January to carry you through the spring rush?',
+      'How much accessory revenue comes with the average new cart you deliver?',
+      'Who makes the call when you are away for two weeks in July?',
+      'If you sold the business in five years, what would make it worth more than it is today?',
     ],
+    situationsNote: 'The full dealer scorecard on Maple Creek Carts takes about five minutes, needs no signup, and keeps your answers in your browser.',
+    situationsLinks: [{ href: `${CARTS_URL}scorecard/`, label: 'Take the dealer scorecard' }],
 
     // Season timeline: qualitative intensity (1 to 4) by month. Illustrative, not data.
     season: {
@@ -47,29 +54,29 @@ export default function cartsContent(site) {
       note: 'Illustrative. We help you plan cash, inventory, and staffing around your own calendar.',
     },
 
-    departmentsHeading: 'Five businesses under one roof',
-    departmentsIntro: 'Each part of a golf cart business has its own margins, inventory, and people needs. We help you see how each one performs.',
+    departmentsHeading: 'Four tracks, one curriculum',
+    departmentsIntro: 'Our advisory work draws on the same four tracks Maple Creek Carts teaches, applied to your numbers, your people, and your season.',
     departments: [
-      { name: 'New carts', body: 'Inventory, floor plan cost, and gross profit per unit.' },
-      { name: 'Used carts', body: 'Trade-ins, reconditioning, and how fast units turn.' },
-      { name: 'Service', body: 'Technician time, scheduling, and the busy-season backlog.' },
-      { name: 'Parts', body: 'Stock levels, turns, and what sits on the shelf.' },
-      { name: 'Accessories', body: 'Pricing, attach rates, and custom builds.' },
+      { name: 'Sales', body: 'Turn showroom traffic into deliveries, and deliveries into repeat customers.', link: { href: `${CARTS_URL}curriculum/#sales`, label: 'Explore the sales track' } },
+      { name: 'Service', body: 'Make the service bay a profit center, not just a busy one.', link: { href: `${CARTS_URL}curriculum/#service`, label: 'Explore the service track' } },
+      { name: 'Business operations', body: 'See every department clearly, and run the business on real numbers.', link: { href: `${CARTS_URL}curriculum/#operations`, label: 'Explore the operations track' } },
+      { name: 'Leadership', body: 'Build a team that runs the business when you are not in the building.', link: { href: `${CARTS_URL}curriculum/#leadership`, label: 'Explore the leadership track' } },
     ],
 
-    servicesHeading: 'How we serve golf cart businesses',
+    servicesHeading: 'Hands-on help for golf cart businesses',
     servicesIntro:
-      'Some owners need a coach and a stronger leadership team. Some need CFO-level guidance on inventory, cash, and margins. Many need both, working together.',
+      'Maple Creek Carts offers team training, courses, field guides, and peer groups. When you want someone working directly on your business, that happens here: coaching for the people running it, fractional CFO work on the numbers, or both together.',
     services: [
       {
         lane: 'Led by Josh',
-        title: 'Owner coaching and leadership',
-        body: 'For owners who want a business that runs well when they step out of the showroom or the shop.',
+        title: 'Leadership coaching for owners and managers',
+        body: 'One-to-one coaching for dealer principals, owners, and general managers, and facilitated work with leadership teams.',
         items: [
-          'One-to-one owner coaching',
-          'Building a leadership team across sales, service, and parts',
-          'Clear roles, handoffs, and accountability',
-          'Hiring, training, and staffing ahead of the busy season',
+          'From owner to leader: getting decisions off the owner\u2019s desk',
+          'Developing department managers in sales, service, and parts',
+          'Roles and accountability',
+          'A weekly meeting rhythm built around the right numbers',
+          'Hiring, culture, and staffing ahead of the busy season',
           'Planning sessions and strategic retreats',
         ],
       },
@@ -78,11 +85,11 @@ export default function cartsContent(site) {
         title: 'Fractional CFO for golf cart businesses',
         body: 'Experienced financial leadership for businesses that have outgrown basic bookkeeping but do not need a full-time CFO.',
         items: [
-          'Profitability by department: new, used, service, parts, and accessories',
-          'Inventory and floor plan planning',
-          'Seasonal cash flow forecasting for the slow months and the spring rush',
-          'Pricing and margins for carts, accessories, and custom builds',
-          'Key numbers such as units sold, gross profit per unit, service hours, and parts turns',
+          'Department financial statements: new, used, service, parts, and accessories',
+          'Floor plan cost and inventory aging',
+          'Seasonal cash planning for the slow months and the spring rush',
+          'Pricing and margin targets for carts, accessories, and custom builds',
+          'The weekly numbers: gross profit per unit, billed and paid hours, parts turns',
           'Preparing for conversations with lenders, manufacturers, and partners',
         ],
       },
@@ -91,40 +98,53 @@ export default function cartsContent(site) {
         title: 'Dealer and shop operations',
         body: 'Practical systems that keep sales, service, and parts moving together.',
         items: [
-          'A sales process that carries cleanly from first visit to delivery',
-          'Service department workflow and technician productivity',
-          'Parts and accessory inventory that turns instead of sitting',
-          'Warranty, follow-up, and repeat customer routines',
-          'A weekly and monthly management rhythm with the right numbers in front of the team',
+          'A sales process everyone on the floor follows',
+          'Accessories, service plans, and financing at the point of sale',
+          'Trades and used inventory that turn instead of sitting',
+          'Service labor rates, scheduling, and workflow',
+          'Quality, comebacks, warranty, and parts availability',
         ],
         note: 'Tax preparation and attest services (audits, reviews, and compilations) are not part of these services.',
       },
       {
         lane: 'Josh and Matt together',
-        title: 'Growth, building, and expansion',
+        title: 'Growth, building, and exit planning',
         body: 'For the bigger decisions where the people side and the numbers side meet.',
         items: [
           'Evaluating a new location, brand, or territory',
           'Adding rental, fleet, or commercial accounts such as courses, campgrounds, and communities',
           'Building or customizing your own carts: costing, capacity, and pricing',
-          'Preparing for a sale, a partner change, or succession',
+          'Growth and exit planning, succession, and continuity',
         ],
       },
     ],
 
-    valuesHeading: 'Why golf cart owners work with us',
-    valuesIntro:
-      'Golf cart businesses are owner-led businesses with a few twists: seasonality, inventory, and a service side that can make or break the year. That is familiar ground for an owner-operator and a CFO.',
-    values: [
-      { title: 'Built for owner-led businesses', body: 'Josh built and sold a company. We know what it is like when the owner carries everything.' },
-      { title: 'Both sides of the business', body: 'Leadership and the numbers in the same conversation, so plans hold up in the showroom and on the balance sheet.' },
-      { title: 'Seasonal realism', body: 'Plans that account for the slow months and the spring rush, not just an average year.' },
-      { title: 'Straight talk', body: 'We tell you what we see and help you decide what to do about it.' },
+    audiencesHeading: 'Built for the whole industry',
+    audiencesIntro: 'Leaders across the business, from the dealership showroom to the course cart barn.',
+    audiences: [
+      { name: 'Dealers and dealer groups', body: 'New and used sales, service, parts, and accessories, at one store or several.' },
+      { name: 'Golf facility owners and operators', body: 'Courses, clubs, resorts, communities, and management companies that run cart fleets.' },
+      { name: 'Manufacturers, builders, and upfitters', body: 'Production, custom builds, conversions, and dealer networks.' },
+      { name: 'Service and repair shops', body: 'Independent shops and mobile service operations.' },
+      { name: 'Parts and accessory businesses', body: 'Retail counters, online stores, and installers.' },
+      { name: 'Rental, resort, and event fleets', body: 'Rental operators, campgrounds, resorts, and event services.' },
     ],
+
+    // Hidden automatically after `until`.
+    events: {
+      until: '2027-01-30',
+      eyebrow: 'Orlando, January 2027',
+      heading: 'Meet us at the shows',
+      intro: 'Josh and Matt will be in Orlando for both. If you are going too, set a time to sit down with us during the week.',
+      items: [
+        { name: 'Golf Business Conference', meta: 'January 25 to 27, 2027', body: 'Rosen Centre, Orlando, Florida', link: { href: 'https://golfbusinessconference.com/', label: 'Golf Business Conference website' } },
+        { name: 'PGA Show', meta: 'January 26 to 29, 2027', body: 'Orange County Convention Center, Orlando, Florida', link: { href: 'https://www.pgashow.com/', label: 'PGA Show website' } },
+      ],
+    },
 
     stepsHeading: 'How we work with your business',
     steps: [
-      { title: 'Listen and get oriented', body: 'Understand the owner, the team, the business, and the season you are in.' },
+      { title: 'Assess', body: 'Start with a conversation, or the dealer scorecard, to see where the business is strong and where it is leaking.' },
       { title: 'Find the useful facts', body: 'Look at sales, service, parts, inventory, cash, and the people behind them.' },
       { title: 'Choose the next steps', body: 'Agree on priorities with clear owners, dates, and a definition of done.' },
       { title: 'Stay with the work', body: 'If we work together, we revisit the plan through the year and adjust as the seasons change.' },
@@ -134,8 +154,12 @@ export default function cartsContent(site) {
 
     faq: [
       {
+        q: 'How does this relate to Maple Creek Carts?',
+        a: 'Maple Creek Carts is the education platform: the curriculum, field guides, scorecard, team training, courses, and peer groups. ${name} is where the hands-on advisory and fractional CFO work happens. Josh and Matt lead both, and many owners use the two together.',
+      },
+      {
         q: 'Do you only work with dealers?',
-        a: 'No. Dealers, builders and customizers, service and repair shops, parts and accessory businesses, and rental and fleet operators can all be a good fit.',
+        a: 'No. Dealers, golf facilities with cart fleets, manufacturers and upfitters, service and repair shops, parts and accessory businesses, and rental and event fleets can all be a good fit.',
       },
       {
         q: 'What does a fractional CFO do for a golf cart business?',
@@ -155,8 +179,8 @@ export default function cartsContent(site) {
       },
     ],
 
-    closingHeading: 'Get ready for your next season now.',
+    closingHeading: 'Let\u2019s talk about where your business is headed.',
     closingBody:
-      'Tell us about your business and what you want the next season to look like. We will start with a conversation.',
+      'Tell us where the business is today and where you want it to be. We will recommend where to start, here or on Maple Creek Carts.',
   };
 }

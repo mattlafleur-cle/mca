@@ -666,11 +666,20 @@ main:focus { outline: none; }
   .season-phases { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .season-phases li { grid-column: auto; padding-block: 0.85rem; }
 }
-.departments { list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(0.75rem, 0.5rem + 1vw, 1.25rem); }
+.departments { list-style: none; display: grid; grid-template-columns: repeat(var(--cols, 5), minmax(0, 1fr)); gap: clamp(0.75rem, 0.5rem + 1vw, 1.25rem); }
 .departments li { display: grid; gap: 0.5rem; align-content: start; padding: 1.25rem 1.1rem 1.35rem; background: var(--paper-card); border: 1px solid var(--rule); border-top: 3px solid var(--maple); min-width: 0; }
 .dept-num { font-family: var(--font-ui); font-weight: 650; font-size: 0.85rem; letter-spacing: 0.08em; color: var(--maple-ink); font-variant-numeric: tabular-nums; }
 .departments h3 { font-size: calc(1.15rem * var(--ds)); }
 .departments p { color: var(--ink-muted); font-size: 0.98rem; line-height: 1.5; }
+.departments .card-meta { color: var(--ink); font-weight: 600; font-size: 0.92rem; }
+.departments li > p:last-child:has(.text-link) { margin-top: auto; }
+.departments + .actions { margin-top: clamp(1.5rem, 1rem + 1.5vw, 2.25rem); }
+.question-list { list-style: none; counter-reset: q; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(1.5rem, 1rem + 2vw, 3rem); border-top: 1px solid var(--rule); }
+.question-list li { counter-increment: q; position: relative; padding: 0.95rem 0 0.95rem 2.75rem; border-bottom: 1px solid var(--rule); }
+.question-list li::before { content: counter(q, decimal-leading-zero); position: absolute; left: 0; top: 0.85rem; font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; color: var(--maple-ink); }
+@media (max-width: 48rem) { .question-list { grid-template-columns: minmax(0, 1fr); } }
+.situations-note { color: var(--ink-muted); font-size: 0.98rem; }
+.svc-block > .question-list { max-width: 72rem; }
 @media (max-width: 60rem) { .departments { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 36rem) { .departments { grid-template-columns: minmax(0, 1fr); } }
 .industry-services-head + .service { border-top: 0; }
