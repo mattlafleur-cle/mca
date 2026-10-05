@@ -34,6 +34,7 @@ const banned = [
   [/\bmerg(?:er|ed)\b|\bacquired\b|\bacquisition\b/i, 'transaction language'],
   [/\bdelve|seamless|holistic|game-changing|unlock the power|robust\b/i, 'stock phrasing'],
   [/\$\s?\d/, 'a price'],
+  [/forest\s?city/i, 'a Forest City reference'],
   [/testimonial/i, 'testimonial'],
 ];
 
@@ -191,6 +192,11 @@ for (const [fg, bg, min] of pairs) {
   if (r < min) errors.push(`contrast: ${fg} on ${bg} is ${r.toFixed(2)}, needs ${min}`);
 }
 
+// No Forest City references anywhere in the published site, including links, data, and llms.txt.
+for (const f of await walk(dist)) {
+  if (!/\.(html|txt|xml)$/.test(f)) continue;
+  if (/forest\s?city/i.test(await readFile(f, 'utf8'))) errors.push(`${path.relative(dist, f)}: mentions Forest City`);
+}
 console.log(`Checked ${files.length} pages.`);
 console.log('Contrast: ' + contrastReport.join(' | '));
 for (const w of warnings) console.log(`warning: ${w}`);

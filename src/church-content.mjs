@@ -73,7 +73,7 @@ export default function churchContent(site) {
           'Reserve, debt, and spending policies the whole board understands',
           'Preparing the board for major decisions and difficult seasons',
         ],
-        note: 'Bookkeeping, payroll, and church accounting are handled by Forest City CPA, the firm Matt founded. Tax preparation and attest services (audits, reviews, and compilations) are not part of these services.',
+        note: 'Tax preparation and attest services (audits, reviews, and compilations) are not part of these services.',
       },
       {
         lane: 'Josh and Matt together',
@@ -123,10 +123,6 @@ export default function churchContent(site) {
       {
         q: 'What size of church is a good fit?',
         a: 'Church plants, small and midsize congregations, and larger churches with growing staff can all be a good fit. Christian schools and ministries can be a good fit too.',
-      },
-      {
-        q: 'Do you handle church bookkeeping, payroll, or accounting?',
-        a: 'Those services are provided by Forest City CPA, the accounting firm Matt founded, which serves churches and ministries. Maple Creek Advisors focuses on leadership, strategy, culture, and financial leadership, and works alongside your treasurer, bookkeeper, and staff.',
       },
       {
         q: 'Do you prepare taxes or perform audits?',
