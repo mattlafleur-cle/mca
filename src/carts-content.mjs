@@ -155,7 +155,7 @@ export default function cartsContent(site) {
     faq: [
       {
         q: 'How does this relate to Maple Creek Carts?',
-        a: 'Maple Creek Carts is the education platform: the curriculum, field guides, scorecard, team training, courses, and peer groups. ${name} is where the hands-on advisory and fractional CFO work happens. Josh and Matt lead both, and many owners use the two together.',
+        a: `Maple Creek Carts is the education platform: the curriculum, field guides, scorecard, team training, courses, and peer groups. ${name} is where the hands-on advisory and fractional CFO work happens. Josh and Matt lead both, and you can use either one or the two together.`,
       },
       {
         q: 'Do you only work with dealers?',
