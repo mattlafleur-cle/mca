@@ -514,7 +514,7 @@ export const advisory = servicePage('advisory');
 export function church({ site, link, copy }) {
   const c = copy.church;
   const verse = (v, cls = '') =>
-    `<blockquote class="verse${cls}"><p>${esc(v.text)}</p><footer><cite>${esc(v.ref)}</cite> <span class="verse-version">(NIV)</span></footer></blockquote>`;
+    `<blockquote class="verse${cls}"><p>${esc(v.text)}</p><footer><cite>${esc(v.ref)}</cite> <span class="verse-version">(${esc(c.bibleVersion)})</span></footer></blockquote>`;
 
   const services = c.services
     .map(
@@ -543,7 +543,7 @@ export function church({ site, link, copy }) {
       <div class="bio-text">
         <p class="person-role">${esc(f.role)}</p>
         <h3>${esc(f.name)}</h3>
-        <p>${esc(f.short)}</p>
+        <p>${esc(c.people?.[f.id] || f.short)}</p>
       </div>
     </article>`,
     )

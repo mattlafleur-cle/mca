@@ -99,7 +99,7 @@ export default {
         'Josh built and sold a construction company before he started coaching owners and facilitating leadership teams. He knows the weight of owner decisions because he has carried it.',
       bio: [
         'Josh founded Maple Creek Coaching after building and selling a construction company of his own. That experience shapes how he works: he knows the pressure, risk, and responsibility of leading an owner-led business.',
-        'Today he coaches owners, facilitates leadership team meetings and planning sessions, and created BUILD, a peer community and practical method for business owners. His work centers on honest conversations, strong relationships, and turning insight into action.',
+        'Today he coaches owners, facilitates leadership team meetings and planning sessions, and created BUILD, a peer community and practical method for business owners. His work centers on honest conversations, strong relationships, and turning insight into action. Josh has also served as a pastor, and today he serves in lay leadership at his church.',
       ],
     },
     {
@@ -111,7 +111,7 @@ export default {
         'Matt is a CPA, an entrepreneur, and a financial and operating adviser with more than 14 years of experience. He helps owners understand their numbers and use them to make decisions.',
       bio: [
         'Matt founded Forest City CPA and works as a financial and operating adviser. He is a CPA licensed in Ohio and California, with more than 14 years of experience in accounting, financial reporting, and advisory work.',
-        'He works with owners to understand their numbers, make financial information more useful, and bring structure to consequential decisions. He also facilitates BUILD alongside Josh.',
+        'He works with owners to understand their numbers, make financial information more useful, and bring structure to consequential decisions. He also facilitates BUILD alongside Josh. Matt has served as a church CFO, and for more than 20 years he has been involved in professional and lay ministry, including work alongside church leaders.',
       ],
     },
   ],
