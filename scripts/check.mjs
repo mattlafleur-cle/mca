@@ -35,6 +35,7 @@ const banned = [
   [/\bdelve|seamless|holistic|game-changing|unlock the power|robust\b/i, 'stock phrasing'],
   [/\$\s?\d/, 'a price'],
   [/testimonial/i, 'testimonial'],
+  [/\$\{/, 'an unfilled template variable'],
 ];
 
 const files = (await walk(dist)).filter((f) => f.endsWith('.html'));
