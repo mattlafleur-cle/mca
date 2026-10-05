@@ -152,6 +152,7 @@ if (site.allowIndexing && site.canonicalDomain) {
   for (const f of files) {
     const rel = path.relative(dist, f);
     if (rel === '404.html') continue;
+    if ((await readFile(f, 'utf8')).includes('<meta name="robots" content="noindex')) continue; // private pages stay out of the sitemap
     const url = `${site.canonicalDomain}/${rel.replace(/index\.html$/, '')}`;
     if (!sitemap.includes(`<loc>${url}</loc>`)) errors.push(`sitemap.xml is missing ${url}`);
   }

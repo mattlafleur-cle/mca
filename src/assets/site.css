@@ -673,6 +673,27 @@ main:focus { outline: none; }
 .industry-services-head + .service { border-top: 0; }
 .industry-bios .bio h3 { font-size: clamp(1.4rem, 1.2rem + 0.8vw, 1.8rem); }
 
+/* Private type comparison page ---------------------------------------- */
+.type-panel { padding-block: var(--space-section); border-bottom: 1px solid var(--rule); }
+.type-panel:nth-of-type(odd) { background: var(--paper-deep); }
+.type-meta { display: grid; gap: 0.5rem; margin-bottom: 2rem; max-width: 46rem; }
+.type-meta h2 { font-size: 1.15rem; letter-spacing: 0; }
+.type-meta p { color: var(--ink-muted); font-size: 1rem; }
+.type-tag { display: inline-block; padding: 0.15rem 0.6rem; margin-right: 0.4rem; border-radius: 999px; background: var(--evergreen); color: var(--on-dark); font-size: 0.85rem; }
+.type-sample { display: grid; gap: 1.25rem; font-family: var(--tp-body); }
+.type-sample p { max-width: 40em; }
+.tp-eyebrow { font-family: var(--tp-display); font-weight: 600; font-size: calc(0.85rem * var(--tp-scale)); letter-spacing: 0.1em; text-transform: uppercase; color: var(--maple-ink); }
+.tp-h1 { font-family: var(--tp-display); font-weight: var(--tp-weight); font-size: calc(var(--step-3) * var(--tp-scale)); line-height: 1.04; letter-spacing: var(--tp-tracking); max-width: 14em !important; text-wrap: balance; }
+.tp-h2 { font-family: var(--tp-display); font-weight: var(--tp-weight); font-size: calc(var(--step-2) * var(--tp-scale)); line-height: 1.1; letter-spacing: var(--tp-tracking); margin-top: 1rem; text-wrap: balance; }
+.tp-h3 { font-family: var(--tp-display); font-weight: var(--tp-weight); font-size: calc(1.25rem * var(--tp-scale)); line-height: 1.15; }
+.tp-lead { font-size: clamp(1.1rem, 1rem + 0.5vw, 1.3rem); color: var(--ink-muted); line-height: 1.55; }
+.type-sample .button { font-family: var(--tp-display); font-weight: 600; font-size: calc(1rem * var(--tp-scale)); }
+.tp-btn { cursor: default; }
+.tp-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 0.5rem; }
+.tp-card { display: grid; gap: 0.5rem; align-content: start; padding: 1.25rem; background: var(--paper-card); border-top: 3px solid var(--evergreen); }
+.tp-card p:not(.tp-h3) { color: var(--ink-muted); font-size: 1rem; }
+@media (max-width: 48rem) { .tp-grid { grid-template-columns: minmax(0, 1fr); } }
+
 /* Footer ----------------------------------------------------------------- */
 .site-footer { background: var(--paper); border-top: 1px solid var(--rule); padding-block: 3.5rem 2rem; font-size: 1rem; }
 .footer-inner { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); gap: 2rem 3rem; }
