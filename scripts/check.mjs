@@ -34,7 +34,6 @@ const banned = [
   [/\bmerg(?:er|ed)\b|\bacquired\b|\bacquisition\b/i, 'transaction language'],
   [/\bdelve|seamless|holistic|game-changing|unlock the power|robust\b/i, 'stock phrasing'],
   [/\$\s?\d/, 'a price'],
-  [/forest\s?city/i, 'a Forest City reference'],
   [/testimonial/i, 'testimonial'],
 ];
 
@@ -192,10 +191,15 @@ for (const [fg, bg, min] of pairs) {
   if (r < min) errors.push(`contrast: ${fg} on ${bg} is ${r.toFixed(2)}, needs ${min}`);
 }
 
-// No Forest City references anywhere in the published site, including links, data, and llms.txt.
+// Forest City may appear only in two approved forms: Matt's temporary email address, and
+// "Matt founded Forest City CPA" in his About bio and on the fractional CFO page. Nothing else, anywhere.
+const forestCityAllowed = { 'about/index.html': true, 'fractional-cfo/index.html': true };
 for (const f of await walk(dist)) {
   if (!/\.(html|txt|xml)$/.test(f)) continue;
-  if (/forest\s?city/i.test(await readFile(f, 'utf8'))) errors.push(`${path.relative(dist, f)}: mentions Forest City`);
+  const rel = path.relative(dist, f);
+  let text = (await readFile(f, 'utf8')).replace(/matt@forestcity\.pro/gi, '');
+  if (forestCityAllowed[rel]) text = text.replace(/Matt founded Forest City CPA/g, '');
+  if (/forest\s?city/i.test(text)) errors.push(`${rel}: mentions Forest City outside the approved bio line and email`);
 }
 console.log(`Checked ${files.length} pages.`);
 console.log('Contrast: ' + contrastReport.join(' | '));

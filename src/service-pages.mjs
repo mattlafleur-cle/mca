@@ -42,7 +42,7 @@ export default function servicePages(site) {
         {
           heading: 'Who leads the work',
           paras: [
-            'Fractional CFO work is led by Matt LaFleur, a CPA licensed in Ohio and California with more than 14 years of experience in accounting, financial reporting, and advisory work. Matt works with owners to understand their numbers and use them to make consequential decisions.',
+            'Fractional CFO work is led by Matt LaFleur, a CPA licensed in Ohio and California with more than 14 years of experience in accounting, financial reporting, and advisory work. Matt founded Forest City CPA and works with owners to understand their numbers and use them to make consequential decisions.',
           ],
         },
         {
