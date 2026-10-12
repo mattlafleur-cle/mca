@@ -20,6 +20,8 @@ try {
 const fontDir = path.join(root, 'src/assets/fonts');
 const fontFaces = readFileSync(path.join(fontDir, 'fonts.css'), 'utf8').replace(/url\('([^']+)'\)/g, (m, f) => `url(data:font/woff2;base64,${readFileSync(path.join(fontDir, f)).toString('base64')})`);
 
+const logo = `data:image/svg+xml;base64,${readFileSync(path.join(root, 'src/assets/logo.svg')).toString('base64')}`;
+
 const html = `<!doctype html><html><head><meta charset="utf-8">
 <style>${fontFaces}</style>
 <style>
@@ -28,12 +30,15 @@ const html = `<!doctype html><html><head><meta charset="utf-8">
   .contours { position: absolute; inset: 0; width: 100%; height: 100%; }
   .contours path { fill: none; stroke: #c3cfc6; stroke-width: 1.4; opacity: 0.22; }
   .contours .contour-accent { stroke: #d39445; stroke-width: 3; opacity: 1; }
-  .text { position: absolute; left: 88px; top: 96px; right: 88px; }
+  .text { position: absolute; left: 80px; top: 96px; width: 580px; }
+  .panel { position: absolute; right: 0; top: 0; bottom: 0; width: 470px; background: #f5f1e7; }
+  .logo { position: absolute; right: 75px; top: 50%; transform: translateY(-50%); width: 320px; height: auto; }
   .name { font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 120px; line-height: 0.95; letter-spacing: 0; margin: 0 0 28px; }
-  .tag { font-size: 34px; line-height: 1.35; color: #c3cfc6; max-width: 820px; margin: 0; }
-  .where { position: absolute; left: 88px; bottom: 72px; font-family: 'Libre Franklin', sans-serif; font-weight: 500; font-size: 24px; letter-spacing: 0.12em; text-transform: uppercase; color: #d39445; }
+  .tag { font-size: 32px; line-height: 1.35; color: #c3cfc6; margin: 0; }
+  .where { position: absolute; left: 80px; bottom: 72px; font-family: 'Libre Franklin', sans-serif; font-weight: 500; font-size: 24px; letter-spacing: 0.12em; text-transform: uppercase; color: #d39445; }
 </style></head><body>
 ${contourSvg({ width: 1200, height: 630, lines: 12, seed: 7 })}
+<div class="panel"></div><img class="logo" src="${logo}" alt="">
 <div class="text"><p class="name">${esc(site.siteName)}</p><p class="tag">${esc(site.tagline)}</p></div>
 <p class="where">${esc(site.location.region)}</p>
 </body></html>`;

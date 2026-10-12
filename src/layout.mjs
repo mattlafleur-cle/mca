@@ -108,9 +108,10 @@ export function lanesDiagram() {
 </figure>`;
 }
 
-function markSvg() {
-  // Two strokes meeting, echoing the lanes diagram. Decorative next to the wordmark text.
-  return `<svg class="mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M4 8 C 14 8, 16 16, 22 16 M4 24 C 14 24, 16 16, 22 16 M22 16 L 29 16"/><circle cx="22" cy="16" r="2.6"/></svg>`;
+// The Maple Creek Advisors badge. Decorative here (alt=""), because the name is always written out beside it.
+function logoImg(link, size) {
+  const h = size, w = Math.round((size * 108) / 116);
+  return `<img class="logo-mark" src="${esc(link.asset('logo.svg'))}" width="${w}" height="${h}" alt="">`;
 }
 
 export function ctaButton(link, { variant = 'primary', text } = {}) {
@@ -126,7 +127,7 @@ function header(site, link, current) {
     .join('');
   return `<header class="site-header">
   <div class="wrap header-inner">
-    <a class="wordmark" href="${esc(link.page('home'))}"${current === 'home' ? ' aria-current="page"' : ''}>${markSvg()}<span>${esc(site.siteName)}</span></a>
+    <a class="wordmark" href="${esc(link.page('home'))}"${current === 'home' ? ' aria-current="page"' : ''}>${logoImg(link, 48)}<span>${esc(site.siteName)}</span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" class="site-nav" aria-label="Main">
       <ul>${navItems}</ul>
@@ -143,7 +144,7 @@ function footer(site, link) {
   return `<footer class="site-footer">
   <div class="wrap footer-inner">
     <div class="footer-brand">
-      <p class="footer-name">${markSvg()}<span>${esc(site.siteName)}</span></p>
+      <p class="footer-name">${logoImg(link, 72)}<span>${esc(site.siteName)}</span></p>
       <p>${esc(site.tagline)}</p>
       <p>${esc(site.location.serviceLine)}</p>
     </div>
@@ -187,6 +188,7 @@ export function structuredData(site, route, meta) {
     url: `${base}/`,
     description: site.tagline,
     image: site.ogImage ? `${base}/assets/${site.ogImage}` : undefined,
+    logo: `${base}/assets/logo-512.png`,
     areaServed: areas,
     location: (site.location.offices || []).map((town) => ({
       '@type': 'Place',
@@ -253,6 +255,7 @@ export function pageShell({ site, link, mode, route, meta, body }) {
     site.canonicalDomain && site.ogImage ? `<meta name="twitter:card" content="summary_large_image">` : '',
     `<meta name="theme-color" content="#1d3a2f">`,
     `<link rel="icon" href="${esc(link.asset('favicon.svg'))}" type="image/svg+xml">`,
+    `<link rel="apple-touch-icon" href="${esc(link.asset('apple-touch-icon.png'))}">`,
     // Fonts are self-hosted (src/assets/fonts), so no requests go to third-party font services.
     `<link rel="preload" href="${esc(link.asset('fonts/big-shoulders-display-normal-832b15.woff2'))}" as="font" type="font/woff2" crossorigin>`,
     `<link rel="preload" href="${esc(link.asset('fonts/libre-franklin-normal-f2d133.woff2'))}" as="font" type="font/woff2" crossorigin>`,

@@ -101,7 +101,8 @@ for (const file of files) {
   }
 
   for (const m of html.matchAll(/<img\b[^>]*>/g)) {
-    if (!/\salt="[^"]+"/.test(m[0])) errors.push(`${rel}: image without alt text`);
+    // The logo badge sits beside the written name, so it is correctly decorative (alt="").
+    if (!/\salt="[^"]+"/.test(m[0]) && !/class="logo-mark"[^>]*\salt=""/.test(m[0])) errors.push(`${rel}: image without alt text`);
     if (!/\swidth="\d+"/.test(m[0]) || !/\sheight="\d+"/.test(m[0])) errors.push(`${rel}: image without dimensions`);
   }
   for (const m of html.matchAll(/<a\b[^>]*>([\s\S]*?)<\/a>/g)) {

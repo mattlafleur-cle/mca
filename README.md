@@ -29,6 +29,7 @@ The site is plain static HTML built by a small Node script that has **no depende
 | Page structure | `src/pages.mjs` |
 | Header, footer, meta tags, route list | `src/layout.mjs` |
 | Colors, type, spacing | `src/assets/site.css` (tokens at the top) |
+| Logo | `src/assets/logo.svg` (badge), `favicon.svg` and `apple-touch-icon.png` (tree only), `logo-512.png` (search). Regenerate the preview image with `npm run og-image`. |
 | Mobile menu and copy button | `src/assets/site.js` |
 
 After any edit, run `npm run check`.
