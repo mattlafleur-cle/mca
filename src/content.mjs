@@ -27,7 +27,7 @@ export default function content(site) {
       eyebrow: 'Business coaching, advisory, and fractional CFO in Northeast Ohio',
       headline: 'Build a stronger business with better decisions and financial clarity.',
       lead:
-        'Josh Muller brings coaching and leadership from building a company himself. Matt LaFleur brings financial clarity and practical operating guidance. Together, they help owners and entrepreneurs see where the business stands and build a plan to get where they want to go.',
+        'Together, we help owners and entrepreneurs see where the business stands and build a plan to get where they want to go.',
       audience:
         'For business owners and entrepreneurs who feel stuck and want a clear next step, whatever the industry.',
       situationsHeading: 'When the business needs more than another report or another opinion.',
