@@ -7,6 +7,7 @@ import servicePages from './service-pages.mjs';
 import churchContent from './church-content.mjs';
 import cartsContent from './carts-content.mjs';
 import sellContent from './sell-content.mjs';
+import clientsContent from './clients-content.mjs';
 
 export default function content(site) {
   const name = site.siteName;
@@ -16,6 +17,7 @@ export default function content(site) {
     church: churchContent(site),
     carts: cartsContent(site),
     sell: sellContent(site),
+    clients: clientsContent(site),
     home: {
       title: `Business Coaching and Fractional CFO in Northeast Ohio | ${name}`,
       description:

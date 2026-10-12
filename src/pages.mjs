@@ -687,3 +687,65 @@ ${c.values ? `<section class="section" aria-labelledby="${key}-values">
 export const church = industryPage('church');
 export const carts = industryPage('carts');
 export const sell = industryPage('sell');
+
+// Unlisted page for current clients (/client-updates/). Sections appear only once they have content.
+export function clients({ site, link, copy }) {
+  const c = copy.clients;
+  const has = (a) => Array.isArray(a) && a.length > 0;
+  const filled = [c.announcements, c.benefits, c.unchanged, c.dates, c.actions, c.faq].some(has);
+  let alt = false;
+  const section = (id, heading, inner, intro = '') => {
+    alt = !alt;
+    return `<section class="section${alt ? '' : ' section-alt'}" aria-labelledby="clients-${id}">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="clients-${id}" class="section-title">${esc(heading)}</h2>
+      ${intro ? `<p>${esc(intro)}</p>` : ''}
+    </div>
+    ${inner}
+  </div>
+</section>`;
+  };
+
+  const blocks = [];
+  if (!filled) {
+    alt = true;
+    blocks.push(`<section class="section" aria-label="Status">
+  <div class="wrap svc-block">
+    <p>${esc(c.pendingNote)}</p>
+    <div class="actions">${ctaButton(link)}<a class="button button-secondary" href="${esc(mailtoHref(site, '2027 client updates'))}">Email us</a></div>
+  </div>
+</section>`);
+  }
+  if (has(c.announcements))
+    blocks.push(section('announcements', c.announcementsHeading, `<div class="announcements">${c.announcements
+      .map((a) => `<article class="announcement">
+      ${a.date ? `<p class="card-meta">${esc(a.date)}</p>` : ''}
+      <h3>${esc(a.title)}</h3>
+      ${paras(a.body || [])}
+      ${has(a.items) ? `<ul class="check-list">${a.items.map((it) => `<li>${esc(it)}</li>`).join('')}</ul>` : ''}
+    </article>`)
+      .join('')}</div>`));
+  if (has(c.benefits))
+    blocks.push(section('benefits', c.benefitsHeading, `<ul class="departments" style="--cols:${Math.min(c.benefits.length, 3)}">${c.benefits
+      .map((b) => `<li><h3>${esc(b.name)}</h3><p>${esc(b.body)}</p></li>`).join('')}</ul>`, c.benefitsIntro));
+  if (has(c.unchanged))
+    blocks.push(section('unchanged', c.unchangedHeading, `<ul class="check-list">${c.unchanged.map((u) => `<li>${esc(u)}</li>`).join('')}</ul>`));
+  if (has(c.dates))
+    blocks.push(section('dates', c.datesHeading, `<dl class="key-dates">${c.dates
+      .map((d) => `<div><dt>${esc(d.date)}</dt><dd>${esc(d.body)}</dd></div>`).join('')}</dl>`));
+  if (has(c.actions))
+    blocks.push(section('actions', c.actionsHeading, `<ol class="steps"${c.actions.length === 3 || c.actions.length > 4 ? ' style="--steps:3"' : ''}>${c.actions
+      .map((s, i) => `<li class="step"><span class="step-num" aria-hidden="true">${i + 1}</span><h3>${esc(s.title)}</h3><p>${esc(s.body)}</p></li>`).join('')}</ol>`));
+  if (has(c.faq))
+    blocks.push(`<section class="section section-dark" aria-labelledby="clients-faq">
+  <div class="wrap faq-wrap">
+    <h2 id="clients-faq" class="section-title">Common questions</h2>
+    <div class="faq">${c.faq.map((f) => `<div class="faq-item"><h3>${esc(f.q)}</h3><p>${esc(f.a)}</p></div>`).join('')}</div>
+  </div>
+</section>`);
+
+  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: c.updated ? `<p class="updated-note">Last updated ${esc(c.updated)}</p>` : '', seed: c.seed })}
+${blocks.join('\n')}
+${closing(link, c.closingHeading, c.closingBody)}`;
+}
