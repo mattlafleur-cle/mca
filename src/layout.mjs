@@ -20,6 +20,7 @@ export function routes(site) {
     // Standalone page for churches: published and indexed, but not linked from the menu, footer, or Home.
     { key: 'church', label: 'Churches', path: '/church/', file: 'church.html', out: 'church/index.html', standalone: true },
     { key: 'carts', label: 'Golf cart businesses', path: '/carts/', file: 'carts.html', out: 'carts/index.html', standalone: true },
+    { key: 'announcement', label: 'Announcement', path: '/announcement/', file: 'announcement.html', out: 'announcement/index.html', standalone: true },
     { key: 'clients', label: 'Client updates', path: '/client-updates/', file: 'client-updates.html', out: 'client-updates/index.html', hidden: true, noindex: true },
     { key: 'notFound', label: 'Page not found', path: '/404.html', file: '404.html', out: '404.html', hidden: true },
   ];
@@ -207,6 +208,20 @@ export function structuredData(site, route, meta) {
       provider: { '@id': orgId },
       areaServed: meta.areaServed ? areaList(meta.areaServed) : areas,
       url: `${base}${route.path}`,
+    });
+  }
+  if (meta.datePublished) {
+    graph.push({
+      '@type': 'NewsArticle',
+      '@id': `${base}${route.path}#article`,
+      headline: meta.headline,
+      description: meta.description,
+      datePublished: meta.datePublished,
+      url: `${base}${route.path}`,
+      image: site.ogImage ? `${base}/assets/${site.ogImage}` : undefined,
+      author: site.founders.map((f) => ({ '@id': `${base}/about/#${f.id}` })),
+      publisher: { '@id': orgId },
+      about: { '@id': orgId },
     });
   }
   if (meta.faq?.length) {

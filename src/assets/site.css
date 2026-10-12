@@ -731,3 +731,12 @@ main:focus { outline: none; }
 .updated-note { color: var(--ink-muted); font-size: 0.95rem; }
 .steps.steps-single { grid-template-columns: minmax(0, 36rem); }
 .steps.steps-single .step { justify-items: start; }
+
+/* Announcement banner on Home ------------------------------------------------ */
+.news-banner { background: var(--evergreen); color: var(--on-dark); font-size: 0.98rem; }
+.news-banner .wrap { padding-block: 0.7rem; }
+.news-banner p { margin: 0; }
+.news-banner a { color: var(--on-dark); text-decoration: underline; text-decoration-color: var(--maple); text-underline-offset: 0.2em; font-weight: 600; white-space: nowrap; }
+.news-banner a:hover { color: var(--maple); }
+.news-label { display: inline-block; margin-right: 0.5rem; padding: 0.1rem 0.5rem; border: 1px solid var(--maple); border-radius: 999px; color: var(--maple); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }

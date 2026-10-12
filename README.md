@@ -1,6 +1,6 @@
 # Maple Creek Advisors website
 
-This is the first public-facing website for the proposed combined advisory practice of Josh Muller and Matt LaFleur. It is served at **https://maplecreekadvisors.com** for founder review, and every push to the site branch redeploys it automatically. It is not yet launched: pages carry `noindex`, and the site does not claim that the business combination is complete.
+This is the website for Maple Creek Advisors, formed when Josh Muller's Maple Creek Coaching and Matt LaFleur's Forest City CPA joined forces (announced 2026-10-12 at /announcement/). It is served at **https://maplecreekadvisors.com**, and every push to the site branch redeploys it automatically.
 
 The name "Maple Creek Advisors" is set in one place (`site.config.mjs`). After changing it, run `npm run og-image` to refresh the link preview image.
 

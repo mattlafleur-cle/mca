@@ -52,7 +52,11 @@ export function home({ site, link, copy }) {
     )
     .join('');
 
-  return `<section class="hero">
+  const a = copy.announcement;
+  const banner = a?.banner && link.has('announcement') && new Date() <= new Date(a.banner.until)
+    ? `<aside class="news-banner" aria-label="News"><div class="wrap"><p><span class="news-label">News</span> ${esc(a.banner.text)} <a href="${esc(link.page('announcement'))}">${esc(a.banner.linkText)}</a></p></div></aside>\n`
+    : '';
+  return `${banner}<section class="hero">
   <div class="wrap hero-inner">
     <div class="hero-copy">
       <p class="eyebrow">${esc(c.eyebrow)}</p>
@@ -745,7 +749,72 @@ export function clients({ site, link, copy }) {
   </div>
 </section>`);
 
-  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: c.updated ? `<p class="updated-note">Last updated ${esc(c.updated)}</p>` : '', seed: c.seed })}
+  const ann = link.has('announcement') ? `<p class="updated-note"><a class="text-link" href="${esc(link.page('announcement'))}">${esc(c.announcementLinkText)}</a></p>` : '';
+  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `${c.updated ? `<p class="updated-note">Last updated ${esc(c.updated)}</p>` : ''}${ann}`, seed: c.seed })}
 ${blocks.join('\n')}
+${closing(link, c.closingHeading, c.closingBody)}`;
+}
+
+// Public announcement page (/announcement/).
+export function announcement({ site, link, copy }) {
+  const c = copy.announcement;
+  const people = site.founders
+    .map(
+      (f) => `<article class="bio${f.photo ? ' has-photo' : ''}">
+      ${f.photo ? `<img class="portrait" src="${esc(link.asset(f.photo.src))}" width="${esc(f.photo.width)}" height="${esc(f.photo.height)}" alt="${esc(f.photo.alt)}" loading="lazy" decoding="async">` : ''}
+      <div class="bio-text">
+        <p class="person-role">${esc(f.role)}</p>
+        <h3>${esc(f.name)}</h3>
+        <p>${esc(f.short)}</p>
+      </div>
+    </article>`,
+    )
+    .join('');
+  const offers = c.offers.filter((o) => link.has(o.key));
+  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `<p class="updated-note"><time datetime="${esc(c.datePublished)}">${esc(c.dateLabel)}</time></p><div class="actions">${ctaButton(link)}</div>`, seed: c.seed })}
+
+<section class="section" aria-labelledby="ann-why">
+  <div class="wrap svc-block">
+    <h2 id="ann-why" class="section-title">${esc(c.whyHeading)}</h2>
+    ${paras(c.why)}
+  </div>
+</section>
+
+<section class="section section-alt" aria-labelledby="ann-people">
+  <div class="wrap">
+    <h2 id="ann-people" class="section-title">Who leads ${esc(site.siteName)}</h2>
+    <div class="bios industry-bios">${people}</div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="ann-offer">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="ann-offer" class="section-title">${esc(c.offerHeading)}</h2>
+      <p>${esc(c.offerIntro)}</p>
+    </div>
+    <ul class="departments" style="--cols:${offers.length}">
+      ${offers.map((o) => `<li><h3>${esc(o.name)}</h3><p>${esc(o.body)}</p><p><a class="text-link" href="${esc(link.page(o.key))}">Learn more<span class="visually-hidden"> about ${esc(o.name.toLowerCase())}</span></a></p></li>`).join('')}
+    </ul>
+  </div>
+</section>
+
+<section class="section section-alt" aria-labelledby="ann-clients">
+  <div class="wrap svc-block">
+    <h2 id="ann-clients" class="section-title">${esc(c.clientsHeading)}</h2>
+    <ul class="check-list">${c.clients.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
+    ${link.has('clients') ? `<a class="text-link" href="${esc(link.page('clients'))}">${esc(c.clientsLinkText)}</a>` : ''}
+  </div>
+</section>
+
+<section class="section section-dark" aria-labelledby="ann-faq">
+  <div class="wrap faq-wrap">
+    <h2 id="ann-faq" class="section-title">Common questions</h2>
+    <div class="faq">
+      ${c.faq.map((f) => `<div class="faq-item"><h3>${esc(f.q)}</h3><p>${esc(f.a)}</p></div>`).join('')}
+    </div>
+  </div>
+</section>
+
 ${closing(link, c.closingHeading, c.closingBody)}`;
 }

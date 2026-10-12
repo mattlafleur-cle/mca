@@ -15,6 +15,7 @@ export default function clientsContent(site) {
     lead: 'This page collects the announcements, changes, and new client benefits we are making for 2027, so you have one place to read them and come back to them.',
     // Shown under the hero, e.g. 'October 12, 2026'. Leave empty to hide.
     updated: 'October 12, 2026',
+    announcementLinkText: 'Read the announcement: Maple Creek Coaching and Forest City CPA have joined forces',
     pendingNote: 'We are finalizing the details and will post them here. If you have a question in the meantime, schedule a time to talk or email us.',
 
     // Main announcements. Each: { title, date (optional), body: ['paragraph', ...], items (optional list) }
