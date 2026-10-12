@@ -109,9 +109,10 @@ export function lanesDiagram() {
 }
 
 // The Maple Creek Advisors badge. Decorative here (alt=""), because the name is always written out beside it.
-function logoImg(link, size) {
+// The header uses the "MAPLE CREEK" badge (logo-header.png, 4x for sharp screens); everywhere else uses the full badge.
+function logoImg(link, size, file = 'logo.svg') {
   const h = size, w = Math.round((size * 108) / 116);
-  return `<img class="logo-mark" src="${esc(link.asset('logo.svg'))}" width="${w}" height="${h}" alt="">`;
+  return `<img class="logo-mark" src="${esc(link.asset(file))}" width="${w}" height="${h}" alt="">`;
 }
 
 export function ctaButton(link, { variant = 'primary', text } = {}) {
@@ -127,7 +128,7 @@ function header(site, link, current) {
     .join('');
   return `<header class="site-header">
   <div class="wrap header-inner">
-    <a class="wordmark" href="${esc(link.page('home'))}"${current === 'home' ? ' aria-current="page"' : ''}>${logoImg(link, 48)}<span>${esc(site.siteName)}</span></a>
+    <a class="wordmark" href="${esc(link.page('home'))}"${current === 'home' ? ' aria-current="page"' : ''}>${logoImg(link, 48, 'logo-header.png')}<span>${esc(site.siteName)}</span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" class="site-nav" aria-label="Main">
       <ul>${navItems}</ul>
