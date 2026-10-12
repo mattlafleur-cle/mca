@@ -508,7 +508,7 @@ main:focus { outline: none; }
   list-style: none;
   margin-top: clamp(2rem, 1.5rem + 2vw, 3rem);
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--steps, 4), minmax(0, 1fr));
   gap: clamp(1.25rem, 1rem + 1.5vw, 2rem);
   counter-reset: none;
 }

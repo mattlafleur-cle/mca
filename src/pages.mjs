@@ -481,7 +481,7 @@ function servicePage(key) {
 </section>`,
       )
       .join('\n');
-    const others = ['coaching', 'fractionalCfo', 'advisory'].filter((k) => k !== key && link.has(k));
+    const others = ['coaching', 'fractionalCfo', 'advisory', 'sell'].filter((k) => k !== key && link.has(k));
     return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `<div class="actions">${ctaButton(link)}</div>`, seed: key.length * 3 })}
 ${sections}
 <section class="section section-dark" aria-labelledby="${key}-faq">
@@ -642,7 +642,7 @@ ${c.values ? `<section class="section" aria-labelledby="${key}-values">
 <section class="section section-alt" aria-labelledby="${key}-steps">
   <div class="wrap">
     <h2 id="${key}-steps" class="section-title">${esc(c.stepsHeading)}</h2>
-    <ol class="steps">
+    <ol class="steps"${c.steps.length === 6 ? ' style="--steps:3"' : ''}>
       ${c.steps
         .map(
           (s, i) => `<li class="step">
@@ -686,3 +686,4 @@ ${c.values ? `<section class="section" aria-labelledby="${key}-values">
 
 export const church = industryPage('church');
 export const carts = industryPage('carts');
+export const sell = industryPage('sell');

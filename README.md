@@ -64,7 +64,7 @@ Pages: Home, Services, How We Work, About, BUILD, Contact, and a 404 page.
 ## Search (SEO)
 
 - **Indexing is on** (`allowIndexing: true`). The build publishes `sitemap.xml`, `robots.txt` pointing to it, and `llms.txt`, a plain summary for AI assistants.
-- **Service pages:** `/business-coaching/`, `/fractional-cfo/`, and `/business-advisory/` each target a search phrase plus the region. Their copy lives in `src/service-pages.mjs`.
+- **Service pages:** `/business-coaching/`, `/fractional-cfo/`, `/business-advisory/`, and `/sell-your-business/` (copy in `src/sell-content.mjs`) each target a search phrase plus the region. Their copy lives in `src/service-pages.mjs`.
 - **Structured data:** every page carries schema.org JSON-LD describing the business, founders, offices (town only), areas served, and booking action. Service pages add Service and FAQPage data. Street address and phone are left out until confirmed; add them to `site.config.mjs` first.
 - **Areas served:** `location.areasServed` in `site.config.mjs` feeds the footer, structured data, and `llms.txt`. Add towns as the practice expands.
 

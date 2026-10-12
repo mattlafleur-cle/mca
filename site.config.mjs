@@ -40,8 +40,9 @@ export default {
     offices: ['Cuyahoga Falls', 'Elyria'],
     // Towns named on the site and in structured data. Add towns as the practice expands.
     areasServed: [
-      'Akron', 'Cuyahoga Falls', 'Cleveland', 'Elyria', 'Independence', 'Stow', 'Hudson', 'Kent', 'Medina',
-      'Lorain', 'Avon', 'Westlake', 'Strongsville', 'Brecksville', 'Twinsburg', 'Canton',
+      'Akron', 'Cuyahoga Falls', 'Cleveland', 'Elyria', 'Lakewood', 'Rocky River', 'Westlake', 'Bay Village',
+      'North Olmsted', 'Fairview Park', 'Strongsville', 'Avon', 'Avon Lake', 'North Ridgeville', 'Lorain',
+      'Stow', 'Hudson', 'Fairlawn', 'Green', 'Kent', 'Medina', 'Independence', 'Brecksville', 'Twinsburg', 'Canton',
     ],
   },
   // Public profiles used to connect the founders to the business in search results.

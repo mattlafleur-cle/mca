@@ -95,6 +95,7 @@ export default function servicePages(site) {
             'Getting a leadership team aligned on the same goals and the same numbers',
             'Preparing the business, and yourself, for a sale or succession',
           ],
+          link: { key: 'sell', text: 'Selling your business: how we help' },
         },
         {
           heading: 'What advisory work can include',

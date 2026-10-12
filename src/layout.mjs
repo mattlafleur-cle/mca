@@ -12,6 +12,7 @@ export function routes(site) {
     { key: 'coaching', label: 'Business coaching', path: '/business-coaching/', file: 'business-coaching.html', out: 'business-coaching/index.html', service: true },
     { key: 'fractionalCfo', label: 'Fractional CFO', path: '/fractional-cfo/', file: 'fractional-cfo.html', out: 'fractional-cfo/index.html', service: true },
     { key: 'advisory', label: 'Business advisory', path: '/business-advisory/', file: 'business-advisory.html', out: 'business-advisory/index.html', service: true },
+    { key: 'sell', label: 'Selling your business', path: '/sell-your-business/', file: 'sell-your-business.html', out: 'sell-your-business/index.html', service: true },
     { key: 'howWeWork', label: 'How We Work', path: '/how-we-work/', file: 'how-we-work.html', out: 'how-we-work/index.html' },
     { key: 'about', label: 'About', path: '/about/', file: 'about.html', out: 'about/index.html' },
     { key: 'build', label: 'BUILD', path: '/build/', file: 'build.html', out: 'build/index.html' },
@@ -172,10 +173,11 @@ export function structuredData(site, route, meta) {
     worksFor: { '@id': orgId },
     ...(site.profiles?.[f.id] ? { sameAs: [site.profiles[f.id]] } : {}),
   });
-  const areas = [
+  const areaList = (towns) => [
     { '@type': 'AdministrativeArea', name: `${site.location.region}` },
-    ...(site.location.areasServed || []).map((town) => ({ '@type': 'City', name: `${town}, Ohio` })),
+    ...(towns || []).map((town) => ({ '@type': 'City', name: `${town}, Ohio` })),
   ];
+  const areas = areaList(site.location.areasServed);
   const org = {
     '@type': 'ProfessionalService',
     '@id': orgId,
@@ -202,7 +204,7 @@ export function structuredData(site, route, meta) {
       serviceType: meta.serviceType,
       description: meta.description,
       provider: { '@id': orgId },
-      areaServed: areas,
+      areaServed: meta.areaServed ? areaList(meta.areaServed) : areas,
       url: `${base}${route.path}`,
     });
   }

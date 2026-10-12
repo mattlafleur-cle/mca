@@ -6,6 +6,7 @@
 import servicePages from './service-pages.mjs';
 import churchContent from './church-content.mjs';
 import cartsContent from './carts-content.mjs';
+import sellContent from './sell-content.mjs';
 
 export default function content(site) {
   const name = site.siteName;
@@ -14,6 +15,7 @@ export default function content(site) {
     ...servicePages(site),
     church: churchContent(site),
     carts: cartsContent(site),
+    sell: sellContent(site),
     home: {
       title: `Business Coaching and Fractional CFO in Northeast Ohio | ${name}`,
       description:
@@ -187,6 +189,27 @@ export default function content(site) {
             'Improving the management cadence',
             'Preparing for a new stage of growth',
             'Understanding whether a strategy fits your capacity',
+          ],
+        },
+        {
+          id: 'selling',
+          page: 'sell',
+          pageLinkText: 'Selling your business in detail',
+          cta: 'Talk confidentially about selling',
+          emailSubject: 'Selling my business',
+          lane: 'Josh and Matt together',
+          title: 'Selling your business',
+          body: [
+            'Exit planning, advice through a sale, or full representation from the first buyer conversation to closing. Josh built and sold a company of his own; Matt prepares the financial side a buyer will examine.',
+          ],
+          listHeading: 'Work can include',
+          items: [
+            'Value and sale readiness review',
+            'Reducing owner dependence before a sale',
+            'Financial due diligence preparation',
+            'Reviewing offers and negotiating terms',
+            'Confidential marketing to qualified buyers',
+            'Managing the sale through closing and transition',
           ],
         },
       ],
