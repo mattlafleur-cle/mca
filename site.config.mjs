@@ -55,7 +55,7 @@ export default {
   // plain email action addressed to both founders' existing (legacy) addresses as a temporary fallback.
   // Replace with the new shared address once it exists and has been tested.
   contact: {
-    recipients: ['josh@maplecreekcoaching.com', 'matt@forestcity.pro'],
+    recipients: ['hello@maplecreekadvisors.com'],
     emailSubject: 'Starting a conversation',
     // Leave null unless a response time is confirmed. Nothing is shown while null.
     responseTime: null,

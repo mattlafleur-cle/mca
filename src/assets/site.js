@@ -35,7 +35,7 @@
       var text = button.getAttribute('data-copy');
       var done = function () {
         button.textContent = button.getAttribute('data-copied') || 'Copied';
-        if (status) status.textContent = 'Email addresses copied to your clipboard.';
+        if (status) status.textContent = 'Copied to your clipboard.';
         setTimeout(function () { button.textContent = original; }, 2500);
       };
       var fail = function () {

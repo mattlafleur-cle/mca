@@ -33,7 +33,7 @@ Nothing on this list has been signed off. Since 2026-09-29 the review site is li
 
 ## Contact
 
-- [ ] **Shared inbox.** The contact path is a temporary email link to both legacy addresses (josh@maplecreekcoaching.com and matt@forestcity.pro). Create and test a shared address for the new brand, then replace `contact.recipients` in `site.config.mjs`.
+- [x] **Shared inbox.** Every page now uses hello@maplecreekadvisors.com (Matt, 2026-10-12). Setting: `contact.recipients` in `site.config.mjs`. Send a test message to confirm it reaches both Josh and Matt.
 - [ ] **Test the contact path end to end.** Send a message from a phone and a desktop email client and confirm both founders receive it.
 - [ ] **Response time.** None is promised. Add `contact.responseTime` only if the founders commit to one.
 - [x] **Booking link.** https://fantastical.app/mattlafleur/maple-creek-advisors (20-minute intro conversation, Matt's Fantastical Openings), set 2026-09-29. Every primary button now says "Schedule a conversation" and opens it; email stays on the Contact page as a backup. If the meeting length changes in Fantastical, update `bookingLength` in `site.config.mjs`.

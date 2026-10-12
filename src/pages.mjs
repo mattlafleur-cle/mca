@@ -432,7 +432,7 @@ export function contact({ site, link, copy }) {
       </div>
       </div>
       <div class="contact-addresses">
-        <p class="footer-label" id="addresses-label">Email addresses</p>
+        <p class="footer-label" id="addresses-label">${site.contact.recipients.length > 1 ? 'Email addresses' : 'Email address'}</p>
         <ul aria-labelledby="addresses-label">
           ${site.contact.recipients.map((e) => `<li><a href="mailto:${esc(e)}">${esc(e)}</a></li>`).join('')}
         </ul>

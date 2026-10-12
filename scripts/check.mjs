@@ -194,7 +194,7 @@ for (const [fg, bg, min] of pairs) {
   if (r < min) errors.push(`contrast: ${fg} on ${bg} is ${r.toFixed(2)}, needs ${min}`);
 }
 
-// Forest City may appear only in approved forms: Matt's temporary email address, "Matt founded
+// Forest City may appear only in approved forms: "Matt founded
 // Forest City CPA" in his About bio and on the fractional CFO page, the announcement page, and the
 // client updates page's link to it. Nothing else, anywhere.
 const forestCityAllowed = { 'about/index.html': true, 'fractional-cfo/index.html': true };
