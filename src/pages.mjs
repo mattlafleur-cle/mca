@@ -259,6 +259,7 @@ export function about({ site, link, copy }) {
         <p class="person-role">${esc(f.role)}</p>
         <h2 id="${esc(f.id)}-name">${esc(founderName(f))}</h2>
         ${paras(f.bio)}
+        ${f.email ? `<p class="bio-email"><a href="mailto:${esc(f.email)}">${esc(f.email)}</a></p>` : ''}
       </div>
     </article>`,
     )

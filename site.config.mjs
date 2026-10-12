@@ -93,6 +93,7 @@ export default {
   founders: [
     {
       id: 'josh',
+      email: 'josh@maplecreekadvisors.com',
       name: 'Josh Muller',
       role: 'Coaching, leadership, and vision',
       photo: { src: 'photos/josh-muller.jpg', width: 480, height: 480, alt: 'Josh Muller, smiling, outdoors in front of green trees' },
@@ -105,6 +106,7 @@ export default {
     },
     {
       id: 'matt',
+      email: 'matt@maplecreekadvisors.com',
       name: 'Matt LaFleur',
       role: 'Financial clarity, strategy, and operations',
       photo: { src: 'photos/matt-lafleur.jpg', width: 480, height: 480, alt: 'Matt LaFleur, smiling, outdoors with trees and water behind him' },

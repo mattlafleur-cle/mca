@@ -740,3 +740,4 @@ main:focus { outline: none; }
 .news-banner a:hover { color: var(--maple); }
 .news-label { display: inline-block; margin-right: 0.5rem; padding: 0.1rem 0.5rem; border: 1px solid var(--maple); border-radius: 999px; color: var(--maple); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.bio-email { font-weight: 500; }
