@@ -729,3 +729,5 @@ main:focus { outline: none; }
 .key-dates dt { font-weight: 600; color: var(--maple-ink); }
 @media (max-width: 36rem) { .key-dates > div { grid-template-columns: minmax(0, 1fr); gap: 0.25rem; } }
 .updated-note { color: var(--ink-muted); font-size: 0.95rem; }
+.steps.steps-single { grid-template-columns: minmax(0, 36rem); }
+.steps.steps-single .step { justify-items: start; }

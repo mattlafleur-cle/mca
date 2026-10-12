@@ -727,16 +727,16 @@ export function clients({ site, link, copy }) {
     </article>`)
       .join('')}</div>`));
   if (has(c.benefits))
-    blocks.push(section('benefits', c.benefitsHeading, `<ul class="departments" style="--cols:${Math.min(c.benefits.length, 3)}">${c.benefits
-      .map((b) => `<li><h3>${esc(b.name)}</h3><p>${esc(b.body)}</p></li>`).join('')}</ul>`, c.benefitsIntro));
+    blocks.push(section('benefits', c.benefitsHeading, `<ul class="departments" style="--cols:${Math.min(c.benefits.length, 4)}">${c.benefits
+      .map((b) => `<li><h3>${esc(b.name)}</h3><p>${esc(b.body)}</p>${b.link && link.has(b.link.key) ? `<p><a class="text-link" href="${esc(link.page(b.link.key))}">${esc(b.link.label)}</a></p>` : ''}</li>`).join('')}</ul>`, c.benefitsIntro));
   if (has(c.unchanged))
     blocks.push(section('unchanged', c.unchangedHeading, `<ul class="check-list">${c.unchanged.map((u) => `<li>${esc(u)}</li>`).join('')}</ul>`));
   if (has(c.dates))
     blocks.push(section('dates', c.datesHeading, `<dl class="key-dates">${c.dates
       .map((d) => `<div><dt>${esc(d.date)}</dt><dd>${esc(d.body)}</dd></div>`).join('')}</dl>`));
   if (has(c.actions))
-    blocks.push(section('actions', c.actionsHeading, `<ol class="steps"${c.actions.length === 3 || c.actions.length > 4 ? ' style="--steps:3"' : ''}>${c.actions
-      .map((s, i) => `<li class="step"><span class="step-num" aria-hidden="true">${i + 1}</span><h3>${esc(s.title)}</h3><p>${esc(s.body)}</p></li>`).join('')}</ol>`));
+    blocks.push(section('actions', c.actionsHeading, `<ol class="steps${c.actions.length === 1 ? ' steps-single' : ''}"${c.actions.length === 3 || c.actions.length > 4 ? ' style="--steps:3"' : ''}>${c.actions
+      .map((s, i) => `<li class="step"><span class="step-num" aria-hidden="true">${i + 1}</span><h3>${esc(s.title)}</h3><p>${esc(s.body)}</p>${s.button ? `<p><a class="button button-primary" href="${esc(s.button.href)}" rel="noopener">${esc(s.button.label)}</a></p>` : ''}</li>`).join('')}</ol>`));
   if (has(c.faq))
     blocks.push(`<section class="section section-dark" aria-labelledby="clients-faq">
   <div class="wrap faq-wrap">
