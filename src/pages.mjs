@@ -819,3 +819,21 @@ export function announcement({ site, link, copy }) {
 
 ${closing(link, c.closingHeading, c.closingBody)}`;
 }
+
+// Unlisted onboarding page (/onboarding/). The form itself is a Close CRM web form, embedded with Close's
+// script; answers go straight to Close. A direct link is shown in case the embed is blocked.
+export function onboarding({ site, link, copy }) {
+  const c = copy.onboarding;
+  const f = site.onboardingForm;
+  const help = site.contact.recipients[0];
+  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, seed: 61 })}
+<section class="section onboarding-section" aria-label="Onboarding form">
+  <div class="wrap">
+    <div class="onboarding-card">
+      <script src="${esc(f.script)}" type="module" crossorigin="anonymous" defer></script>
+      <close-form id="${esc(f.id)}"></close-form>
+    </div>
+    <p class="onboarding-fallback">${esc(c.fallback)} <a class="text-link" href="${esc(f.shareUrl)}" target="_blank" rel="noopener">${esc(c.fallbackLink)}</a><br>${esc(c.help)} <a href="mailto:${esc(help)}">${esc(help)}</a>.</p>
+  </div>
+</section>`;
+}

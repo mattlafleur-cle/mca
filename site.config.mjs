@@ -63,6 +63,12 @@ export default {
 
   // Scheduling page for intro conversations (Matt's Fantastical Openings link, set 2026-09-29).
   // While set, every primary button goes here. Set to null to send buttons to the Contact page instead.
+  // Client onboarding form, built and stored in Close CRM. Shown on the unlisted /onboarding/ page.
+  onboardingForm: {
+    id: 'form_034fJ4emUWp6r3M41yNoqm',
+    shareUrl: 'https://forms.close.com/034fJ4emUWp6r3M41yNoqm',
+    script: 'https://webforms.closeiocdn.com/webforms.js',
+  },
   bookingUrl: 'https://fantastical.app/mattlafleur/maple-creek-advisors',
   // Must match the meeting length configured in Fantastical.
   bookingLength: '20-minute',

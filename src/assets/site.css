@@ -741,3 +741,8 @@ main:focus { outline: none; }
 .news-label { display: inline-block; margin-right: 0.5rem; padding: 0.1rem 0.5rem; border: 1px solid var(--maple); border-radius: 999px; color: var(--maple); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .bio-email { font-weight: 500; }
+
+/* Onboarding (Close form embed) ------------------------------------------------ */
+.onboarding-section { padding-top: clamp(2rem, 1.5rem + 2vw, 3.5rem); }
+.onboarding-card { max-width: 44rem; margin-inline: auto; background: var(--paper-card); border: 1px solid var(--rule); border-top: 3px solid var(--maple); padding: clamp(1.25rem, 1rem + 2vw, 2.5rem); min-height: 20rem; font-family: var(--font-body); color: var(--ink); }
+.onboarding-fallback { max-width: 44rem; margin: 1.25rem auto 0; color: var(--ink-muted); font-size: 0.95rem; }

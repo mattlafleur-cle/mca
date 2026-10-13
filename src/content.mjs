@@ -20,6 +20,15 @@ export default function content(site) {
     sell: sellContent(site),
     clients: clientsContent(site),
     announcement: announcementContent(site),
+    onboarding: {
+      title: `Client Onboarding | ${name}`,
+      description: `Onboarding questions for new ${name} clients. It takes about four minutes, and only Josh and Matt see the answers.`,
+      eyebrow: 'Client onboarding',
+      headline: 'Welcome. Let\u2019s get you set up.',
+      fallback: 'Form not loading?',
+      fallbackLink: 'Open it in a new tab',
+      help: 'Questions about the form? Email',
+    },
     home: {
       title: `Business Coaching and Fractional CFO in Northeast Ohio | ${name}`,
       description:
