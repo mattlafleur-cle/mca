@@ -139,7 +139,7 @@ export default function servicePages(site) {
       title: `Business Coaching in ${region} | ${name}`,
       description: `Business coaching for owners and leadership teams in Akron, Cleveland, Cuyahoga Falls, Elyria, and ${region}, from a coach who built and sold a company.`,
       eyebrow: `Business coaching in ${region}`,
-      headline: 'Business coaching from someone who has built and sold a company.',
+      headline: 'Business coaching from someone who has built and sold companies.',
       lead:
         'Josh Muller owned and sold a construction company before he started coaching owners. He knows the pressure, the risk, and the responsibility of leading an owner-led business, and he coaches from that experience.',
       serviceType: 'Business coaching',
