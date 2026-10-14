@@ -30,7 +30,7 @@ export default function content(site) {
       help: 'Questions about the form? Email',
     },
     home: {
-      title: `Business Coaching and Fractional CFO in Northeast Ohio | ${name}`,
+      title: `Business Coaching and Financial Clarity in Northeast Ohio | ${name}`,
       description:
         'Business coaching, advisory, and fractional CFO services for owners and entrepreneurs in Akron, Cleveland, Cuyahoga Falls, Elyria, and Northeast Ohio.',
       eyebrow: 'Business coaching, advisory, and fractional CFO in Northeast Ohio',
