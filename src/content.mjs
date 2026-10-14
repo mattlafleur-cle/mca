@@ -51,7 +51,7 @@ export default function content(site) {
       ],
       chooserStartLabel: 'Start with',
       chooserUnsure: 'Not sure which one fits? That is what the first conversation is for.',
-      pillarsHeading: 'Two perspectives. One practical path forward.',
+      pillarsHeading: 'Multiple perspectives. One practical path forward.',
       pillarsIntro: 'Start with the part of the business that needs attention first. You do not need all three.',
       pillars: [
         {
