@@ -17,13 +17,6 @@ export default function announcementContent(site) {
     headline: `Maple Creek Coaching and Forest City CPA have joined forces as ${name}.`,
     lead: `Josh Muller, founder of Maple Creek Coaching, and Matt LaFleur, founder of Forest City CPA, have come together to form ${name}: one firm for the people side and the numbers side of owning a business.`,
 
-    // Home page banner. It does not name Forest City CPA. Hidden automatically after `until`
-    // (checked at build time, so it disappears with the first site update after that date).
-    banner: {
-      until: '2026-11-30',
-      text: `Josh Muller and Matt LaFleur have joined forces as ${name}.`,
-      linkText: 'Read the announcement',
-    },
 
     whyHeading: 'Why we came together',
     why: [

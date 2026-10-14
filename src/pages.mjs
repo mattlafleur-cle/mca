@@ -52,11 +52,7 @@ export function home({ site, link, copy }) {
     )
     .join('');
 
-  const a = copy.announcement;
-  const banner = a?.banner && link.has('announcement') && new Date() <= new Date(a.banner.until)
-    ? `<aside class="news-banner" aria-label="News"><div class="wrap"><p><span class="news-label">News</span> ${esc(a.banner.text)} <a href="${esc(link.page('announcement'))}">${esc(a.banner.linkText)}</a></p></div></aside>\n`
-    : '';
-  return `${banner}<section class="hero hero-photo">
+  return `<section class="hero hero-photo">
   <div class="wrap hero-inner">
     <div class="hero-copy">
       <p class="eyebrow">${esc(c.eyebrow)}</p>
