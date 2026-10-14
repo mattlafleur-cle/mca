@@ -112,7 +112,7 @@ export default function content(site) {
         'The engagement should fit the actual decision in front of you.',
       ],
       integratedLink: 'See how an engagement comes together',
-      peopleHeading: 'The people you would work with',
+      peopleHeading: 'The people you would partner with',
       peopleLink: 'Read about Josh and Matt',
       closingHeading: 'You do not have to solve the next chapter alone.',
       closingBody: 'Tell us what you are building and where you are getting stuck. We will start with a conversation.',
