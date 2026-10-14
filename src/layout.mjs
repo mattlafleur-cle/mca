@@ -23,6 +23,9 @@ export function routes(site) {
     { key: 'announcement', label: 'Announcement', path: '/announcement/', file: 'announcement.html', out: 'announcement/index.html', standalone: true },
     { key: 'onboarding', label: 'Onboarding', path: '/onboarding/', file: 'onboarding.html', out: 'onboarding/index.html', hidden: true, noindex: true },
     { key: 'clients', label: 'Client updates', path: '/client-updates/', file: 'client-updates.html', out: 'client-updates/index.html', hidden: true, noindex: true },
+    // Private style previews: the real Home and Services pages with the cleaner style. Delete once a style is chosen.
+    { key: 'previewHome', renderAs: 'home', label: 'Style preview', path: '/preview-clean/', file: 'preview-clean.html', out: 'preview-clean/index.html', hidden: true, noindex: true, bodyClass: 'style-clean', livePath: '/' },
+    { key: 'previewServices', renderAs: 'services', label: 'Style preview', path: '/preview-clean/services/', file: 'preview-clean-services.html', out: 'preview-clean/services/index.html', hidden: true, noindex: true, bodyClass: 'style-clean', livePath: '/services/' },
     { key: 'notFound', label: 'Page not found', path: '/404.html', file: '404.html', out: '404.html', hidden: true },
   ];
   return list.filter((r) => r.key !== 'build' || site.build.showPage);
@@ -289,7 +292,7 @@ ${footer(site, link)}
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 ${head}
 </head>
-<body>
+<body${route.bodyClass ? ` class="${esc(route.bodyClass)}"` : ''}>
 ${content}
 </body>
 </html>

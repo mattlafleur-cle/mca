@@ -46,11 +46,18 @@ async function main() {
   const written = [];
 
   for (const route of routes(site)) {
-    const render = pages[route.key];
-    if (!render) throw new Error(`No renderer for page ${route.key}`);
+    const key = route.renderAs || route.key;
+    const render = pages[key];
+    if (!render) throw new Error(`No renderer for page ${key}`);
     // The private preview is listed by its page title, so the entry page carries a plain name there.
-    const meta = mode === 'artifact' && route.key === 'home' ? { ...copy.home, title: `${site.siteName} Preview` } : copy[route.key];
-    const html = pageShell({ site, link, mode, route, meta, body: render({ site, link, copy }) });
+    let meta = mode === 'artifact' && route.key === 'home' ? { ...copy.home, title: `${site.siteName} Preview` } : copy[key];
+    let body = render({ site, link, copy });
+    if (route.renderAs) {
+      // Style previews reuse a real page; label them so they are never mistaken for the live page.
+      meta = { ...meta, title: `Style preview: ${meta.title}`, description: `Private style preview. ${meta.description}`, faq: undefined };
+      body = `<aside class="news-banner" aria-label="Preview"><div class="wrap"><p><span class="news-label">Preview</span> A private preview of a cleaner style, with the same content. <a href="${route.livePath}">Compare with the live page</a></p></div></aside>\n${body}`;
+    }
+    const html = pageShell({ site, link, mode, route, meta, body });
     const rel = mode === 'artifact' ? route.file : route.out;
     const file = path.join(outDir, rel);
     await mkdir(path.dirname(file), { recursive: true });

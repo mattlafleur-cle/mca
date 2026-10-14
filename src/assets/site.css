@@ -748,3 +748,20 @@ main:focus { outline: none; }
 .onboarding-section { padding-top: clamp(2rem, 1.5rem + 2vw, 3.5rem); }
 .onboarding-card { max-width: 44rem; margin-inline: auto; background: #fff; border: 1px solid var(--rule); border-top: 3px solid var(--maple); padding: clamp(0.5rem, 0.25rem + 1vw, 1.25rem) 0; min-height: 20rem; }
 .onboarding-fallback { max-width: 44rem; margin: 1.25rem auto 0; color: var(--ink-muted); font-size: 0.95rem; }
+
+/* Style preview: a quieter, more editorial treatment (/preview-clean/ only) ------------------ */
+.style-clean { --font-display: var(--font-ui); --ds: 1; }
+.style-clean h1, .style-clean h2, .style-clean h3 { font-weight: 700; letter-spacing: -0.015em; line-height: 1.12; }
+.style-clean h1 { font-size: clamp(2.1rem, 1.35rem + 2.9vw, 3.35rem); letter-spacing: -0.025em; line-height: 1.06; }
+.style-clean h2 { font-size: clamp(1.55rem, 1.2rem + 1.3vw, 2.15rem); }
+.style-clean h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
+.style-clean .wordmark { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.01em; }
+.style-clean .footer-name { font-weight: 700; font-size: 1.15rem; letter-spacing: -0.01em; }
+.style-clean .eyebrow, .style-clean .person-role, .style-clean .lane-chip, .style-clean .footer-label, .style-clean .service-list h3 {
+  text-transform: none; letter-spacing: 0; font-weight: 600; font-size: 0.95rem;
+}
+.style-clean .lane-chip { border: 0; border-radius: 0; padding: 0; }
+.style-clean .text-link::after, .style-clean .chooser-path::after { content: none; }
+.style-clean .stage-num { background: var(--paper); color: var(--maple-ink); border-radius: 0; width: auto; padding-right: 0.6rem; font-family: var(--font-ui); font-weight: 700; font-size: 1rem; justify-content: start; }
+.style-clean .step-num { font-family: var(--font-ui); font-weight: 700; font-size: 1.6rem; }
+.style-clean .chooser-label { text-transform: none; letter-spacing: 0; font-weight: 600; font-size: 0.95rem; }
