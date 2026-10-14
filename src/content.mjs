@@ -33,7 +33,7 @@ export default function content(site) {
       title: `Business Coaching and Financial Clarity in Northeast Ohio | ${name}`,
       description:
         'Business coaching, advisory, and fractional CFO services for owners and entrepreneurs in Akron, Cleveland, Cuyahoga Falls, Elyria, and Northeast Ohio.',
-      eyebrow: 'Business coaching, advisory, and fractional CFO in Northeast Ohio',
+      eyebrow: 'Business coaching, advisory, and absolute financial clarity in Northeast Ohio',
       headline: 'Build a stronger business with better decisions and financial clarity.',
       lead:
         'Together, we help owners and entrepreneurs see where the business stands and build a plan to get where they want to go.',
