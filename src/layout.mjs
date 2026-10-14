@@ -23,6 +23,10 @@ export function routes(site) {
     { key: 'announcement', label: 'Announcement', path: '/announcement/', file: 'announcement.html', out: 'announcement/index.html', standalone: true },
     { key: 'onboarding', label: 'Onboarding', path: '/onboarding/', file: 'onboarding.html', out: 'onboarding/index.html', hidden: true, noindex: true },
     { key: 'clients', label: 'Client updates', path: '/client-updates/', file: 'client-updates.html', out: 'client-updates/index.html', hidden: true, noindex: true },
+    // Private hero previews for the Home page. Delete once a hero is chosen.
+    { key: 'previewHero1', renderAs: 'home', label: 'Hero preview 1', path: '/preview-hero/1/', file: 'preview-hero-1.html', out: 'preview-hero/1/index.html', hidden: true, noindex: true, bodyClass: 'hv1', livePath: '/', previewNote: 'Hero option 1 of 3: the tree and stripes.' },
+    { key: 'previewHero2', renderAs: 'home', label: 'Hero preview 2', path: '/preview-hero/2/', file: 'preview-hero-2.html', out: 'preview-hero/2/index.html', hidden: true, noindex: true, bodyClass: 'hv2', livePath: '/', previewNote: 'Hero option 2 of 3: Cuyahoga Valley photo with the stripes.' },
+    { key: 'previewHero3', renderAs: 'home', label: 'Hero preview 3', path: '/preview-hero/3/', file: 'preview-hero-3.html', out: 'preview-hero/3/index.html', hidden: true, noindex: true, bodyClass: 'hv3', livePath: '/', previewNote: 'Hero option 3 of 3: full-width Cuyahoga Valley photo with the stripes.' },
     { key: 'notFound', label: 'Page not found', path: '/404.html', file: '404.html', out: '404.html', hidden: true },
   ];
   return list.filter((r) => r.key !== 'build' || site.build.showPage);
