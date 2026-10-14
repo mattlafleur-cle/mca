@@ -766,32 +766,34 @@ h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
 .chooser-label { text-transform: none; letter-spacing: 0; font-weight: 600; font-size: 0.95rem; }
 .service-list h4, .stage-questions dt { text-transform: none; letter-spacing: 0; font-weight: 600; font-size: 0.95rem; }
 
-/* Hero previews (/preview-hero/1-3/ only) ------------------------------------------------ */
-.hv1 .hero, .hv2 .hero, .hv3 .hero { overflow-x: clip; position: relative; }
-.hv1 .hero-art .contours, .hv2 .hero-art .contours, .hv3 .hero-art .contours { display: none; }
-.hv1 .hero-art::after, .hv2 .hero-art::after, .hv3 .hero::after {
-  content: ''; position: absolute; height: 46px;
-  background: linear-gradient(to bottom, var(--maple) 0 12px, transparent 12px 17px, var(--brand-orange) 17px 29px, transparent 29px 34px, var(--brand-red) 34px 46px);
+/* Home hero: Cuyahoga Valley photo, dark wash behind the text, brand stripes along the bottom ------
+   Photo: Cuyahoga River and high-level bridge, Cuyahoga Valley National Park, by Sergey Kolomiyets
+   on Unsplash (Unsplash License). */
+.hero-photo {
+  --hero-photo: image-set(url('photos/cuyahoga-river.webp') type('image/webp'), url('photos/cuyahoga-river.jpg') type('image/jpeg'));
+  position: relative;
+  overflow-x: clip;
+  background: linear-gradient(90deg, rgba(35, 31, 32, 0.9) 0%, rgba(35, 31, 32, 0.78) 42%, rgba(35, 31, 32, 0.2) 72%, rgba(35, 31, 32, 0) 100%), url('photos/cuyahoga-river.jpg') 70% center / cover;
+  background-image: linear-gradient(90deg, rgba(35, 31, 32, 0.9) 0%, rgba(35, 31, 32, 0.78) 42%, rgba(35, 31, 32, 0.2) 72%, rgba(35, 31, 32, 0) 100%), var(--hero-photo);
+  padding-bottom: calc(clamp(2.5rem, 1.5rem + 4vw, 5rem) + 46px);
 }
-/* 1: the tree standing on the stripes, which run out to the edge of the page */
-.hv1 .hero-art { background: none; border-radius: 0; overflow: visible; min-height: 26rem; }
-.hv1 .hero-art::before { content: ''; position: absolute; left: 0; right: 0; top: 2%; bottom: calc(18% + 40px); background: url('tree.svg') center bottom / contain no-repeat; }
-.hv1 .hero-art::after { left: 6%; right: -100vw; bottom: 18%; }
-/* 2: the photo in the panel, with the stripes running across its foot and out to the edge */
-.hv2 .hero-art { background: url('photos/cuyahoga-river-preview.jpg') 40% center / cover; overflow: visible; }
-.hv2 .hero-art::after { left: 0; right: -100vw; bottom: 2.25rem; }
-/* 3: the photo across the whole hero, text on a dark wash, stripes along the bottom edge */
-.hv3 .hero { background: linear-gradient(90deg, rgba(35, 31, 32, 0.9) 0%, rgba(35, 31, 32, 0.78) 42%, rgba(35, 31, 32, 0.2) 72%, rgba(35, 31, 32, 0) 100%), url('photos/cuyahoga-river-preview.jpg') 70% center / cover; padding-bottom: calc(clamp(2.5rem, 1.5rem + 4vw, 5rem) + 46px); }
-.hv3 .hero::after { left: 0; right: 0; bottom: 0; }
-.hv3 .hero-art { background: none; }
-.hv3 .hero h1, .hv3 .hero .lead { color: var(--on-dark); }
-.hv3 .hero .eyebrow { color: var(--maple); }
-.hv3 .hero .hero-audience { color: var(--on-dark-muted); border-color: rgba(255, 255, 255, 0.3); }
-.hv3 .hero .button-primary { background: var(--paper); color: var(--ink); }
-.hv3 .hero .button-secondary { color: var(--on-dark); border-color: var(--on-dark); }
-.hv3 .hero + .section { padding-top: var(--space-section); }
+.hero-photo::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 46px;
+  background: linear-gradient(to bottom, var(--maple) 0 12px, var(--paper) 12px 17px, var(--brand-orange) 17px 29px, var(--paper) 29px 34px, var(--brand-red) 34px 46px);
+}
+.hero-photo .hero-inner { min-height: clamp(26rem, 20rem + 12vw, 34rem); align-items: center; }
+.hero-photo h1, .hero-photo .lead { color: var(--on-dark); }
+.hero-photo .eyebrow { color: var(--maple); }
+.hero-photo .hero-audience { color: var(--on-dark-muted); border-color: rgba(255, 255, 255, 0.3); }
+.hero-photo .button-primary { background: var(--paper); color: var(--ink); }
+.hero-photo .button-primary:hover { background: var(--paper-deep); color: var(--ink); }
+.hero-photo .button-secondary { color: var(--on-dark); border-color: var(--on-dark); }
+.hero-photo .button-secondary:hover { background: var(--on-dark); color: var(--ink); }
+.hero-photo :focus-visible { outline-color: var(--maple); }
+.hero-photo + .section { padding-top: var(--space-section); }
 @media (max-width: 56rem) {
-  .hv1 .hero-art { min-height: 16rem; }
-  .hv3 .hero { background: linear-gradient(rgba(35, 31, 32, 0.82), rgba(35, 31, 32, 0.82)), url('photos/cuyahoga-river-preview.jpg') 60% center / cover; }
-  .hv3 .hero-art { display: none; }
+  .hero-photo {
+    background: linear-gradient(rgba(35, 31, 32, 0.82), rgba(35, 31, 32, 0.82)), url('photos/cuyahoga-river-small.webp') 60% center / cover;
+  }
+  .hero-photo .hero-inner { min-height: 0; }
 }

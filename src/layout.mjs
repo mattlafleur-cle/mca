@@ -23,10 +23,6 @@ export function routes(site) {
     { key: 'announcement', label: 'Announcement', path: '/announcement/', file: 'announcement.html', out: 'announcement/index.html', standalone: true },
     { key: 'onboarding', label: 'Onboarding', path: '/onboarding/', file: 'onboarding.html', out: 'onboarding/index.html', hidden: true, noindex: true },
     { key: 'clients', label: 'Client updates', path: '/client-updates/', file: 'client-updates.html', out: 'client-updates/index.html', hidden: true, noindex: true },
-    // Private hero previews for the Home page. Delete once a hero is chosen.
-    { key: 'previewHero1', renderAs: 'home', label: 'Hero preview 1', path: '/preview-hero/1/', file: 'preview-hero-1.html', out: 'preview-hero/1/index.html', hidden: true, noindex: true, bodyClass: 'hv1', livePath: '/', previewNote: 'Hero option 1 of 3: the tree and stripes.' },
-    { key: 'previewHero2', renderAs: 'home', label: 'Hero preview 2', path: '/preview-hero/2/', file: 'preview-hero-2.html', out: 'preview-hero/2/index.html', hidden: true, noindex: true, bodyClass: 'hv2', livePath: '/', previewNote: 'Hero option 2 of 3: Cuyahoga Valley photo with the stripes.' },
-    { key: 'previewHero3', renderAs: 'home', label: 'Hero preview 3', path: '/preview-hero/3/', file: 'preview-hero-3.html', out: 'preview-hero/3/index.html', hidden: true, noindex: true, bodyClass: 'hv3', livePath: '/', previewNote: 'Hero option 3 of 3: full-width Cuyahoga Valley photo with the stripes.' },
     { key: 'notFound', label: 'Page not found', path: '/404.html', file: '404.html', out: '404.html', hidden: true },
   ];
   return list.filter((r) => r.key !== 'build' || site.build.showPage);
@@ -262,6 +258,9 @@ export function pageShell({ site, link, mode, route, meta, body }) {
     `<meta name="theme-color" content="#231f20">`,
     `<link rel="icon" href="${esc(link.asset('favicon.svg'))}" type="image/svg+xml">`,
     `<link rel="apple-touch-icon" href="${esc(link.asset('apple-touch-icon.png'))}">`,
+    // The Home hero photo is a CSS background, so tell the browser about it early.
+    route.key === 'home' ? `<link rel="preload" as="image" type="image/webp" href="${esc(link.asset('photos/cuyahoga-river.webp'))}" media="(min-width: 897px)">` : '',
+    route.key === 'home' ? `<link rel="preload" as="image" type="image/webp" href="${esc(link.asset('photos/cuyahoga-river-small.webp'))}" media="(max-width: 896px)">` : '',
     // Fonts are self-hosted (src/assets/fonts), so no requests go to third-party font services.
     `<link rel="preload" href="${esc(link.asset('fonts/libre-franklin-normal-f2d133.woff2'))}" as="font" type="font/woff2" crossorigin>`,
     `<link rel="stylesheet" href="${esc(link.asset('fonts/fonts.css'))}">`,

@@ -56,7 +56,7 @@ export function home({ site, link, copy }) {
   const banner = a?.banner && link.has('announcement') && new Date() <= new Date(a.banner.until)
     ? `<aside class="news-banner" aria-label="News"><div class="wrap"><p><span class="news-label">News</span> ${esc(a.banner.text)} <a href="${esc(link.page('announcement'))}">${esc(a.banner.linkText)}</a></p></div></aside>\n`
     : '';
-  return `${banner}<section class="hero">
+  return `${banner}<section class="hero hero-photo">
   <div class="wrap hero-inner">
     <div class="hero-copy">
       <p class="eyebrow">${esc(c.eyebrow)}</p>
@@ -67,9 +67,6 @@ export function home({ site, link, copy }) {
         <a class="button button-secondary" href="${esc(link.page('howWeWork'))}">Explore how we work</a>
       </div>
       <p class="hero-audience">${esc(c.audience)}</p>
-    </div>
-    <div class="hero-art" aria-hidden="true">
-      ${contourSvg({ width: 560, height: 640, lines: 13, seed: 7 })}
     </div>
   </div>
 </section>
