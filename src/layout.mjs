@@ -255,7 +255,7 @@ export function pageShell({ site, link, mode, route, meta, body }) {
     site.canonicalDomain && site.ogImage ? `<meta property="og:image" content="${esc(site.canonicalDomain)}/assets/${esc(site.ogImage)}">` : '',
     site.canonicalDomain && site.ogImage ? `<meta property="og:image:alt" content="${esc(site.siteName)}">` : '',
     site.canonicalDomain && site.ogImage ? `<meta name="twitter:card" content="summary_large_image">` : '',
-    `<meta name="theme-color" content="#1d3a2f">`,
+    `<meta name="theme-color" content="#231f20">`,
     `<link rel="icon" href="${esc(link.asset('favicon.svg'))}" type="image/svg+xml">`,
     `<link rel="apple-touch-icon" href="${esc(link.asset('apple-touch-icon.png'))}">`,
     // Fonts are self-hosted (src/assets/fonts), so no requests go to third-party font services.

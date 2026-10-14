@@ -26,16 +26,16 @@ const html = `<!doctype html><html><head><meta charset="utf-8">
 <style>${fontFaces}</style>
 <style>
   html, body { margin: 0; }
-  body { width: 1200px; height: 630px; background: #1d3a2f; color: #f3eee2; position: relative; overflow: hidden; font-family: 'Libre Franklin', Arial, sans-serif; }
+  body { width: 1200px; height: 630px; background: #231f20; color: #ffffff; position: relative; overflow: hidden; font-family: 'Libre Franklin', Arial, sans-serif; }
   .contours { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .contours path { fill: none; stroke: #c3cfc6; stroke-width: 1.4; opacity: 0.22; }
-  .contours .contour-accent { stroke: #d39445; stroke-width: 3; opacity: 1; }
+  .contours path { fill: none; stroke: #d9d4cf; stroke-width: 1.4; opacity: 0.18; }
+  .contours .contour-accent { stroke: #d86018; stroke-width: 3; opacity: 1; }
   .text { position: absolute; left: 80px; top: 96px; width: 580px; }
-  .panel { position: absolute; right: 0; top: 0; bottom: 0; width: 470px; background: #f5f1e7; }
+  .panel { position: absolute; right: 0; top: 0; bottom: 0; width: 470px; background: #ffffff; }
   .logo { position: absolute; right: 75px; top: 50%; transform: translateY(-50%); width: 320px; height: auto; }
   .name { font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 120px; line-height: 0.95; letter-spacing: 0; margin: 0 0 28px; }
-  .tag { font-size: 32px; line-height: 1.35; color: #c3cfc6; margin: 0; }
-  .where { position: absolute; left: 80px; bottom: 72px; font-family: 'Libre Franklin', sans-serif; font-weight: 500; font-size: 24px; letter-spacing: 0.12em; text-transform: uppercase; color: #d39445; }
+  .tag { font-size: 32px; line-height: 1.35; color: #d9d4cf; margin: 0; }
+  .where { position: absolute; left: 80px; bottom: 72px; font-family: 'Libre Franklin', sans-serif; font-weight: 500; font-size: 24px; letter-spacing: 0.12em; text-transform: uppercase; color: #f0b323; }
 </style></head><body>
 ${contourSvg({ width: 1200, height: 630, lines: 12, seed: 7 })}
 <div class="panel"></div><img class="logo" src="${logo}" alt="">

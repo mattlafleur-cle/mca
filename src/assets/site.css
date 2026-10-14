@@ -1,20 +1,22 @@
 /* Layout concept: two lanes, people and numbers, that meet in one plan. Text-first editorial
    columns on warm paper, with evergreen bands where the two lanes come together. */
 :root {
-  --evergreen: #1d3a2f;
-  --evergreen-deep: #152c23;
-  --evergreen-soft: #2b5243;
-  --paper: #f5f1e7;
-  --paper-deep: #ece6d7;
-  --paper-card: #fbf9f3;
-  --ink: #23272a;
-  --ink-muted: #4c534f;
-  --rule: #d5cdb9;
-  --maple: #d39445;
-  --maple-ink: #8a5215;
-  --on-dark: #f3eee2;
-  --on-dark-muted: #c3cfc6;
-  --contour: #b9c4b5;
+  --evergreen: #231f20;
+  --evergreen-deep: #161314;
+  --evergreen-soft: #3a3435;
+  --paper: #ffffff;
+  --paper-deep: #f4f2ef;
+  --paper-card: #faf9f7;
+  --ink: #231f20;
+  --ink-muted: #57514f;
+  --rule: #ddd7d1;
+  --maple: #f0b323;
+  --maple-ink: #9d2235;
+  --brand-orange: #d86018; /* BUILD palette: gold #f0b323, orange #d86018, red #9d2235, black #231f20 */
+  --brand-red: #9d2235;
+  --on-dark: #ffffff;
+  --on-dark-muted: #d9d4cf;
+  --contour: #cfc8c1;
 
   /* Headlines: Big Shoulders Display (condensed, Midwest industrial). Text and interface: Libre Franklin. */
   --font-display: 'Big Shoulders Display', 'Arial Narrow', 'Roboto Condensed', sans-serif;
@@ -265,7 +267,7 @@ main:focus { outline: none; }
 .hero-art .contours { position: absolute; inset: 0; width: 100%; height: 100%; }
 
 .contours path { fill: none; stroke: var(--contour); stroke-width: 1.2; opacity: 0.55; }
-.contours .contour-accent { stroke: var(--maple); stroke-width: 2.2; opacity: 1; }
+.contours .contour-accent { stroke: var(--brand-orange); stroke-width: 2.2; opacity: 1; }
 .hero-art .contours path { stroke: var(--on-dark-muted); opacity: 0.35; }
 .hero-art .contours .contour-accent { stroke: var(--maple); opacity: 1; }
 
@@ -295,7 +297,7 @@ main:focus { outline: none; }
   mask-image: linear-gradient(to right, transparent, #000 45%);
 }
 .contours-hero path { stroke: var(--evergreen-soft); opacity: 0.22; }
-.contours-hero .contour-accent { stroke: var(--maple); opacity: 0.8; }
+.contours-hero .contour-accent { stroke: var(--brand-orange); opacity: 0.8; }
 @media (max-width: 40rem) { .contours-hero { width: 100%; opacity: 0.6; } }
 
 .jump { margin-top: 0.75rem; }
@@ -488,7 +490,7 @@ main:focus { outline: none; }
 .service-integrated .service-main > p:not(.lane-chip),
 .service-integrated .service-list h3 { color: var(--on-dark-muted); }
 .service-integrated .service-list ul,
-.service-integrated .service-list li { border-color: rgba(243, 238, 226, 0.22); }
+.service-integrated .service-list li { border-color: rgba(255, 255, 255, 0.22); }
 .service-integrated :focus-visible { outline-color: var(--maple); }
 @media (max-width: 52rem) { .service-inner { grid-template-columns: minmax(0, 1fr); } }
 
@@ -656,7 +658,7 @@ main:focus { outline: none; }
 .season-bar.lvl-4 { height: 100%; }
 .season-label { font-family: var(--font-ui); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--on-dark-muted); text-align: center; }
 .season-phases { list-style: none; margin-top: 1.5rem; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0 clamp(0.25rem, 0.1rem + 0.6vw, 0.6rem); }
-.season-phases li { grid-column: span var(--span); padding-top: 0.9rem; border-top: 2px solid rgba(243, 238, 226, 0.35); display: grid; gap: 0.35rem; align-content: start; min-width: 0; padding-right: 0.75rem; }
+.season-phases li { grid-column: span var(--span); padding-top: 0.9rem; border-top: 2px solid rgba(255, 255, 255, 0.35); display: grid; gap: 0.35rem; align-content: start; min-width: 0; padding-right: 0.75rem; }
 .season-phases h3 { font-size: calc(1.05rem * var(--ds)); color: var(--on-dark); }
 .season-phases p { font-size: 0.95rem; line-height: 1.45; color: var(--on-dark-muted); }
 .season-label .m-short { display: none; }
