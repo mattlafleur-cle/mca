@@ -29,17 +29,18 @@ const html = `<!doctype html><html><head><meta charset="utf-8">
   body { width: 1200px; height: 630px; background: #231f20; color: #ffffff; position: relative; overflow: hidden; font-family: 'Libre Franklin', Arial, sans-serif; }
   .contours { position: absolute; inset: 0; width: 100%; height: 100%; }
   .contours path { fill: none; stroke: #d9d4cf; stroke-width: 1.4; opacity: 0.18; }
-  .contours .contour-accent { stroke: #d86018; stroke-width: 3; opacity: 1; }
+  .contours .contour-accent { display: none; }
+  .rule { width: 72px; height: 6px; background: #d86018; margin: 0 0 28px; }
   .text { position: absolute; left: 80px; top: 96px; width: 580px; }
   .panel { position: absolute; right: 0; top: 0; bottom: 0; width: 470px; background: #ffffff; }
   .logo { position: absolute; right: 75px; top: 50%; transform: translateY(-50%); width: 320px; height: auto; }
-  .name { font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 120px; line-height: 0.95; letter-spacing: 0; margin: 0 0 28px; }
+  .name { font-family: 'Libre Franklin', sans-serif; font-weight: 700; font-size: 92px; line-height: 1.02; letter-spacing: -0.025em; margin: 0 0 28px; }
   .tag { font-size: 32px; line-height: 1.35; color: #d9d4cf; margin: 0; }
   .where { position: absolute; left: 80px; bottom: 72px; font-family: 'Libre Franklin', sans-serif; font-weight: 500; font-size: 24px; letter-spacing: 0.12em; text-transform: uppercase; color: #f0b323; }
 </style></head><body>
 ${contourSvg({ width: 1200, height: 630, lines: 12, seed: 7 })}
 <div class="panel"></div><img class="logo" src="${logo}" alt="">
-<div class="text"><p class="name">${esc(site.siteName)}</p><p class="tag">${esc(site.tagline)}</p></div>
+<div class="text"><div class="rule"></div><p class="name">${esc(site.siteName)}</p><p class="tag">${esc(site.tagline)}</p></div>
 <p class="where">${esc(site.location.region)}</p>
 </body></html>`;
 
@@ -48,13 +49,13 @@ const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, ign
 await page.setContent(html, { waitUntil: 'networkidle' });
 await page.evaluate(async () => {
   await Promise.all([
-    document.fonts.load('800 120px "Big Shoulders Display"'),
+    document.fonts.load('700 92px "Libre Franklin"'),
     document.fonts.load('500 24px "Libre Franklin"'),
     document.fonts.load('400 34px "Libre Franklin"'),
   ]);
   await document.fonts.ready;
 });
-const loaded = await page.evaluate(() => document.fonts.check('800 120px "Big Shoulders Display"') && document.fonts.check('400 34px "Libre Franklin"'));
+const loaded = await page.evaluate(() => document.fonts.check('700 92px "Libre Franklin"') && document.fonts.check('400 34px "Libre Franklin"'));
 if (!loaded) {
   await browser.close();
   console.error('Web fonts did not load; not writing the image. Try again.');
