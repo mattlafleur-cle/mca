@@ -1,6 +1,7 @@
 // Copy for the family of brands page at /brands/.
 // Unlisted: not in the menu, footer, sitemap, or llms.txt, and marked noindex. Share the link directly.
 // Brand descriptions follow each brand's own website as of 2026-10-30. Retreat to Advance follows the BUILD page.
+// Forest City CPA's wording is Matt's (2026-10-30) and intentionally differs from forestcity.pro.
 // After editing, run `npm run brands-image` to refresh the downloadable image.
 
 export default function brandsContent(site) {
@@ -74,8 +75,8 @@ export default function brandsContent(site) {
       {
         id: 'forestcity',
         name: 'Forest City CPA',
-        tag: 'CPA, tax, and accounting',
-        body: 'CPA services, tax preparation, bookkeeping, AI implementation, and consulting for Cleveland and Northeast Ohio.',
+        tag: 'Fractional CFO and CPA guidance',
+        body: 'Fractional CFO services and expert CPA guidance. Rooted in Northeast Ohio, serving clients anywhere in the world.',
         url: 'https://forestcity.pro/',
         logo: { kind: 'word', text: 'Forest City', sub: 'CPA' },
       },
