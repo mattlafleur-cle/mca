@@ -1,4 +1,6 @@
 // Shared page shell, header, footer, and small components.
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 
 export const esc = (value) =>
   String(value ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -48,6 +50,12 @@ export function createLinker(site, mode) {
     },
     asset(file) {
       return mode === 'artifact' ? `assets/${file}` : `/assets/${file}`;
+    },
+    // Asset URL with a short fingerprint of the file's contents, so browsers fetch a fresh copy
+    // whenever the file changes instead of reusing a cached one alongside newer pages.
+    versioned(file) {
+      const hash = createHash('sha1').update(readFileSync(new URL(`./assets/${file}`, import.meta.url))).digest('hex').slice(0, 8);
+      return `${this.asset(file)}?v=${hash}`;
     },
   };
 }
@@ -264,8 +272,8 @@ export function pageShell({ site, link, mode, route, meta, body }) {
     route.key === 'home' ? `<link rel="preload" as="image" type="image/webp" href="${esc(link.asset('photos/cuyahoga-river-small.webp'))}" media="(max-width: 896px)">` : '',
     // Fonts are self-hosted (src/assets/fonts), so no requests go to third-party font services.
     `<link rel="preload" href="${esc(link.asset('fonts/libre-franklin-normal-f2d133.woff2'))}" as="font" type="font/woff2" crossorigin>`,
-    `<link rel="stylesheet" href="${esc(link.asset('fonts/fonts.css'))}">`,
-    `<link rel="stylesheet" href="${esc(link.asset('site.css'))}">`,
+    `<link rel="stylesheet" href="${esc(link.versioned('fonts/fonts.css'))}">`,
+    `<link rel="stylesheet" href="${esc(link.versioned('site.css'))}">`,
     `<script>document.documentElement.classList.add('js')</script>`,
     ...(mode === 'site' && route.key !== 'notFound'
       ? structuredData(site, route, meta).map((d) => `<script type="application/ld+json">${JSON.stringify(d).replace(/</g, '\\u003c')}</script>`)
@@ -280,7 +288,7 @@ ${header(site, link, route.key)}
 ${body}
 </main>
 ${footer(site, link)}
-<script src="${esc(link.asset('site.js'))}" defer></script>`;
+<script src="${esc(link.versioned('site.js'))}" defer></script>`;
 
   // The artifact preview host supplies its own document skeleton for the entry page.
   if (mode === 'artifact' && route.key === 'home') return `${head}\n${content}\n`;

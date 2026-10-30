@@ -43,7 +43,7 @@ const titles = new Map();
 const descriptions = new Map();
 const idsByFile = new Map();
 const pageFor = (href) => {
-  const clean = href.split('#')[0];
+  const clean = href.split('#')[0].split('?')[0];
   if (clean.endsWith('/')) return path.join(dist, clean, 'index.html');
   return path.join(dist, clean);
 };
