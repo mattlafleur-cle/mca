@@ -29,6 +29,7 @@ export default function brandsContent(site) {
 
     // Logo kinds: 'mark' shows an SVG file from src/assets/ beside the name; 'word' sets the name as a wordmark.
     // Leave url empty when the brand has no website yet; the card then shows pendingSite.
+    // urlLabel overrides the link text when url points deeper than a home page.
     brands: [
       {
         id: 'build',
@@ -43,7 +44,8 @@ export default function brandsContent(site) {
         name: 'Retreat to Advance',
         tag: 'Custom retreats',
         body: 'Custom retreat programming for owners and leadership teams, in any length, format, or style. Step away to take stock, distill what matters, and set the path ahead.',
-        url: '',
+        url: site.build.retreatUrl,
+        urlLabel: 'buildowners.com',
         logo: { kind: 'word', text: 'Retreat to Advance' },
       },
       {

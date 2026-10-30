@@ -376,7 +376,7 @@ ${room}
     <div class="retreat">
       <h3>${esc(c.retreatHeading)}</h3>
       <p>${esc(c.retreat)}</p>
-      ${site.build.url ? `<p><a class="text-link" href="${esc(site.build.url)}" rel="noopener">${esc(c.retreatLink)}</a></p>` : ''}
+      ${site.build.retreatUrl || site.build.url ? `<p><a class="text-link" href="${esc(site.build.retreatUrl || site.build.url)}" rel="noopener">${esc(c.retreatLink)}</a></p>` : ''}
     </div>
   </div>
 </section>
@@ -838,7 +838,7 @@ export function brandBoard({ link, copy }) {
   const host = (url) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
   const siteLine = (b) =>
     b.url
-      ? `<a class="brand-url" href="${esc(b.url)}" rel="noopener">${esc(host(b.url))}</a>`
+      ? `<a class="brand-url" href="${esc(b.url)}" rel="noopener">${esc(b.urlLabel || host(b.url))}</a>`
       : `<p class="brand-url brand-url-pending">${esc(c.pendingSite)}</p>`;
   const logo = (b) =>
     b.logo.kind === 'mark'

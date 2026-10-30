@@ -80,6 +80,8 @@ export default {
   build: {
     showPage: true,
     url: 'https://buildowners.com/',
+    // Retreat to Advance details live in the BUILD ecosystem section of buildowners.com (2026-10-30).
+    retreatUrl: 'https://buildowners.com/#retreat-to-advance',
     urlLabel: 'Visit the BUILD website',
     // Formats from buildowners.com and places from the BUILD plan Matt shared, both 2026-10-02.
     // Leave places empty where none is set. Update as gatherings change.
