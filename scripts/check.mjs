@@ -196,14 +196,14 @@ for (const [fg, bg, min] of pairs) {
 
 // Forest City may appear only in approved forms: "Matt founded
 // Forest City CPA" in his About bio and on the fractional CFO page, the announcement page, and the
-// client updates page's link to it. Nothing else, anywhere.
+// client updates page's link to it, and the unlisted family of brands page, which lists it as a brand. Nothing else, anywhere.
 const forestCityAllowed = { 'about/index.html': true, 'fractional-cfo/index.html': true };
 for (const f of await walk(dist)) {
   if (!/\.(html|txt|xml)$/.test(f)) continue;
   const rel = path.relative(dist, f);
   let text = (await readFile(f, 'utf8')).replace(/matt@forestcity\.pro/gi, '');
   if (forestCityAllowed[rel]) text = text.replace(/Matt founded Forest City CPA/g, '');
-  if (rel === 'announcement/index.html') continue;
+  if (rel === 'announcement/index.html' || rel === 'brands/index.html') continue;
   if (rel === 'client-updates/index.html') text = text.replace(/Maple Creek Coaching and Forest City CPA have joined forces/g, '');
   if (/forest\s?city/i.test(text)) errors.push(`${rel}: mentions Forest City outside the approved bio line and email`);
 }

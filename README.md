@@ -17,6 +17,7 @@ The site is plain static HTML built by a small Node script that has **no depende
 | `npm run check` | Builds, then checks links, anchors, headings, titles, descriptions, alt text, indexing safety, the contact path, banned wording, and color contrast. Fails on any problem. |
 | `npm run screenshots` | Optional. Renders every page at desktop and phone widths with Playwright, tests the mobile menu and skip link with the keyboard, and fails on console errors or horizontal scrolling. Screenshots go to `screenshots/` (not committed). Needs Playwright installed locally or globally. |
 | `npm run build:artifact` | Builds a flat-file copy into `dist-artifact/` for sharing as a private hosted preview (see below). |
+| `npm run brands-image` | Regenerates `src/assets/brands/brand-family.png`, the downloadable image on the unlisted /brands/ page. Run it after editing `src/brands-content.mjs`. Needs Playwright. |
 | `npm run og-image` | Regenerates `src/assets/og-image.png`, the link preview image. Run it after changing the name or tagline. Needs Playwright. |
 
 ## Where to edit

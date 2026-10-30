@@ -11,6 +11,7 @@
     "check": "node scripts/build.mjs && node scripts/check.mjs",
     "preview": "node scripts/build.mjs && node scripts/serve.mjs",
     "screenshots": "node scripts/screenshots.mjs",
-    "og-image": "node scripts/og-image.mjs"
+    "og-image": "node scripts/og-image.mjs",
+    "brands-image": "node scripts/brands-image.mjs"
   }
 }

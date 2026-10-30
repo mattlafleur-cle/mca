@@ -797,3 +797,47 @@ h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
   }
   .hero-photo .hero-inner { min-height: 0; }
 }
+
+/* Family of brands (/brands/): the parent brand above a grid of brand cards. Each card's logo panel
+   uses that brand's own colors from its website; the rest of the card stays in this site's style. */
+.brand-board { display: grid; gap: clamp(1rem, 0.75rem + 1vw, 1.5rem); }
+.brand-parent { display: grid; grid-template-columns: auto 1fr; gap: clamp(1.25rem, 1rem + 2vw, 2.5rem); align-items: center; padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); background: var(--paper); border: 1px solid var(--rule); border-top: 4px solid var(--maple); }
+.brand-parent-logo { width: clamp(84px, 60px + 6vw, 132px); height: auto; }
+.brand-parent-text { display: grid; gap: 0.5rem; }
+.brand-parent h2 { font-size: var(--step-2); line-height: 1.1; }
+.brand-parent-text > p:not(.brand-tag) { color: var(--ink-muted); max-width: 40rem; }
+.brand-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 0.75rem + 1vw, 1.5rem); }
+.brand-card { display: grid; grid-template-rows: auto 1fr; background: var(--paper); border: 1px solid var(--rule); min-width: 0; }
+.brand-logo { display: flex; flex-wrap: wrap; align-items: center; align-content: center; gap: 0.35rem 0.75rem; min-height: 7.5rem; padding: 1.25rem 1.35rem; }
+.brand-mark { width: 48px; height: 48px; flex: none; }
+.brand-word { font-weight: 800; font-size: 1.45rem; line-height: 1.1; letter-spacing: -0.01em; }
+.brand-sub { flex-basis: 100%; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+.brand-body { display: grid; gap: 0.5rem; align-content: start; padding: 1.25rem 1.35rem 1.4rem; }
+.brand-body h3 { font-size: calc(1.2rem * var(--ds)); }
+.brand-body > p:not(.brand-tag):not(.brand-url) { color: var(--ink-muted); font-size: var(--step--1); line-height: 1.55; }
+.brand-tag { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--maple-ink); }
+.brand-body .brand-note { font-style: italic; }
+.brand-url { font-size: var(--step--1); font-weight: 600; color: var(--ink); text-underline-offset: 0.2em; margin-top: 0.25rem; }
+.brand-url-pending { color: var(--ink-muted); font-weight: 500; }
+
+/* Brand colors, taken from each brand's website on 2026-10-30. */
+.brand-build .brand-logo { background: #231f20; color: #f0b323; border-bottom: 4px solid #d86018; }
+.brand-build .brand-word { font-size: 2rem; letter-spacing: 0.06em; }
+.brand-build .brand-sub { color: #ffffff; }
+.brand-retreat .brand-logo { background: #f4f2ef; color: #231f20; border-bottom: 4px solid #9d2235; }
+.brand-retreat .brand-word { text-transform: uppercase; letter-spacing: 0.08em; font-size: 1.2rem; }
+.brand-carts .brand-logo { background: #1e4a35; color: #f4efe4; border-bottom: 4px solid #f0b429; }
+.brand-carts .brand-word { text-transform: uppercase; letter-spacing: 0.02em; }
+.brand-glai .brand-logo { background: #0d3550; color: #f7f3ec; border-bottom: 4px solid #e2a043; }
+.brand-glai .brand-word { font-family: Georgia, 'Times New Roman', serif; font-weight: 700; font-size: 1.35rem; }
+.brand-noalumni .brand-logo { background: #f8f7f1; color: #018654; border-bottom: 4px solid #e1683b; }
+.brand-noalumni .brand-word { text-transform: uppercase; font-weight: 900; font-size: 1.85rem; letter-spacing: 0.02em; }
+.brand-forestcity .brand-logo { background: #0f1820; color: #ffffff; border-bottom: 4px solid #477956; }
+.brand-forestcity .brand-word { font-family: Georgia, 'Times New Roman', serif; font-weight: 700; font-size: 1.7rem; }
+.brand-forestcity .brand-sub { flex-basis: auto; color: #a7c9b0; font-size: 0.85rem; }
+
+@media (max-width: 60rem) { .brand-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 38rem) {
+  .brand-grid { grid-template-columns: minmax(0, 1fr); }
+  .brand-parent { grid-template-columns: minmax(0, 1fr); }
+}

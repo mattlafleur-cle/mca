@@ -9,6 +9,7 @@ import cartsContent from './carts-content.mjs';
 import sellContent from './sell-content.mjs';
 import clientsContent from './clients-content.mjs';
 import announcementContent from './announcement-content.mjs';
+import brandsContent from './brands-content.mjs';
 
 export default function content(site) {
   const name = site.siteName;
@@ -20,6 +21,7 @@ export default function content(site) {
     sell: sellContent(site),
     clients: clientsContent(site),
     announcement: announcementContent(site),
+    brands: brandsContent(site),
     onboarding: {
       title: `Client Onboarding | ${name}`,
       description: `Onboarding questions for new ${name} clients. It takes about four minutes, and only Josh and Matt see the answers.`,

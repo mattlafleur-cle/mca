@@ -830,3 +830,54 @@ export function onboarding({ site, link, copy }) {
   </div>
 </section>`;
 }
+
+// The brand family board: the parent brand above a grid of the other brands. Shared by the unlisted
+// /brands/ page and scripts/brands-image.mjs, which renders it to a downloadable image.
+export function brandBoard({ link, copy }) {
+  const c = copy.brands;
+  const host = (url) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+  const siteLine = (b) =>
+    b.url
+      ? `<a class="brand-url" href="${esc(b.url)}" rel="noopener">${esc(host(b.url))}</a>`
+      : `<p class="brand-url brand-url-pending">${esc(c.pendingSite)}</p>`;
+  const logo = (b) =>
+    b.logo.kind === 'mark'
+      ? `<img class="brand-mark" src="${esc(link.asset(b.logo.src))}" width="56" height="56" alt="${esc(b.name)} logo"><span class="brand-word">${esc(b.logo.text)}</span>`
+      : `<span class="brand-word">${esc(b.logo.text)}</span>${b.logo.sub ? `<span class="brand-sub">${esc(b.logo.sub)}</span>` : ''}`;
+  const p = c.parent;
+  return `<div class="brand-board">
+  <article class="brand-parent">
+    <img class="brand-parent-logo" src="${esc(link.asset('logo.svg'))}" width="108" height="116" alt="${esc(p.name)} logo">
+    <div class="brand-parent-text">
+      <p class="brand-tag">${esc(p.tag)}</p>
+      <h2>${esc(p.name)}</h2>
+      <p>${esc(p.body)}</p>
+      ${siteLine(p)}
+    </div>
+  </article>
+  <ul class="brand-grid">${c.brands
+    .map((b) => `<li class="brand-card brand-${esc(b.id)}">
+      <div class="brand-logo">${logo(b)}</div>
+      <div class="brand-body">
+        <p class="brand-tag">${esc(b.tag)}</p>
+        <h3>${esc(b.name)}</h3>
+        <p>${esc(b.body)}</p>
+        ${b.note ? `<p class="brand-note">${esc(b.note)}</p>` : ''}
+        ${siteLine(b)}
+      </div>
+    </li>`)
+    .join('')}</ul>
+</div>`;
+}
+
+// Unlisted family of brands page (/brands/).
+export function brands({ site, link, copy }) {
+  const c = copy.brands;
+  const extra = `<p class="updated-note">Last updated ${esc(c.updated)} · <a class="text-link" href="${esc(link.asset(c.imageFile))}" download>${esc(c.imageLink)}</a></p>`;
+  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra, seed: c.seed })}
+<section class="section section-alt" aria-label="Brands">
+  <div class="wrap">
+    ${brandBoard({ site, link, copy })}
+  </div>
+</section>`;
+}

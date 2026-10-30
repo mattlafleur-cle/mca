@@ -23,6 +23,7 @@ export function routes(site) {
     { key: 'announcement', label: 'Announcement', path: '/announcement/', file: 'announcement.html', out: 'announcement/index.html', standalone: true },
     { key: 'onboarding', label: 'Onboarding', path: '/onboarding/', file: 'onboarding.html', out: 'onboarding/index.html', hidden: true, noindex: true },
     { key: 'clients', label: 'Client updates', path: '/client-updates/', file: 'client-updates.html', out: 'client-updates/index.html', hidden: true, noindex: true },
+    { key: 'brands', label: 'Family of brands', path: '/brands/', file: 'brands.html', out: 'brands/index.html', hidden: true, noindex: true },
     { key: 'notFound', label: 'Page not found', path: '/404.html', file: '404.html', out: '404.html', hidden: true },
   ];
   return list.filter((r) => r.key !== 'build' || site.build.showPage);
