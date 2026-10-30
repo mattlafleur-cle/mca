@@ -77,7 +77,7 @@ export default function brandsContent(site) {
         name: 'Forest City CPA',
         tag: 'Fractional CFO and CPA guidance',
         body: 'Fractional CFO services and expert CPA guidance. Rooted in Northeast Ohio, serving clients anywhere in the world.',
-        url: 'https://forestcity.pro/',
+        url: 'https://forestcitycpa.com/',
         logo: { kind: 'word', text: 'Forest City', sub: 'CPA' },
       },
     ],
