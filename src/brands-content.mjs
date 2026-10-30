@@ -50,12 +50,11 @@ export default function brandsContent(site) {
       },
       {
         id: 'carts',
-        name: 'Maple Creek Carts',
+        name: 'Build My Dealership',
         tag: 'Golf cart industry education',
         body: 'The education and business-building platform for the golf cart industry: sales, service, operations, and leadership.',
-        note: 'Build My Dealership, a dealer training name, is in development.',
         url: 'https://maplecreekcarts.com/',
-        logo: { kind: 'mark', src: 'brands/carts-mark.svg', text: 'Maple Creek Carts' },
+        logo: { kind: 'word', text: 'Build My Dealership' },
       },
       {
         id: 'glai',

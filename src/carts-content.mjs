@@ -11,13 +11,13 @@ export default function cartsContent(site) {
   return {
     seed: 27,
     title: `Golf Cart Business Advisory and Fractional CFO | ${name}`,
-    description: `Coaching, fractional CFO, and operating advisory for golf cart dealers, facilities, builders, shops, and fleets, from the team behind Maple Creek Carts.`,
+    description: `Coaching, fractional CFO, and operating advisory for golf cart dealers, facilities, builders, shops, and fleets, from the team behind Build My Dealership.`,
     serviceType: 'Golf cart business advisory and fractional CFO services',
     eyebrow: 'Advisory and fractional CFO for the golf cart industry',
     headline: 'Grow the golf cart business you have already built.',
     lead:
-      'Maple Creek Carts is where golf cart businesses learn the business: a curriculum in sales, service, business operations, and leadership. This is where we apply it to yours. Josh Muller coaches owners and their managers. Matt LaFleur brings fractional CFO work that puts every department on real numbers. Same curriculum, same two people, working directly with you and your team.',
-    heroLink: { href: CARTS_URL, label: 'Visit Maple Creek Carts' },
+      'Build My Dealership is where golf cart businesses learn the business: a curriculum in sales, service, business operations, and leadership. This is where we apply it to yours. Josh Muller coaches owners and their managers. Matt LaFleur brings fractional CFO work that puts every department on real numbers. Same curriculum, same two people, working directly with you and your team.',
+    heroLink: { href: CARTS_URL, label: 'Visit Build My Dealership' },
 
     situationsHeading: 'Eight questions every dealer principal should be able to answer',
     situationsIntro: 'A well-run golf cart business can answer each of these quickly. The ones that take longer show where to start.',
@@ -32,7 +32,7 @@ export default function cartsContent(site) {
       'Who makes the call when you are away for two weeks in July?',
       'If you sold the business in five years, what would make it worth more than it is today?',
     ],
-    situationsNote: 'The full dealer scorecard on Maple Creek Carts takes about five minutes, needs no signup, and keeps your answers in your browser.',
+    situationsNote: 'The full dealer scorecard on Build My Dealership takes about five minutes, needs no signup, and keeps your answers in your browser.',
     situationsLinks: [{ href: `${CARTS_URL}scorecard/`, label: 'Take the dealer scorecard' }],
 
     // Season timeline: qualitative intensity (1 to 4) by month. Illustrative, not data.
@@ -55,7 +55,7 @@ export default function cartsContent(site) {
     },
 
     departmentsHeading: 'Four tracks, one curriculum',
-    departmentsIntro: 'Our advisory work draws on the same four tracks Maple Creek Carts teaches, applied to your numbers, your people, and your season.',
+    departmentsIntro: 'Our advisory work draws on the same four tracks Build My Dealership teaches, applied to your numbers, your people, and your season.',
     departments: [
       { name: 'Sales', body: 'Turn showroom traffic into deliveries, and deliveries into repeat customers.', link: { href: `${CARTS_URL}curriculum/#sales`, label: 'Explore the sales track' } },
       { name: 'Service', body: 'Make the service bay a profit center, not just a busy one.', link: { href: `${CARTS_URL}curriculum/#service`, label: 'Explore the service track' } },
@@ -65,7 +65,7 @@ export default function cartsContent(site) {
 
     servicesHeading: 'Hands-on help for golf cart businesses',
     servicesIntro:
-      'Maple Creek Carts offers team training, courses, field guides, and peer groups. When you want someone working directly on your business, that happens here: coaching for the people running it, fractional CFO work on the numbers, or both together.',
+      'Build My Dealership offers team training, courses, field guides, and peer groups. When you want someone working directly on your business, that happens here: coaching for the people running it, fractional CFO work on the numbers, or both together.',
     services: [
       {
         lane: 'Led by Josh',
@@ -154,8 +154,8 @@ export default function cartsContent(site) {
 
     faq: [
       {
-        q: 'How does this relate to Maple Creek Carts?',
-        a: `Maple Creek Carts is the education platform: the curriculum, field guides, scorecard, team training, courses, and peer groups. ${name} is where the hands-on advisory and fractional CFO work happens. Josh and Matt lead both, and you can use either one or the two together.`,
+        q: 'How does this relate to Build My Dealership?',
+        a: `Build My Dealership is the education platform: the curriculum, field guides, scorecard, team training, courses, and peer groups. ${name} is where the hands-on advisory and fractional CFO work happens. Josh and Matt lead both, and you can use either one or the two together.`,
       },
       {
         q: 'Do you only work with dealers?',
@@ -181,6 +181,6 @@ export default function cartsContent(site) {
 
     closingHeading: 'Let\u2019s talk about where your business is headed.',
     closingBody:
-      'Tell us where the business is today and where you want it to be. We will recommend where to start, here or on Maple Creek Carts.',
+      'Tell us where the business is today and where you want it to be. We will recommend where to start, here or on Build My Dealership.',
   };
 }

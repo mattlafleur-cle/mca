@@ -552,6 +552,7 @@ function industryPage(key) {
         <p class="person-role">${esc(f.role)}</p>
         <h3>${esc(f.name)}</h3>
         <p>${esc(c.people?.[f.id] || f.short)}</p>
+        ${f.email ? `<p class="bio-email"><a href="mailto:${esc(f.email)}">${esc(f.email)}</a></p>` : ''}
       </div>
     </article>`,
     )
@@ -760,6 +761,7 @@ export function announcement({ site, link, copy }) {
         <p class="person-role">${esc(f.role)}</p>
         <h3>${esc(f.name)}</h3>
         <p>${esc(f.short)}</p>
+        ${f.email ? `<p class="bio-email"><a href="mailto:${esc(f.email)}">${esc(f.email)}</a></p>` : ''}
       </div>
     </article>`,
     )
