@@ -67,7 +67,7 @@ export default function brandsContent(site) {
         id: 'noalumni',
         name: 'No Alumni',
         tag: 'Careers and culture',
-        body: 'Celebrating alternative career paths, skilled trades, and modern work, and increasing vocational joy. Certified Working Genius Facilitator.',
+        body: 'Celebrating alternative career paths, skilled trades, and modern work, and increasing vocational joy. Certified Working Genius Facilitators.',
         note: 'Related nonprofit: No Alumni Foundation, a 501(c)(3).',
         url: 'https://www.noalumni.com/',
         logo: { kind: 'word', text: 'No Alumni' },

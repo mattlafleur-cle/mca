@@ -66,3 +66,4 @@ Choices made in the first build, with the reason for each. Founders can reverse 
 | 2026-10-30 | No Alumni card on /brands/ adds: certified in, and expert on, The 6 Types of Working Genius model. Written as "6" to match the model's published name. | Matt's direction; certification reported by Matt. |
 | 2026-10-30 | No Alumni card wording changed to "Certified Working Genius Facilitator," replacing the earlier certified-in-and-expert line. | Matt's direction, using The Table Group's credential title. |
 | 2026-10-30 | Forest City CPA card links to forestcitycpa.com instead of forestcity.pro. | Matt's direction. Verified 2026-10-30: forestcitycpa.com redirects to forestcity.pro/cpa. |
+| 2026-10-30 | No Alumni card credential made plural: "Certified Working Genius Facilitators." | Matt's direction. |
