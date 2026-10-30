@@ -41,8 +41,8 @@ export default function brandsContent(site) {
       {
         id: 'retreat',
         name: 'Retreat to Advance',
-        tag: 'Annual retreat',
-        body: 'Two days away, once a year, to take stock of the season, distill what matters, and reset the year ahead.',
+        tag: 'Custom retreats',
+        body: 'Custom retreat programming for owners and leadership teams, in any length, format, or style. Step away to take stock, distill what matters, and set the path ahead.',
         url: '',
         logo: { kind: 'word', text: 'Retreat to Advance' },
       },

@@ -67,3 +67,4 @@ Choices made in the first build, with the reason for each. Founders can reverse 
 | 2026-10-30 | No Alumni card wording changed to "Certified Working Genius Facilitator," replacing the earlier certified-in-and-expert line. | Matt's direction, using The Table Group's credential title. |
 | 2026-10-30 | Forest City CPA card links to forestcitycpa.com instead of forestcity.pro. | Matt's direction. Verified 2026-10-30: forestcitycpa.com redirects to forestcity.pro/cpa. |
 | 2026-10-30 | No Alumni card credential made plural: "Certified Working Genius Facilitators." | Matt's direction. |
+| 2026-10-30 | Retreat to Advance card on /brands/ now describes custom retreat programming for owners and leadership teams in any length, format, or style, replacing the two-day annual description. | Matt's direction. The BUILD page's annual retreat description is unchanged. |
