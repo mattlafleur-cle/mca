@@ -97,15 +97,16 @@ export default {
 
   // Team members beyond the founders. Shown on About (after the founders) and wherever a Grow page lists
   // them in `leads`. Not founders: they are left out of the founder structured data and "Josh and Matt" copy.
-  // LAUNCH GATE: each person approves their own bio and photo. Greg's bio is from text Matt supplied
-  // on 2026-11-10; Greg should confirm it. Add his photo the same way as the founders'.
+  // LAUNCH GATE: each person approves their own bio and photo. Greg's bio and photo were supplied by Matt
+  // on 2026-11-10; Greg should confirm both.
   team: [
     {
       id: 'greg',
       email: 'greg@maplecreekadvisors.com',
       name: 'Greg Snyder',
       role: 'Chief Culture and Team-Building Engineer',
-      photo: null,
+      // Cropped 2026-11-10 to match the founders' framing; the photo's right edge was extended with a soft blur to center him.
+      photo: { src: 'photos/greg-snyder.jpg', width: 480, height: 480, alt: 'Greg Snyder, smiling, outdoors in front of heavy equipment' },
       short: 'Greg is a culture builder and engaging speaker with more than 30 years in entrepreneurship, sales, marketing, and leadership. Deeply trained in The 6 Types of Working Genius, he helps leaders put their people\u2019s strengths to work.',
       bio: [
         'Greg Snyder is a people magnet, culture builder, and engaging speaker who helps leaders bring out the best in their teams. With more than 30 years of experience spanning entrepreneurship, sales, marketing, and leadership, he brings practical insight and contagious energy to every room.',
