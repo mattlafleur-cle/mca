@@ -78,7 +78,7 @@ export default function growContent(site) {
         {
           tag: 'Operating system',
           heading: 'Run your team on EOS®',
-          body: 'We’re EOS certified, so we can teach your leadership team the Entrepreneurial Operating System (EOS®) and help you use it to scale your business.',
+          body: 'Josh Muller is a Certified EOS Implementer with deep experience running businesses on EOS. He teaches your leadership team the Entrepreneurial Operating System (EOS®) and helps you use it to scale your business.',
           list: [
             'One clear vision your leadership team agrees on and can share',
             'Quarterly Rocks, a weekly Scorecard on the numbers that drive the business, and a weekly meeting that solves issues instead of circling them',
