@@ -97,8 +97,8 @@ export default {
 
   // Team members beyond the founders. Shown on About (after the founders) and wherever a Grow page lists
   // them in `leads`. Not founders: they are left out of the founder structured data and "Josh and Matt" copy.
-  // LAUNCH GATE: each person approves their own bio and photo. Greg's bio is a short role description
-  // until he supplies his own (added 2026-11-10 at Matt's direction). Add photo the same way as founders.
+  // LAUNCH GATE: each person approves their own bio and photo. Greg's bio is from text Matt supplied
+  // on 2026-11-10; Greg should confirm it. Add his photo the same way as the founders'.
   team: [
     {
       id: 'greg',
@@ -106,10 +106,10 @@ export default {
       name: 'Greg Snyder',
       role: 'Chief Culture and Team-Building Engineer',
       photo: null,
-      short: 'Greg leads culture and team-building work: helping leadership teams put people on the right work, hire for fit, and build teams that last.',
+      short: 'Greg is a culture builder and engaging speaker with more than 30 years in entrepreneurship, sales, marketing, and leadership. Deeply trained in The 6 Types of Working Genius, he helps leaders put their people\u2019s strengths to work.',
       bio: [
-        'Greg Snyder leads culture and team-building work at Maple Creek Advisors.',
-        'He helps owners and leadership teams put people on the work that gives them energy, hire for fit, and build a culture that holds up as the business grows.',
+        'Greg Snyder is a people magnet, culture builder, and engaging speaker who helps leaders bring out the best in their teams. With more than 30 years of experience spanning entrepreneurship, sales, marketing, and leadership, he brings practical insight and contagious energy to every room.',
+        'Deeply trained in The 6 Types of Working Genius, Greg makes complex team dynamics understandable and actionable, helping organizations improve communication, reduce friction, and put people\u2019s strengths to work. He is also a co-founder of No Alumni.',
       ],
     },
   ],
