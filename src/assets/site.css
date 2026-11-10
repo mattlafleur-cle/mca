@@ -908,3 +908,7 @@ h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
 @media (max-width: 56rem) { .genius-stages { grid-template-columns: minmax(0, 1fr); } .genius-offers { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 38rem) { .genius-offers { grid-template-columns: minmax(0, 1fr); } }
 .section-title + .departments { margin-top: clamp(1.25rem, 1rem + 1vw, 2rem); }
+.genius-roi { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.genius-roi li { border-left-color: var(--brand-orange); }
+.genius-roi-note { margin-top: clamp(1rem, 0.75rem + 1vw, 1.5rem); max-width: 52rem; }
+@media (max-width: 38rem) { .genius-roi { grid-template-columns: minmax(0, 1fr); } }

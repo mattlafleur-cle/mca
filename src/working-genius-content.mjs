@@ -10,11 +10,11 @@ export default function workingGeniusContent(site) {
   return {
     workingGenius: {
       title: `The 6 Types of Working Genius for Teams in ${region} | ${name}`,
-      description: `Working Genius assessments, team maps, and workshops for owner-led businesses in ${region}. Put your people on the work that gives them energy.`,
+      description: `Working Genius assessments, team maps, and workshops for owner-led businesses in ${region}: more productive, more profitable teams, in any industry.`,
       serviceType: 'Working Genius assessments and team workshops',
       eyebrow: 'The 6 Types of Working Genius',
       headline: 'Put your people on the work that gives them energy.',
-      lead: 'Turnover and disengagement are expensive. Working Genius shows each person the kind of work they are wired for, so your team does more of it, with less friction and burnout.',
+      lead: 'Turnover and disengagement are expensive. Working Genius shows each person the kind of work they are wired for, so your team does more of it, with less friction and burnout. In any industry, that adds up to a more productive and more profitable team.',
       button: 'Bring Working Genius to your team',
       typesLink: 'See the six types',
 
@@ -50,10 +50,20 @@ export default function workingGeniusContent(site) {
         },
       ],
 
+      roiHeading: 'Why it pays off',
+      roiIntro: 'Payroll is one of the largest costs in most owner-led businesses. Working Genius helps you get more from it, whatever you build, sell, or serve.',
+      roi: [
+        { name: 'Less time lost in handoffs', body: 'Work that stalls between ideas, decisions, and follow-through costs hours every week. A team map shows where it stalls and who can move it.' },
+        { name: 'More output from the same team', body: 'People are faster and do better work when more of their day goes to their geniuses, and less to their frustrations.' },
+        { name: 'Fewer costly departures', body: 'Replacing a good employee means recruiting, training, and lost momentum. People who enjoy their work are more likely to stay.' },
+        { name: 'Better hires and role design', body: 'Hiring for the geniuses a team is missing fills real gaps, instead of adding more of what you already have.' },
+      ],
+      roiNote: 'Every project, in every industry, moves through the same six stages. That is why the model fits a construction company, a dealership, a professional practice, or a nonprofit equally well.',
+
       whyHeading: 'Why it works',
       why: [
         { name: 'Built around your real work', body: 'We apply the model to your team, your roles, and the projects on your desk, not a generic workshop.' },
-        { name: 'Helps you keep good people', body: 'People stay longer when more of their day goes to work that gives them energy.' },
+        { name: 'Ties to your numbers', body: 'With a CPA and fractional CFO on the team, we connect the changes to the measures you already track.' },
         { name: 'Training your team can use', body: 'Working sessions end with specific changes to who does what.' },
         { name: 'Culture first, at every level', body: 'From the front line to the leadership team, everyone gets a shared language for how work gets done.' },
       ],
@@ -68,7 +78,11 @@ export default function workingGeniusContent(site) {
       ],
 
       leadsHeading: 'Who leads this work',
-      leads: ['greg'],
+      leads: ['greg', 'matt'],
+      // Page-specific lines for the leads, in place of their usual short bio.
+      leadNotes: {
+        matt: 'Matt, a CPA and fractional CFO, connects Working Genius to the numbers: where time and payroll go, and how a better-fit team shows up in productivity and profit.',
+      },
 
       faq: [
         {
@@ -84,13 +98,17 @@ export default function workingGeniusContent(site) {
           a: 'Owners, leadership teams, and whole teams in owner-led businesses of any industry, typically 5 to 50 people. It works for a single leader, a leadership team, or the whole company.',
         },
         {
+          q: 'Is Working Genius worth the investment?',
+          a: 'For most teams, the larger cost is the one already being paid: time lost in stalled handoffs, good people burning out on the wrong work, and hires that do not fill the real gap. Working Genius makes those costs visible and gives you specific changes to address them. Because Matt is a CPA and fractional CFO, we can tie those changes to the numbers you already track.',
+        },
+        {
           q: 'How does it fit with the rest of your work?',
           a: 'Working Genius often starts the conversation. From there it connects naturally to coaching, to clear ownership of every seat, and to hiring with the Ideal Team Player model.',
         },
       ],
 
       closingHeading: 'Find the work your team was made for.',
-      closingBody: 'Start with a short conversation about your team. We will recommend where to begin.',
+      closingBody: 'Start with a short conversation about your team and your numbers. We will recommend where to begin.',
       credit: 'The 6 Types of Working Genius is a model created by Patrick Lencioni and The Table Group. Working Genius is a trademark of The Table Group.',
     },
   };

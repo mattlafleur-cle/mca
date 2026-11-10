@@ -949,7 +949,7 @@ export const growBusiness = growPage('growBusiness');
 export const growFinance = growPage('growFinance');
 
 // "Who leads this work": people by id from founders or team in site.config.mjs.
-function leadsSection({ site, link, id, heading, ids = [], alt = false }) {
+function leadsSection({ site, link, id, heading, ids = [], notes = {}, alt = false }) {
   const people = [...site.founders, ...(site.team || [])];
   const leads = ids.map((pid) => people.find((p) => p.id === pid)).filter(Boolean);
   if (!leads.length) return '';
@@ -962,7 +962,7 @@ function leadsSection({ site, link, id, heading, ids = [], alt = false }) {
       <div class="bio-text">
         <p class="person-role">${esc(f.role)}</p>
         <h3>${esc(f.name)}</h3>
-        <p>${esc(f.short)}</p>
+        <p>${esc(notes[f.id] || f.short)}</p>
         ${f.email ? `<p class="bio-email"><a href="mailto:${esc(f.email)}">${esc(f.email)}</a></p>` : ''}
         ${link.has('about') ? `<p><a class="text-link" href="${esc(link.page('about', f.id))}">More about ${esc(f.name.split(' ')[0])}</a></p>` : ''}
       </div>
@@ -1017,6 +1017,16 @@ export function workingGenius({ site, link, copy }) {
       .join('')}</ol>
   </div>
 </section>
+<section class="section" aria-labelledby="wg-roi">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="wg-roi" class="section-title">${esc(c.roiHeading)}</h2>
+      <p>${esc(c.roiIntro)}</p>
+    </div>
+    <ul class="genius-offers genius-roi">${c.roi.map((r) => `<li><h3>${esc(r.name)}</h3><p>${esc(r.body)}</p></li>`).join('')}</ul>
+    <p class="service-note genius-roi-note">${esc(c.roiNote)}</p>
+  </div>
+</section>
 <section class="section section-alt" aria-labelledby="wg-why">
   <div class="wrap">
     <h2 id="wg-why" class="section-title">${esc(c.whyHeading)}</h2>
@@ -1032,7 +1042,7 @@ export function workingGenius({ site, link, copy }) {
     <div class="actions genius-actions">${ctaButton(link, { text: c.button })}</div>
   </div>
 </section>
-${leadsSection({ site, link, id: 'wg-leads', heading: c.leadsHeading, ids: c.leads, alt: true })}
+${leadsSection({ site, link, id: 'wg-leads', heading: c.leadsHeading, ids: c.leads, notes: c.leadNotes, alt: true })}
 <section class="section section-dark" aria-labelledby="wg-faq">
   <div class="wrap faq-wrap">
     <h2 id="wg-faq" class="section-title">Common questions</h2>
