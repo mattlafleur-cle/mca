@@ -910,27 +910,8 @@ function growPage(key) {
       )
       .join('\n    ');
     const others = steps.filter((s) => s.key !== key);
-    const people = [...site.founders, ...(site.team || [])];
-    const leads = (c.leads || []).map((id) => people.find((p) => p.id === id)).filter(Boolean);
-    const leadBlock = leads.length
-      ? `<section class="section" aria-labelledby="${key}-leads">
-  <div class="wrap">
-    <h2 id="${key}-leads" class="section-title">${esc(c.leadsHeading)}</h2>
-    <div class="bios industry-bios">${leads
-      .map((f) => `<article class="bio${f.photo ? ' has-photo' : ''}">
-      ${portrait(f, link)}
-      <div class="bio-text">
-        <p class="person-role">${esc(f.role)}</p>
-        <h3>${esc(f.name)}</h3>
-        <p>${esc(f.short)}</p>
-        ${f.email ? `<p class="bio-email"><a href="mailto:${esc(f.email)}">${esc(f.email)}</a></p>` : ''}
-        ${link.has('about') ? `<p><a class="text-link" href="${esc(link.page('about', f.id))}">More about ${esc(f.name.split(' ')[0])}</a></p>` : ''}
-      </div>
-    </article>`)
-      .join('')}</div>
-  </div>
-</section>`
-      : '';
+    const leadBlock = leadsSection({ site, link, id: `${key}-leads`, heading: c.leadsHeading, ids: c.leads });
+    const leads = c.leads || [];
     return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: switcher, seed: 50 + c.step * 7 })}
 <section class="section section-alt grow-step-${c.step}" aria-label="${esc(c.eyebrow)}">
   <div class="wrap grow-offers">
@@ -966,3 +947,100 @@ ${leadBlock}
 export const growTeam = growPage('growTeam');
 export const growBusiness = growPage('growBusiness');
 export const growFinance = growPage('growFinance');
+
+// "Who leads this work": people by id from founders or team in site.config.mjs.
+function leadsSection({ site, link, id, heading, ids = [], alt = false }) {
+  const people = [...site.founders, ...(site.team || [])];
+  const leads = ids.map((pid) => people.find((p) => p.id === pid)).filter(Boolean);
+  if (!leads.length) return '';
+  return `<section class="section${alt ? ' section-alt' : ''}" aria-labelledby="${id}">
+  <div class="wrap">
+    <h2 id="${id}" class="section-title">${esc(heading)}</h2>
+    <div class="bios industry-bios">${leads
+      .map((f) => `<article class="bio${f.photo ? ' has-photo' : ''}">
+      ${portrait(f, link)}
+      <div class="bio-text">
+        <p class="person-role">${esc(f.role)}</p>
+        <h3>${esc(f.name)}</h3>
+        <p>${esc(f.short)}</p>
+        ${f.email ? `<p class="bio-email"><a href="mailto:${esc(f.email)}">${esc(f.email)}</a></p>` : ''}
+        ${link.has('about') ? `<p><a class="text-link" href="${esc(link.page('about', f.id))}">More about ${esc(f.name.split(' ')[0])}</a></p>` : ''}
+      </div>
+    </article>`)
+      .join('')}</div>
+  </div>
+</section>`;
+}
+
+// A simple eight-tooth gear with a letter, for the six Working Genius types.
+function geniusGear(letter) {
+  const teeth = 8, rOut = 46, rIn = 38, cx = 50, cy = 50;
+  const pts = [];
+  for (let i = 0; i < teeth * 2; i++) {
+    const a0 = (Math.PI * 2 * i) / (teeth * 2) - Math.PI / 2;
+    const r = i % 2 === 0 ? rOut : rIn;
+    const half = Math.PI / (teeth * 2) * 0.62;
+    pts.push([cx + r * Math.cos(a0 - half), cy + r * Math.sin(a0 - half)], [cx + r * Math.cos(a0 + half), cy + r * Math.sin(a0 + half)]);
+  }
+  const d = 'M' + pts.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join('L') + 'Z';
+  return `<svg class="genius-gear" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="${d}"/><circle cx="50" cy="50" r="27"/><text x="50" y="51" text-anchor="middle" dominant-baseline="central">${esc(letter)}</text></svg>`;
+}
+
+// The 6 Types of Working Genius (/working-genius/).
+export function workingGenius({ site, link, copy }) {
+  const c = copy.workingGenius;
+  const hero = pageHero({
+    eyebrow: c.eyebrow,
+    headline: c.headline,
+    lead: c.lead,
+    extra: `<div class="actions">${ctaButton(link, { text: c.button })}<a class="button button-secondary" href="#six-types">${esc(c.typesLink)}</a></div>`,
+    seed: 61,
+  });
+  return `${hero}
+<section class="section" aria-labelledby="wg-what">
+  <div class="wrap svc-block">
+    <h2 id="wg-what" class="section-title">${esc(c.whatHeading)}</h2>
+    ${paras(c.what)}
+  </div>
+</section>
+<section class="section section-dark" id="six-types" aria-labelledby="wg-types">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="wg-types" class="section-title">${esc(c.typesHeading)}</h2>
+      <p>${esc(c.typesIntro)}</p>
+    </div>
+    <ol class="genius-stages">${c.stages
+      .map((st) => `<li class="genius-stage">
+        <h3>${esc(st.name)}</h3>
+        <ul>${st.types.map((t) => `<li class="genius-type">${geniusGear(t.letter)}<div><h4>${esc(t.name)}</h4><p>${esc(t.body)}</p></div></li>`).join('')}</ul>
+      </li>`)
+      .join('')}</ol>
+  </div>
+</section>
+<section class="section section-alt" aria-labelledby="wg-why">
+  <div class="wrap">
+    <h2 id="wg-why" class="section-title">${esc(c.whyHeading)}</h2>
+    <ul class="departments" style="--cols:4">${c.why.map((w) => `<li><h3>${esc(w.name)}</h3><p>${esc(w.body)}</p></li>`).join('')}</ul>
+  </div>
+</section>
+<section class="section" aria-labelledby="wg-offer">
+  <div class="wrap">
+    <h2 id="wg-offer" class="section-title">${esc(c.offerHeading)}</h2>
+    <ul class="genius-offers">${c.offers
+      .map((o) => `<li><h3>${esc(o.name)}</h3><p>${esc(o.body)}</p>${o.link && link.has(o.link.key) ? `<p><a class="text-link" href="${esc(link.page(o.link.key))}">${esc(o.link.text)}</a></p>` : ''}</li>`)
+      .join('')}</ul>
+    <div class="actions genius-actions">${ctaButton(link, { text: c.button })}</div>
+  </div>
+</section>
+${leadsSection({ site, link, id: 'wg-leads', heading: c.leadsHeading, ids: c.leads, alt: true })}
+<section class="section section-dark" aria-labelledby="wg-faq">
+  <div class="wrap faq-wrap">
+    <h2 id="wg-faq" class="section-title">Common questions</h2>
+    <div class="faq">${c.faq.map((f) => `<div class="faq-item"><h3>${esc(f.q)}</h3><p>${esc(f.a)}</p></div>`).join('')}</div>
+  </div>
+</section>
+<section class="section" aria-label="Credits">
+  <div class="wrap"><p class="service-note">${esc(c.credit)}</p></div>
+</section>
+${closing(link, c.closingHeading, c.closingBody)}`;
+}

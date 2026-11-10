@@ -50,6 +50,7 @@ export default function growContent(site) {
             'A working session that turns the map into real who-does-what changes',
           ],
           button: 'Bring Working Genius to your team',
+          link: { key: 'workingGenius', text: 'Learn more about Working Genius' },
         },
         {
           tag: 'Recruiting',
