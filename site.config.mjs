@@ -25,6 +25,11 @@ export default {
   // blocking crawling would hide the noindex and can leave bare URLs in results.
   allowIndexing: true, // Turned on 2026-10-02 at Matt's direction.
 
+  // IndexNow key (added 2026-11-10). Public by design: the build publishes it as /<key>.txt so search engines
+  // can confirm that change notifications come from this site. After each deploy, the workflow sends the pages
+  // that changed to IndexNow (Bing, Yandex, Seznam, Naver). Set to null to stop notifying.
+  indexNowKey: 'aa77ea28c4f7714012eb373dcc3418b1',
+
   // Link preview image in src/assets/. Regenerate with `npm run og-image` after a name change.
   ogImage: 'og-image.png',
 

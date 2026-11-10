@@ -19,6 +19,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.changed.outputs.urls }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -26,6 +28,12 @@ jobs:
           node-version: 22
       - name: Build and check
         run: npm run check
+      # Compare the new build with the live site, before deploying, to find pages worth announcing.
+      - name: Find changed pages for IndexNow
+        id: changed
+        continue-on-error: true
+        # A manual run (Actions > Deploy site > Run workflow) announces every public page.
+        run: echo "urls=$(node scripts/indexnow.mjs --changed ${{ github.event_name == 'workflow_dispatch' && '--all' || '' }})" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
@@ -39,3 +47,20 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # Tell search engines (Bing and other IndexNow members) which pages changed. Never blocks the site.
+  indexnow:
+    needs: [build, deploy]
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Notify IndexNow
+        env:
+          CHANGED: ${{ needs.build.outputs.changed }}
+        run: |
+          sleep 30
+          node scripts/indexnow.mjs --submit "${CHANGED:-[]}"

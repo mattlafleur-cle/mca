@@ -76,6 +76,11 @@ async function main() {
       : '# Pre-launch review: every page carries a noindex meta tag. Crawling is allowed so that tag is honored.\nUser-agent: *\nAllow: /\n';
     await writeFile(path.join(outDir, 'robots.txt'), robots);
     written.push('robots.txt');
+    // IndexNow key file, so search engines can verify change notifications from scripts/indexnow.mjs.
+    if (indexing && site.indexNowKey) {
+      await writeFile(path.join(outDir, `${site.indexNowKey}.txt`), site.indexNowKey);
+      written.push(`${site.indexNowKey}.txt`);
+    }
     // llms.txt: a plain-language summary that AI assistants and answer engines can read quickly.
     if (indexing) {
       const svc = routes(site).filter((r) => r.service);

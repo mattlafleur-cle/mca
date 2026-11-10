@@ -70,6 +70,13 @@ Pages: Home, Services (with the Grow pages under a "Grow" menu: /grow-your-team/
 - **Structured data:** every page carries schema.org JSON-LD describing the business, founders, offices (town only), areas served, and booking action. Service pages add Service and FAQPage data. Street address and phone are left out until confirmed; add them to `site.config.mjs` first.
 - **Areas served:** `location.areasServed` in `site.config.mjs` feeds the footer, structured data, and `llms.txt`. Add towns as the practice expands.
 
+### IndexNow (instant change notices to Bing and others)
+
+- The key is `indexNowKey` in `site.config.mjs`. The build publishes it as `/<key>.txt`. It is public by design.
+- On every deploy, `scripts/indexnow.mjs` compares each page in the sitemap with the live site before deploying, then sends only the changed pages to IndexNow after the deploy. Unlisted and noindex pages are never sent.
+- To announce every public page (for example after a large update), run the workflow by hand: **Actions > Deploy site > Run workflow**.
+- A failed notification never blocks the deploy. Results are in the **indexnow** job log.
+
 ## Search, analytics, and privacy
 
 - **Indexing:** with `allowIndexing` set to `false`, every page would carry `noindex` and no sitemap is built. It is currently `true`.
