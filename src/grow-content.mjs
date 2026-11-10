@@ -64,6 +64,9 @@ export default function growContent(site) {
         },
       ],
       credit: 'The 6 Types of Working Genius and The Ideal Team Player are models created by Patrick Lencioni and The Table Group.',
+      // People shown under "Who leads this work", by id from founders or team in site.config.mjs.
+      leadsHeading: 'Who leads this work',
+      leads: ['greg'],
     },
 
     growBusiness: {

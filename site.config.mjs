@@ -95,6 +95,25 @@ export default {
     ],
   },
 
+  // Team members beyond the founders. Shown on About (after the founders) and wherever a Grow page lists
+  // them in `leads`. Not founders: they are left out of the founder structured data and "Josh and Matt" copy.
+  // LAUNCH GATE: each person approves their own bio and photo. Greg's bio is a short role description
+  // until he supplies his own (added 2026-11-10 at Matt's direction). Add photo the same way as founders.
+  team: [
+    {
+      id: 'greg',
+      email: 'greg@maplecreekadvisors.com',
+      name: 'Greg Snyder',
+      role: 'Chief Culture and Team-Building Engineer',
+      photo: null,
+      short: 'Greg leads culture and team-building work: helping leadership teams put people on the right work, hire for fit, and build teams that last.',
+      bio: [
+        'Greg Snyder leads culture and team-building work at Maple Creek Advisors.',
+        'He helps owners and leadership teams put people on the work that gives them energy, hire for fit, and build a culture that holds up as the business grows.',
+      ],
+    },
+  ],
+
   // Founder details used on Home and About. LAUNCH GATE: each founder approves their own bio.
   // photo: set to { src: 'photos/josh-muller.jpg', width: 1200, height: 1500, alt: '...' }
   // once an approved portrait with publication rights is in src/assets/photos/.

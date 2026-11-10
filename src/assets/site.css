@@ -884,3 +884,4 @@ h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
 .grow-discovery > * { max-width: 46rem; }
 .grow-discovery h2 { font-size: var(--step-2); line-height: 1.15; }
 .grow-discovery > p:not(.brand-tag) { color: var(--ink-muted); }
+.section-title + .bios { margin-top: clamp(1.25rem, 1rem + 1vw, 2rem); }

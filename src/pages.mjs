@@ -244,7 +244,8 @@ ${closing(link, copy.home.closingHeading, copy.home.closingBody)}`;
 
 export function about({ site, link, copy }) {
   const c = copy.about;
-  const bios = site.founders
+  const people = [...site.founders, ...(site.team || [])];
+  const bios = people
     .map(
       (f) => `<article class="bio${f.photo ? ' has-photo' : ''}" id="${esc(f.id)}" aria-labelledby="${esc(f.id)}-name">
       ${portrait(f, link)}
@@ -264,7 +265,7 @@ export function about({ site, link, copy }) {
     : '';
 
   return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, seed: 2 })}
-<section class="section" aria-label="Josh Muller and Matt LaFleur">
+<section class="section" aria-label="${esc(people.map((f) => f.name).join(', '))}">
   <div class="wrap bios">${bios}</div>
 </section>
 
@@ -886,7 +887,7 @@ export function brands({ site, link, copy }) {
 
 // The three Grow pages share one layout: a switcher between them, offer cards, and the discovery panel.
 function growPage(key) {
-  return ({ link, copy }) => {
+  return ({ site, link, copy }) => {
     const c = copy[key];
     const d = copy.discovery;
     const steps = copy.growOrder.filter((s) => link.has(s.key));
@@ -909,6 +910,27 @@ function growPage(key) {
       )
       .join('\n    ');
     const others = steps.filter((s) => s.key !== key);
+    const people = [...site.founders, ...(site.team || [])];
+    const leads = (c.leads || []).map((id) => people.find((p) => p.id === id)).filter(Boolean);
+    const leadBlock = leads.length
+      ? `<section class="section" aria-labelledby="${key}-leads">
+  <div class="wrap">
+    <h2 id="${key}-leads" class="section-title">${esc(c.leadsHeading)}</h2>
+    <div class="bios industry-bios">${leads
+      .map((f) => `<article class="bio${f.photo ? ' has-photo' : ''}">
+      ${portrait(f, link)}
+      <div class="bio-text">
+        <p class="person-role">${esc(f.role)}</p>
+        <h3>${esc(f.name)}</h3>
+        <p>${esc(f.short)}</p>
+        ${f.email ? `<p class="bio-email"><a href="mailto:${esc(f.email)}">${esc(f.email)}</a></p>` : ''}
+        ${link.has('about') ? `<p><a class="text-link" href="${esc(link.page('about', f.id))}">More about ${esc(f.name.split(' ')[0])}</a></p>` : ''}
+      </div>
+    </article>`)
+      .join('')}</div>
+  </div>
+</section>`
+      : '';
     return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: switcher, seed: 50 + c.step * 7 })}
 <section class="section section-alt grow-step-${c.step}" aria-label="${esc(c.eyebrow)}">
   <div class="wrap grow-offers">
@@ -916,7 +938,8 @@ function growPage(key) {
     ${c.credit ? `<p class="service-note grow-credit">${esc(c.credit)}</p>` : ''}
   </div>
 </section>
-<section class="section" aria-labelledby="${key}-discovery">
+${leadBlock}
+<section class="section${leads.length ? ' section-alt' : ''}" aria-labelledby="${key}-discovery">
   <div class="wrap">
     <div class="grow-discovery">
       <p class="brand-tag">${esc(d.tag)}</p>
