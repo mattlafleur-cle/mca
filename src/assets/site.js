@@ -28,6 +28,20 @@
     if (wide.addEventListener) wide.addEventListener('change', onChange);
   }
 
+  // Grow menu: close it on a click outside or on Escape. It works without this as a plain <details>.
+  document.querySelectorAll('.nav-group details').forEach(function (group) {
+    document.addEventListener('click', function (event) {
+      if (group.open && !group.contains(event.target)) group.open = false;
+    });
+    group.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && group.open) {
+        group.open = false;
+        group.querySelector('summary').focus();
+        event.stopPropagation();
+      }
+    });
+  });
+
   document.querySelectorAll('.copy-emails').forEach(function (button) {
     var status = button.parentElement.querySelector('.copy-status');
     var original = button.textContent;

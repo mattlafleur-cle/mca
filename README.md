@@ -61,7 +61,7 @@ LAUNCH_CHECKLIST.md    founder signoffs required before anything goes public
 DECISIONS.md           choices made in this build and why
 ```
 
-Pages: Home, Services, How We Work, About, BUILD, Contact, and a 404 page.
+Pages: Home, Services (with the Grow pages under a "Grow" menu: /grow-your-team/, /grow-your-business/, /grow-financial-ops/), How We Work, About, BUILD, Contact, and a 404 page. Grow page copy lives in `src/grow-content.mjs`.
 
 ## Search (SEO)
 

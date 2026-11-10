@@ -883,3 +883,63 @@ export function brands({ site, link, copy }) {
   </div>
 </section>`;
 }
+
+// The three Grow pages share one layout: a switcher between them, offer cards, and the discovery panel.
+function growPage(key) {
+  return ({ link, copy }) => {
+    const c = copy[key];
+    const d = copy.discovery;
+    const steps = copy.growOrder.filter((s) => link.has(s.key));
+    const switcher = `<nav class="grow-switch" aria-label="Ways to grow"><ol>${steps
+      .map((s) => {
+        const here = s.key === key;
+        return `<li><a href="${esc(link.page(s.key))}"${here ? ' aria-current="page"' : ''}><span class="grow-num" aria-hidden="true">${copy[s.key].step}</span>${esc(s.short)}</a></li>`;
+      })
+      .join('')}</ol></nav>`;
+    const offers = c.offers
+      .map(
+        (o, i) => `<article class="grow-offer" aria-labelledby="${key}-o${i}">
+      <p class="brand-tag">${esc(o.tag)}</p>
+      <h2 id="${key}-o${i}">${esc(o.heading)}</h2>
+      <p>${esc(o.body)}</p>
+      <h3 class="grow-get">What you get</h3>
+      <ul class="check-list">${o.list.map((it) => `<li>${esc(it)}</li>`).join('')}</ul>
+      <div class="actions">${ctaButton(link, { variant: 'secondary', text: o.button })}${o.link && link.has(o.link.key) ? `<a class="text-link" href="${esc(link.page(o.link.key))}">${esc(o.link.text)}</a>` : ''}</div>
+    </article>`,
+      )
+      .join('\n    ');
+    const others = steps.filter((s) => s.key !== key);
+    return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: switcher, seed: 50 + c.step * 7 })}
+<section class="section section-alt grow-step-${c.step}" aria-label="${esc(c.eyebrow)}">
+  <div class="wrap grow-offers">
+    ${offers}
+    ${c.credit ? `<p class="service-note grow-credit">${esc(c.credit)}</p>` : ''}
+  </div>
+</section>
+<section class="section" aria-labelledby="${key}-discovery">
+  <div class="wrap">
+    <div class="grow-discovery">
+      <p class="brand-tag">${esc(d.tag)}</p>
+      <h2 id="${key}-discovery">${esc(d.heading)}</h2>
+      <p>${esc(d.intro)}</p>
+      <ul class="check-list">${d.list.map((it) => `<li>${esc(it)}</li>`).join('')}</ul>
+      <div class="actions">${ctaButton(link, d.button ? { text: d.button } : {})}</div>
+      <p class="service-note">${esc(d.note)}</p>
+    </div>
+  </div>
+</section>
+<section class="section section-alt" aria-labelledby="${key}-more">
+  <div class="wrap svc-related">
+    <h2 id="${key}-more" class="section-title">${esc(copy.otherHeading)}</h2>
+    <ul>
+      ${others.map((s) => `<li><a class="text-link" href="${esc(link.page(s.key))}">${esc(copy[s.key].eyebrow)}</a></li>`).join('')}
+      <li><a class="text-link" href="${esc(link.page('services'))}">All services</a></li>
+    </ul>
+  </div>
+</section>`;
+  };
+}
+
+export const growTeam = growPage('growTeam');
+export const growBusiness = growPage('growBusiness');
+export const growFinance = growPage('growFinance');

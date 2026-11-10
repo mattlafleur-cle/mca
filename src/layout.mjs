@@ -15,6 +15,10 @@ export function routes(site) {
     { key: 'fractionalCfo', label: 'Fractional CFO', path: '/fractional-cfo/', file: 'fractional-cfo.html', out: 'fractional-cfo/index.html', service: true },
     { key: 'advisory', label: 'Business advisory', path: '/business-advisory/', file: 'business-advisory.html', out: 'business-advisory/index.html', service: true },
     { key: 'sell', label: 'Selling your business', path: '/sell-your-business/', file: 'sell-your-business.html', out: 'sell-your-business/index.html', service: true },
+    // Grow pages: in the top menu under "Grow", in the footer services list, and indexed.
+    { key: 'growTeam', label: 'Grow your team', path: '/grow-your-team/', file: 'grow-your-team.html', out: 'grow-your-team/index.html', service: true, grow: true },
+    { key: 'growBusiness', label: 'Grow your business', path: '/grow-your-business/', file: 'grow-your-business.html', out: 'grow-your-business/index.html', service: true, grow: true },
+    { key: 'growFinance', label: 'Grow your financial ops', path: '/grow-financial-ops/', file: 'grow-financial-ops.html', out: 'grow-financial-ops/index.html', service: true, grow: true },
     { key: 'howWeWork', label: 'How We Work', path: '/how-we-work/', file: 'how-we-work.html', out: 'how-we-work/index.html' },
     { key: 'about', label: 'About', path: '/about/', file: 'about.html', out: 'about/index.html' },
     { key: 'build', label: 'BUILD', path: '/build/', file: 'build.html', out: 'build/index.html' },
@@ -133,8 +137,16 @@ export function ctaButton(link, { variant = 'primary', text } = {}) {
 
 function header(site, link, current) {
   const items = routes(site).filter((r) => !r.hidden && !r.service && !r.standalone && r.key !== 'home' && r.key !== 'contact');
+  const grow = routes(site).filter((r) => r.grow);
+  const inGrow = grow.some((r) => r.key === current);
+  // "Grow" is a disclosure menu: <details> keeps it usable without JavaScript and by keyboard.
+  const growItem = grow.length
+    ? `<li class="nav-group"><details${inGrow ? ' class="is-current"' : ''}><summary>Grow</summary><ul>${grow
+        .map((r) => `<li><a href="${esc(link.page(r.key))}"${r.key === current ? ' aria-current="page"' : ''}>${esc(r.label)}</a></li>`)
+        .join('')}</ul></details></li>`
+    : '';
   const navItems = items
-    .map((r) => `<li><a href="${esc(link.page(r.key))}"${r.key === current ? ' aria-current="page"' : ''}>${esc(r.label)}</a></li>`)
+    .map((r) => `<li><a href="${esc(link.page(r.key))}"${r.key === current ? ' aria-current="page"' : ''}>${esc(r.label)}</a></li>${r.key === 'services' ? growItem : ''}`)
     .join('');
   return `<header class="site-header">
   <div class="wrap header-inner">

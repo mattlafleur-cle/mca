@@ -10,12 +10,14 @@ import sellContent from './sell-content.mjs';
 import clientsContent from './clients-content.mjs';
 import announcementContent from './announcement-content.mjs';
 import brandsContent from './brands-content.mjs';
+import growContent from './grow-content.mjs';
 
 export default function content(site) {
   const name = site.siteName;
 
   return {
     ...servicePages(site),
+    ...growContent(site),
     church: churchContent(site),
     carts: cartsContent(site),
     sell: sellContent(site),

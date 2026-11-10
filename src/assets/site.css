@@ -841,3 +841,46 @@ h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
   .brand-grid { grid-template-columns: minmax(0, 1fr); }
   .brand-parent { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Grow menu (header): a <details> disclosure. A dropdown on wide screens, an inline list in the mobile menu. */
+.nav-group { position: relative; }
+.site-nav ul { align-items: center; }
+.nav-group summary { list-style: none; cursor: pointer; font-family: var(--font-ui); font-weight: 500; font-size: 1rem; line-height: 1.2; color: var(--ink); padding-block: 0.5rem; border-bottom: 2px solid transparent; display: inline-flex; align-items: center; gap: 0.4rem; }
+.nav-group summary::-webkit-details-marker { display: none; }
+.nav-group summary::after { content: ''; flex: none; width: 0.4rem; height: 0.4rem; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-0.15rem) rotate(45deg); }
+.nav-group details[open] summary::after { transform: translateY(0.15rem) rotate(225deg); }
+.nav-group summary:hover { border-bottom-color: var(--maple); }
+.nav-group details.is-current summary { border-bottom-color: var(--evergreen); }
+.site-nav .nav-group ul { display: grid; gap: 0; }
+@media (min-width: 56.0625rem) {
+  .site-nav .nav-group ul { position: absolute; top: calc(100% + 0.6rem); left: -1rem; min-width: 15rem; padding: 0.5rem 0; background: var(--paper); border: 1px solid var(--rule); border-top: 3px solid var(--maple); box-shadow: 0 10px 24px rgb(35 31 32 / 0.12); z-index: 20; }
+  .site-nav .nav-group ul a { display: block; padding: 0.6rem 1rem; border-bottom: 0; }
+  .site-nav .nav-group ul a:hover, .site-nav .nav-group ul a[aria-current='page'] { background: var(--paper-deep); }
+}
+@media (max-width: 56rem) {
+  .nav-group summary { display: flex; justify-content: space-between; width: 100%; padding-block: 0.8rem; border-bottom: 1px solid var(--rule); font-size: 1.1rem; }
+  .nav-group details.is-current summary { border-bottom-color: var(--rule); }
+  .site-nav .nav-group ul a { padding-left: 1rem; }
+}
+
+/* Grow pages: step switcher, offer cards, and the discovery panel. */
+.grow-switch ol { list-style: none; margin: 1.5rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.grow-switch a { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.45rem 0.9rem 0.45rem 0.45rem; border: 1px solid var(--rule); border-radius: 999px; background: var(--paper); color: var(--ink); font-weight: 600; text-decoration: none; }
+.grow-switch a:hover { border-color: var(--ink); }
+.grow-switch a[aria-current='page'] { background: var(--evergreen); border-color: var(--evergreen); color: var(--on-dark); }
+.grow-num { display: inline-grid; place-items: center; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: var(--maple); color: var(--evergreen); font-size: 0.9rem; font-weight: 800; }
+.grow-offers { display: grid; gap: clamp(1rem, 0.75rem + 1vw, 1.5rem); }
+.grow-offer { display: grid; gap: 0.75rem; justify-items: start; max-width: 52rem; padding: clamp(1.4rem, 1rem + 1.5vw, 2.25rem); background: var(--paper); border: 1px solid var(--rule); border-left: 4px solid var(--grow-accent, var(--maple)); }
+.grow-offer > * { max-width: 46rem; }
+.grow-offer h2 { font-size: var(--step-2); line-height: 1.15; }
+.grow-offer > p:not(.brand-tag) { color: var(--ink-muted); }
+.grow-offer .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; margin-top: 0.5rem; }
+.grow-get { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); margin-top: 0.25rem; }
+.grow-step-1 { --grow-accent: var(--maple); }
+.grow-step-2 { --grow-accent: var(--brand-orange); }
+.grow-step-3 { --grow-accent: var(--brand-red); }
+.grow-credit { max-width: 52rem; }
+.grow-discovery { display: grid; gap: 0.75rem; justify-items: start; max-width: 52rem; padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); background: var(--paper-card); border: 1px solid var(--rule); border-top: 4px solid var(--brand-orange); }
+.grow-discovery > * { max-width: 46rem; }
+.grow-discovery h2 { font-size: var(--step-2); line-height: 1.15; }
+.grow-discovery > p:not(.brand-tag) { color: var(--ink-muted); }
