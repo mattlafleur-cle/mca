@@ -54,6 +54,8 @@ export default function content(site) {
         { text: 'You have financial reports, but not a clear view of what to do next.', page: 'fractionalCfo', start: 'Fractional CFO support' },
         { text: 'You are deciding what to change, what to protect, and who should own the next step.', anchor: 'financial-operations', start: 'Operating support' },
         { text: 'You want an experienced thinking partner who understands both the people and the numbers.', page: 'advisory', start: 'Business advisory' },
+        { text: 'Good people are in the wrong seats, or work keeps stalling between them.', page: 'workingGenius', start: 'The 6 Types of Working Genius' },
+        { text: 'The business is growing, and so is the chaos.', page: 'growBusiness', start: 'EOS and an operating rhythm' },
       ],
       chooserStartLabel: 'Start with',
       chooserUnsure: 'Not sure which one fits? That is what the first conversation is for.',
@@ -152,7 +154,9 @@ export default function content(site) {
             'Strategic planning retreats for owners and leadership teams',
             'Decision support on hard calls',
             'Accountability for the commitments you make',
+            'Working Genius team assessments and workshops',
           ],
+          moreLinks: [{ page: 'workingGenius', text: 'The 6 Types of Working Genius for your team' }],
         },
         {
           id: 'financial-clarity',

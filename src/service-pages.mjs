@@ -170,6 +170,13 @@ export default function servicePages(site) {
           ],
           link: { key: 'fractionalCfo', text: 'Learn about fractional CFO support' },
         },
+        {
+          heading: 'When the question is team fit',
+          paras: [
+            'Sometimes the hard part is not the decision but who carries it. We use The 6 Types of Working Genius to show where each person does their best work, and where work stalls between people. Greg Snyder, a Certified Working Genius Facilitator, leads that work.',
+          ],
+          link: { key: 'workingGenius', text: 'The 6 Types of Working Genius for your team' },
+        },
       ],
       faq: [
         {

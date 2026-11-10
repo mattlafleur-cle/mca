@@ -13,6 +13,10 @@ export default function workingGeniusContent(site) {
       description: `Working Genius assessments, team maps, and workshops for owner-led businesses in ${region}: more productive, more profitable teams, in any industry.`,
       serviceType: 'Working Genius assessments and team workshops',
       eyebrow: 'The 6 Types of Working Genius',
+      answer: 'The 6 Types of Working Genius is a productivity model from Patrick Lencioni and The Table Group. It names the six kinds of work every project needs (Wonder, Invention, Discernment, Galvanizing, Enablement, and Tenacity) and shows which two give each person energy. Maple Creek Advisors helps owner-led teams in any industry use it to put people on the right work, so the team gets more productive and more profitable.',
+      credential: 'Maple Creek Advisors is Working Genius certified, and Greg Snyder is a Certified Working Genius Facilitator.',
+      dateModified: '2026-11-10',
+      reviewedBy: ['matt'],
       headline: 'Put your people on the work that gives them energy.',
       lead: 'Turnover and disengagement are expensive. Working Genius shows each person the kind of work they are wired for, so your team does more of it, with less friction and burnout. In any industry, that adds up to a more productive and more profitable team.',
       button: 'Bring Working Genius to your team',
@@ -81,7 +85,7 @@ export default function workingGeniusContent(site) {
       leads: ['greg', 'matt'],
       // Page-specific lines for the leads, in place of their usual short bio.
       leadNotes: {
-        matt: 'Matt, a CPA and fractional CFO, connects Working Genius to the numbers: where time and payroll go, and how a better-fit team shows up in productivity and profit.',
+        matt: 'Matt, a CPA and fractional CFO who has completed the Working Genius certification course, connects Working Genius to the numbers: where time and payroll go, and how a better-fit team shows up in productivity and profit.',
       },
 
       faq: [

@@ -197,7 +197,22 @@ export function structuredData(site, route, meta) {
     '@id': `${base}/about/#${f.id}`,
     name: f.name,
     jobTitle: f.role,
+    url: `${base}/about/#${f.id}`,
+    ...(f.photo ? { image: `${base}/assets/${f.photo.src}` } : {}),
     worksFor: { '@id': orgId },
+    ...(f.knowsAbout?.length ? { knowsAbout: f.knowsAbout } : {}),
+    ...(f.credentials?.length
+      ? {
+          hasCredential: f.credentials.map((c) => ({
+            '@type': 'EducationalOccupationalCredential',
+            name: c.name,
+            ...(c.category ? { credentialCategory: c.category } : {}),
+            recognizedBy: { '@type': 'Organization', name: c.recognizedBy.name, url: c.recognizedBy.url },
+          })),
+        }
+      : {}),
+    // Other organizations a person belongs to, such as one they co-founded. Not sameAs: they are separate entities.
+    ...(f.affiliations?.length ? { affiliation: f.affiliations.map((a) => ({ '@type': 'Organization', name: a.name, url: a.url })) } : {}),
     ...(site.profiles?.[f.id] ? { sameAs: [site.profiles[f.id]] } : {}),
   });
   const areaList = (towns) => [
@@ -220,6 +235,9 @@ export function structuredData(site, route, meta) {
       address: { '@type': 'PostalAddress', addressLocality: town, addressRegion: 'OH', addressCountry: 'US' },
     })),
     founder: site.founders.map(person),
+    ...(site.team?.length ? { employee: site.team.map(person) } : {}),
+    // BUILD is a Maple Creek Advisors program with its own site; linked as a brand, not as the same entity.
+    ...(site.build?.url ? { brand: [{ '@type': 'Brand', name: 'BUILD', url: site.build.url }] } : {}),
     knowsAbout: ['Business coaching', 'Fractional CFO services', 'Business advisory', 'Strategic planning', 'Leadership team facilitation', 'Financial reporting', 'Cash flow forecasting'],
     ...(site.bookingUrl ? { potentialAction: { '@type': 'ScheduleAction', target: site.bookingUrl, name: 'Schedule a conversation' } } : {}),
   };
@@ -234,6 +252,22 @@ export function structuredData(site, route, meta) {
       provider: { '@id': orgId },
       areaServed: meta.areaServed ? areaList(meta.areaServed) : areas,
       url: `${base}${route.path}`,
+    });
+  }
+  // Dated, attributed pages: a WebPage node with last-modified date and reviewers (people by id).
+  if (meta.dateModified) {
+    const people = [...site.founders, ...(site.team || [])];
+    const reviewers = (meta.reviewedBy || []).filter((id) => people.some((p) => p.id === id));
+    graph.push({
+      '@type': 'WebPage',
+      '@id': `${base}${route.path}#webpage`,
+      url: `${base}${route.path}`,
+      name: meta.title,
+      description: meta.description,
+      dateModified: meta.dateModified,
+      isPartOf: { '@id': `${base}/#website` },
+      about: { '@id': `${base}${route.path}#service` },
+      ...(reviewers.length ? { reviewedBy: reviewers.map((id) => ({ '@id': `${base}/about/#${id}` })) } : {}),
     });
   }
   if (meta.datePublished) {

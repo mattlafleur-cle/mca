@@ -105,12 +105,15 @@ export default {
       email: 'greg@maplecreekadvisors.com',
       name: 'Greg Snyder',
       role: 'Chief Culture and Team-Building Engineer',
+      knowsAbout: ['The 6 Types of Working Genius', 'Team building', 'Organizational culture', 'Leadership development', 'Sales and marketing', 'Entrepreneurship'],
+      credentials: [{ name: 'Certified Working Genius Facilitator', recognizedBy: { name: 'The Table Group', url: 'https://www.tablegroup.com/' } }],
+      affiliations: [{ name: 'No Alumni', url: 'https://www.noalumni.com/', note: 'co-founder' }],
       // Cropped 2026-11-10 to match the founders' framing; the photo's right edge was extended with a soft blur to center him.
       photo: { src: 'photos/greg-snyder.jpg', width: 480, height: 480, alt: 'Greg Snyder, smiling, outdoors in front of heavy equipment' },
-      short: 'Greg is a culture builder and engaging speaker with more than 30 years in entrepreneurship, sales, marketing, and leadership. Deeply trained in The 6 Types of Working Genius, he helps leaders put their people\u2019s strengths to work.',
+      short: 'Greg is a Certified Working Genius Facilitator, culture builder, and engaging speaker with more than 30 years in entrepreneurship, sales, marketing, and leadership. He helps leaders put their people\u2019s strengths to work.',
       bio: [
         'Greg Snyder is a people magnet, culture builder, and engaging speaker who helps leaders bring out the best in their teams. With more than 30 years of experience spanning entrepreneurship, sales, marketing, and leadership, he brings practical insight and contagious energy to every room.',
-        'Deeply trained in The 6 Types of Working Genius, Greg makes complex team dynamics understandable and actionable, helping organizations improve communication, reduce friction, and put people\u2019s strengths to work. He is also a co-founder of No Alumni.',
+        'A Certified Working Genius Facilitator, Greg makes complex team dynamics understandable and actionable, helping organizations improve communication, reduce friction, and put people\u2019s strengths to work. He is also a co-founder of No Alumni.',
       ],
     },
   ],
@@ -124,6 +127,9 @@ export default {
       email: 'josh@maplecreekadvisors.com',
       name: 'Josh Muller',
       role: 'Coaching, leadership, and vision',
+      // Structured data only (search and AI answers): expertise and credentials.
+      knowsAbout: ['Business coaching', 'Entrepreneurial Operating System (EOS)', 'Leadership team facilitation', 'Strategic planning', 'BUILD peer groups for business owners'],
+      credentials: [{ name: 'Certified EOS Implementer', recognizedBy: { name: 'EOS Worldwide', url: 'https://www.eosworldwide.com/' } }],
       photo: { src: 'photos/josh-muller.jpg', width: 480, height: 480, alt: 'Josh Muller, smiling, outdoors in front of green trees' },
       short:
         'Josh built and sold a construction company before he started coaching owners and facilitating leadership teams. He knows the weight of owner decisions because he has carried it.',
@@ -137,6 +143,11 @@ export default {
       email: 'matt@maplecreekadvisors.com',
       name: 'Matt LaFleur',
       role: 'Financial clarity, strategy, and operations',
+      knowsAbout: ['Fractional CFO services', 'Financial reporting', 'Cash flow forecasting', 'Nonprofit and church finance', 'The 6 Types of Working Genius', 'Practical AI for small organizations'],
+      credentials: [
+        { name: 'Certified Public Accountant (Ohio)', category: 'license', recognizedBy: { name: 'Accountancy Board of Ohio', url: 'https://acc.ohio.gov/' } },
+        { name: 'Certified Public Accountant (California)', category: 'license', recognizedBy: { name: 'California Board of Accountancy', url: 'https://www.dca.ca.gov/cba/' } },
+      ],
       photo: { src: 'photos/matt-lafleur.jpg', width: 480, height: 480, alt: 'Matt LaFleur, smiling, outdoors with trees and water behind him' },
       short:
         'Matt is a CPA, an entrepreneur, and a financial and operating adviser with more than 14 years of experience. He helps owners understand their numbers and use them to make decisions.',

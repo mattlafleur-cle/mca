@@ -181,6 +181,7 @@ export function services({ site, link, copy }) {
         <a class="service-email" href="${esc(mailtoHref(site, s.emailSubject))}">${esc(c.emailPrompt)}</a>
       </div>
       ${s.page ? `<a class="text-link${s.id === 'integrated' ? ' text-link-light' : ''}" href="${esc(link.page(s.page))}">${esc(s.pageLinkText)}</a>` : ''}
+      ${(s.moreLinks || []).filter((m) => link.has(m.page)).map((m) => `<a class="text-link" href="${esc(link.page(m.page))}">${esc(m.text)}</a>`).join('')}
     </div>
     <div class="service-list">
       <h3>${esc(s.listHeading)}</h3>
@@ -913,6 +914,7 @@ function growPage(key) {
     const leadBlock = leadsSection({ site, link, id: `${key}-leads`, heading: c.leadsHeading, ids: c.leads });
     const leads = c.leads || [];
     return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: switcher, seed: 50 + c.step * 7 })}
+${answerBlock(site, c)}
 <section class="section section-alt grow-step-${c.step}" aria-label="${esc(c.eyebrow)}">
   <div class="wrap grow-offers">
     ${offers}
@@ -997,6 +999,7 @@ export function workingGenius({ site, link, copy }) {
     seed: 61,
   });
   return `${hero}
+${answerBlock(site, c)}
 <section class="section" aria-labelledby="wg-what">
   <div class="wrap svc-block">
     <h2 id="wg-what" class="section-title">${esc(c.whatHeading)}</h2>
@@ -1053,4 +1056,24 @@ ${leadsSection({ site, link, id: 'wg-leads', heading: c.leadsHeading, ids: c.lea
   <div class="wrap"><p class="service-note">${esc(c.credit)}</p></div>
 </section>
 ${closing(link, c.closingHeading, c.closingBody)}`;
+}
+
+// Answer-first block under a page hero: a one-paragraph definition, an optional credential line,
+// and the last-updated date with reviewers. Search snippets and AI answers quote this paragraph.
+function answerBlock(site, c) {
+  if (!c.answer) return '';
+  const people = [...site.founders, ...(site.team || [])];
+  const reviewers = (c.reviewedBy || []).map((id) => people.find((p) => p.id === id)).filter(Boolean);
+  const date = c.dateModified ? new Date(`${c.dateModified}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }) : '';
+  const meta = [
+    date ? `Last updated <time datetime="${esc(c.dateModified)}">${esc(date)}</time>` : '',
+    reviewers.length ? `Reviewed by ${reviewers.map((r) => esc(r.name)).join(' and ')}` : '',
+  ].filter(Boolean).join(' &middot; ');
+  return `<section class="answer-block" aria-label="Summary">
+  <div class="wrap">
+    <p class="answer-first">${esc(c.answer)}</p>
+    ${c.credential ? `<p class="answer-credential">${esc(c.credential)}</p>` : ''}
+    ${meta ? `<p class="page-meta">${meta}</p>` : ''}
+  </div>
+</section>`;
 }

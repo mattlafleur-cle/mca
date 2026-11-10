@@ -37,6 +37,10 @@ export default function growContent(site) {
       description: `The 6 Types of Working Genius and Ideal Team Player hiring for owner-led businesses in ${region}: the right people, on the right work.`,
       serviceType: 'Team development and recruiting',
       eyebrow: 'Grow your team',
+      // Answer-first definition near the top of the page (what AI answers and search snippets quote).
+      answer: 'Growing your team means putting the right people on the right work. Maple Creek Advisors uses The 6 Types of Working Genius to show where each person does their best work, and the Ideal Team Player model to hire people who are humble, hungry, and people smart.',
+      dateModified: '2026-11-10',
+      reviewedBy: ['matt'],
       headline: 'The right people, on the right work.',
       lead: 'Most team problems are fit problems: good people stuck in work that drains them, or hires who were never the right fit. We help you see where energy and fit are missing, and fix both.',
       offers: [
@@ -76,6 +80,9 @@ export default function growContent(site) {
       description: `EOS, the Time-Rich Company framework, and practical systems and AI for owner-led businesses in ${region}: growth without more chaos.`,
       serviceType: 'Business operating system, productivity, and systems consulting',
       eyebrow: 'Grow your business',
+      answer: 'Growing your business without more chaos takes a clear operating system, time back for the people running it, and systems that work together. Maple Creek Advisors teaches leadership teams EOS through a Certified EOS Implementer, runs the Time-Rich Company framework, and sets up practical systems and AI.',
+      dateModified: '2026-11-10',
+      reviewedBy: ['matt'],
       headline: 'Growth that does not come with more chaos.',
       lead: 'Clear goals, a simple plan, and steady accountability, so the business can grow without running you into the ground.',
       offers: [
@@ -122,6 +129,9 @@ export default function growContent(site) {
       description: `Clean books, reliable cash planning, and monthly numbers you can act on, led by a CPA and fractional CFO, for owner-led businesses in ${region}.`,
       serviceType: 'Financial operations and fractional CFO services',
       eyebrow: 'Grow your financial ops',
+      answer: 'Financial operations are the books, cash planning, and monthly reporting that keep a growing business on solid ground. Maple Creek Advisors closes and reconciles the books monthly, plans cash around uneven sales, and reviews the numbers with you each month, led by a CPA and fractional CFO.',
+      dateModified: '2026-11-10',
+      reviewedBy: ['matt'],
       headline: 'Numbers you trust, and know what to do with.',
       lead: 'Growth puts weight on your books, your cash, and your reporting. We make sure the numbers keep up, and that they tell you what to do next.',
       offers: [
