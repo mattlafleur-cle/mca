@@ -926,3 +926,9 @@ h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
 @media (max-width: 38rem) { .genius-offers.offers-two { grid-template-columns: minmax(0, 1fr); } }
 .genius-stages + .actions { margin-top: clamp(1.5rem, 1rem + 1.5vw, 2.5rem); }
 .genius-actions + .situations-note { margin-top: 1rem; }
+.jtec-actions { margin-top: clamp(1.25rem, 1rem + 1vw, 2rem); }
+.jtec-offer { margin-top: clamp(2rem, 1.5rem + 2vw, 3rem); padding: clamp(1.25rem, 1rem + 1.5vw, 2rem); border: 1px solid var(--maple); border-left-width: 4px; background: var(--evergreen-deep); }
+.jtec-offer h3 { color: var(--on-dark); font-size: calc(1.5rem * var(--ds)); margin: 0.25rem 0 0.5rem; }
+.jtec-offer p { color: var(--on-dark-muted); max-width: 46rem; }
+.jtec-offer .actions { align-items: center; }
+.jtec-more { color: var(--on-dark); }

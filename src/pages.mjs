@@ -1078,25 +1078,29 @@ function answerBlock(site, c) {
 </section>`;
 }
 
-// Unlisted event page for Josh's J-TEC session (/jtec/): session recap, The 6 Types of Working Genius, next steps.
+// Unlisted event page for Josh's J-TEC session (/jtec/): session recap, The 6 Types of Working Genius,
+// an attendee assessment offer, next steps, and the team. Calls to action point to Josh first.
 export function jtec({ site, link, copy }) {
   const c = copy.jtec;
   const wg = copy.workingGenius;
   const josh = site.founders.find((f) => f.id === 'josh');
-  const emailJosh = josh?.email
-    ? `<a class="button button-secondary" href="mailto:${esc(josh.email)}?subject=${encodeURIComponent('Following up from J-TEC')}">${esc(c.emailLabel)}</a>`
-    : '';
+  const mail = (subject) => `mailto:${josh.email}?subject=${encodeURIComponent(subject)}`;
+  const emailBtn = (label, subject, variant = 'secondary') =>
+    `<a class="button button-${variant}" href="${esc(mail(subject))}">${esc(label)}</a>`;
+  const talk = ctaButton(link, { text: c.talkLabel });
+  const banner = `<aside class="news-banner" aria-label="${esc(c.offerEyebrow)}"><div class="wrap"><p>${esc(c.banner)} <a href="${esc(mail(c.discountSubject))}">${esc(c.bannerLink)}</a></p></div></aside>`;
   const hero = pageHero({
     eyebrow: c.eyebrow,
     headline: c.headline,
     lead: c.lead,
-    extra: `<div class="actions">${ctaButton(link)}${emailJosh}</div>`,
+    extra: `<div class="actions">${ctaButton(link)}${emailBtn(c.emailLabel, c.emailSubject)}</div>`,
     seed: c.seed,
   });
   const buildLink = site.build?.url
     ? `<p class="situations-note">${esc(c.buildNote)} <a class="text-link" href="${esc(site.build.url)}" rel="noopener">${esc(c.buildLink)}</a></p>`
     : '';
-  return `${hero}
+  return `${banner}
+${hero}
 <section class="section" aria-labelledby="jtec-recap">
   <div class="wrap">
     <div class="section-head">
@@ -1104,12 +1108,15 @@ export function jtec({ site, link, copy }) {
       <p>${esc(c.recapIntro)}</p>
     </div>
     <ul class="departments" style="--cols:4">${c.recap.map((r) => `<li><h3>${esc(r.name)}</h3><p>${esc(r.body)}</p></li>`).join('')}</ul>
+    <div class="actions jtec-actions">${talk}</div>
   </div>
 </section>
 <section class="section section-alt" aria-labelledby="jtec-step">
   <div class="wrap svc-block">
     <h2 id="jtec-step" class="section-title">${esc(c.stepHeading)}</h2>
     <ol class="question-list">${c.step.map((t) => `<li>${esc(t)}</li>`).join('')}</ol>
+    <p class="situations-note">${esc(c.stepHelp)}</p>
+    <div class="actions">${emailBtn(c.emailLabel, c.emailSubject)}</div>
   </div>
 </section>
 <section class="section section-dark" id="six-types" aria-labelledby="jtec-types">
@@ -1125,13 +1132,19 @@ export function jtec({ site, link, copy }) {
         <ul>${st.types.map((t) => `<li class="genius-type">${geniusGear(t.letter)}<div><h4>${esc(t.name)}</h4><p>${esc(t.body)}</p></div></li>`).join('')}</ul>
       </li>`)
       .join('')}</ol>
-    ${link.has('workingGenius') ? `<div class="actions"><a class="button button-light" href="${esc(link.page('workingGenius'))}">${esc(c.typesLink)}</a></div>` : ''}
+    <div class="jtec-offer" id="assessment-offer">
+      <p class="eyebrow eyebrow-light">${esc(c.offerEyebrow)}</p>
+      <h3>${esc(c.offerHeading)}</h3>
+      <p>${esc(c.offerBody)}</p>
+      <div class="actions">${emailBtn(c.offerButton, c.discountSubject, 'light')}${link.has('workingGenius') ? `<a class="text-link jtec-more" href="${esc(link.page('workingGenius'))}">${esc(c.typesLink)}</a>` : ''}</div>
+    </div>
   </div>
 </section>
 <section class="section" aria-labelledby="jtec-why">
   <div class="wrap">
     <h2 id="jtec-why" class="section-title">${esc(c.whyHeading)}</h2>
     <ul class="departments" style="--cols:4">${c.why.map((w) => `<li><h3>${esc(w.name)}</h3><p>${esc(w.body)}</p></li>`).join('')}</ul>
+    <div class="actions jtec-actions">${ctaButton(link, { text: c.whyCta })}${emailBtn(c.offerButton, c.discountSubject)}</div>
   </div>
 </section>
 <section class="section section-alt" aria-labelledby="jtec-next">
@@ -1141,14 +1154,21 @@ export function jtec({ site, link, copy }) {
       <p>${esc(c.nextIntro)}</p>
     </div>
     <ul class="genius-offers offers-two">${c.next.map((o) => `<li><h3>${esc(o.name)}</h3><p>${esc(o.body)}</p></li>`).join('')}</ul>
-    <div class="actions genius-actions">${ctaButton(link)}</div>
+    <div class="actions genius-actions">${talk}${emailBtn(c.emailLabel, c.emailSubject)}</div>
     ${buildLink}
   </div>
 </section>
 ${leadsSection({ site, link, id: 'jtec-leads', heading: c.leadsHeading, ids: ['josh'], notes: c.leadNotes })}
-${closing(link, c.closingHeading, c.closingBody)}
+${leadsSection({ site, link, id: 'jtec-team', heading: c.teamHeading, ids: ['matt', 'greg'], notes: c.leadNotes, alt: true })}
+<section class="closing" aria-labelledby="closing-heading">
+  <div class="wrap closing-inner">
+    <h2 id="closing-heading">${esc(c.closingHeading)}</h2>
+    <p>${esc(c.closingBody)}</p>
+    <div class="actions">${ctaButton(link, { variant: 'light' })}${emailBtn(c.closingEmail, c.emailSubject, 'light')}</div>
+  </div>
+  ${contourSvg({ width: 1200, height: 360, lines: 9, seed: 11, className: 'contours contours-closing' })}
+</section>
 <section class="section" aria-label="Trademarks">
   <div class="wrap"><p class="service-note">${esc(c.trademark)}</p></div>
 </section>`;
 }
-
