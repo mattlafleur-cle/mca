@@ -951,7 +951,7 @@ export const growBusiness = growPage('growBusiness');
 export const growFinance = growPage('growFinance');
 
 // "Who leads this work": people by id from founders or team in site.config.mjs.
-function leadsSection({ site, link, id, heading, ids = [], notes = {}, alt = false }) {
+function leadsSection({ site, link, id, heading, ids = [], notes = {}, alt = false, mailto = (p) => `mailto:${p.email}` }) {
   const people = [...site.founders, ...(site.team || [])];
   const leads = ids.map((pid) => people.find((p) => p.id === pid)).filter(Boolean);
   if (!leads.length) return '';
@@ -965,7 +965,7 @@ function leadsSection({ site, link, id, heading, ids = [], notes = {}, alt = fal
         <p class="person-role">${esc(f.role)}</p>
         <h3>${esc(f.name)}</h3>
         <p>${esc(notes[f.id] || f.short)}</p>
-        ${f.email ? `<p class="bio-email"><a href="mailto:${esc(f.email)}">${esc(f.email)}</a></p>` : ''}
+        ${f.email ? `<p class="bio-email"><a href="${esc(mailto(f))}">${esc(f.email)}</a></p>` : ''}
         ${link.has('about') ? `<p><a class="text-link" href="${esc(link.page('about', f.id))}">More about ${esc(f.name.split(' ')[0])}</a></p>` : ''}
       </div>
     </article>`)
@@ -1084,7 +1084,11 @@ export function jtec({ site, link, copy }) {
   const c = copy.jtec;
   const wg = copy.workingGenius;
   const josh = site.founders.find((f) => f.id === 'josh');
-  const mail = (subject) => `mailto:${josh.email}?subject=${encodeURIComponent(subject)}`;
+  // Every email link on this page goes to the shared inbox (owner request, 2026-11-11), keeping the visible
+  // wording. The subject names the person so the inbox can route it.
+  const inbox = site.contact.recipients[0];
+  const mail = (subject) => `mailto:${inbox}?subject=${encodeURIComponent(`${subject} (for ${josh.name.split(' ')[0]})`)}`;
+  const bioMail = (p) => `mailto:${inbox}?subject=${encodeURIComponent(`Following up from J-TEC (for ${p.name.split(' ')[0]})`)}`;
   const emailBtn = (label, subject, variant = 'secondary') =>
     `<a class="button button-${variant}" href="${esc(mail(subject))}">${esc(label)}</a>`;
   const talk = ctaButton(link, { text: c.talkLabel });
@@ -1158,8 +1162,8 @@ ${hero}
     ${buildLink}
   </div>
 </section>
-${leadsSection({ site, link, id: 'jtec-leads', heading: c.leadsHeading, ids: ['josh'], notes: c.leadNotes })}
-${leadsSection({ site, link, id: 'jtec-team', heading: c.teamHeading, ids: ['matt', 'greg'], notes: c.leadNotes, alt: true })}
+${leadsSection({ site, link, id: 'jtec-leads', heading: c.leadsHeading, ids: ['josh'], notes: c.leadNotes, mailto: bioMail })}
+${leadsSection({ site, link, id: 'jtec-team', heading: c.teamHeading, ids: ['matt', 'greg'], notes: c.leadNotes, alt: true, mailto: bioMail })}
 <section class="closing" aria-labelledby="closing-heading">
   <div class="wrap closing-inner">
     <h2 id="closing-heading">${esc(c.closingHeading)}</h2>
