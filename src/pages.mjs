@@ -1077,3 +1077,78 @@ function answerBlock(site, c) {
   </div>
 </section>`;
 }
+
+// Unlisted event page for Josh's J-TEC session (/jtec/): session recap, The 6 Types of Working Genius, next steps.
+export function jtec({ site, link, copy }) {
+  const c = copy.jtec;
+  const wg = copy.workingGenius;
+  const josh = site.founders.find((f) => f.id === 'josh');
+  const emailJosh = josh?.email
+    ? `<a class="button button-secondary" href="mailto:${esc(josh.email)}?subject=${encodeURIComponent('Following up from J-TEC')}">${esc(c.emailLabel)}</a>`
+    : '';
+  const hero = pageHero({
+    eyebrow: c.eyebrow,
+    headline: c.headline,
+    lead: c.lead,
+    extra: `<div class="actions">${ctaButton(link)}${emailJosh}</div>`,
+    seed: c.seed,
+  });
+  const buildLink = site.build?.url
+    ? `<p class="situations-note">${esc(c.buildNote)} <a class="text-link" href="${esc(site.build.url)}" rel="noopener">${esc(c.buildLink)}</a></p>`
+    : '';
+  return `${hero}
+<section class="section" aria-labelledby="jtec-recap">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="jtec-recap" class="section-title">${esc(c.recapHeading)}</h2>
+      <p>${esc(c.recapIntro)}</p>
+    </div>
+    <ul class="departments" style="--cols:4">${c.recap.map((r) => `<li><h3>${esc(r.name)}</h3><p>${esc(r.body)}</p></li>`).join('')}</ul>
+  </div>
+</section>
+<section class="section section-alt" aria-labelledby="jtec-step">
+  <div class="wrap svc-block">
+    <h2 id="jtec-step" class="section-title">${esc(c.stepHeading)}</h2>
+    <ol class="question-list">${c.step.map((t) => `<li>${esc(t)}</li>`).join('')}</ol>
+  </div>
+</section>
+<section class="section section-dark" id="six-types" aria-labelledby="jtec-types">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow eyebrow-light">${esc(c.typesEyebrow)}</p>
+      <h2 id="jtec-types" class="section-title">${esc(c.typesHeading)}</h2>
+      <p>${esc(c.typesIntro)}</p>
+    </div>
+    <ol class="genius-stages">${wg.stages
+      .map((st) => `<li class="genius-stage">
+        <h3>${esc(st.name)}</h3>
+        <ul>${st.types.map((t) => `<li class="genius-type">${geniusGear(t.letter)}<div><h4>${esc(t.name)}</h4><p>${esc(t.body)}</p></div></li>`).join('')}</ul>
+      </li>`)
+      .join('')}</ol>
+    ${link.has('workingGenius') ? `<div class="actions"><a class="button button-light" href="${esc(link.page('workingGenius'))}">${esc(c.typesLink)}</a></div>` : ''}
+  </div>
+</section>
+<section class="section" aria-labelledby="jtec-why">
+  <div class="wrap">
+    <h2 id="jtec-why" class="section-title">${esc(c.whyHeading)}</h2>
+    <ul class="departments" style="--cols:4">${c.why.map((w) => `<li><h3>${esc(w.name)}</h3><p>${esc(w.body)}</p></li>`).join('')}</ul>
+  </div>
+</section>
+<section class="section section-alt" aria-labelledby="jtec-next">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="jtec-next" class="section-title">${esc(c.nextHeading)}</h2>
+      <p>${esc(c.nextIntro)}</p>
+    </div>
+    <ul class="genius-offers offers-two">${c.next.map((o) => `<li><h3>${esc(o.name)}</h3><p>${esc(o.body)}</p></li>`).join('')}</ul>
+    <div class="actions genius-actions">${ctaButton(link)}</div>
+    ${buildLink}
+  </div>
+</section>
+${leadsSection({ site, link, id: 'jtec-leads', heading: c.leadsHeading, ids: ['josh'], notes: c.leadNotes })}
+${closing(link, c.closingHeading, c.closingBody)}
+<section class="section" aria-label="Trademarks">
+  <div class="wrap"><p class="service-note">${esc(c.trademark)}</p></div>
+</section>`;
+}
+

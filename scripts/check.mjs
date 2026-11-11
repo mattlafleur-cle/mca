@@ -56,6 +56,14 @@ for (const file of files) {
 for (const file of files) {
   const rel = path.relative(dist, file);
   const html = await readFile(file, 'utf8');
+  // Case-alias pages (see scripts/build.mjs) only forward to a real page: check that, then skip page rules.
+  const alias = html.match(/<meta name="mca-alias" content="([^"]+)">/)?.[1];
+  if (alias) {
+    if (!/<meta name="robots" content="noindex, nofollow">/.test(html)) errors.push(`${rel}: alias page must be noindex`);
+    if (!new RegExp(`<meta http-equiv="refresh" content="0; url=${alias}">`).test(html)) errors.push(`${rel}: alias page does not forward to ${alias}`);
+    if (!(await exists(pageFor(alias)))) errors.push(`${rel}: alias target ${alias} was not built`);
+    continue;
+  }
   const text = textOf(html);
 
   const title = html.match(/<title>([^<]*)<\/title>/)?.[1];

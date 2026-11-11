@@ -67,6 +67,19 @@ async function main() {
 
   await copyDir(path.join(root, 'src/assets'), path.join(outDir, 'assets'));
 
+  // Case aliases for printed or spoken event links. GitHub Pages paths are case-sensitive and the host
+  // cannot redirect, so each alias is a tiny noindex page that forwards to the real lowercase page.
+  if (mode === 'site') {
+    const aliases = [{ out: 'JTEC/index.html', to: '/jtec/' }];
+    for (const a of aliases) {
+      const target = site.canonicalDomain ? `${site.canonicalDomain}${a.to}` : a.to;
+      const html = `<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<title>Redirecting to ${a.to}</title>\n<meta name="robots" content="noindex, nofollow">\n<meta name="mca-alias" content="${a.to}">\n<link rel="canonical" href="${target}">\n<meta http-equiv="refresh" content="0; url=${a.to}">\n</head>\n<body>\n<p><a href="${a.to}">Continue to ${a.to}</a></p>\n</body>\n</html>\n`;
+      const file = path.join(outDir, a.out);
+      await mkdir(path.dirname(file), { recursive: true });
+      await writeFile(file, html);
+    }
+  }
+
   // robots.txt and sitemap.xml. Before launch, pages carry noindex and robots.txt allows crawling so that
   // noindex is seen. The sitemap is built only once indexing is approved.
   if (mode === 'site') {

@@ -920,3 +920,9 @@ h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
 .answer-first { max-width: 52rem; font-size: var(--step-1); line-height: 1.5; color: var(--ink); padding-left: 1.1rem; border-left: 4px solid var(--maple); }
 .answer-credential { max-width: 52rem; margin-top: 0.85rem; padding-left: 1.35rem; font-weight: 600; color: var(--evergreen); }
 .page-meta { margin-top: 0.75rem; padding-left: 1.35rem; font-size: var(--step--1); color: var(--ink-muted); }
+
+/* J-TEC event page (/jtec/): two-by-two next steps, and breathing room around the actions. */
+.genius-offers.offers-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 38rem) { .genius-offers.offers-two { grid-template-columns: minmax(0, 1fr); } }
+.genius-stages + .actions { margin-top: clamp(1.5rem, 1rem + 1.5vw, 2.5rem); }
+.genius-actions + .situations-note { margin-top: 1rem; }

@@ -12,6 +12,7 @@ import announcementContent from './announcement-content.mjs';
 import brandsContent from './brands-content.mjs';
 import growContent from './grow-content.mjs';
 import workingGeniusContent from './working-genius-content.mjs';
+import jtecContent from './jtec-content.mjs';
 
 export default function content(site) {
   const name = site.siteName;
@@ -26,6 +27,7 @@ export default function content(site) {
     clients: clientsContent(site),
     announcement: announcementContent(site),
     brands: brandsContent(site),
+    jtec: jtecContent(site),
     onboarding: {
       title: `Client Onboarding | ${name}`,
       description: `Onboarding questions for new ${name} clients. It takes about four minutes, and only Josh and Matt see the answers.`,
