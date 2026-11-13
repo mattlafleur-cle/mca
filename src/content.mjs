@@ -12,6 +12,7 @@ import announcementContent from './announcement-content.mjs';
 import brandsContent from './brands-content.mjs';
 import growContent from './grow-content.mjs';
 import workingGeniusContent from './working-genius-content.mjs';
+import timeBackContent from './time-back-content.mjs';
 
 export default function content(site) {
   const name = site.siteName;
@@ -20,6 +21,7 @@ export default function content(site) {
     ...servicePages(site),
     ...growContent(site),
     ...workingGeniusContent(site),
+    ...timeBackContent(site),
     church: churchContent(site),
     carts: cartsContent(site),
     sell: sellContent(site),

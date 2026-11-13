@@ -107,6 +107,7 @@ export default function growContent(site) {
             'A half-day, full-day, or five-week format that fits your schedule',
           ],
           button: 'Get your time back',
+          link: { key: 'timeBack', text: 'Try the Time Back Calculator' },
         },
         {
           tag: 'Systems and technology',
