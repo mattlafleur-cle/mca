@@ -1176,3 +1176,121 @@ ${leadsSection({ site, link, id: 'jtec-team', heading: c.teamHeading, ids: ['mat
   <div class="wrap"><p class="service-note">${esc(c.trademark)}</p></div>
 </section>`;
 }
+
+// Owner Freedom Calculator (/owner-freedom-calculator/). The math and interactivity live in assets/time-back.js;
+// everything stays in the browser. Results, tips, and messages are rendered here so the copy has one home.
+export function timeBack({ site, link, copy }) {
+  const c = copy.timeBack;
+  const f = c.fields;
+  const field = (id, d) => `<div class="tb-field">
+        <label for="tb-${id}">${esc(d.label)}</label>
+        <input id="tb-${id}" name="${id}" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="tb-${id}-hint tb-${id}-err">
+        <p class="tb-hint" id="tb-${id}-hint">${esc(d.hint)}</p>
+        <p class="tb-error" id="tb-${id}-err" hidden></p>
+      </div>`;
+  const stepGroup = (key, items) => {
+    const l = c.stepLinks[key];
+    return `<div class="tb-steps" data-where="${esc(key)}"${key === 'default' ? '' : ' hidden'}>
+      <ol>${items.map((s) => `<li>${esc(s)}</li>`).join('')}</ol>
+      ${l && link.has(l.key) ? `<p><a class="text-link" href="${esc(link.page(l.key))}">${esc(l.text)}</a></p>` : ''}
+    </div>`;
+  };
+  // Strings the script needs, kept with the rest of the copy.
+  const strings = {
+    equal: c.equalMessage,
+    under: c.underMessage,
+    exampleNote: c.exampleNote,
+    email: site.contact.recipients[0],
+    emailSubject: c.emailSubject,
+  };
+  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `<p class="tb-privacy">${esc(c.privacy)}</p>`, seed: 73 })}
+<section class="section tb-section" aria-labelledby="tb-form-h">
+  <div class="wrap tb-grid">
+    <form class="tb-form" id="tb-form" novalidate>
+      <h2 id="tb-form-h" class="section-title">${esc(c.formHeading)}</h2>
+      <p class="tb-intro">${esc(c.formIntro)}</p>
+      <noscript><p class="tb-noscript">${esc(c.noscript)}</p></noscript>
+      ${field('current', f.current)}
+      ${field('preferred', f.preferred)}
+      ${field('weeks', f.weeks)}
+      <div class="tb-buttons">
+        <button type="button" class="button button-secondary" id="tb-example">${esc(c.exampleButton)}</button>
+        <button type="button" class="tb-clear" id="tb-reset">${esc(c.resetButton)}</button>
+      </div>
+      <p class="tb-example-note" id="tb-example-note" role="status"></p>
+      <p class="tb-hint">${esc(c.limitsNote)}</p>
+      <fieldset class="tb-where">
+        <legend>${esc(c.whereHeading)}</legend>
+        <p class="tb-hint">${esc(c.whereHint)}</p>
+        <div class="tb-chips">${c.where.map((w) => `<label class="tb-chip"><input type="radio" name="where" value="${esc(w.id)}"><span>${esc(w.label)}</span></label>`).join('')}</div>
+      </fieldset>
+    </form>
+
+    <div class="tb-results" aria-labelledby="tb-results-h">
+      <h2 id="tb-results-h" class="section-title">${esc(c.resultsHeading)}</h2>
+      <p class="tb-empty" id="tb-empty">${esc(c.emptyResult)}</p>
+      <div id="tb-out" hidden>
+        <p class="tb-headline" id="tb-head"></p>
+        <p class="tb-sub" id="tb-sub"></p>
+        <div class="tb-bars" aria-hidden="true">
+          <div class="tb-bar-row"><span class="tb-bar-label">${esc(c.barCurrent)}</span><div class="tb-track"><div class="tb-bar tb-bar-current" id="tb-bar-current"><span class="tb-bar-gap" id="tb-bar-gap"></span></div></div><span class="tb-bar-value" id="tb-val-current"></span></div>
+          <div class="tb-bar-row"><span class="tb-bar-label">${esc(c.barPreferred)}</span><div class="tb-track"><div class="tb-bar tb-bar-preferred" id="tb-bar-preferred"></div></div><span class="tb-bar-value" id="tb-val-preferred"></span></div>
+          <p class="tb-legend" id="tb-legend"><span class="tb-swatch"></span>${esc(c.barGap)}</p>
+        </div>
+        <div id="tb-gap-detail">
+          <dl class="tb-stats">
+            <div><dt>${esc(c.statWeek)}</dt><dd id="tb-stat-week"></dd></div>
+            <div><dt>${esc(c.statYear)}</dt><dd id="tb-stat-year"></dd></div>
+            <div><dt>${esc(c.statDays)}</dt><dd id="tb-stat-days"></dd></div>
+            <div><dt>${esc(c.statWeeks)}</dt><dd id="tb-stat-weeks"></dd></div>
+          </dl>
+          <figure class="tb-dots-figure">
+            <div class="tb-dots" id="tb-dots" aria-hidden="true"></div>
+            <figcaption>${esc(c.dotsCaption)} <span id="tb-dots-more"></span></figcaption>
+          </figure>
+          <div class="tb-goal">
+            <h3>${esc(c.goalHeading)}</h3>
+            <p>${esc(c.goalIntro)}</p>
+            <label for="tb-goal">${esc(c.goalLabel)}: <strong id="tb-goal-value">0</strong></label>
+            <input type="range" id="tb-goal" min="0" max="1" step="0.5" value="0">
+            <p class="tb-goal-result" id="tb-goal-result"></p>
+            <p class="tb-hint">${esc(c.goalNote)}</p>
+          </div>
+        </div>
+        <p class="tb-message" id="tb-message" hidden></p>
+        <p class="tb-assumption">${esc(c.assumption)}</p>
+      </div>
+      <p class="visually-hidden" id="tb-live" aria-live="polite" aria-atomic="true"></p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" aria-labelledby="tb-reflect-h">
+  <div class="wrap tb-two">
+    <div>
+      <h2 id="tb-reflect-h" class="section-title">${esc(c.reflectHeading)}</h2>
+      <p>${esc(c.reflectIntro)}</p>
+      <div class="tb-chips tb-reflect">${c.reflect.map((r, i) => `<label class="tb-chip"><input type="checkbox" name="reflect" value="${esc(r)}" id="tb-reflect-${i}"><span>${esc(r)}</span></label>`).join('')}</div>
+    </div>
+    <div>
+      <h2 class="section-title" id="tb-steps-h">${esc(c.stepsHeading)}</h2>
+      <p>${esc(c.stepsIntro)}</p>
+      ${Object.entries(c.steps).map(([k, v]) => stepGroup(k, v)).join('\n      ')}
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark" aria-labelledby="tb-cta-h">
+  <div class="wrap tb-cta">
+    <h2 id="tb-cta-h" class="section-title">${esc(c.ctaHeading)}</h2>
+    <p>${esc(c.ctaBody)}</p>
+    <div class="actions">${ctaButton(link, { variant: 'light', text: c.ctaButton })}${link.has('growBusiness') ? `<a class="text-link text-link-light" href="${esc(link.page('growBusiness'))}">${esc(c.ctaFramework)}</a>` : ''}</div>
+    <div class="tb-email">
+      <button type="button" class="tb-email-button" id="tb-email" disabled>${esc(c.emailButton)}</button>
+      <p>${esc(c.emailNote)}</p>
+    </div>
+  </div>
+</section>
+<script type="application/json" id="tb-strings">${JSON.stringify(strings).replace(/</g, '\\u003c')}</script>
+<script src="${esc(link.versioned('time-back.js'))}" defer></script>`;
+}
