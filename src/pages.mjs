@@ -1078,7 +1078,7 @@ function answerBlock(site, c) {
 </section>`;
 }
 
-// Time Back Calculator (/time-back-calculator/). The math and interactivity live in assets/time-back.js;
+// Owner Freedom Calculator (/owner-freedom-calculator/). The math and interactivity live in assets/time-back.js;
 // everything stays in the browser. Results, tips, and messages are rendered here so the copy has one home.
 export function timeBack({ site, link, copy }) {
   const c = copy.timeBack;

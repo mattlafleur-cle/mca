@@ -1,4 +1,4 @@
-// Time Back Calculator. Runs entirely in the browser: no storage, no network requests, no tracking.
+// Owner Freedom Calculator. Runs entirely in the browser: no storage, no network requests, no tracking.
 // Copy comes from the page (rendered from src/time-back-content.mjs); this file only does the math and
 // shows or hides what the page already contains.
 (function () {
@@ -235,7 +235,7 @@
     var lines = [
       'Hi Maple Creek Advisors,',
       '',
-      'I used the Time Back Calculator on your website.',
+      'I used the Owner Freedom Calculator on your website.',
       '',
       'Hours I work in an average week: ' + fmt(last.current),
       'Hours I would prefer to work: ' + fmt(last.preferred),

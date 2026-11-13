@@ -1,9 +1,9 @@
-// Browser checks for the Time Back Calculator. Run `npm run preview` in another terminal first, then:
+// Browser checks for the Owner Freedom Calculator. Run `npm run preview` in another terminal first, then:
 //   node scripts/time-back-test.cjs
 // Needs Playwright. Screenshots go to the scratch folder set in D (change it to suit).
 const pw = require('playwright');
 const D = require('os').tmpdir() + '/';
-const URL = 'http://localhost:4173/time-back-calculator/';
+const URL = 'http://localhost:4173/owner-freedom-calculator/';
 let fails = 0;
 const ok = (name, cond, extra = '') => { console.log((cond ? 'PASS ' : 'FAIL ') + name + (extra ? ' :: ' + extra : '')); if (!cond) fails++; };
 (async () => {
@@ -109,7 +109,7 @@ const ok = (name, cond, extra = '') => { console.log((cond ? 'PASS ' : 'FAIL ') 
   await p.waitForTimeout(300);
   const enc = await p.evaluate(() => window.__enc);
   const body = enc[1] || '';
-  ok('email subject', enc[0] === 'My Time Back Calculator result');
+  ok('email subject', enc[0] === 'My Owner Freedom Calculator result');
   ok('email body has inputs and result', body.includes('Hours I work in an average week: 50') && body.includes('about 15 hours a week, 720 hours a year (90 eight-hour workday equivalents)'), body.slice(0, 200));
   ok('email body has optional answers only as chosen', body.includes('Where most of the extra time goes: Administrative work') && body.includes('What I would do with some time back: Spend more time with family and friends'));
   ok('page did not navigate away', p.url() === urlBefore);

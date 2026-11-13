@@ -1,4 +1,4 @@
-// Copy for the Time Back Calculator at /time-back-calculator/.
+// Copy for the Owner Freedom Calculator at /owner-freedom-calculator/.
 // Built 2026-11-13 at Matt's direction. All math runs in the visitor's browser (src/assets/time-back.js);
 // nothing is stored, sent, or tracked. House style: no em dashes, no promised outcomes, no statistics.
 
@@ -7,9 +7,9 @@ export default function timeBackContent(site) {
 
   return {
     timeBack: {
-      title: `Time Back Calculator for Business Owners | ${name}`,
-      description: 'How much of your life is your business consuming? Compare the hours you work with the hours you would choose, and see what the gap adds up to over a year.',
-      eyebrow: 'The Time Back Calculator',
+      title: `Owner Freedom Calculator for Business Owners | ${name}`,
+      description: 'How much of your life is your business consuming? The Owner Freedom Calculator compares the hours you work with the hours you would choose, and shows what the gap adds up to over a year.',
+      eyebrow: 'The Owner Freedom Calculator',
       headline: 'How much of your life is your business consuming?',
       lead: 'Owning a business can be one of the most rewarding things you do, and one of the most consuming. You can be proud of what you have built and tired at the same time. Take about a minute to compare the hours you work with the hours you would choose, and see what the difference adds up to.',
       privacy: 'Your answers stay in this browser tab. We do not save, send, or track them.',
@@ -112,12 +112,12 @@ export default function timeBackContent(site) {
       },
 
       ctaHeading: 'You built your business for a reason.',
-      ctaBody: 'If it is taking more of your time than you want to give, you do not have to work out the next step alone. A 20-minute conversation with Josh or Matt is a good place to start: what is pulling on your time, and what could change first.',
+      ctaBody: 'If it is taking more of your time than you want to give, you do not have to work out the next step alone. A 20-minute conversation with Josh or Matt is a good place to start: what is pulling on your time, and where more freedom could start.',
       ctaButton: 'Talk about getting your time back',
       ctaFramework: 'Our Time-Rich Company framework is built around this question.',
       emailButton: 'Email us with my result',
       emailNote: 'This opens a draft in your own email app with your numbers filled in. Nothing is sent until you send it, and you can edit or delete anything first.',
-      emailSubject: 'My Time Back Calculator result',
+      emailSubject: 'My Owner Freedom Calculator result',
 
       noscript: 'This calculator needs JavaScript. You can do the math by hand: subtract your preferred weekly hours from your current weekly hours, then multiply by the weeks you work in a year. Divide that by 8 for eight-hour workday equivalents, or by 40 for forty-hour workweek equivalents.',
     },

@@ -28,7 +28,7 @@ export function routes(site) {
     { key: 'church', label: 'Churches', path: '/church/', file: 'church.html', out: 'church/index.html', standalone: true },
     { key: 'carts', label: 'Golf cart businesses', path: '/carts/', file: 'carts.html', out: 'carts/index.html', standalone: true },
     // Interactive tool: indexed and in the sitemap, linked from Grow your business, not the menu.
-    { key: 'timeBack', label: 'Time Back Calculator', path: '/time-back-calculator/', file: 'time-back-calculator.html', out: 'time-back-calculator/index.html', standalone: true },
+    { key: 'timeBack', label: 'Owner Freedom Calculator', path: '/owner-freedom-calculator/', file: 'owner-freedom-calculator.html', out: 'owner-freedom-calculator/index.html', standalone: true },
     { key: 'announcement', label: 'Announcement', path: '/announcement/', file: 'announcement.html', out: 'announcement/index.html', standalone: true },
     { key: 'onboarding', label: 'Onboarding', path: '/onboarding/', file: 'onboarding.html', out: 'onboarding/index.html', hidden: true, noindex: true },
     { key: 'clients', label: 'Client updates', path: '/client-updates/', file: 'client-updates.html', out: 'client-updates/index.html', hidden: true, noindex: true },
