@@ -14,6 +14,7 @@ import growContent from './grow-content.mjs';
 import workingGeniusContent from './working-genius-content.mjs';
 import jtecContent from './jtec-content.mjs';
 import timeBackContent from './time-back-content.mjs';
+import profitContent from './profit-content.mjs';
 
 export default function content(site) {
   const name = site.siteName;
@@ -23,6 +24,7 @@ export default function content(site) {
     ...growContent(site),
     ...workingGeniusContent(site),
     ...timeBackContent(site),
+    ...profitContent(site),
     church: churchContent(site),
     carts: cartsContent(site),
     sell: sellContent(site),

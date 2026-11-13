@@ -118,6 +118,7 @@ export default function timeBackContent(site) {
       emailButton: 'Email us with my result',
       emailNote: 'This opens a draft in your own email app with your numbers filled in. Nothing is sent until you send it, and you can edit or delete anything first.',
       emailSubject: 'My Owner Freedom Calculator result',
+      otherTool: 'Also try the Profit Levers Calculator: what could a small improvement do for your bottom line?',
 
       noscript: 'This calculator needs JavaScript. You can do the math by hand: subtract your preferred weekly hours from your current weekly hours, then multiply by the weeks you work in a year. Divide that by 8 for eight-hour workday equivalents, or by 40 for forty-hour workweek equivalents.',
     },

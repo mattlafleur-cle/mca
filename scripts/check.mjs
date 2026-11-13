@@ -120,7 +120,13 @@ for (const file of files) {
   }
   if (!site.bookingUrl && /Schedule a (time|conversation)|Book a call|Book now/i.test(text)) errors.push(`${rel}: booking action shown without an approved booking URL`);
 
-  for (const [re, name] of banned) if (re.test(text)) errors.push(`${rel}: contains ${name}: "${text.match(re)[0]}"`);
+  // The Profit Levers Calculator shows dollar amounts as calculator examples and limits, not prices for
+  // our services, so the price rule does not apply to that one page. Every other rule still does.
+  const pricesAllowed = rel === 'profit-levers-calculator/index.html';
+  for (const [re, name] of banned) {
+    if (pricesAllowed && name === 'a price') continue;
+    if (re.test(text)) errors.push(`${rel}: contains ${name}: "${text.match(re)[0]}"`);
+  }
 
   // Internal links and in-page anchors.
   for (const m of html.matchAll(/\s(?:href|src)="([^"]+)"/g)) {

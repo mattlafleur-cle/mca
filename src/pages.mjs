@@ -906,7 +906,7 @@ function growPage(key) {
       <p>${esc(o.body)}</p>
       <h3 class="grow-get">What you get</h3>
       <ul class="check-list">${o.list.map((it) => `<li>${esc(it)}</li>`).join('')}</ul>
-      <div class="actions">${ctaButton(link, { variant: 'secondary', text: o.button })}${o.link && link.has(o.link.key) ? `<a class="text-link" href="${esc(link.page(o.link.key))}">${esc(o.link.text)}</a>` : ''}</div>
+      <div class="actions">${ctaButton(link, { variant: 'secondary', text: o.button })}${o.link && link.has(o.link.key) ? `<a class="text-link" href="${esc(link.page(o.link.key))}">${esc(o.link.text)}</a>` : ''}${o.tool && link.has(o.tool.key) ? `<a class="text-link" href="${esc(link.page(o.tool.key))}">${esc(o.tool.text)}</a>` : ''}</div>
     </article>`,
       )
       .join('\n    ');
@@ -1289,8 +1289,146 @@ export function timeBack({ site, link, copy }) {
       <button type="button" class="tb-email-button" id="tb-email" disabled>${esc(c.emailButton)}</button>
       <p>${esc(c.emailNote)}</p>
     </div>
+    ${c.otherTool && link.has('profit') ? `<p class="pl-other"><a class="text-link text-link-light" href="${esc(link.page('profit'))}">${esc(c.otherTool)}</a></p>` : ''}
   </div>
 </section>
 <script type="application/json" id="tb-strings">${JSON.stringify(strings).replace(/</g, '\\u003c')}</script>
 <script src="${esc(link.versioned('time-back.js'))}" defer></script>`;
+}
+
+// Profit Levers Calculator (/profit-levers-calculator/). Math and interactivity live in assets/profit-levers.js;
+// everything stays in the browser. Shares the Owner Freedom Calculator's layout classes (tb-*) so the tools match.
+export function profit({ site, link, copy }) {
+  const c = copy.profit;
+  const money = (id, d) => `<div class="tb-field">
+        <label for="pl-${id}">${esc(d.label)}</label>
+        <div class="pl-money"><span aria-hidden="true">$</span><input id="pl-${id}" name="${id}" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="pl-${id}-hint pl-${id}-err"></div>
+        <p class="tb-hint" id="pl-${id}-hint">${esc(d.hint)}</p>
+        <p class="tb-error" id="pl-${id}-err" hidden></p>
+      </div>`;
+  const lever = (id, d) => `<div class="pl-lever">
+        <div class="pl-lever-head"><label for="pl-lever-${id}">${esc(d.label)}</label><output id="pl-lever-${id}-out" for="pl-lever-${id}">No change</output></div>
+        <input type="range" id="pl-lever-${id}" min="-10" max="10" step="0.5" value="0" data-lever="${id}" aria-valuetext="No change">
+        <div class="pl-ends" aria-hidden="true"><span>&larr; ${esc(d.left)}</span><span>${esc(d.right)} &rarr;</span></div>
+      </div>`;
+  const row = (id, label) => `<tr><th scope="row">${esc(label)}</th><td id="pl-s-${id}"></td><td id="pl-n-${id}"></td></tr>`;
+  const bridge = (id, label) => `<li class="pl-bridge-row" data-row="${id}"><span class="pl-bridge-label">${esc(label)}</span><span class="pl-bridge-track"><span class="pl-bridge-bar" id="pl-b-${id}"></span><span class="pl-bridge-zero"></span></span><span class="pl-bridge-value" id="pl-bv-${id}"></span></li>`;
+  const split = (id, label) => `<div class="pl-split-row"><span class="pl-split-label">${esc(label)}</span><span class="pl-split-track" id="pl-split-${id}"><span class="pl-seg pl-seg-direct"></span><span class="pl-seg pl-seg-overhead"></span><span class="pl-seg pl-seg-profit"></span><span class="pl-seg pl-seg-loss"></span></span></div>`;
+  const steps = Object.entries(c.steps)
+    .map(([k, items]) => `<div class="tb-steps pl-steps" data-lever="${esc(k)}"${k === 'default' ? '' : ' hidden'}>${k === 'default' ? '' : `<h3>${esc(c.levers[k].label)}</h3>`}<ol>${items.map((s) => `<li>${esc(s)}</li>`).join('')}</ol></div>`)
+    .join('\n      ');
+  const strings = {
+    labels: { price: c.levers.price.label, direct: c.levers.direct.label, overhead: c.levers.overhead.label },
+    neutral: c.neutral,
+    zeroRevenue: c.zeroRevenue,
+    exampleNote: c.exampleNote,
+    email: site.contact.recipients[0],
+    emailSubject: c.emailSubject,
+  };
+  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `<p class="tb-privacy">${esc(c.privacy)}</p>`, seed: 83 })}
+<section class="section tb-section" aria-labelledby="pl-snap-h">
+  <div class="wrap tb-grid">
+    <form class="tb-form" id="pl-form" novalidate>
+      <h2 id="pl-snap-h" class="section-title">${esc(c.snapshotHeading)}</h2>
+      <p class="tb-intro">${esc(c.snapshotIntro)}</p>
+      <noscript><p class="tb-noscript">${esc(c.noscript)}</p></noscript>
+      ${money('revenue', c.fields.revenue)}
+      ${money('direct', c.fields.direct)}
+      ${money('overhead', c.fields.overhead)}
+      <details class="pl-details"><summary>${esc(c.includeSummary)}</summary><ul>${c.include.map((i) => `<li>${esc(i)}</li>`).join('')}</ul></details>
+      <p class="tb-hint">${esc(c.limitsNote)}</p>
+      <div class="tb-buttons">
+        <button type="button" class="button button-secondary" id="pl-example">${esc(c.exampleButton)}</button>
+        <button type="button" class="tb-clear" id="pl-clear">${esc(c.clearButton)}</button>
+      </div>
+      <p class="tb-example-note" id="pl-example-note" role="status"></p>
+
+      <h2 class="section-title pl-levers-h" id="pl-levers-h">${esc(c.leversHeading)}</h2>
+      <p class="tb-intro">${esc(c.leversIntro)}</p>
+      <div class="pl-levers" role="group" aria-labelledby="pl-levers-h">
+        ${lever('price', c.levers.price)}
+        ${lever('direct', c.levers.direct)}
+        ${lever('overhead', c.levers.overhead)}
+      </div>
+      <p class="tb-hint">${esc(c.rangeNote)}</p>
+      <div class="pl-presets" role="group" aria-labelledby="pl-presets-label">
+        <p class="pl-presets-label" id="pl-presets-label">${esc(c.presetsLabel)}</p>
+        <div class="tb-buttons">${c.presets.map((p) => `<button type="button" class="pl-preset" data-lever="${esc(p.lever)}" data-value="${esc(p.value)}">${esc(p.label)}</button>`).join('')}</div>
+        <p class="tb-hint">${esc(c.presetsNote)}</p>
+      </div>
+      <button type="button" class="tb-clear" id="pl-reset">${esc(c.resetLevers)}</button>
+    </form>
+
+    <div class="tb-results pl-results" aria-labelledby="pl-results-h">
+      <h2 id="pl-results-h" class="section-title">${esc(c.resultsHeading)}</h2>
+      <p class="tb-empty" id="pl-empty">${esc(c.emptyResult)}</p>
+      <p class="tb-message" id="pl-zero" hidden>${esc(c.zeroRevenue)}</p>
+      <div id="pl-out" hidden>
+        <p class="tb-headline pl-headline" id="pl-head"></p>
+        <p class="tb-sub" id="pl-sub"></p>
+        <table class="pl-table">
+          <thead><tr><td></td><th scope="col">${esc(c.colStart)}</th><th scope="col">${esc(c.colScenario)}</th></tr></thead>
+          <tbody>
+            ${row('revenue', c.rowRevenue)}
+            ${row('direct', c.rowDirect)}
+            ${row('overhead', c.rowOverhead)}
+            <tr class="pl-profit-row"><th scope="row" id="pl-profit-label">${esc(c.rowProfit)}</th><td id="pl-s-profit"></td><td id="pl-n-profit"></td></tr>
+            ${row('margin', c.rowMargin)}
+          </tbody>
+        </table>
+        <div class="pl-bridge" id="pl-bridge">
+          <h3>${esc(c.bridgeHeading)}</h3>
+          <ol>
+            ${bridge('start', c.bridgeStart)}
+            ${bridge('price', c.bridgePrice)}
+            ${bridge('direct', c.bridgeDirect)}
+            ${bridge('overhead', c.bridgeOverhead)}
+            ${bridge('end', c.bridgeEnd)}
+          </ol>
+        </div>
+        <div class="pl-split" aria-hidden="true">
+          <h3>${esc(c.splitHeading)}</h3>
+          ${split('start', c.colStart)}
+          ${split('end', c.colScenario)}
+          <p class="pl-legend"><span><i class="pl-key pl-seg-direct"></i>${esc(c.splitDirect)}</span><span><i class="pl-key pl-seg-overhead"></i>${esc(c.splitOverhead)}</span><span><i class="pl-key pl-seg-profit"></i>${esc(c.splitProfit)}</span><span id="pl-legend-loss"><i class="pl-key pl-seg-loss"></i>${esc(c.splitLoss)}</span></p>
+        </div>
+        <details class="pl-details"><summary>${esc(c.assumptionsSummary)}</summary><ul>${c.assumptions.map((a) => `<li>${esc(a)}</li>`).join('')}</ul></details>
+        <div class="pl-reality">
+          <h3>${esc(c.realityHeading)}</h3>
+          <ul>${c.reality.map((r) => `<li>${esc(r)}</li>`).join('')}</ul>
+        </div>
+      </div>
+      <p class="visually-hidden" id="pl-live" aria-live="polite" aria-atomic="true"></p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" aria-labelledby="pl-reflect-h">
+  <div class="wrap tb-two">
+    <div>
+      <h2 id="pl-reflect-h" class="section-title">${esc(c.reflectHeading)}</h2>
+      <ul class="pl-questions">${c.reflect.map((q) => `<li>${esc(q)}</li>`).join('')}</ul>
+    </div>
+    <div>
+      <h2 class="section-title">${esc(c.stepsHeading)}</h2>
+      <p>${esc(c.stepsIntro)}</p>
+      ${steps}
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark" aria-labelledby="pl-cta-h">
+  <div class="wrap tb-cta">
+    <h2 id="pl-cta-h" class="section-title">${esc(c.ctaHeading)}</h2>
+    <p>${esc(c.ctaBody)}</p>
+    <div class="actions">${ctaButton(link, { variant: 'light', text: c.ctaButton })}${link.has('fractionalCfo') ? `<a class="text-link text-link-light" href="${esc(link.page('fractionalCfo'))}">${esc(c.ctaCfo)}</a>` : ''}</div>
+    <div class="tb-email">
+      <button type="button" class="tb-email-button" id="pl-email" disabled>${esc(c.emailButton)}</button>
+      <p>${esc(c.emailNote)}</p>
+    </div>
+    ${link.has('timeBack') ? `<p class="pl-other"><a class="text-link text-link-light" href="${esc(link.page('timeBack'))}">${esc(c.otherTool)}</a></p>` : ''}
+  </div>
+</section>
+<script type="application/json" id="pl-strings">${JSON.stringify(strings).replace(/</g, '\\u003c')}</script>
+<script src="${esc(link.versioned('profit-levers.js'))}" defer></script>`;
 }

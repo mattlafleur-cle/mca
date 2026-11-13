@@ -147,6 +147,7 @@ export default function growContent(site) {
           ],
           button: 'Talk numbers with us',
           link: { key: 'fractionalCfo', text: 'More about fractional CFO services' },
+          tool: { key: 'profit', text: 'Try the Profit Levers Calculator' },
         },
       ],
     },
