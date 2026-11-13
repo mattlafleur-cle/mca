@@ -134,7 +134,7 @@ const M = '−';
   const cta = await p.locator('.tb-cta a.button').getAttribute('href');
   ok('CTA goes to booking link', cta === 'https://fantastical.app/mattlafleur/maple-creek-advisors', cta);
   ok('CTA text', (await p.locator('.tb-cta a.button').textContent()).trim() === 'Talk about your numbers');
-  ok('links to Owner Freedom Calculator', (await p.locator('a[href="/owner-freedom-calculator/"]').count()) === 1);
+  ok('links to Owner Freedom Calculator', (await p.locator('main a[href="/owner-freedom-calculator/"]').count()) === 1);
 
   // Privacy
   ok('no off-site requests', offsite.length === 0, offsite.join(', '));
@@ -155,9 +155,9 @@ const M = '−';
   ok('no-JS formula fallback visible', await np.locator('.tb-noscript').isVisible());
   // Owner Freedom page links back
   await p.goto('http://localhost:4173/owner-freedom-calculator/');
-  ok('Owner Freedom page links to this tool', (await p.locator('a[href="/profit-levers-calculator/"]').count()) === 1);
+  ok('Owner Freedom page links to this tool', (await p.locator('main a[href="/profit-levers-calculator/"]').count()) === 1);
   await p.goto('http://localhost:4173/grow-financial-ops/');
-  ok('Grow your financial ops links to this tool', (await p.locator('a[href="/profit-levers-calculator/"]').count()) === 1);
+  ok('Grow your financial ops links to this tool', (await p.locator('main a[href="/profit-levers-calculator/"]').count()) === 1);
   await b.close();
   console.log(fails ? `\n${fails} FAILED` : '\nALL PASSED');
 })();

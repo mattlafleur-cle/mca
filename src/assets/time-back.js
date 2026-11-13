@@ -74,6 +74,7 @@
       empty.hidden = false;
       emailButton.disabled = true;
       announce('');
+      dock(null);
       return;
     }
     var difference = values.current - values.preferred;
@@ -90,6 +91,7 @@
       workweeks: annual / 40
     };
     render(last);
+    dock(last);
   }
 
   function render(r) {
@@ -185,6 +187,17 @@
     goalTouched = true;
     if (last) goalText(last);
   });
+
+  // One-line summary for the phone results bar (handled in site.js), or null when there is no result.
+  function dock(r) {
+    var text = null;
+    if (r) {
+      text = r.weekly > 0
+        ? fmt(r.weekly) + ' hrs a week over \u00b7 ' + fmt(r.annual) + ' hrs a year'
+        : r.difference === 0 ? 'Your hours match your preferred schedule' : 'Under your preferred hours';
+    }
+    document.dispatchEvent(new CustomEvent('tool-result', { detail: { text: text } }));
+  }
 
   // Screen readers hear the headline once typing pauses, not on every keystroke.
   function announce(text) {

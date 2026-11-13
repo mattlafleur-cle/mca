@@ -27,9 +27,9 @@ export function routes(site) {
     // Standalone page for churches: published and indexed, but not linked from the menu, footer, or Home.
     { key: 'church', label: 'Churches', path: '/church/', file: 'church.html', out: 'church/index.html', standalone: true },
     { key: 'carts', label: 'Golf cart businesses', path: '/carts/', file: 'carts.html', out: 'carts/index.html', standalone: true },
-    // Interactive tool: indexed and in the sitemap, linked from Grow your business, not the menu.
-    { key: 'profit', label: 'Profit Levers Calculator', path: '/profit-levers-calculator/', file: 'profit-levers-calculator.html', out: 'profit-levers-calculator/index.html', standalone: true },
-    { key: 'timeBack', label: 'Owner Freedom Calculator', path: '/owner-freedom-calculator/', file: 'owner-freedom-calculator.html', out: 'owner-freedom-calculator/index.html', standalone: true },
+    // Interactive tools: indexed, in the sitemap, and listed under the Tools menu.
+    { key: 'timeBack', label: 'Owner Freedom Calculator', path: '/owner-freedom-calculator/', file: 'owner-freedom-calculator.html', out: 'owner-freedom-calculator/index.html', standalone: true, tool: true },
+    { key: 'profit', label: 'Profit Levers Calculator', path: '/profit-levers-calculator/', file: 'profit-levers-calculator.html', out: 'profit-levers-calculator/index.html', standalone: true, tool: true },
     { key: 'announcement', label: 'Announcement', path: '/announcement/', file: 'announcement.html', out: 'announcement/index.html', standalone: true },
     { key: 'onboarding', label: 'Onboarding', path: '/onboarding/', file: 'onboarding.html', out: 'onboarding/index.html', hidden: true, noindex: true },
     { key: 'clients', label: 'Client updates', path: '/client-updates/', file: 'client-updates.html', out: 'client-updates/index.html', hidden: true, noindex: true },
@@ -143,16 +143,16 @@ export function ctaButton(link, { variant = 'primary', text } = {}) {
 
 function header(site, link, current) {
   const items = routes(site).filter((r) => !r.hidden && !r.service && !r.standalone && r.key !== 'home' && r.key !== 'contact');
-  const grow = routes(site).filter((r) => r.grow);
-  const inGrow = grow.some((r) => r.key === current);
-  // "Grow" is a disclosure menu: <details> keeps it usable without JavaScript and by keyboard.
-  const growItem = grow.length
-    ? `<li class="nav-group"><details${inGrow ? ' class="is-current"' : ''}><summary>Grow</summary><ul>${grow
-        .map((r) => `<li><a href="${esc(link.page(r.key))}"${r.key === current ? ' aria-current="page"' : ''}>${esc(r.label)}</a></li>`)
-        .join('')}</ul></details></li>`
-    : '';
+  // "Grow" and "Tools" are disclosure menus: <details> keeps them usable without JavaScript and by keyboard.
+  const group = (label, list) =>
+    list.length
+      ? `<li class="nav-group"><details${list.some((r) => r.key === current) ? ' class="is-current"' : ''}><summary>${esc(label)}</summary><ul>${list
+          .map((r) => `<li><a href="${esc(link.page(r.key))}"${r.key === current ? ' aria-current="page"' : ''}>${esc(r.label)}</a></li>`)
+          .join('')}</ul></details></li>`
+      : '';
+  const menus = group('Grow', routes(site).filter((r) => r.grow)) + group('Tools', routes(site).filter((r) => r.tool));
   const navItems = items
-    .map((r) => `<li><a href="${esc(link.page(r.key))}"${r.key === current ? ' aria-current="page"' : ''}>${esc(r.label)}</a></li>${r.key === 'services' ? growItem : ''}`)
+    .map((r) => `<li><a href="${esc(link.page(r.key))}"${r.key === current ? ' aria-current="page"' : ''}>${esc(r.label)}</a></li>${r.key === 'services' ? menus : ''}`)
     .join('');
   return `<header class="site-header">
   <div class="wrap header-inner">

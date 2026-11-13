@@ -114,6 +114,7 @@
       emailButton.disabled = true;
       showSteps(lv);
       announce(zero.hidden ? '' : strings.zeroRevenue);
+      dock(null);
       return;
     }
     var P = lv.price / 100, D = lv.direct / 100, O = lv.overhead / 100;
@@ -134,6 +135,7 @@
     };
     render(last);
     showSteps(lv);
+    dock(last);
   }
 
   function describe(v) {
@@ -228,6 +230,18 @@
       var k = g.getAttribute('data-lever');
       g.hidden = used.length ? used.indexOf(k) === -1 : k !== 'default';
     });
+  }
+
+  // One-line summary for the phone results bar (handled in site.js), or null when there is no result.
+  function dock(r) {
+    var text = null;
+    if (r) {
+      var anyLever = r.levers.price !== 0 || r.levers.direct !== 0 || r.levers.overhead !== 0;
+      text = anyLever
+        ? (r.change === 0 ? 'No change' : signedMoney(r.change)) + ' a year \u00b7 scenario ' + money(r.scen)
+        : 'Starting ' + (r.start < 0 ? 'loss ' + money(-r.start) : 'profit ' + money(r.start));
+    }
+    document.dispatchEvent(new CustomEvent('tool-result', { detail: { text: text } }));
   }
 
   // Screen readers hear the result once changes pause, not on every keystroke or slider step.

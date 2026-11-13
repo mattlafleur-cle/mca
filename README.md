@@ -20,6 +20,7 @@ The site is plain static HTML built by a small Node script that has **no depende
 | `npm run brands-image` | Regenerates `src/assets/brands/brand-family.png`, the downloadable image on the unlisted /brands/ page. Run it after editing `src/brands-content.mjs`. Needs Playwright. |
 | `node scripts/time-back-test.cjs` | Optional. With `npm run preview` running, tests the Owner Freedom Calculator in a real browser (math, edge cases, keyboard, privacy, phone widths). Needs Playwright. |
 | `node scripts/profit-levers-test.cjs` | Optional. With `npm run preview` running, tests the Profit Levers Calculator in a real browser (the required cases, losses, zero revenue, rounding, keyboard, privacy, phone widths). Needs Playwright. |
+| `node scripts/tools-nav-test.cjs` | Optional. With `npm run preview` running, tests the Tools menu, the home Tools section, and the phone results bar on both calculators. Needs Playwright. |
 | `npm run og-image` | Regenerates `src/assets/og-image.png`, the link preview image. Run it after changing the name or tagline. Needs Playwright. |
 
 ## Where to edit

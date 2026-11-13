@@ -148,6 +148,21 @@ export function home({ site, link, copy }) {
   </div>
 </section>
 
+${c.tools?.some((t) => link.has(t.key))
+  ? `<section class="section section-alt" aria-labelledby="tools-heading">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">${esc(c.toolsEyebrow)}</p>
+      <h2 id="tools-heading" class="section-title">${esc(c.toolsHeading)}</h2>
+      <p>${esc(c.toolsIntro)}</p>
+    </div>
+    <ul class="tool-cards">${c.tools
+      .filter((t) => link.has(t.key))
+      .map((t) => `<li><a class="tool-card" href="${esc(link.page(t.key))}"><span class="tool-card-name">${esc(t.name)}</span><span class="tool-card-question">${esc(t.question)}</span><span class="tool-card-body">${esc(t.body)}</span><span class="tool-card-cta">${esc(t.cta)}</span></a></li>`)
+      .join('')}</ul>
+  </div>
+</section>`
+  : ''}
 <section class="section" aria-labelledby="people-heading">
   <div class="wrap">
     <div class="section-head section-head-row">
@@ -1226,7 +1241,7 @@ export function timeBack({ site, link, copy }) {
       </fieldset>
     </form>
 
-    <div class="tb-results" aria-labelledby="tb-results-h">
+    <div class="tb-results" id="tb-results" aria-labelledby="tb-results-h">
       <h2 id="tb-results-h" class="section-title">${esc(c.resultsHeading)}</h2>
       <p class="tb-empty" id="tb-empty">${esc(c.emptyResult)}</p>
       <div id="tb-out" hidden>
@@ -1292,6 +1307,7 @@ export function timeBack({ site, link, copy }) {
     ${c.otherTool && link.has('profit') ? `<p class="pl-other"><a class="text-link text-link-light" href="${esc(link.page('profit'))}">${esc(c.otherTool)}</a></p>` : ''}
   </div>
 </section>
+<div class="tool-dock" data-target="tb-results" hidden><span class="tool-dock-text" aria-hidden="true"></span><a class="tool-dock-link" href="#tb-results">See results <span aria-hidden="true">&darr;</span></a></div>
 <script type="application/json" id="tb-strings">${JSON.stringify(strings).replace(/</g, '\\u003c')}</script>
 <script src="${esc(link.versioned('time-back.js'))}" defer></script>`;
 }
@@ -1359,7 +1375,7 @@ export function profit({ site, link, copy }) {
       <button type="button" class="tb-clear" id="pl-reset">${esc(c.resetLevers)}</button>
     </form>
 
-    <div class="tb-results pl-results" aria-labelledby="pl-results-h">
+    <div class="tb-results pl-results" id="pl-results" aria-labelledby="pl-results-h">
       <h2 id="pl-results-h" class="section-title">${esc(c.resultsHeading)}</h2>
       <p class="tb-empty" id="pl-empty">${esc(c.emptyResult)}</p>
       <p class="tb-message" id="pl-zero" hidden>${esc(c.zeroRevenue)}</p>
@@ -1429,6 +1445,7 @@ export function profit({ site, link, copy }) {
     ${link.has('timeBack') ? `<p class="pl-other"><a class="text-link text-link-light" href="${esc(link.page('timeBack'))}">${esc(c.otherTool)}</a></p>` : ''}
   </div>
 </section>
+<div class="tool-dock" data-target="pl-results" hidden><span class="tool-dock-text" aria-hidden="true"></span><a class="tool-dock-link" href="#pl-results">See results <span aria-hidden="true">&darr;</span></a></div>
 <script type="application/json" id="pl-strings">${JSON.stringify(strings).replace(/</g, '\\u003c')}</script>
 <script src="${esc(link.versioned('profit-levers.js'))}" defer></script>`;
 }

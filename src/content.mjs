@@ -65,6 +65,13 @@ export default function content(site) {
       ],
       chooserStartLabel: 'Start with',
       chooserUnsure: 'Not sure which one fits? That is what the first conversation is for.',
+      toolsEyebrow: 'Tools for owners',
+      toolsHeading: 'Two quick ways to look at your business differently.',
+      toolsIntro: 'Each takes a few minutes, works with rough estimates, and stays in your browser. We never see your answers.',
+      tools: [
+        { key: 'timeBack', name: 'Owner Freedom Calculator', question: 'How much of your life is your business consuming?', body: 'Compare the hours you work with the hours you would choose, and see what the gap adds up to over a year.', cta: 'Try the Owner Freedom Calculator' },
+        { key: 'profit', name: 'Profit Levers Calculator', question: 'What could a small improvement do for your bottom line?', body: 'Explore how changes in pricing, direct costs, or overhead could affect your estimated operating profit.', cta: 'Try the Profit Levers Calculator' },
+      ],
       pillarsHeading: 'Multiple perspectives. One practical path forward.',
       pillarsIntro: 'Start with the part of the business that needs attention first. You do not need all three.',
       pillars: [
