@@ -140,13 +140,71 @@ export default function content(site) {
     },
 
     services: {
-      title: `Business Coaching, Advisory, and Fractional CFO | ${name}`,
+      title: `Services: Coaching, EOS, Working Genius, Fractional CFO | ${name}`,
       description:
-        'Business coaching, fractional CFO support, bookkeeping and financial operations, and integrated business advisory for owner-led businesses across Northeast Ohio.',
+        'Business coaching, EOS, Working Genius, team and culture work, fractional CFO support, and help selling a business, for owner-led companies in Northeast Ohio.',
       eyebrow: 'Services',
       headline: 'Start with your most pressing question.',
       lead:
         'Some owners need a coach. Some need a clearer financial picture. Many need both, with a practical way to turn insight into action.',
+      // Answer-first summary under the hero (what search snippets and AI answers quote).
+      answer: `${name} helps the owners of owner-led businesses with both the people side and the numbers side of running a company: business coaching and EOS, team and culture work including The 6 Types of Working Genius, fractional CFO support and financial operations, custom retreats, and help selling a business. Josh Muller, Matt LaFleur, and Greg Snyder lead the work, on their own or together, for owners across Northeast Ohio.`,
+      dateModified: '2026-11-15',
+      reviewedBy: ['matt'],
+
+      // At a glance: every offer grouped by the owner's need. Each item links to its detail page (key) or,
+      // where there is no detail page, to its section on this page (anchor).
+      glanceHeading: 'Everything we offer, at a glance',
+      glanceIntro: 'Find the need that sounds most like yours. Each one links to the details.',
+      glance: [
+        {
+          need: 'Leadership and coaching',
+          line: 'For the owner and the leadership team.',
+          items: [
+            { text: 'Business coaching', key: 'coaching' },
+            { text: 'EOS with a Certified EOS Implementer', key: 'growBusiness' },
+            { text: 'Retreat to Advance: custom retreats', anchor: 'retreats' },
+          ],
+        },
+        {
+          need: 'Your team',
+          line: 'The right people, on the right work.',
+          items: [
+            { text: 'The 6 Types of Working Genius', key: 'workingGenius' },
+            { text: 'Ideal Team Player hiring', key: 'growTeam' },
+            { text: 'Culture and team building with Greg', anchor: 'team' },
+          ],
+        },
+        {
+          need: 'Your numbers',
+          line: 'Numbers you trust, and know what to do with.',
+          items: [
+            { text: 'Fractional CFO support', key: 'fractionalCfo' },
+            { text: 'Bookkeeping and financial operations', key: 'growFinance' },
+          ],
+        },
+        {
+          need: 'How the business runs',
+          line: 'Growth without more chaos.',
+          items: [
+            { text: 'The Time-Rich Company framework', key: 'growBusiness' },
+            { text: 'Systems and processes that work together', key: 'growBusiness' },
+          ],
+        },
+        {
+          need: 'What comes next',
+          line: 'The decisions that shape the next chapter.',
+          items: [
+            { text: 'Selling your business', key: 'sell' },
+            { text: 'Integrated advisory across all of these', key: 'advisory' },
+          ],
+        },
+      ],
+      toolsLine: 'Not sure yet? Try a free tool first:',
+      toolsLinks: [
+        { key: 'timeBack', text: 'Owner Freedom Calculator' },
+        { key: 'profit', text: 'Profit Levers Calculator' },
+      ],
       sections: [
         {
           id: 'coaching',
@@ -172,6 +230,64 @@ export default function content(site) {
           moreLinks: [{ page: 'workingGenius', text: 'The 6 Types of Working Genius for your team' }],
         },
         {
+          id: 'operating-system',
+          page: 'growBusiness',
+          pageLinkText: 'EOS and the Time-Rich Company framework in detail',
+          cta: 'Talk through how the business runs',
+          emailSubject: 'EOS and operating rhythm',
+          lane: 'Led by Josh',
+          title: 'EOS and an operating rhythm',
+          body: [
+            'Josh Muller is a Certified EOS Implementer with deep experience running businesses on EOS. He teaches leadership teams the Entrepreneurial Operating System (EOS\u00ae) and helps them use it to grow without more chaos. Our Time-Rich Company framework helps teams cut wasted time and spend their best hours on the work that matters most.',
+          ],
+          listHeading: 'Work can include',
+          items: [
+            'One clear vision the leadership team agrees on and can share',
+            'Quarterly Rocks, a weekly Scorecard, and a weekly meeting that solves issues',
+            'Clear ownership of every seat',
+            'Time-Rich Company sessions in a half-day, full-day, or five-week format',
+          ],
+          note: 'EOS\u00ae and Entrepreneurial Operating System\u00ae are registered trademarks of EOS Worldwide.',
+        },
+        {
+          id: 'retreats',
+          cta: 'Talk about a retreat',
+          emailSubject: 'Retreat to Advance',
+          title: 'Retreat to Advance',
+          body: [
+            'Custom retreat programming for owners and leadership teams, in any length, format, or style. Step away to go deeper: take stock, distill what matters, and set the path ahead.',
+          ],
+          listHeading: 'Retreats can include',
+          items: [
+            'A clear look at where the business and the team stand',
+            'Time to decide what matters most for the season ahead',
+            'Planning the leadership team leaves with and owns',
+          ],
+          externalLink: 'retreat',
+          externalLinkText: 'Retreat to Advance details on the BUILD website',
+        },
+        {
+          id: 'team',
+          page: 'growTeam',
+          pageLinkText: 'Growing your team in detail',
+          cta: 'Talk through a team question',
+          emailSubject: 'Team and culture',
+          lane: 'Led by Greg',
+          title: 'Team, culture, and Working Genius',
+          body: [
+            'Greg Snyder, a Certified Working Genius Facilitator, leads our team and culture work. We help owners put people on the work that gives them energy, hire people who are humble, hungry, and people smart, and build a culture that holds up as the business grows.',
+          ],
+          listHeading: 'Work can include',
+          items: [
+            'Working Genius assessments, team maps, and workshops',
+            'Ideal Team Player assessments and interview questions',
+            'Culture and team-building work with leaders and teams',
+            'A coaching plan for the gaps the work uncovers',
+          ],
+          moreLinks: [{ page: 'workingGenius', text: 'The 6 Types of Working Genius' }],
+          note: 'The 6 Types of Working Genius and The Ideal Team Player are models created by Patrick Lencioni and The Table Group.',
+        },
+        {
           id: 'financial-clarity',
           page: 'fractionalCfo',
           pageLinkText: 'Fractional CFO services in detail',
@@ -192,6 +308,8 @@ export default function content(site) {
         },
         {
           id: 'financial-operations',
+          page: 'growFinance',
+          pageLinkText: 'Financial operations in detail',
           cta: 'Talk through your financial operations',
           emailSubject: 'Bookkeeping and financial operations',
           lane: 'Led by Matt',
@@ -253,6 +371,37 @@ export default function content(site) {
       scopeHeading: 'Scope comes first',
       scope:
         'The right starting point depends on your business. We will agree on the people, questions, and work involved before an engagement begins.',
+      faqHeading: 'Common questions',
+      faq: [
+        {
+          q: 'Which service is right for my business?',
+          a: 'Start with the question in front of you: a leadership decision, a team problem, unclear numbers, or the next chapter of the business. A 20-minute conversation with Josh or Matt is usually enough to recommend a sensible starting point, and you do not need every service to get value from one.',
+        },
+        {
+          q: 'How is the work scoped and priced?',
+          a: 'We agree on the scope, cadence, and fees before work begins, so there are no surprises. Engagements are shaped around your business, not a fixed package.',
+        },
+        {
+          q: 'Who will I work with?',
+          a: `Josh Muller leads coaching, EOS, and leadership work. Matt LaFleur, a CPA licensed in Ohio and California, leads fractional CFO and financial operations work. Greg Snyder, a Certified Working Genius Facilitator, leads team and culture work. When a challenge touches more than one area, they work on it together.`,
+        },
+        {
+          q: 'How do the services fit together?',
+          a: 'Most hard decisions in an owner-led business have a people side and a numbers side. You can start with one service and add another when it helps, or have Josh, Matt, and Greg work on a defined challenge together, so the team plan and the financial plan move in the same direction.',
+        },
+        {
+          q: 'Do you only work in Northeast Ohio?',
+          a: 'Our offices are in Cuyahoga Falls and Elyria, and we work with owners across Northeast Ohio in person and remotely. Much of the work can also happen remotely for owners farther away.',
+        },
+        {
+          q: 'Do you prepare taxes or perform audits?',
+          a: `No. ${name} is not a registered CPA firm and does not provide tax preparation or attest services such as audits, reviews, or compilations.`,
+        },
+        {
+          q: 'Is there a way to start before talking with you?',
+          a: 'Yes. The Owner Freedom Calculator compares the hours you work with the hours you would choose, and the Profit Levers Calculator explores how pricing and cost changes could affect your estimated operating profit. Both are free and run in your browser; we never see your answers.',
+        },
+      ],
     },
 
     howWeWork: {

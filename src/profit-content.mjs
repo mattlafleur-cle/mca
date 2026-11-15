@@ -8,7 +8,7 @@ export default function profitContent(site) {
   return {
     profit: {
       title: `Profit Levers Calculator for Business Owners | ${name}`,
-      description: 'What could a small improvement do for your bottom line? Explore how changes in pricing, direct costs, and overhead could affect your estimated annual operating profit.',
+      description: 'What could a small improvement do for your bottom line? See how changes in pricing, direct costs, and overhead could affect your estimated operating profit.',
       eyebrow: 'The Profit Levers Calculator',
       headline: 'What could a small improvement do for your bottom line?',
       lead: 'Small changes can make a meaningful difference. Start with a rough snapshot of your year, then explore what a change in pricing, direct costs, or overhead might mean for your estimated operating profit. It takes about two minutes, and rough estimates are fine.',

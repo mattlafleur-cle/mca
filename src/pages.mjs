@@ -178,16 +178,33 @@ ${closing(link, c.closingHeading, c.closingBody)}`;
 
 export function services({ site, link, copy }) {
   const c = copy.services;
-  const jump = `<nav class="jump" aria-label="On this page"><ul>${c.sections
-    .map((s) => `<li><a href="#${esc(s.id)}">${esc(s.title)}</a></li>`)
-    .join('')}</ul></nav>`;
+  // At a glance: every offer grouped by need, linking to a detail page or to its section on this page.
+  const glanceHref = (it) => (it.key && link.has(it.key) ? link.page(it.key) : it.anchor ? `#${it.anchor}` : '');
+  const glance = c.glance?.length
+    ? `<section class="section" aria-labelledby="glance-heading">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="glance-heading" class="section-title">${esc(c.glanceHeading)}</h2>
+      <p>${esc(c.glanceIntro)}</p>
+    </div>
+    <ul class="glance">${c.glance
+      .map((g) => `<li class="glance-group">
+        <h3>${esc(g.need)}</h3>
+        <p>${esc(g.line)}</p>
+        <ul>${g.items.filter(glanceHref).map((it) => `<li><a href="${esc(glanceHref(it))}">${esc(it.text)}</a></li>`).join('')}</ul>
+      </li>`)
+      .join('')}</ul>
+    ${c.toolsLinks?.some((t) => link.has(t.key)) ? `<p class="glance-tools">${esc(c.toolsLine)} ${c.toolsLinks.filter((t) => link.has(t.key)).map((t) => `<a class="text-link" href="${esc(link.page(t.key))}">${esc(t.text)}</a>`).join(' <span aria-hidden="true">&middot;</span> ')}</p>` : ''}
+  </div>
+</section>`
+    : '';
 
   const sections = c.sections
     .map(
       (s, i) => `<section id="${esc(s.id)}" class="service${i % 2 ? ' service-alt' : ''}${s.id === 'integrated' ? ' service-integrated' : ''}" aria-labelledby="${esc(s.id)}-heading">
   <div class="wrap service-inner">
     <div class="service-main">
-      <p class="lane-chip">${esc(s.lane)}</p>
+      ${s.lane ? `<p class="lane-chip">${esc(s.lane)}</p>` : ''}
       <h2 id="${esc(s.id)}-heading">${esc(s.title)}</h2>
       ${paras(s.body)}
       ${s.note ? `<p class="service-note">${esc(s.note)}</p>` : ''}
@@ -197,6 +214,7 @@ export function services({ site, link, copy }) {
       </div>
       ${s.page ? `<a class="text-link${s.id === 'integrated' ? ' text-link-light' : ''}" href="${esc(link.page(s.page))}">${esc(s.pageLinkText)}</a>` : ''}
       ${(s.moreLinks || []).filter((m) => link.has(m.page)).map((m) => `<a class="text-link" href="${esc(link.page(m.page))}">${esc(m.text)}</a>`).join('')}
+      ${s.externalLink === 'retreat' && (site.build.retreatUrl || site.build.url) ? `<a class="text-link" href="${esc(site.build.retreatUrl || site.build.url)}" rel="noopener">${esc(s.externalLinkText)}</a>` : ''}
     </div>
     <div class="service-list">
       <h3>${esc(s.listHeading)}</h3>
@@ -207,8 +225,16 @@ export function services({ site, link, copy }) {
     )
     .join('\n');
 
-  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: jump, seed: 4 })}
+  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, seed: 4 })}
+${answerBlock(site, c)}
+${glance}
 ${sections}
+${c.faq?.length ? `<section class="section section-dark" aria-labelledby="services-faq">
+  <div class="wrap faq-wrap">
+    <h2 id="services-faq" class="section-title">${esc(c.faqHeading)}</h2>
+    <div class="faq">${c.faq.map((f) => `<div class="faq-item"><h3>${esc(f.q)}</h3><p>${esc(f.a)}</p></div>`).join('')}</div>
+  </div>
+</section>` : ''}
 <section class="section" aria-labelledby="scope-heading">
   <div class="wrap scope">
     <h2 id="scope-heading">${esc(c.scopeHeading)}</h2>

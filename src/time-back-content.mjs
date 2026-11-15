@@ -8,7 +8,7 @@ export default function timeBackContent(site) {
   return {
     timeBack: {
       title: `Owner Freedom Calculator for Business Owners | ${name}`,
-      description: 'How much of your life is your business consuming? The Owner Freedom Calculator compares the hours you work with the hours you would choose, and shows what the gap adds up to over a year.',
+      description: 'How much of your life is your business consuming? Compare the hours you work with the hours you would choose, and see what the gap adds up to in a year.',
       eyebrow: 'The Owner Freedom Calculator',
       headline: 'How much of your life is your business consuming?',
       lead: 'Owning a business can be one of the most rewarding things you do, and one of the most consuming. You can be proud of what you have built and tired at the same time. Take about a minute to compare the hours you work with the hours you would choose, and see what the difference adds up to.',

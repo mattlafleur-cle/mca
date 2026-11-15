@@ -259,6 +259,29 @@ export function structuredData(site, route, meta) {
       url: `${base}${route.path}`,
     });
   }
+  // Services page: the full service catalog, and the free tools, as structured data.
+  if (route.key === 'services' && meta.glance?.length) {
+    const table = Object.fromEntries(routes(site).map((r) => [r.key, r]));
+    const url = (it) => (it.key && table[it.key] ? `${base}${table[it.key].path}` : `${base}${route.path}#${it.anchor}`);
+    org.hasOfferCatalog = {
+      '@type': 'OfferCatalog',
+      name: `${site.siteName} services`,
+      itemListElement: meta.glance.map((g) => ({
+        '@type': 'OfferCatalog',
+        name: g.need,
+        itemListElement: g.items.map((it) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: it.text, url: url(it), provider: { '@id': orgId } } })),
+      })),
+    };
+    const tools = (meta.toolsLinks || []).filter((t) => table[t.key]);
+    if (tools.length) {
+      graph.push({
+        '@type': 'ItemList',
+        '@id': `${base}${route.path}#tools`,
+        name: 'Free tools for business owners',
+        itemListElement: tools.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: t.text, url: `${base}${table[t.key].path}` })),
+      });
+    }
+  }
   // Dated, attributed pages: a WebPage node with last-modified date and reviewers (people by id).
   if (meta.dateModified) {
     const people = [...site.founders, ...(site.team || [])];
@@ -271,7 +294,7 @@ export function structuredData(site, route, meta) {
       description: meta.description,
       dateModified: meta.dateModified,
       isPartOf: { '@id': `${base}/#website` },
-      about: { '@id': `${base}${route.path}#service` },
+      about: meta.serviceType ? { '@id': `${base}${route.path}#service` } : { '@id': orgId },
       ...(reviewers.length ? { reviewedBy: reviewers.map((id) => ({ '@id': `${base}/about/#${id}` })) } : {}),
     });
   }
