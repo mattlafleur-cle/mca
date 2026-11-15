@@ -145,7 +145,7 @@ export function home({ site, link, copy }) {
       ${paras(c.integratedBody)}
       <a class="text-link text-link-light" href="${esc(link.page('howWeWork'))}">${esc(c.integratedLink)}</a>
     </div>
-    ${lanesDiagram()}
+    ${lanesDiagram({ owner: true })}
   </div>
 </section>
 

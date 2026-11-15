@@ -135,7 +135,27 @@ export function contourSvg({ width = 640, height = 520, lines = 11, seed = 3, cl
 }
 
 // Two lanes (people and numbers) that meet in one plan. Labels are real text so they scale.
-export function lanesDiagram() {
+export function lanesDiagram({ owner = false } = {}) {
+  if (owner) {
+    // Three lanes (home page): the owner, the people, and the numbers join into one plan.
+    return `<figure class="lanes">
+  <svg viewBox="0 0 560 300" role="img" aria-labelledby="lanes-title">
+    <title id="lanes-title">Three lines, labeled the owner, the people, and the numbers, start apart and join into a single line labeled one plan.</title>
+    <path class="lane lane-owner" d="M24 40 C 190 40, 250 150, 360 150"/>
+    <path class="lane lane-people" d="M24 150 L 360 150"/>
+    <path class="lane lane-numbers" d="M24 260 C 190 260, 250 150, 360 150"/>
+    <path class="lane lane-plan" d="M360 150 L 536 150"/>
+    <circle class="lane-dot" cx="24" cy="40" r="6"/>
+    <circle class="lane-dot" cx="24" cy="150" r="6"/>
+    <circle class="lane-dot" cx="24" cy="260" r="6"/>
+    <circle class="lane-join" cx="360" cy="150" r="9"/>
+    <text x="40" y="26" class="lane-label">The owner</text>
+    <text x="40" y="136" class="lane-label">The people</text>
+    <text x="40" y="290" class="lane-label">The numbers</text>
+    <text x="536" y="134" class="lane-label" text-anchor="end">One plan</text>
+  </svg>
+</figure>`;
+  }
   return `<figure class="lanes">
   <svg viewBox="0 0 560 240" role="img" aria-labelledby="lanes-title">
     <title id="lanes-title">Two lines, one labeled the people side and one labeled the numbers side, start apart and join into a single line labeled one plan.</title>

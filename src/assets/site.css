@@ -1170,3 +1170,4 @@ h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
 .quote figcaption { font-weight: 700; color: var(--ink); }
 @media (max-width: 44rem) { .quotes { grid-template-columns: minmax(0, 1fr); } }
 .quotes + .service-note { margin-top: 1rem; }
+.lane-owner { stroke: var(--brand-orange); }

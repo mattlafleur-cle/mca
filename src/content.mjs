@@ -131,10 +131,10 @@ export default function content(site) {
           numbers: 'Would the financials hold up for a buyer, a successor, or a lender?',
         },
       ],
-      integratedHeading: 'The people side and the numbers side belong in the same conversation.',
+      integratedHeading: 'The owner, the people, and the numbers belong in the same conversation.',
       integratedBody: [
-        'Josh and Matt can work with an owner together when leadership, operations, and financial decisions intersect. They can also start in the part of the business that needs attention first.',
-        'The engagement should fit the actual decision in front of you.',
+        'Most owners who feel stuck are carrying the business on their own shoulders. We start there: helping you step out of the middle of every decision, putting the right people on the right work, and making the numbers clear enough to guide what comes next.',
+        'Josh, Greg, and Matt can work on all three together, or start where the business needs attention first.',
       ],
       integratedLink: 'See how an engagement comes together',
       peopleHeading: 'The people you would partner with',
