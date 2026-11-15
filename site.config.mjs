@@ -134,6 +134,7 @@ export default {
       role: 'Coaching, leadership, and vision',
       // Structured data only (search and AI answers): expertise and credentials.
       knowsAbout: ['Business coaching', 'Entrepreneurial Operating System (EOS)', 'Leadership team facilitation', 'Strategic planning', 'BUILD peer groups for business owners'],
+      affiliations: [{ name: 'No Alumni', url: 'https://www.noalumni.com/' }],
       credentials: [{ name: 'Certified EOS Implementer', recognizedBy: { name: 'EOS Worldwide', url: 'https://www.eosworldwide.com/' } }],
       photo: { src: 'photos/josh-muller.jpg', width: 480, height: 480, alt: 'Josh Muller, smiling, outdoors in front of green trees' },
       short:
@@ -149,6 +150,7 @@ export default {
       name: 'Matt LaFleur',
       role: 'Financial clarity, strategy, and operations',
       knowsAbout: ['Fractional CFO services', 'Financial reporting', 'Cash flow forecasting', 'Nonprofit and church finance', 'The 6 Types of Working Genius', 'Practical AI for small organizations'],
+      affiliations: [{ name: 'No Alumni', url: 'https://www.noalumni.com/' }],
       credentials: [
         { name: 'Certified Public Accountant (Ohio)', category: 'license', recognizedBy: { name: 'Accountancy Board of Ohio', url: 'https://acc.ohio.gov/' } },
         { name: 'Certified Public Accountant (California)', category: 'license', recognizedBy: { name: 'California Board of Accountancy', url: 'https://www.dca.ca.gov/cba/' } },

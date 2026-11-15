@@ -317,6 +317,7 @@ export function about({ site, link, copy }) {
     <div class="integrated-copy">
       <h2 id="together-heading" class="section-title">${esc(c.togetherHeading)}</h2>
       ${paras(c.together)}
+      ${c.noAlumniLine && link.has('noAlumni') ? `<p>${esc(c.noAlumniLine)} <a class="text-link text-link-light" href="${esc(link.page('noAlumni'))}">${esc(c.noAlumniLink)}</a></p>` : ''}
     </div>
     ${lanesDiagram()}
   </div>
@@ -1647,4 +1648,73 @@ ${leadsSection({ site, link, id: 'speak-people', heading: c.speakersHeading, ids
   </div>
 </section>
 ${closing(link, c.closingHeading, c.closingBody)}`;
+}
+
+// Maple Creek Advisors and No Alumni (/no-alumni/): the counterpart to noalumni.com/maple-creek/.
+export function noAlumni({ site, link, copy }) {
+  const c = copy.noAlumni;
+  const people = [...site.founders, ...(site.team || [])];
+  const roomLink = (r) => (r.link && link.has(r.link.key) ? `<a class="text-link" href="${esc(link.page(r.link.key))}">${esc(r.link.text)}</a>` : r.href ? `<a class="text-link" href="${esc(r.href)}" rel="noopener">${esc(r.linkText)}</a>` : '');
+  const guideStart = (g) => (g.key && link.has(g.key) ? `<a href="${esc(link.page(g.key))}">${esc(g.start)}</a>` : g.href ? `<a href="${esc(g.href)}" rel="noopener">${esc(g.start)}</a>` : esc(g.start));
+  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `<div class="actions">${ctaButton(link)}<a class="button button-secondary" href="${esc(c.naUrl)}" rel="noopener">${esc(c.visitButton)}</a></div>`, seed: 111 })}
+${answerBlock(site, c)}
+<section class="section" aria-labelledby="na-what">
+  <div class="wrap">
+    <h2 id="na-what" class="section-title">${esc(c.whatHeading)}</h2>
+    <div class="na-rooms">${c.rooms
+      .map((r) => `<article class="grow-offer na-room">
+        <p class="brand-tag">${esc(r.name)}</p>
+        <h3>${esc(r.tag)}</h3>
+        <p>${esc(r.body)}</p>
+        <ul class="check-list">${r.items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>
+        ${roomLink(r)}
+      </article>`)
+      .join('')}</div>
+  </div>
+</section>
+<section class="section section-alt" aria-labelledby="na-people">
+  <div class="wrap">
+    <h2 id="na-people" class="section-title">${esc(c.peopleHeading)}</h2>
+    <div class="na-people">${c.people
+      .map((p) => {
+        const f = people.find((x) => x.id === p.id);
+        if (!f) return '';
+        return `<article class="na-person">
+        ${portrait(f, link)}
+        <h3>${esc(f.name)}</h3>
+        <dl>${p.roles.map((r) => `<div><dt>${esc(r.org)}</dt><dd>${esc(r.title)}</dd></div>`).join('')}</dl>
+        ${link.has('about') ? `<a class="text-link" href="${esc(link.page('about', f.id))}">More about ${esc(f.name.split(' ')[0])}</a>` : ''}
+      </article>`;
+      })
+      .join('')}</div>
+  </div>
+</section>
+<section class="section" aria-labelledby="na-why">
+  <div class="wrap">
+    <h2 id="na-why" class="section-title">${esc(c.whyHeading)}</h2>
+    <ul class="departments" style="--cols:3">${c.why.map((w) => `<li><h3>${esc(w.name)}</h3><p>${esc(w.body)}</p></li>`).join('')}</ul>
+  </div>
+</section>
+<section class="section section-alt" aria-labelledby="na-guide">
+  <div class="wrap">
+    <h2 id="na-guide" class="section-title">${esc(c.guideHeading)}</h2>
+    <table class="na-guide">
+      <thead><tr><th scope="col">If you want</th><th scope="col">Start with</th></tr></thead>
+      <tbody>${c.guide.map((g) => `<tr><td>${esc(g.want)}</td><td>${guideStart(g)}</td></tr>`).join('')}</tbody>
+    </table>
+  </div>
+</section>
+<section class="section section-dark" aria-labelledby="na-faq">
+  <div class="wrap faq-wrap">
+    <h2 id="na-faq" class="section-title">Common questions</h2>
+    <div class="faq">${c.faq.map((f) => `<div class="faq-item"><h3>${esc(f.q)}</h3><p>${esc(f.a)}</p></div>`).join('')}</div>
+  </div>
+</section>
+<section class="section" aria-labelledby="na-close">
+  <div class="wrap scope">
+    <h2 id="na-close">${esc(c.closingHeading)}</h2>
+    <p>${esc(c.closingBody)}</p>
+    <div class="actions">${ctaButton(link, { text: `Schedule with ${site.siteName}` })}<a class="button button-secondary" href="${esc(c.naCallUrl)}" rel="noopener">${esc(c.naCallText)}</a></div>
+  </div>
+</section>`;
 }

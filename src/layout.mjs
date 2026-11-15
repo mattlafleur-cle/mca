@@ -51,6 +51,7 @@ export function routes(site) {
     // Interactive tools: indexed, in the sitemap, and listed under the Tools menu.
     { key: 'timeBack', label: 'Owner Freedom Calculator', path: '/owner-freedom-calculator/', file: 'owner-freedom-calculator.html', out: 'owner-freedom-calculator/index.html', standalone: true, tool: true },
     { key: 'profit', label: 'Profit Levers Calculator', path: '/profit-levers-calculator/', file: 'profit-levers-calculator.html', out: 'profit-levers-calculator/index.html', standalone: true, tool: true },
+    { key: 'noAlumni', label: 'Maple Creek Advisors and No Alumni', path: '/no-alumni/', file: 'no-alumni.html', out: 'no-alumni/index.html', standalone: true },
     { key: 'announcement', label: 'Announcement', path: '/announcement/', file: 'announcement.html', out: 'announcement/index.html', standalone: true },
     { key: 'onboarding', label: 'Onboarding', path: '/onboarding/', file: 'onboarding.html', out: 'onboarding/index.html', hidden: true, noindex: true },
     { key: 'clients', label: 'Client updates', path: '/client-updates/', file: 'client-updates.html', out: 'client-updates/index.html', hidden: true, noindex: true },
@@ -325,6 +326,17 @@ export function structuredData(site, route, meta) {
         itemListElement: tools.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: t.text, url: `${base}${table[t.key].path}` })),
       });
     }
+  }
+  // No Alumni page: No Alumni as its own organization (not sameAs), with its co-founders linked by person id.
+  if (route.key === 'noAlumni') {
+    graph.push({
+      '@type': 'Organization',
+      '@id': 'https://www.noalumni.com/#organization',
+      name: 'No Alumni',
+      url: 'https://www.noalumni.com/',
+      description: 'A Northeast Ohio company and movement that celebrates every path to success and helps teams, schools, and organizations build workplaces where people thrive.',
+      founder: ['greg', 'matt'].map((id) => ({ '@id': `${base}/about/#${id}` })),
+    });
   }
   // Speaking page: past sessions with full details as Event nodes, with the speaker as performer.
   // Town only, no street: scripts/check.mjs keeps street addresses out of structured data.

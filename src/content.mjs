@@ -16,6 +16,7 @@ import workingGeniusGuides from './working-genius-guides-content.mjs';
 import jtecContent from './jtec-content.mjs';
 import timeBackContent from './time-back-content.mjs';
 import speakingContent from './speaking-content.mjs';
+import noAlumniContent from './no-alumni-content.mjs';
 import profitContent from './profit-content.mjs';
 
 export default function content(site) {
@@ -28,6 +29,7 @@ export default function content(site) {
     ...workingGeniusGuides(site),
     ...timeBackContent(site),
     ...speakingContent(site),
+    ...noAlumniContent(site),
     ...profitContent(site),
     church: churchContent(site),
     carts: cartsContent(site),
@@ -470,6 +472,8 @@ export default function content(site) {
       eyebrow: 'About',
       headline: 'Building a better business means working with the owner, the team, and the facts at the same time.',
       togetherHeading: 'Why the two of us',
+      noAlumniLine: 'Josh, Matt, and Greg also lead No Alumni.',
+      noAlumniLink: 'How Maple Creek Advisors and No Alumni fit together',
       together: [
         'Josh helps owners and teams see the human and leadership side of the next move. Matt brings the financial and operating view.',
         `${name} brings those two perspectives into one relationship, so a sound decision connects to the work required to carry it out.`,
