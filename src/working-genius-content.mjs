@@ -15,7 +15,7 @@ export default function workingGeniusContent(site) {
       eyebrow: 'The 6 Types of Working Genius',
       answer: 'The 6 Types of Working Genius is a productivity model from Patrick Lencioni and The Table Group. It names the six kinds of work every project needs (Wonder, Invention, Discernment, Galvanizing, Enablement, and Tenacity) and shows which two give each person energy. Maple Creek Advisors helps owner-led teams in any industry use it to put people on the right work, so the team gets more productive and more profitable.',
       credential: 'Maple Creek Advisors is Working Genius certified, and Greg Snyder is a Certified Working Genius Facilitator.',
-      dateModified: '2026-11-10',
+      dateModified: '2026-11-15',
       reviewedBy: ['matt'],
       headline: 'Put your people on the work that gives them energy.',
       lead: 'Turnover and disengagement are expensive. Working Genius shows each person the kind of work they are wired for, so your team does more of it, with less friction and burnout. In any industry, that adds up to a more productive and more profitable team.',
@@ -30,6 +30,8 @@ export default function workingGeniusContent(site) {
 
       typesHeading: 'The six types',
       typesIntro: 'Every project moves through three stages. Each stage needs two kinds of genius.',
+      typesMore: 'Select any type to see what it looks like in an owner-led business, and what it costs when it is missing.',
+      industriesLine: 'Working Genius for',
       stages: [
         {
           name: 'Ideation',
@@ -100,6 +102,22 @@ export default function workingGeniusContent(site) {
         {
           q: 'Who is it for?',
           a: 'Owners, leadership teams, and whole teams in owner-led businesses of any industry, typically 5 to 50 people. It works for a single leader, a leadership team, or the whole company.',
+        },
+        {
+          q: 'Who created The 6 Types of Working Genius?',
+          a: 'Patrick Lencioni and The Table Group created the model. Maple Creek Advisors is Working Genius certified, and Greg Snyder is a Certified Working Genius Facilitator, so we use it with owner-led teams and connect it to how the business actually runs.',
+        },
+        {
+          q: 'What is the difference between a working genius, a competency, and a frustration?',
+          a: 'Each person has two working geniuses, which give them energy and joy; two working competencies, which they can do fairly well for a while; and two working frustrations, which drain them even when they do them well. Most burnout comes from spending too much of the day in frustrations.',
+        },
+        {
+          q: 'How do I take the Working Genius assessment?',
+          a: 'The assessment is available online from The Table Group at workinggenius.com. If you want to use it with your team, start with a short conversation with us: we set up assessments for everyone, build a team map, and walk through the results together.',
+        },
+        {
+          q: 'How does Working Genius help reduce turnover?',
+          a: 'People who spend more of their day on work that gives them energy are more engaged and less likely to burn out or leave. Working Genius shows where each person fits and where work is draining good people. It does not replace fair pay or good management, but it removes a common, fixable reason people leave.',
         },
         {
           q: 'Is Working Genius worth the investment?',

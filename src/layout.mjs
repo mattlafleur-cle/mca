@@ -1,11 +1,31 @@
 // Shared page shell, header, footer, and small components.
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
+import workingGeniusGuides, { typeSlugs, industrySlugs } from './working-genius-guides-content.mjs';
 
 export const esc = (value) =>
   String(value ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 
 // Route table. `path` is the clean production URL; `file` is the flat file used for the artifact preview.
+function guideRoutes(site) {
+  const guides = workingGeniusGuides(site);
+  return [...typeSlugs, ...industrySlugs].map((slug) => {
+    const g = guides[`wg-${slug}`];
+    return {
+      key: `wg-${slug}`,
+      // Types use their name (Wonder); industries drop the 'Working Genius for' prefix (Construction and the trades).
+      label: g.name || g.headline.replace(/^Working Genius for /, '').replace(/^./, (ch) => ch.toUpperCase()),
+      path: `/working-genius/${slug}/`,
+      file: `working-genius-${slug}.html`,
+      out: `working-genius/${slug}/index.html`,
+      standalone: true,
+      guide: g.template === 'wgType' ? 'type' : 'industry',
+      template: g.template,
+      parent: 'workingGenius',
+    };
+  });
+}
+
 export function routes(site) {
   const list = [
     { key: 'home', label: 'Home', path: '/', file: 'index.html', out: 'index.html' },
@@ -36,6 +56,9 @@ export function routes(site) {
     { key: 'brands', label: 'Family of brands', path: '/brands/', file: 'brands.html', out: 'brands/index.html', hidden: true, noindex: true },
     // Event page for Josh's J-TEC session (2026-11-11). Unlisted and noindex; /JTEC/ redirects here (see scripts/build.mjs).
     { key: 'jtec', label: 'J-TEC', path: '/jtec/', file: 'jtec.html', out: 'jtec/index.html', hidden: true, noindex: true },
+    // Working Genius guides: one page per type and per industry, under /working-genius/. Indexed and in the
+    // sitemap; reached from the Working Genius page. `template` names the shared renderer in src/pages.mjs.
+    ...guideRoutes(site),
     { key: 'notFound', label: 'Page not found', path: '/404.html', file: '404.html', out: '404.html', hidden: true },
   ];
   return list.filter((r) => r.key !== 'build' || site.build.showPage);
@@ -282,6 +305,29 @@ export function structuredData(site, route, meta) {
       });
     }
   }
+  // Pages under a parent (the Working Genius guides): a breadcrumb trail, and for type pages a defined term.
+  if (route.parent) {
+    const table = Object.fromEntries(routes(site).map((r) => [r.key, r]));
+    const parent = table[route.parent];
+    graph.push({
+      '@type': 'BreadcrumbList',
+      '@id': `${base}${route.path}#breadcrumb`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${base}/` },
+        { '@type': 'ListItem', position: 2, name: parent.label, item: `${base}${parent.path}` },
+        { '@type': 'ListItem', position: 3, name: route.label, item: `${base}${route.path}` },
+      ],
+    });
+    if (route.guide === 'type') {
+      graph.push({
+        '@type': 'DefinedTerm',
+        '@id': `${base}${route.path}#term`,
+        name: `${meta.name} (The 6 Types of Working Genius)`,
+        description: meta.answer,
+        inDefinedTermSet: { '@type': 'DefinedTermSet', name: 'The 6 Types of Working Genius' },
+      });
+    }
+  }
   // Dated, attributed pages: a WebPage node with last-modified date and reviewers (people by id).
   if (meta.dateModified) {
     const people = [...site.founders, ...(site.team || [])];
@@ -294,7 +340,8 @@ export function structuredData(site, route, meta) {
       description: meta.description,
       dateModified: meta.dateModified,
       isPartOf: { '@id': `${base}/#website` },
-      about: meta.serviceType ? { '@id': `${base}${route.path}#service` } : { '@id': orgId },
+      about: route.guide === 'type' ? { '@id': `${base}${route.path}#term` } : meta.serviceType ? { '@id': `${base}${route.path}#service` } : { '@id': orgId },
+      ...(route.parent ? { breadcrumb: { '@id': `${base}${route.path}#breadcrumb` } } : {}),
       ...(reviewers.length ? { reviewedBy: reviewers.map((id) => ({ '@id': `${base}/about/#${id}` })) } : {}),
     });
   }

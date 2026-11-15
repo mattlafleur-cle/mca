@@ -1,5 +1,6 @@
 // Page bodies. Copy comes from src/content.mjs; facts come from site.config.mjs.
 import { esc, ctaButton, contourSvg, lanesDiagram, mailtoHref } from './layout.mjs';
+import { typeSlugs, industrySlugs } from './working-genius-guides-content.mjs';
 
 const paras = (list) => list.map((p) => `<p>${esc(p)}</p>`).join('');
 
@@ -1056,9 +1057,15 @@ ${answerBlock(site, c)}
     <ol class="genius-stages">${c.stages
       .map((st) => `<li class="genius-stage">
         <h3>${esc(st.name)}</h3>
-        <ul>${st.types.map((t) => `<li class="genius-type">${geniusGear(t.letter)}<div><h4>${esc(t.name)}</h4><p>${esc(t.body)}</p></div></li>`).join('')}</ul>
+        <ul>${st.types.map((t) => {
+          const k = `wg-${t.name.toLowerCase()}`;
+          const nameHtml = link.has(k) ? `<a href="${esc(link.page(k))}">${esc(t.name)}</a>` : esc(t.name);
+          return `<li class="genius-type">${geniusGear(t.letter)}<div><h4>${nameHtml}</h4><p>${esc(t.body)}</p></div></li>`;
+        }).join('')}</ul>
       </li>`)
       .join('')}</ol>
+    ${c.typesMore ? `<p class="genius-more">${esc(c.typesMore)}</p>` : ''}
+    ${industrySlugs.some((sl) => link.has(`wg-${sl}`)) ? `<p class="genius-more">${esc(c.industriesLine)} ${industrySlugs.filter((sl) => link.has(`wg-${sl}`)).map((sl) => `<a class="text-link text-link-light" href="${esc(link.page(`wg-${sl}`))}">${esc(copy[`wg-${sl}`].headline.replace('Working Genius for ', ''))}</a>`).join(', ')}.</p>` : ''}
   </div>
 </section>
 <section class="section" aria-labelledby="wg-roi">
@@ -1474,4 +1481,86 @@ export function profit({ site, link, copy }) {
 <div class="tool-dock" data-target="pl-results" hidden><span class="tool-dock-text" aria-hidden="true"></span><a class="tool-dock-link" href="#pl-results">See results <span aria-hidden="true">&darr;</span></a></div>
 <script type="application/json" id="pl-strings">${JSON.stringify(strings).replace(/</g, '\\u003c')}</script>
 <script src="${esc(link.versioned('profit-levers.js'))}" defer></script>`;
+}
+
+// Working Genius guides (/working-genius/<type>/ and /working-genius/<industry>/). Shared helpers first.
+function breadcrumb(link, route) {
+  if (!route?.parent || !link.has(route.parent)) return '';
+  return `<nav class="breadcrumb" aria-label="Breadcrumb"><div class="wrap"><ol><li><a href="${esc(link.page('home'))}">Home</a></li><li><a href="${esc(link.page(route.parent))}">The 6 Types of Working Genius</a></li><li aria-current="page">${esc(route.label)}</li></ol></div></nav>`;
+}
+function guideList(id, heading, items, ordered = false) {
+  const tag = ordered ? 'ol' : 'ul';
+  return `<section class="section" aria-labelledby="${id}"><div class="wrap svc-block"><h2 id="${id}" class="section-title">${esc(heading)}</h2><${tag} class="check-list">${items.map((i) => `<li>${esc(i)}</li>`).join('')}</${tag}></div></section>`;
+}
+function guideFaq(id, faq) {
+  if (!faq?.length) return '';
+  return `<section class="section section-dark" aria-labelledby="${id}"><div class="wrap faq-wrap"><h2 id="${id}" class="section-title">Common questions</h2><div class="faq">${faq.map((f) => `<div class="faq-item"><h3>${esc(f.q)}</h3><p>${esc(f.a)}</p></div>`).join('')}</div></div></section>`;
+}
+function guideCta(link, c) {
+  return `<section class="section" aria-label="Next steps"><div class="wrap guide-cta">
+    <div class="actions">${ctaButton(link, { text: 'Bring Working Genius to your team' })}${link.has('workingGenius') ? `<a class="button button-secondary" href="${esc(link.page('workingGenius'))}">All about Working Genius</a>` : ''}</div>
+    <p class="service-note">${esc(c.credit)}</p>
+  </div></section>`;
+}
+
+export function wgType({ site, link, copy, route }) {
+  const c = copy[route.key];
+  const keys = typeSlugs.map((s) => `wg-${s}`).filter((k) => link.has(k));
+  const i = keys.indexOf(route.key);
+  const prev = keys[i - 1];
+  const next = keys[i + 1];
+  const others = keys
+    .map((k) => `<li><a${k === route.key ? ' aria-current="page"' : ''} href="${esc(link.page(k))}"><span class="guide-letter" aria-hidden="true">${esc(copy[k].letter)}</span>${esc(copy[k].name)}</a></li>`)
+    .join('');
+  return `${breadcrumb(link, route)}
+${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, seed: 90 + i })}
+${answerBlock(site, c)}
+${guideList(`${route.key}-looks`, `What ${c.name} looks like at work`, c.looksLike)}
+<section class="section section-alt" aria-labelledby="${route.key}-missing">
+  <div class="wrap svc-block">
+    <h2 id="${route.key}-missing" class="section-title">When no one on the team has ${esc(c.name)}</h2>
+    <ul class="check-list">${c.missing.map((m) => `<li>${esc(m)}</li>`).join('')}</ul>
+    <h3>When ${esc(c.name)} is a frustration</h3>
+    <p>${esc(c.frustration)}</p>
+  </div>
+</section>
+${guideList(`${route.key}-owners`, 'What owners can do', c.owners, true)}
+${guideFaq(`${route.key}-faq`, c.faq)}
+<section class="section section-alt" aria-labelledby="${route.key}-all">
+  <div class="wrap">
+    <h2 id="${route.key}-all" class="section-title">All six types</h2>
+    <ul class="guide-types">${others}</ul>
+    <p class="guide-prevnext">${prev ? `<a class="text-link" href="${esc(link.page(prev))}">&larr; ${esc(copy[prev].name)}</a>` : ''}${next ? `<a class="text-link" href="${esc(link.page(next))}">${esc(copy[next].name)} &rarr;</a>` : ''}</p>
+  </div>
+</section>
+${guideCta(link, c)}`;
+}
+
+export function wgIndustry({ site, link, copy, route }) {
+  const c = copy[route.key];
+  const related = (c.related || []).filter((r) => link.has(r.key));
+  const types = typeSlugs.map((s) => `wg-${s}`).filter((k) => link.has(k));
+  return `${breadcrumb(link, route)}
+${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, seed: 97 })}
+${answerBlock(site, c)}
+<section class="section" aria-labelledby="${route.key}-stalls">
+  <div class="wrap">
+    <h2 id="${route.key}-stalls" class="section-title">${esc(c.stallsHeading)}</h2>
+    <ul class="departments" style="--cols:3">${c.stalls.map((s) => `<li><h3>${esc(s.stage)}</h3><p>${esc(s.body)}</p></li>`).join('')}</ul>
+    <p class="guide-background">${esc(c.background)}</p>
+  </div>
+</section>
+${guideList(`${route.key}-cost`, c.costHeading, c.costs)}
+${guideList(`${route.key}-how`, c.howHeading, c.how, true)}
+${guideFaq(`${route.key}-faq`, c.faq)}
+<section class="section section-alt" aria-labelledby="${route.key}-more">
+  <div class="wrap svc-related">
+    <h2 id="${route.key}-more" class="section-title">Keep exploring</h2>
+    <ul>
+      ${related.map((r) => `<li><a class="text-link" href="${esc(link.page(r.key, r.anchor))}">${esc(r.text)}</a></li>`).join('')}
+      ${types.length ? `<li>The six types: ${types.map((k) => `<a class="text-link" href="${esc(link.page(k))}">${esc(copy[k].name)}</a>`).join(', ')}</li>` : ''}
+    </ul>
+  </div>
+</section>
+${guideCta(link, c)}`;
 }

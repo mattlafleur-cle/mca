@@ -12,6 +12,7 @@ import announcementContent from './announcement-content.mjs';
 import brandsContent from './brands-content.mjs';
 import growContent from './grow-content.mjs';
 import workingGeniusContent from './working-genius-content.mjs';
+import workingGeniusGuides from './working-genius-guides-content.mjs';
 import jtecContent from './jtec-content.mjs';
 import timeBackContent from './time-back-content.mjs';
 import profitContent from './profit-content.mjs';
@@ -23,6 +24,7 @@ export default function content(site) {
     ...servicePages(site),
     ...growContent(site),
     ...workingGeniusContent(site),
+    ...workingGeniusGuides(site),
     ...timeBackContent(site),
     ...profitContent(site),
     church: churchContent(site),

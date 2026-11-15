@@ -1125,3 +1125,22 @@ h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
 .glance-tools { margin-top: clamp(1rem, 0.75rem + 1vw, 1.5rem); color: var(--ink-muted); }
 @media (max-width: 56rem) { .glance { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 38rem) { .glance { grid-template-columns: minmax(0, 1fr); } }
+
+/* Working Genius guides: breadcrumb, six-type navigation, and small extras. */
+.breadcrumb { background: var(--paper-deep); border-bottom: 1px solid var(--rule); font-size: var(--step--1); }
+.breadcrumb ol { list-style: none; margin: 0; padding: 0.6rem 0; display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; }
+.breadcrumb li + li::before { content: '/'; margin-right: 0.5rem; color: var(--ink-muted); }
+.breadcrumb a { color: var(--ink); }
+.breadcrumb [aria-current] { color: var(--ink-muted); }
+.guide-types { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.6rem; }
+.guide-types a { display: flex; align-items: center; gap: 0.6rem; min-height: 3rem; padding: 0.5rem 0.9rem; background: var(--paper); border: 1px solid var(--rule); color: var(--ink); font-weight: 600; text-decoration: none; }
+.guide-types a:hover { border-color: var(--ink); }
+.guide-types a[aria-current] { background: var(--evergreen); border-color: var(--evergreen); color: var(--on-dark); }
+.guide-letter { display: inline-grid; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: var(--maple); color: var(--evergreen); font-weight: 800; flex: none; }
+.guide-prevnext { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1.25rem; }
+.guide-background { margin-top: 1.25rem; max-width: 52rem; color: var(--ink-muted); }
+.guide-cta { display: grid; gap: 1rem; }
+.svc-block h3 { margin-top: 0.75rem; }
+@media (max-width: 44rem) { .guide-types { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.genius-more { margin-top: 1.25rem; color: var(--on-dark-muted); max-width: 52rem; }
+.genius-type h4 a { color: var(--on-dark); text-decoration: underline; text-decoration-color: var(--maple); text-underline-offset: 0.2em; }

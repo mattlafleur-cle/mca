@@ -47,11 +47,12 @@ async function main() {
 
   for (const route of routes(site)) {
     const key = route.renderAs || route.key;
-    const render = pages[key];
+    // Pages that share a template (the Working Genius guides) name it with route.template.
+    const render = pages[route.template || key];
     if (!render) throw new Error(`No renderer for page ${key}`);
     // The private preview is listed by its page title, so the entry page carries a plain name there.
     let meta = mode === 'artifact' && route.key === 'home' ? { ...copy.home, title: `${site.siteName} Preview` } : copy[key];
-    let body = render({ site, link, copy });
+    let body = render({ site, link, copy, route });
     if (route.renderAs) {
       // Style previews reuse a real page; label them so they are never mistaken for the live page.
       meta = { ...meta, title: `${route.label}: ${meta.title}`, description: `Private ${route.label.toLowerCase()}. ${meta.description}`, faq: undefined };
@@ -108,6 +109,15 @@ async function main() {
         ...svc.map((r) => `- [${copy[r.key].eyebrow}](${site.canonicalDomain}${r.path}): ${copy[r.key].description}`),
         `- [All services](${site.canonicalDomain}/services/)`,
         '',
+        ...(routes(site).some((r) => r.guide)
+          ? [
+              '## Working Genius guides',
+              ...routes(site)
+                .filter((r) => r.guide)
+                .map((r) => `- [${copy[r.key].headline}](${site.canonicalDomain}${r.path}): ${copy[r.key].description}`),
+              '',
+            ]
+          : []),
         '## About',
         `- [Josh Muller and Matt LaFleur](${site.canonicalDomain}/about/)`,
         `- [How we work](${site.canonicalDomain}/how-we-work/)`,
