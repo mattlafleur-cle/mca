@@ -1619,7 +1619,8 @@ ${answerBlock(site, c)}
 ${c.recent?.length ? `<section class="section" aria-labelledby="speak-recent">
   <div class="wrap">
     <h2 id="speak-recent" class="section-title">${esc(c.recentHeading)}</h2>
-    <ul class="speak-recent">${c.recent.map((r) => `<li><strong>${esc(r.title)}</strong><span>${esc(r.event)}, ${esc(r.place)}</span><span>${esc(r.date)} \u00b7 ${esc(r.speaker)}</span></li>`).join('')}</ul>
+    <ul class="speak-recent">${c.recent.map((r) => `<li><strong>${esc(r.title)}</strong><span>${esc(r.event)}, ${esc(r.place)}</span><span>${esc(r.date)} \u00b7 ${esc(r.speaker)}</span>${r.detail ? `<p>${esc(r.detail)}</p>` : ''}</li>`).join('')}</ul>
+    ${c.presented?.length ? `<h3 class="speak-presented-h">${esc(c.presentedHeading)}</h3><ul class="speak-presented">${c.presented.map((g) => `<li>${esc(g)}</li>`).join('')}</ul>` : ''}
   </div>
 </section>` : ''}
 ${leadsSection({ site, link, id: 'speak-people', heading: c.speakersHeading, ids: ['josh', 'matt', 'greg'], notes: c.speakerNotes, alt: true })}

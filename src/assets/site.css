@@ -1157,3 +1157,7 @@ h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
 .speak-recent li { display: grid; gap: 0.15rem; padding: 1rem 1.2rem; background: var(--paper-card); border: 1px solid var(--rule); border-left: 3px solid var(--maple); max-width: 46rem; }
 .speak-recent span { color: var(--ink-muted); font-size: var(--step--1); }
 @media (max-width: 56rem) { .speak-topics { grid-template-columns: minmax(0, 1fr); } }
+.speak-recent p { margin-top: 0.4rem; color: var(--ink-muted); font-size: var(--step--1); }
+.speak-presented-h { margin-top: 1.75rem; font-size: calc(1.1rem * var(--ds)); }
+.speak-presented { list-style: none; margin: 0.75rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.speak-presented li { padding: 0.5rem 0.95rem; border: 1px solid var(--rule); border-radius: 999px; background: var(--paper); font-weight: 600; font-size: var(--step--1); }

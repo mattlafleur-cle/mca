@@ -108,14 +108,27 @@ export default function speakingContent(site) {
       ],
 
       recentHeading: 'Recent sessions',
-      // Each: { title, event, place, date, speaker }. Sessions given under the Maple Creek Advisors name only.
+      // Each: { title, event, place, date, speaker, isoDate, venue, detail }. Facts from the J-TEC flyer
+      // (Famous Supply, 2026) supplied by Matt on 2026-11-15. Add sessions as Matt supplies them.
       recent: [
-        { title: 'Building a Good Team', event: 'J-TEC Speaker Series business training', place: 'Maple Heights, Ohio', date: 'November 11, 2026', speaker: 'Josh Muller' },
+        {
+          title: 'Building a Good Team',
+          event: 'J-TEC Speaker Series business training, presented by Famous Supply',
+          place: 'Maple Heights, Ohio',
+          date: 'November 11, 2026',
+          isoDate: '2026-11-11T10:00:00-05:00',
+          venue: 'J-TEC',
+          speaker: 'Josh Muller',
+          detail: 'A morning business training session for owners and leaders in the trades on handing off work: what a good team looks like, the right people in the right seats, and giving work away so it does not come back. The day\u2019s featured conversation, Built to Last, was with David Kohler, Chair and CEO of Kohler Co., and Marc and Brian Blaushild of Famous Supply.',
+        },
       ],
+      presentedHeading: 'Groups Josh has presented to in Northeast Ohio',
+      // Supplied by Matt on 2026-11-15. Names only; no dates, titles, or results claimed.
+      presented: ['Akron Executives Association', 'Northcoast Business Initiative (NCBI)', 'Greater Akron Chamber', 'J-TEC Speaker Series'],
 
       speakersHeading: 'Our speakers',
       speakerNotes: {
-        josh: 'Josh built and sold a construction company before coaching owners. A Certified EOS Implementer, he speaks on building a good team, owner freedom, and running on a clear operating system.',
+        josh: 'Josh built and sold a construction company before coaching owners. A Certified EOS Implementer, he speaks on building a good team, owner freedom, and running on a clear operating system, and has presented to the Akron Executives Association, NCBI, and the Greater Akron Chamber.',
         matt: 'Matt is a CPA licensed in Ohio and California and a fractional CFO. He speaks on profit, pricing, cash, and making the numbers useful to owners.',
         greg: 'Greg is a Certified Working Genius Facilitator and engaging speaker with more than 30 years in entrepreneurship, sales, marketing, and leadership. He speaks on Working Genius, culture, and teams.',
       },
@@ -144,7 +157,7 @@ export default function speakingContent(site) {
         },
         {
           q: 'Who are your speakers?',
-          a: 'Josh Muller, a Certified EOS Implementer who built and sold a construction company; Matt LaFleur, a CPA and fractional CFO; and Greg Snyder, a Certified Working Genius Facilitator.',
+          a: 'Josh Muller, a Certified EOS Implementer who built and sold a construction company and has presented to groups including the Akron Executives Association, the Northcoast Business Initiative, and the Greater Akron Chamber; Matt LaFleur, a CPA and fractional CFO; and Greg Snyder, a Certified Working Genius Facilitator.',
         },
         {
           q: 'Do attendees take the Working Genius assessment?',

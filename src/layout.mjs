@@ -306,6 +306,23 @@ export function structuredData(site, route, meta) {
       });
     }
   }
+  // Speaking page: past sessions with full details as Event nodes, with the speaker as performer.
+  // Town only, no street: scripts/check.mjs keeps street addresses out of structured data.
+  if (route.key === 'speaking') {
+    for (const r of (meta.recent || []).filter((x) => x.isoDate && x.venue)) {
+      const p = [...site.founders, ...(site.team || [])].find((x) => x.name === r.speaker);
+      graph.push({
+        '@type': 'Event',
+        name: `${r.title}, ${r.event}`,
+        startDate: r.isoDate,
+        eventStatus: 'https://schema.org/EventScheduled',
+        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        location: { '@type': 'Place', name: r.venue, address: { '@type': 'PostalAddress', addressLocality: r.place.split(',')[0], addressRegion: 'OH', addressCountry: 'US' } },
+        description: r.detail,
+        ...(p ? { performer: { '@id': `${base}/about/#${p.id}` } } : {}),
+      });
+    }
+  }
   // Pages under a parent (the Working Genius guides): a breadcrumb trail, and for type pages a defined term.
   if (route.parent) {
     const table = Object.fromEntries(routes(site).map((r) => [r.key, r]));
