@@ -1112,7 +1112,7 @@ function answerBlock(site, c) {
   if (!c.answer) return '';
   const people = [...site.founders, ...(site.team || [])];
   const reviewers = (c.reviewedBy || []).map((id) => people.find((p) => p.id === id)).filter(Boolean);
-  const date = c.dateModified ? new Date(`${c.dateModified}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }) : '';
+  const date = c.dateModified && !c.hideDate ? new Date(`${c.dateModified}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }) : '';
   const meta = [
     date ? `Last updated <time datetime="${esc(c.dateModified)}">${esc(date)}</time>` : '',
     reviewers.length ? `Reviewed by ${reviewers.map((r) => esc(r.name)).join(' and ')}` : '',

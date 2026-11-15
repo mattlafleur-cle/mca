@@ -15,7 +15,8 @@ export default function workingGeniusContent(site) {
       eyebrow: 'The 6 Types of Working Genius',
       answer: 'The 6 Types of Working Genius is a productivity model from Patrick Lencioni and The Table Group. It names the six kinds of work every project needs (Wonder, Invention, Discernment, Galvanizing, Enablement, and Tenacity) and shows which two give each person energy. Maple Creek Advisors helps owner-led teams in any industry use it to put people on the right work, so the team gets more productive and more profitable.',
       credential: 'Maple Creek Advisors is Working Genius certified, and Greg Snyder is a Certified Working Genius Facilitator.',
-      dateModified: '2026-11-15',
+      // Dated automatically from content changes (src/page-dates.json).
+      dated: true,
       reviewedBy: ['matt'],
       headline: 'Put your people on the work that gives them energy.',
       lead: 'Turnover and disengagement are expensive. Working Genius shows each person the kind of work they are wired for, so your team does more of it, with less friction and burnout. In any industry, that adds up to a more productive and more profitable team.',

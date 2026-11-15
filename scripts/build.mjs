@@ -9,6 +9,8 @@ import site from '../site.config.mjs';
 import makeContent from '../src/content.mjs';
 import { routes, createLinker, pageShell } from '../src/layout.mjs';
 import * as pages from '../src/pages.mjs';
+import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const mode = process.argv.includes('--mode=artifact') ? 'artifact' : 'site';
@@ -38,11 +40,36 @@ async function copyDir(from, to) {
   }
 }
 
+// Automatic page dates. A page whose copy has `dated: true` gets dateModified from src/page-dates.json,
+// which stores a fingerprint of the page's own copy and the day it last changed. When the copy changes, a local
+// build records today's date (America/New_York) and rewrites the file, so commit it with the change. Menus,
+// styling, and reviewer changes do not count as content changes. In CI the file is read, never written.
+const datesFile = path.join(root, 'src/page-dates.json');
+const notContent = new Set(['dateModified', 'reviewedBy', 'hideDate', 'dated']);
+function applyPageDates(copy) {
+  const dates = existsSync(datesFile) ? JSON.parse(readFileSync(datesFile, 'utf8')) : {};
+  const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(new Date());
+  let changed = false;
+  for (const route of routes(site)) {
+    const c = copy[route.key];
+    if (!c?.dated) continue;
+    const hash = createHash('sha1').update(JSON.stringify(c, (k, v) => (notContent.has(k) ? undefined : v))).digest('hex').slice(0, 12);
+    if (dates[route.key]?.hash !== hash) {
+      if (process.env.CI) console.warn(`Page date: ${route.key} changed but src/page-dates.json was not updated. Run npm run build locally and commit it.`);
+      dates[route.key] = { hash, date: process.env.CI ? dates[route.key]?.date || today : today };
+      changed = true;
+    }
+    c.dateModified = dates[route.key].date;
+  }
+  return changed && !process.env.CI ? writeFile(datesFile, JSON.stringify(dates, null, 2) + '\n') : null;
+}
+
 async function main() {
   validateConfig();
   await rm(outDir, { recursive: true, force: true });
   const link = createLinker(site, mode);
   const copy = makeContent(site);
+  await applyPageDates(copy);
   const written = [];
 
   for (const route of routes(site)) {

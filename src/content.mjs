@@ -151,8 +151,9 @@ export default function content(site) {
         'Some owners need a coach. Some need a clearer financial picture. Many need both, with a practical way to turn insight into action.',
       // Answer-first summary under the hero (what search snippets and AI answers quote).
       answer: `${name} helps the owners of owner-led businesses with both the people side and the numbers side of running a company: business coaching and EOS, team and culture work including The 6 Types of Working Genius, fractional CFO support and financial operations, custom retreats, and help selling a business. Josh Muller, Matt LaFleur, and Greg Snyder lead the work, on their own or together, for owners across Northeast Ohio.`,
-      dateModified: '2026-11-15',
-      reviewedBy: ['matt'],
+      // Dated automatically from content changes (src/page-dates.json); shown in search data only, not on the page.
+      dated: true,
+      hideDate: true,
 
       // At a glance: every offer grouped by the owner's need. Each item links to its detail page (key) or,
       // where there is no detail page, to its section on this page (anchor).

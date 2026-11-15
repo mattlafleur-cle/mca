@@ -13,12 +13,11 @@ const credit = 'The 6 Types of Working Genius is a model created by Patrick Lenc
 export default function workingGeniusGuides(site) {
   const name = site.siteName;
   const region = site.location.region;
-  const updated = '2026-11-15';
 
   const type = (t) => ({
     template: 'wgType',
     credit,
-    dateModified: updated,
+    dated: true, // date set automatically from content changes (src/page-dates.json)
     reviewedBy: ['matt'],
     eyebrow: `The 6 Types of Working Genius · ${t.stage}`,
     title: `The ${t.name} Working Genius in an Owner-Led Business | ${name}`,
@@ -29,7 +28,7 @@ export default function workingGeniusGuides(site) {
   const industry = (i) => ({
     template: 'wgIndustry',
     credit,
-    dateModified: updated,
+    dated: true, // date set automatically from content changes (src/page-dates.json)
     reviewedBy: ['matt'],
     eyebrow: 'Working Genius by industry',
     ...i,
