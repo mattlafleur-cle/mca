@@ -1,6 +1,7 @@
 // Copy for the dedicated service pages. Each one targets a search phrase people actually use,
 // names the region, answers buyer questions directly, and ends in a booking action.
-// House style still applies: no prices, no guaranteed outcomes, no client names.
+// House style still applies: no prices, no guaranteed outcomes. Client quotes only with permission, exactly as
+// written (corrections in [brackets]), attributed by first name and last initial.
 
 export default function servicePages(site) {
   const name = site.siteName;
@@ -178,6 +179,19 @@ export default function servicePages(site) {
           link: { key: 'workingGenius', text: 'The 6 Types of Working Genius for your team' },
         },
       ],
+      // Client quotes about Josh's coaching, supplied by Matt on 2026-11-15 from the Maple Creek Coaching site.
+      quotesHeading: 'What owners say about working with Josh',
+      quotes: [
+        {
+          text: 'Josh is [knowledgeable] and honest. He listens to the challenges you may have and either helps you figure out how to get the answer out of you or will find the answer. As a coach he really stands out from the rest.',
+          name: 'John C.',
+        },
+        {
+          text: 'Being the first year in business [is] never easy. There\u2019s so much to do and it\u2019s always a juggle. I met Josh in a networking event and got a chance to also have a ton of 1 on 1 with him. I cannot thank him enough for the guidance he provided that facilitated a lot of things for my business. Thank you Maple Creek Coaching!',
+          name: 'Tina M.',
+        },
+      ],
+      quotesNote: 'Maple Creek Coaching, Josh\u2019s coaching practice, is now part of Maple Creek Advisors. Quotes appear as written; words in brackets are corrections.',
       faq: [
         {
           q: 'What does a business coach do?',

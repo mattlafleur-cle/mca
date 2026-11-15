@@ -526,6 +526,13 @@ function servicePage(key) {
     const others = ['coaching', 'fractionalCfo', 'advisory', 'sell'].filter((k) => k !== key && link.has(k));
     return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `<div class="actions">${ctaButton(link)}</div>`, seed: key.length * 3 })}
 ${sections}
+${c.quotes?.length ? `<section class="section" aria-labelledby="${key}-quotes">
+  <div class="wrap">
+    <h2 id="${key}-quotes" class="section-title">${esc(c.quotesHeading)}</h2>
+    <div class="quotes">${c.quotes.map((q) => `<figure class="quote"><blockquote><p>\u201c${esc(q.text)}\u201d</p></blockquote><figcaption>${esc(q.name)}</figcaption></figure>`).join('')}</div>
+    ${c.quotesNote ? `<p class="service-note">${esc(c.quotesNote)}</p>` : ''}
+  </div>
+</section>` : ''}
 <section class="section section-dark" aria-labelledby="${key}-faq">
   <div class="wrap faq-wrap">
     <h2 id="${key}-faq" class="section-title">Common questions</h2>

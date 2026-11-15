@@ -40,7 +40,7 @@ After any edit, run `npm run check`.
 
 **Page dates.** Pages marked `dated: true` in their copy get their "last updated" date automatically. The build fingerprints each page's own copy and records the day it last changed in `src/page-dates.json`. After editing page copy, run `npm run build` or `npm run check` and commit `src/page-dates.json` along with the change. Menu, styling, and reviewer changes do not move a date. Informational pages (Working Genius and its guides) show the date and reviewer; sales pages (Services and the Grow pages) carry the date only in their search data.
 
-House style for copy: plain English, no em dashes, no prices, no guaranteed outcomes, no testimonials or client names, and no statement that the practice has merged or combined. `npm run check` flags several of these automatically.
+House style for copy: plain English, no em dashes, no prices, no guaranteed outcomes, client quotes only with the client’s permission (exactly as written, corrections in [brackets], first name and last initial; never the word "testimonial"), and no statement that the practice has merged or combined. `npm run check` flags several of these automatically.
 
 ### Adding founder photos
 
