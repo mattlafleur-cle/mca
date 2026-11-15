@@ -35,6 +35,7 @@ export function routes(site) {
     { key: 'fractionalCfo', label: 'Fractional CFO', path: '/fractional-cfo/', file: 'fractional-cfo.html', out: 'fractional-cfo/index.html', service: true },
     { key: 'advisory', label: 'Business advisory', path: '/business-advisory/', file: 'business-advisory.html', out: 'business-advisory/index.html', service: true },
     { key: 'sell', label: 'Selling your business', path: '/sell-your-business/', file: 'sell-your-business.html', out: 'sell-your-business/index.html', service: true },
+    { key: 'speaking', label: 'Speaking', path: '/speaking/', file: 'speaking.html', out: 'speaking/index.html', service: true },
     // Grow pages: in the top menu under "Grow", in the footer services list, and indexed.
     { key: 'growTeam', label: 'Grow your team', path: '/grow-your-team/', file: 'grow-your-team.html', out: 'grow-your-team/index.html', service: true, grow: true },
     { key: 'growBusiness', label: 'Grow your business', path: '/grow-your-business/', file: 'grow-your-business.html', out: 'grow-your-business/index.html', service: true, grow: true },

@@ -15,6 +15,7 @@ import workingGeniusContent from './working-genius-content.mjs';
 import workingGeniusGuides from './working-genius-guides-content.mjs';
 import jtecContent from './jtec-content.mjs';
 import timeBackContent from './time-back-content.mjs';
+import speakingContent from './speaking-content.mjs';
 import profitContent from './profit-content.mjs';
 
 export default function content(site) {
@@ -26,6 +27,7 @@ export default function content(site) {
     ...workingGeniusContent(site),
     ...workingGeniusGuides(site),
     ...timeBackContent(site),
+    ...speakingContent(site),
     ...profitContent(site),
     church: churchContent(site),
     carts: cartsContent(site),
@@ -167,6 +169,7 @@ export default function content(site) {
             { text: 'Business coaching', key: 'coaching' },
             { text: 'EOS with a Certified EOS Implementer', key: 'growBusiness' },
             { text: 'Retreat to Advance: custom retreats', anchor: 'retreats' },
+            { text: 'Keynotes, workshops, and team sessions', key: 'speaking' },
           ],
         },
         {

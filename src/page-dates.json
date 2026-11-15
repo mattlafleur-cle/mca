@@ -1,6 +1,6 @@
 {
   "services": {
-    "hash": "9e288c5e93c4",
+    "hash": "ff49a84feca6",
     "date": "2026-11-15"
   },
   "growTeam": {
@@ -16,7 +16,7 @@
     "date": "2026-11-10"
   },
   "workingGenius": {
-    "hash": "2ebfd21311f8",
+    "hash": "731da9ce6191",
     "date": "2026-11-15"
   },
   "wg-wonder": {
@@ -53,6 +53,10 @@
   },
   "wg-churches-and-ministries": {
     "hash": "20dfd275b401",
+    "date": "2026-11-15"
+  },
+  "speaking": {
+    "hash": "a846983f9c40",
     "date": "2026-11-15"
   }
 }

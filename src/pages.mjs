@@ -1564,3 +1564,79 @@ ${guideFaq(`${route.key}-faq`, c.faq)}
 </section>
 ${guideCta(link, c)}`;
 }
+
+// Speaking (/speaking/): talk topics, audiences, formats, process, recent sessions, speakers, and a guided email.
+export function speaking({ site, link, copy }) {
+  const c = copy.speaking;
+  const people = [...site.founders, ...(site.team || [])];
+  const nameOf = (id) => people.find((p) => p.id === id)?.name || '';
+  const to = site.contact.recipients.join(',');
+  const planHref = `mailto:${to}?subject=${encodeURIComponent(c.planEmailSubject)}&body=${encodeURIComponent(c.planEmailBody.map((l) => `${l}\n`).join('\n'))}`;
+  const actions = (variant = 'primary') => `<div class="actions"><a class="button button-${variant}" href="${esc(planHref)}">${esc(c.planButton)}</a>${ctaButton(link, { variant: variant === 'light' ? 'secondary' : 'secondary', text: c.callButton })}</div>`;
+  const topics = c.topics
+    .map((t, i) => `<article class="grow-offer speak-topic" aria-labelledby="speak-t${i}">
+      <p class="brand-tag">${esc(t.topic)}</p>
+      <h3 id="speak-t${i}">${esc(t.title)}</h3>
+      <p class="speak-by">With ${esc(t.speakers.map(nameOf).join(' and '))}</p>
+      <p>${esc(t.body)}</p>
+      <ul class="check-list">${t.takeaways.map((k) => `<li>${esc(k)}</li>`).join('')}</ul>
+      ${t.link && link.has(t.link.key) ? `<a class="text-link" href="${esc(link.page(t.link.key))}">${esc(t.link.text)}</a>` : ''}
+      ${t.note ? `<p class="service-note">${esc(t.note)}</p>` : ''}
+    </article>`)
+    .join('\n    ');
+  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: actions(), seed: 101 })}
+${answerBlock(site, c)}
+<section class="section section-alt" aria-labelledby="speak-topics">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="speak-topics" class="section-title">${esc(c.topicsHeading)}</h2>
+      <p>${esc(c.topicsIntro)}</p>
+    </div>
+    <div class="speak-topics">
+    ${topics}
+    </div>
+  </div>
+</section>
+<section class="section" aria-labelledby="speak-aud">
+  <div class="wrap">
+    <h2 id="speak-aud" class="section-title">${esc(c.audiencesHeading)}</h2>
+    <ul class="genius-offers">${c.audiences.map((a) => `<li><h3>${esc(a.name)}</h3><p>${esc(a.body)}</p></li>`).join('')}</ul>
+    <p class="speak-formats"><strong>${esc(c.formatsHeading)}:</strong> ${esc(c.formats.join(' \u00b7 '))}</p>
+  </div>
+</section>
+<section class="section section-alt" aria-labelledby="speak-gets">
+  <div class="wrap tb-two">
+    <div>
+      <h2 id="speak-gets" class="section-title">${esc(c.getsHeading)}</h2>
+      <ul class="check-list">${c.gets.map((g) => `<li>${esc(g)}</li>`).join('')}</ul>
+    </div>
+    <div>
+      <h2 class="section-title">${esc(c.stepsHeading)}</h2>
+      <ol class="speak-steps">${c.steps.map((s) => `<li><strong>${esc(s.title)}.</strong> ${esc(s.body)}</li>`).join('')}</ol>
+    </div>
+  </div>
+</section>
+${c.recent?.length ? `<section class="section" aria-labelledby="speak-recent">
+  <div class="wrap">
+    <h2 id="speak-recent" class="section-title">${esc(c.recentHeading)}</h2>
+    <ul class="speak-recent">${c.recent.map((r) => `<li><strong>${esc(r.title)}</strong><span>${esc(r.event)}, ${esc(r.place)}</span><span>${esc(r.date)} \u00b7 ${esc(r.speaker)}</span></li>`).join('')}</ul>
+  </div>
+</section>` : ''}
+${leadsSection({ site, link, id: 'speak-people', heading: c.speakersHeading, ids: ['josh', 'matt', 'greg'], notes: c.speakerNotes, alt: true })}
+<section class="section" aria-labelledby="speak-plan">
+  <div class="wrap">
+    <div class="grow-discovery">
+      <h2 id="speak-plan">${esc(c.planHeading)}</h2>
+      <p>${esc(c.planBody)}</p>
+      ${actions()}
+    </div>
+  </div>
+</section>
+<section class="section section-dark" aria-labelledby="speak-faq">
+  <div class="wrap faq-wrap">
+    <h2 id="speak-faq" class="section-title">Common questions</h2>
+    <div class="faq">${c.faq.map((f) => `<div class="faq-item"><h3>${esc(f.q)}</h3><p>${esc(f.a)}</p></div>`).join('')}</div>
+  </div>
+</section>
+${closing(link, c.closingHeading, c.closingBody)}`;
+}

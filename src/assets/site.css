@@ -1144,3 +1144,16 @@ h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
 @media (max-width: 44rem) { .guide-types { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .genius-more { margin-top: 1.25rem; color: var(--on-dark-muted); max-width: 52rem; }
 .genius-type h4 a { color: var(--on-dark); text-decoration: underline; text-decoration-color: var(--maple); text-underline-offset: 0.2em; }
+
+/* Speaking (/speaking/). */
+.speak-topics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 0.75rem + 1vw, 1.5rem); margin-top: clamp(1.25rem, 1rem + 1vw, 2rem); }
+.speak-topic { max-width: none; }
+.speak-topic h3 { font-size: var(--step-1); line-height: 1.2; }
+.speak-by { font-weight: 600; color: var(--evergreen) !important; font-size: var(--step--1); }
+.speak-formats { margin-top: 1.25rem; color: var(--ink-muted); }
+.speak-steps { margin: 0.75rem 0 0; padding-left: 1.25rem; display: grid; gap: 0.6rem; }
+.speak-steps li::marker { font-weight: 800; color: var(--maple-ink); }
+.speak-recent { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: 0.75rem; }
+.speak-recent li { display: grid; gap: 0.15rem; padding: 1rem 1.2rem; background: var(--paper-card); border: 1px solid var(--rule); border-left: 3px solid var(--maple); max-width: 46rem; }
+.speak-recent span { color: var(--ink-muted); font-size: var(--step--1); }
+@media (max-width: 56rem) { .speak-topics { grid-template-columns: minmax(0, 1fr); } }

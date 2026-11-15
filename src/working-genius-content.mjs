@@ -80,6 +80,7 @@ export default function workingGeniusContent(site) {
         { name: 'Assessments and debriefs', body: 'Working Genius assessments for each person, with a one-to-one walk through of their results.' },
         { name: 'Team maps', body: 'A map of your whole team that shows where work stalls, which geniuses you have plenty of, and which are missing.' },
         { name: 'Team workshops', body: 'A working session that turns the map into real changes in roles, meetings, and handoffs.' },
+        { name: 'Keynotes and workshops', body: 'Working Genius sessions for conferences, associations, peer groups, and whole companies.', link: { key: 'speaking', text: 'Speaking and workshops' } },
         { name: 'Leadership team sessions', body: 'Help for owners and leadership teams to lead with their own geniuses and staff around their frustrations.' },
         { name: 'Hiring and role design', body: 'Working Genius and the Ideal Team Player model, used together to design roles and hire the right people.', link: { key: 'growTeam', text: 'More on growing your team' } },
       ],
