@@ -162,7 +162,11 @@ async function main() {
       written.push('llms.txt');
       const urls = routes(site)
         .filter((r) => !r.hidden)
-        .map((r) => `  <url><loc>${site.canonicalDomain}${r.path}</loc></url>`)
+        // lastmod only where the page date is tracked (dated: true); Google ignores guessed dates, so others omit it.
+        .map((r) => {
+          const lastmod = copy[r.key]?.dateModified;
+          return `  <url><loc>${site.canonicalDomain}${r.path}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}</url>`;
+        })
         .join('\n');
       await writeFile(
         path.join(outDir, 'sitemap.xml'),
