@@ -18,6 +18,7 @@ import timeBackContent from './time-back-content.mjs';
 import speakingContent from './speaking-content.mjs';
 import noAlumniContent from './no-alumni-content.mjs';
 import profitContent from './profit-content.mjs';
+import assessmentContent from './assessment-content.mjs';
 
 export default function content(site) {
   const name = site.siteName;
@@ -31,6 +32,7 @@ export default function content(site) {
     ...speakingContent(site),
     ...noAlumniContent(site),
     ...profitContent(site),
+    ...assessmentContent(site),
     church: churchContent(site),
     carts: cartsContent(site),
     sell: sellContent(site),

@@ -57,6 +57,9 @@ export function routes(site) {
     { key: 'clients', label: 'Client updates', path: '/client-updates/', file: 'client-updates.html', out: 'client-updates/index.html', hidden: true, noindex: true },
     { key: 'brands', label: 'Family of brands', path: '/brands/', file: 'brands.html', out: 'brands/index.html', hidden: true, noindex: true },
     // Event page for Josh's J-TEC session (2026-11-11). Unlisted and noindex; /JTEC/ redirects here (see scripts/build.mjs).
+    // Owner Freedom Assessment: a draft for team review, unlisted and noindex until Josh, Greg, and Matt approve it.
+    // To launch: drop hidden and noindex and add standalone: true, tool: true (it then joins the Tools menu).
+    { key: 'assessment', label: 'Owner Freedom Assessment', path: '/owner-freedom-assessment/', file: 'owner-freedom-assessment.html', out: 'owner-freedom-assessment/index.html', hidden: true, noindex: true },
     { key: 'jtec', label: 'J-TEC', path: '/jtec/', file: 'jtec.html', out: 'jtec/index.html', hidden: true, noindex: true },
     // Working Genius guides: one page per type and per industry, under /working-genius/. Indexed and in the
     // sitemap; reached from the Working Genius page. `template` names the shared renderer in src/pages.mjs.

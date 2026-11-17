@@ -1718,3 +1718,124 @@ ${answerBlock(site, c)}
   </div>
 </section>`;
 }
+
+// Owner Freedom Assessment (/owner-freedom-assessment/). Scoring and interactivity live in
+// assets/owner-assessment.js; everything stays in the browser. All copy is rendered here from
+// src/assessment-content.mjs, and the script only fills in numbers and shows or hides what is already on the page.
+export function assessment({ site, link, copy }) {
+  const c = copy.assessment;
+  const people = [...site.founders, ...(site.team || [])];
+  const leadNames = (ids) => ids.map((id) => people.find((p) => p.id === id)?.name).filter(Boolean);
+  const joinNames = (n) => (n.length <= 2 ? n.join(' and ') : `${n.slice(0, -1).join(', ')}, and ${n[n.length - 1]}`);
+  const total = c.areas.reduce((sum, a) => sum + a.statements.length, 0);
+  let q = 0;
+  const statement = (text) => {
+    q += 1;
+    return `<fieldset class="oa-q" data-q="${q}">
+          <legend><span class="oa-num">${q}.</span> ${esc(text)}</legend>
+          <div class="oa-opts">${c.scale
+            .map((label, v) => `<label class="oa-opt"><input type="radio" name="q${q}" value="${v}"><span>${esc(label)}</span></label>`)
+            .join('')}</div>
+        </fieldset>`;
+  };
+  const areaBlock = (a, i) => `<section class="oa-area" aria-labelledby="oa-area-${a.id}">
+        <p class="oa-area-step">Area ${i + 1} of ${c.areas.length}</p>
+        <h3 id="oa-area-${a.id}">${esc(a.name)}</h3>
+        <p class="oa-area-q">${esc(a.question)}</p>
+        ${a.statements.map(statement).join('\n        ')}
+      </section>`;
+  const barRow = (a) => `<div class="oa-bar-row" data-area="${a.id}">
+            <div class="oa-bar-head"><span class="oa-bar-name">${esc(a.name)}</span><span class="oa-bar-score"><strong class="oa-score-num"></strong> <span class="oa-band"></span></span></div>
+            <div class="oa-track" aria-hidden="true"><div class="oa-bar"></div></div>
+          </div>`;
+  const priority = (a) => {
+    const l = a.link;
+    return `<article class="oa-priority" data-area="${a.id}" hidden>
+            <h4>${esc(a.name)} <span class="oa-priority-score"></span></h4>
+            ${['low', 'mid', 'high'].map((b) => `<p class="oa-msg" data-band="${b}" hidden>${esc(a[b])}</p>`).join('')}
+            <p class="oa-step"><strong>This week:</strong> ${esc(a.step)}</p>
+            <p class="oa-lead">${esc(c.leadLabel)}: ${esc(joinNames(leadNames(a.lead)))}</p>
+            ${l && link.has(l.key) ? `<p><a class="text-link" href="${esc(link.page(l.key))}">${esc(l.text)}</a></p>` : ''}
+          </article>`;
+  };
+  const strings = {
+    total,
+    areas: c.areas.map((a) => ({ id: a.id, name: a.name, count: a.statements.length })),
+    bands: c.bands,
+    overall: c.overallMessages,
+    example: c.example,
+    exampleNote: c.exampleNote,
+    email: site.contact.recipients[0],
+    emailSubject: c.emailSubject,
+  };
+  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `<p class="tb-privacy">${esc(c.privacy)}</p>`, seed: 29 })}
+<section class="section tb-section oa-section" aria-labelledby="oa-how-h">
+  <div class="wrap oa-wrap">
+    <div class="oa-intro">
+      <h2 id="oa-how-h" class="section-title">${esc(c.howHeading)}</h2>
+      <ul class="oa-how">${c.how.map((h) => `<li>${esc(h)}</li>`).join('')}</ul>
+      <noscript><p class="tb-noscript">${esc(c.noscript)}</p></noscript>
+    </div>
+    <form class="oa-form" id="oa-form" novalidate>
+      <div class="oa-progress" id="oa-progress">
+        <div class="oa-progress-text"><span><strong id="oa-count">0</strong> of ${total} ${esc(c.progressLabel)}</span><a class="oa-jump" id="oa-jump" href="#oa-results" hidden>See your results <span aria-hidden="true">&darr;</span></a></div>
+        <div class="oa-progress-track" aria-hidden="true"><div class="oa-progress-bar" id="oa-progress-bar"></div></div>
+      </div>
+      <div class="tb-buttons">
+        <button type="button" class="button button-secondary" id="oa-example">${esc(c.exampleButton)}</button>
+        <button type="button" class="tb-clear" id="oa-reset">${esc(c.resetButton)}</button>
+      </div>
+      <p class="tb-example-note" id="oa-example-note" role="status"></p>
+      ${c.areas.map(areaBlock).join('\n      ')}
+    </form>
+  </div>
+</section>
+
+<section class="section section-alt oa-results-section" aria-labelledby="oa-results-h">
+  <div class="wrap oa-wrap">
+    <div class="oa-results tb-results" id="oa-results" tabindex="-1">
+      <h2 id="oa-results-h" class="section-title">${esc(c.resultsHeading)}</h2>
+      <p class="tb-empty" id="oa-empty">${esc(c.emptyResult)}</p>
+      <div id="oa-out" hidden>
+        <div class="oa-overall">
+          <div class="oa-dial"><span class="oa-overall-num" id="oa-overall"></span><span class="oa-overall-of">/100</span></div>
+          <div>
+            <p class="oa-overall-label">${esc(c.overallLabel)}: <strong id="oa-overall-band"></strong></p>
+            <p class="oa-overall-msg" id="oa-overall-msg"></p>
+            <p class="tb-hint">${esc(c.overallNote)}</p>
+          </div>
+        </div>
+        <h3>${esc(c.areasHeading)}</h3>
+        <div class="oa-bars">
+          ${c.areas.map(barRow).join('\n          ')}
+        </div>
+        <p class="oa-strength">${esc(c.strengthLabel)}: <strong id="oa-strength"></strong></p>
+        <h3>${esc(c.prioritiesHeading)}</h3>
+        <p>${esc(c.prioritiesIntro)}</p>
+        <div class="oa-priorities" id="oa-priorities">
+          ${c.areas.map(priority).join('\n          ')}
+        </div>
+        <p class="tb-assumption">${esc(c.disclaimer)}</p>
+      </div>
+      <p class="visually-hidden" id="oa-live" aria-live="polite" aria-atomic="true"></p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark" aria-labelledby="oa-cta-h">
+  <div class="wrap tb-cta">
+    <h2 id="oa-cta-h" class="section-title">${esc(c.ctaHeading)}</h2>
+    <p>${esc(c.ctaBody)}</p>
+    <div class="actions">${ctaButton(link, { variant: 'light', text: c.ctaButton })}</div>
+    <p>${esc(c.roadmapNote)}</p>
+    <div class="tb-email">
+      <button type="button" class="tb-email-button" id="oa-email" disabled>${esc(c.emailButton)}</button>
+      <p>${esc(c.emailNote)}</p>
+    </div>
+    ${link.has('timeBack') && link.has('profit') ? `<p class="pl-other"><a class="text-link text-link-light" href="${esc(link.page('timeBack'))}">Owner Freedom Calculator</a> · <a class="text-link text-link-light" href="${esc(link.page('profit'))}">Profit Levers Calculator</a></p>` : ''}
+  </div>
+</section>
+<div class="tool-dock" data-target="oa-results" hidden><span class="tool-dock-text" aria-hidden="true"></span><a class="tool-dock-link" href="#oa-results">See results <span aria-hidden="true">&darr;</span></a></div>
+<script type="application/json" id="oa-strings">${JSON.stringify(strings).replace(/</g, '\\u003c')}</script>
+<script src="${esc(link.versioned('owner-assessment.js'))}" defer></script>`;
+}
