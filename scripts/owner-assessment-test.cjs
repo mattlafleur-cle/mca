@@ -22,7 +22,7 @@ const ok = (name, cond, extra = '') => { console.log((cond ? 'PASS ' : 'FAIL ') 
   ok('25 statements', (await p.locator('.oa-q').count()) === 25);
   ok('100 options', (await p.locator('.oa-opt input').count()) === 100);
   ok('six areas', (await p.locator('.oa-area').count()) === 6);
-  ok('noindex on draft page', (await p.getAttribute('meta[name="robots"]', 'content')).includes('noindex'));
+  ok('indexed (listed tool)', (await p.getAttribute('meta[name="robots"]', 'content')) === 'index, follow');
   ok('empty state on load', await vis('oa-empty') && !(await vis('oa-out')));
   ok('email disabled when incomplete', await p.locator('#oa-email').isDisabled());
   ok('progress 0', (await t('oa-count')) === '0');

@@ -49,6 +49,7 @@ export function routes(site) {
     { key: 'church', label: 'Churches', path: '/church/', file: 'church.html', out: 'church/index.html', standalone: true },
     { key: 'carts', label: 'Golf cart businesses', path: '/carts/', file: 'carts.html', out: 'carts/index.html', standalone: true },
     // Interactive tools: indexed, in the sitemap, and listed under the Tools menu.
+    { key: 'assessment', label: 'Owner Freedom Assessment', path: '/owner-freedom-assessment/', file: 'owner-freedom-assessment.html', out: 'owner-freedom-assessment/index.html', standalone: true, tool: true },
     { key: 'timeBack', label: 'Owner Freedom Calculator', path: '/owner-freedom-calculator/', file: 'owner-freedom-calculator.html', out: 'owner-freedom-calculator/index.html', standalone: true, tool: true },
     { key: 'profit', label: 'Profit Levers Calculator', path: '/profit-levers-calculator/', file: 'profit-levers-calculator.html', out: 'profit-levers-calculator/index.html', standalone: true, tool: true },
     { key: 'noAlumni', label: 'Maple Creek Advisors and No Alumni', path: '/no-alumni/', file: 'no-alumni.html', out: 'no-alumni/index.html', standalone: true },
@@ -57,9 +58,6 @@ export function routes(site) {
     { key: 'clients', label: 'Client updates', path: '/client-updates/', file: 'client-updates.html', out: 'client-updates/index.html', hidden: true, noindex: true },
     { key: 'brands', label: 'Family of brands', path: '/brands/', file: 'brands.html', out: 'brands/index.html', hidden: true, noindex: true },
     // Event page for Josh's J-TEC session (2026-11-11). Unlisted and noindex; /JTEC/ redirects here (see scripts/build.mjs).
-    // Owner Freedom Assessment: a draft for team review, unlisted and noindex until Josh, Greg, and Matt approve it.
-    // To launch: drop hidden and noindex and add standalone: true, tool: true (it then joins the Tools menu).
-    { key: 'assessment', label: 'Owner Freedom Assessment', path: '/owner-freedom-assessment/', file: 'owner-freedom-assessment.html', out: 'owner-freedom-assessment/index.html', hidden: true, noindex: true },
     { key: 'jtec', label: 'J-TEC', path: '/jtec/', file: 'jtec.html', out: 'jtec/index.html', hidden: true, noindex: true },
     // Working Genius guides: one page per type and per industry, under /working-genius/. Indexed and in the
     // sitemap; reached from the Working Genius page. `template` names the shared renderer in src/pages.mjs.

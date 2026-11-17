@@ -21,7 +21,7 @@ The site is plain static HTML built by a small Node script that has **no depende
 | `node scripts/time-back-test.cjs` | Optional. With `npm run preview` running, tests the Owner Freedom Calculator in a real browser (math, edge cases, keyboard, privacy, phone widths). Needs Playwright. |
 | `node scripts/profit-levers-test.cjs` | Optional. With `npm run preview` running, tests the Profit Levers Calculator in a real browser (the required cases, losses, zero revenue, rounding, keyboard, privacy, phone widths). Needs Playwright. |
 | `node scripts/owner-assessment-test.cjs` | Optional. With `npm run preview` running, tests the Owner Freedom Assessment in a real browser (scoring, bands, priorities and ties, email draft, clear, privacy, phone layout and results bar). Needs Playwright. |
-| `node scripts/tools-nav-test.cjs` | Optional. With `npm run preview` running, tests the Tools menu, the home Tools section, and the phone results bar on both calculators. Needs Playwright. |
+| `node scripts/tools-nav-test.cjs` | Optional. With `npm run preview` running, tests the Tools menu (all three tools), the home Tools section, and the phone results bar on both calculators. Needs Playwright. |
 | `npm run og-image` | Regenerates `src/assets/og-image.png`, the link preview image. Run it after changing the name or tagline. Needs Playwright. |
 
 ## Where to edit

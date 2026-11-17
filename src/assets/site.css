@@ -1090,6 +1090,8 @@ h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
 .tool-cards li { display: flex; min-width: 0; }
 .tool-card { display: grid; gap: 0.6rem; align-content: start; width: 100%; padding: clamp(1.25rem, 1rem + 1vw, 1.75rem); background: var(--paper); border: 1px solid var(--rule); border-top: 4px solid var(--maple); color: var(--ink); text-decoration: none; }
 .tool-cards li:nth-child(2) .tool-card { border-top-color: var(--brand-orange); }
+.tool-cards li:nth-child(3) .tool-card { border-top-color: var(--brand-red); }
+@media (min-width: 64rem) { .tool-cards:has(> li:nth-child(3)) { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .tool-card:hover { border-color: var(--evergreen); }
 .tool-card-name { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--maple-ink); }
 .tool-card-question { font-size: var(--step-1); font-weight: 700; line-height: 1.3; }

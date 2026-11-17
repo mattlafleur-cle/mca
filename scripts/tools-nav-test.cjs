@@ -17,10 +17,10 @@ const ok = (name, cond, extra = '') => { console.log((cond ? 'PASS ' : 'FAIL ') 
   await d.click('.nav-group:nth-of-type(2) summary').catch(() => {});
   const toolsGroup = d.locator('.nav-group', { hasText: 'Tools' });
   await toolsGroup.locator('summary').click();
-  ok('desktop: Tools menu opens with both calculators', await toolsGroup.locator('a[href="/owner-freedom-calculator/"]').isVisible() && await toolsGroup.locator('a[href="/profit-levers-calculator/"]').isVisible());
+  ok('desktop: Tools menu opens with all three tools', await toolsGroup.locator('a[href="/owner-freedom-assessment/"]').isVisible() && await toolsGroup.locator('a[href="/owner-freedom-calculator/"]').isVisible() && await toolsGroup.locator('a[href="/profit-levers-calculator/"]').isVisible());
   await d.keyboard.press('Escape');
   ok('desktop: Escape closes Tools', !(await toolsGroup.locator('details').evaluate(e => e.open)));
-  ok('home: Tools section has both cards', (await d.locator('.tool-card').count()) === 2 && (await d.locator('.tool-card[href="/profit-levers-calculator/"]').count()) === 1);
+  ok('home: Tools section has all three cards', (await d.locator('.tool-card').count()) === 3 && (await d.locator('.tool-card[href="/owner-freedom-assessment/"]').count()) === 1 && (await d.locator('.tool-card[href="/profit-levers-calculator/"]').count()) === 1);
   await d.goto(BASE + '/profit-levers-calculator/');
   ok('desktop: Tools shows current page state', (await d.locator('.nav-group details.is-current summary').textContent()).trim() === 'Tools');
   await d.click('#pl-example'); await d.click('.pl-preset[data-lever=price]');

@@ -1,7 +1,7 @@
 // Copy for the Owner Freedom Assessment at /owner-freedom-assessment/.
 // Drafted 2026-11-17 at Matt's direction as step 1 of the Owner Freedom ladder (see the growth write-up).
-// DRAFT FOR TEAM REVIEW: Josh, Greg, and Matt should approve the statements and the area notes before launch.
-// The page is unlisted (hidden, noindex) until then.
+// Listed in the Tools menu and indexed from 2026-11-17 at Matt's direction. The wording is still a first draft:
+// Josh, Greg, and Matt are reviewing the statements and area notes (see the team review document).
 // Rules: our own words only. No EOS terms (Rocks, Scorecard, Level 10, and so on) and no recreation of the
 // Working Genius assessment; the team area points people to it instead. No promised outcomes, no statistics.
 // Scoring (src/assets/owner-assessment.js): each answer is 0 to 3; an area's score is its average as a
@@ -14,6 +14,10 @@ export default function assessmentContent(site) {
     assessment: {
       title: `Owner Freedom Assessment: A 10-Minute Check | ${name}`,
       description: 'Rate 25 statements about your business and your life, and see where you stand on six areas that decide how free you are as an owner.',
+      serviceType: 'Owner Freedom Assessment for business owners',
+      // Dated automatically from content changes (src/page-dates.json); shown in search data only.
+      dated: true,
+      hideDate: true,
       eyebrow: 'The Owner Freedom Assessment',
       headline: 'Does your business give you the life you want?',
       lead: 'Twenty-five statements, about ten minutes. Rate how true each one is today, and see where you stand on the six areas that decide how much freedom a business gives its owner: you, your team, your rhythm, your numbers, your value, and your life.',
