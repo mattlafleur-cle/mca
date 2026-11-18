@@ -1888,68 +1888,98 @@ ${related.length ? `<section class="section section-alt" aria-labelledby="${rout
 ${closing(link, 'Want help applying this?', 'A 20-minute conversation with Josh or Matt is a good place to start. You will leave with a practical next step, whether or not we ever work together.')}`;
 }
 
-// Physician practice owners (/physician-practices/): business help for concierge, direct primary care, and hybrid practices.
+// Physician practice owners (/physician-practices/). A visual-first page: short copy, a journey diagram, icon cards,
+// the three-lane diagram, a staircase for the path, a timeline, and folded FAQs. Every diagram is HTML or inline SVG
+// with real text, so search engines and AI assistants still read the substance.
+const ppIcons = {
+  lanes: '<path d="M4 6c6 0 8 6 12 6M4 12h12M4 18c6 0 8-6 12-6M16 12h4"/>',
+  stage: '<path d="M12 3a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3zM6 11a6 6 0 0 0 12 0M12 17v4M8 21h8"/>',
+  compass: '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
+  owner: '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>',
+  people: '<circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2 20c0-3.3 2.7-5 6-5s6 1.7 6 5M12 20c0-3.3 2.7-5 6-5s4 1 4 2"/>',
+  numbers: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+};
+const ppIcon = (k) => `<svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${ppIcons[k] || ''}</svg>`;
+
 export function physicianPractices({ site, link, copy }) {
   const c = copy.physicianPractices;
+  const people = [...site.founders, ...(site.team || [])];
+  const stepHref = (h) => (h.key && link.has(h.key) ? link.page(h.key) : h.anchor ? `#${h.anchor}` : '');
   return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `<div class="actions">${ctaButton(link, { text: c.button })}${link.has('assessment') ? `<a class="button button-secondary" href="${esc(link.page('assessment'))}">Take the Owner Freedom Assessment</a>` : ''}</div>`, seed: 151 })}
+<section class="section pp-journey-section" aria-labelledby="pp-journey">
+  <div class="wrap">
+    <h2 id="pp-journey" class="section-title">${esc(c.journeyHeading)}</h2>
+    <ol class="pp-journey">${c.journey.map((j, i) => `<li class="pp-stop${i === c.journey.length - 1 ? ' pp-stop-end' : ''}"><span class="pp-dot" aria-hidden="true"></span><strong>${esc(j.label)}</strong><span>${esc(j.line)}</span></li>`).join('')}</ol>
+  </div>
+</section>
 ${answerBlock(site, c)}
 <section class="section" aria-labelledby="pp-why">
   <div class="wrap">
     <h2 id="pp-why" class="section-title">${esc(c.whyHeading)}</h2>
-    <ul class="departments" style="--cols:3">${c.why.map((w) => `<li><h3>${esc(w.name)}</h3><p>${esc(w.body)}</p></li>`).join('')}</ul>
+    <ul class="pp-cards">${c.why.map((w) => `<li>${ppIcon(w.icon)}<h3>${esc(w.name)}</h3><p>${esc(w.line)}</p></li>`).join('')}</ul>
   </div>
 </section>
-<section class="section section-alt" aria-labelledby="pp-areas">
+<section class="section section-dark" aria-labelledby="pp-help">
+  <div class="wrap pp-help">
+    <div>
+      <h2 id="pp-help" class="section-title">${esc(c.helpHeading)}</h2>
+      <div class="pp-help-cols">${c.help.map((h) => `<div>${ppIcon(h.icon)}<h3>${esc(h.name)}</h3><ul>${h.items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul></div>`).join('')}</div>
+    </div>
+    ${lanesDiagram({ owner: true })}
+  </div>
+</section>
+<section class="section" aria-labelledby="pp-how">
   <div class="wrap">
-    <h2 id="pp-areas" class="section-title">${esc(c.areasHeading)}</h2>
-    <ul class="departments" style="--cols:3">${c.areas.map((a) => `<li><h3>${esc(a.name)}</h3><ul class="check-list">${a.items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul></li>`).join('')}</ul>
+    <h2 id="pp-how" class="section-title">${esc(c.howHeading)}</h2>
+    <p class="pp-intro">${esc(c.howIntro)}</p>
+    <ol class="pp-stairs">${c.how
+      .map((h, i) => {
+        const href = stepHref(h);
+        return `<li style="--step:${i}"><span class="pp-step-num" aria-hidden="true">${i + 1}</span><h3>${esc(h.title)}</h3><p>${esc(h.line)}</p>${href ? `<a class="text-link" href="${esc(href)}">${esc(h.linkText || 'More')}</a>` : ''}</li>`;
+      })
+      .join('')}</ol>
+    ${c.guideLink && link.has(c.guideLink.key) ? `<p class="pp-guide"><a class="text-link" href="${esc(link.page(c.guideLink.key))}">${esc(c.guideLink.text)}</a></p>` : ''}
+  </div>
+</section>
+<section class="section section-alt" aria-labelledby="pp-forum-h" id="pp-forum">
+  <div class="wrap">
+    <div class="pp-forum">
+      <div>
+        <p class="brand-tag">${esc(c.forumTag)}</p>
+        <h2 id="pp-forum-h" class="section-title">${esc(c.forumHeading)}</h2>
+        <p>${esc(c.forumLine)}</p>
+      </div>
+      <ul class="pp-facts">${c.forumFacts.map((f) => `<li>${esc(f)}</li>`).join('')}</ul>
+      <div class="actions"><a class="button button-primary" href="${esc(mailtoHref(site, c.forumSubject))}">${esc(c.forumButton)}</a></div>
+    </div>
   </div>
 </section>
 <section class="section" aria-labelledby="pp-toward">
   <div class="wrap">
     <h2 id="pp-toward" class="section-title">${esc(c.towardHeading)}</h2>
-    <p>${esc(c.towardIntro)}</p>
-    <div class="guide-table-wrap"><table class="guide-table">
-      <thead><tr><th scope="col">When</th><th scope="col">For the physician-owner</th><th scope="col">For the practice manager</th></tr></thead>
-      <tbody>${c.toward.map((t) => `<tr><th scope="row">${esc(t.when)}</th><td data-label="For the physician-owner">${esc(t.owner)}</td><td data-label="For the practice manager">${esc(t.operator)}</td></tr>`).join('')}</tbody>
-    </table></div>
+    <ol class="pp-timeline">${c.toward.map((t) => `<li><strong>${esc(t.when)}</strong><span>${esc(t.line)}</span></li>`).join('')}</ol>
+    <p class="pp-note">${esc(c.towardNote)}</p>
+    <p class="pp-proof">${esc(c.proof)} ${link.has(c.proofLink.key) ? `<a class="text-link" href="${esc(link.page(c.proofLink.key))}">${esc(c.proofLink.text)}</a>` : ''}</p>
   </div>
 </section>
-<section class="section section-alt" aria-labelledby="pp-how">
+<section class="section section-alt" aria-labelledby="pp-team">
   <div class="wrap">
-    <h2 id="pp-how" class="section-title">${esc(c.howHeading)}</h2>
-    ${c.howIntro ? `<p>${esc(c.howIntro)}</p>` : ''}
-    <ol class="departments" style="--cols:3">${c.how
-      .map((h) => {
-        const href = h.key && link.has(h.key) ? link.page(h.key) : h.anchor ? `#${h.anchor}` : '';
-        return `<li><h3>${esc(h.title)}</h3><p>${esc(h.body)}</p>${href ? `<p><a class="text-link" href="${esc(href)}">${esc(h.linkText || 'Learn more')}</a></p>` : ''}</li>`;
+    <h2 id="pp-team" class="section-title">${esc(c.teamHeading)}</h2>
+    <ul class="pp-team">${c.team
+      .map((t) => {
+        const f = people.find((p) => p.id === t.id);
+        if (!f) return '';
+        return `<li>${portrait(f, link)}<div><h3>${esc(f.name)}</h3><p>${esc(t.line)}</p>${link.has('about') ? `<a class="text-link" href="${esc(link.page('about', f.id))}">More about ${esc(f.name.split(' ')[0])}</a>` : ''}</div></li>`;
       })
-      .join('')}</ol>
-    ${c.guideLink && link.has(c.guideLink.key) ? `<p><a class="text-link" href="${esc(link.page(c.guideLink.key))}">${esc(c.guideLink.text)}</a></p>` : ''}
+      .join('')}</ul>
   </div>
 </section>
-<section class="section" aria-labelledby="pp-forum-h" id="pp-forum">
-  <div class="wrap">
-    <article class="grow-offer">
-      <p class="brand-tag">${esc(c.forumTag)}</p>
-      <h2 id="pp-forum-h" class="section-title">${esc(c.forumHeading)}</h2>
-      <p>${esc(c.forumBody)}</p>
-      <ul class="check-list">${c.forumItems.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>
-      <div class="actions"><a class="button button-primary" href="${esc(mailtoHref(site, c.forumSubject))}">${esc(c.forumButton)}</a>${ctaButton(link, { variant: 'secondary', text: 'Schedule a conversation' })}</div>
-    </article>
+<section class="section" aria-labelledby="pp-faq">
+  <div class="wrap pp-faq">
+    <h2 id="pp-faq" class="section-title">${esc(c.faqHeading)}</h2>
+    ${c.faq.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('')}
   </div>
 </section>
-<section class="section section-alt" aria-labelledby="pp-proof">
-  <div class="wrap svc-block">
-    <h2 id="pp-proof" class="section-title">${esc(c.proofHeading)}</h2>
-    <p>${esc(c.proof)}</p>
-    ${link.has(c.proofLink.key) ? `<p><a class="text-link" href="${esc(link.page(c.proofLink.key))}">${esc(c.proofLink.text)}</a></p>` : ''}
-    <h3>${esc(c.othersHeading)}</h3>
-    <p>${esc(c.others)}</p>
-  </div>
-</section>
-${leadsSection({ site, link, id: 'pp-leads', heading: c.leadsHeading, ids: c.leads })}
-${guideFaq('pp-faq', c.faq)}
 ${closing(link, c.closingHeading, c.closingBody)}
 <section class="section" aria-label="Trademarks"><div class="wrap"><p class="service-note">${esc(c.credit)}</p></div></section>`;
 }
