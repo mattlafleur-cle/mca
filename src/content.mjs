@@ -482,9 +482,9 @@ export default function content(site) {
     },
 
     about: {
-      title: `About Josh Muller and Matt LaFleur | ${name}`,
+      title: `About Josh Muller, Matt LaFleur, and Greg Snyder | ${name}`,
       description:
-        'Meet Josh Muller, business coach and former construction company owner, and Matt LaFleur, a CPA and financial and operating adviser.',
+        'Meet Josh Muller, business coach and former construction company owner; Matt LaFleur, CPA and fractional CFO; and Greg Snyder, Certified Working Genius Facilitator.',
       eyebrow: 'About',
       headline: 'Building a better business means working with the owner, the team, and the facts at the same time.',
       togetherHeading: 'Why work with us',

@@ -158,7 +158,7 @@ async function main() {
           ? ['## For physician practice owners', `- [${copy.physicianPractices.title.split(' | ')[0]}](${site.canonicalDomain}/physician-practices/): ${copy.physicianPractices.description}`, '']
           : []),
         '## About',
-        `- [Josh Muller and Matt LaFleur](${site.canonicalDomain}/about/)`,
+        `- [Josh Muller, Matt LaFleur, and Greg Snyder](${site.canonicalDomain}/about/)`,
         `- [How we work](${site.canonicalDomain}/how-we-work/)`,
         `- [BUILD owner community](${site.canonicalDomain}/build/)`,
         '',
