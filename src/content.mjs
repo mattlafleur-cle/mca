@@ -214,6 +214,14 @@ export default function content(site) {
             { text: 'Integrated advisory across all of these', key: 'advisory' },
           ],
         },
+        {
+          need: 'Physician practices',
+          line: 'For owners of concierge, direct primary care, and hybrid practices.',
+          items: [
+            { text: 'Business help for physician practice owners', key: 'physicianPractices' },
+            { text: 'Guide: five numbers every membership practice owner should know', key: 'guide-membership-practice-numbers' },
+          ],
+        },
       ],
       toolsLine: 'Not sure yet? Try a free tool first:',
       toolsLinks: [
