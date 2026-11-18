@@ -320,7 +320,7 @@ export function about({ site, link, copy }) {
       ${paras(c.together)}
       ${c.noAlumniLine && link.has('noAlumni') ? `<p>${esc(c.noAlumniLine)} <a class="text-link text-link-light" href="${esc(link.page('noAlumni'))}">${esc(c.noAlumniLink)}</a></p>` : ''}
     </div>
-    ${lanesDiagram()}
+    ${lanesDiagram({ owner: true })}
   </div>
 </section>
 

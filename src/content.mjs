@@ -487,12 +487,12 @@ export default function content(site) {
         'Meet Josh Muller, business coach and former construction company owner, and Matt LaFleur, a CPA and financial and operating adviser.',
       eyebrow: 'About',
       headline: 'Building a better business means working with the owner, the team, and the facts at the same time.',
-      togetherHeading: 'Why the two of us',
+      togetherHeading: 'Why work with us',
       noAlumniLine: 'Josh, Matt, and Greg also lead No Alumni.',
       noAlumniLink: 'How Maple Creek Advisors and No Alumni fit together',
       together: [
-        'Josh helps owners and teams see the human and leadership side of the next move. Matt brings the financial and operating view.',
-        `${name} brings those two perspectives into one relationship, so a sound decision connects to the work required to carry it out.`,
+        'Josh helps owners get unstuck and lead the next move. Greg puts the right people on the right work. Matt brings the financial and operating view.',
+        `${name} brings the owner, the people, and the numbers into one relationship, so a sound decision connects to the work required to carry it out.`,
       ],
       whoHeading: 'Who we work with',
       who:
