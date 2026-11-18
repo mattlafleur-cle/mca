@@ -343,16 +343,19 @@ export function structuredData(site, route, meta) {
   // Town only, no street: scripts/check.mjs keeps street addresses out of structured data.
   if (route.key === 'speaking') {
     for (const r of (meta.recent || []).filter((x) => x.isoDate && x.venue)) {
-      const p = [...site.founders, ...(site.team || [])].find((x) => x.name === r.speaker);
+      // Performers: speaker ids when a session has more than one presenter, else the speaker's name.
+      const everyone = [...site.founders, ...(site.team || [])];
+      const performers = r.speakerIds ? r.speakerIds.map((id) => everyone.find((x) => x.id === id)).filter(Boolean) : everyone.filter((x) => x.name === r.speaker);
       graph.push({
         '@type': 'Event',
         name: `${r.title}, ${r.event}`,
         startDate: r.isoDate,
+        ...(r.isoEnd ? { endDate: r.isoEnd } : {}),
         eventStatus: 'https://schema.org/EventScheduled',
         eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-        location: { '@type': 'Place', name: r.venue, address: { '@type': 'PostalAddress', addressLocality: r.place.split(',')[0], addressRegion: 'OH', addressCountry: 'US' } },
+        location: { '@type': 'Place', name: r.venue, address: { '@type': 'PostalAddress', addressLocality: r.place.split(',')[0], addressRegion: r.region || 'OH', addressCountry: 'US' } },
         description: r.detail,
-        ...(p ? { performer: { '@id': `${base}/about/#${p.id}` } } : {}),
+        ...(performers.length ? { performer: performers.length === 1 ? { '@id': `${base}/about/#${performers[0].id}` } : performers.map((x) => ({ '@id': `${base}/about/#${x.id}` })) } : {}),
       });
     }
   }

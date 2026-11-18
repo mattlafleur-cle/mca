@@ -78,7 +78,7 @@ export default function speakingContent(site) {
 
       audiencesHeading: 'Who we speak to',
       audiences: [
-        { name: 'Associations and conferences', body: 'Member meetings, annual conferences, and breakout sessions for trade, professional, and business associations.' },
+        { name: 'Associations and conferences', body: 'Member meetings, annual conferences, and breakout sessions for trade, professional, physician, and business associations.' },
         { name: 'Companies and leadership teams', body: 'Whole-company sessions that bring the office and the field together, and working sessions for leadership teams.' },
         { name: 'Peer groups and chambers', body: 'Owner and executive groups that want a practical tool members can use the next day.' },
         { name: 'Schools and career-tech programs', body: 'Business training and career-tech programs, like the J-TEC Speaker Series business training for owners in the trades.' },
@@ -108,8 +108,10 @@ export default function speakingContent(site) {
       ],
 
       recentHeading: 'Recent sessions',
-      // Each: { title, event, place, date, speaker, isoDate, venue, detail }. Facts from the J-TEC flyer
-      // (Famous Supply, 2026) supplied by Matt on 2026-11-15. Add sessions as Matt supplies them.
+      // Each: { title, event, place, date, speaker, isoDate, venue, detail }, newest first; optional region
+      // (state, default OH), isoEnd, and speakerIds for sessions with more than one presenter.
+      // J-TEC facts from the flyer (Famous Supply, 2026) supplied by Matt on 2026-11-15. PPA facts from the published
+      // agenda at ppa.health/events/annual-meeting/ (read 2026-11-18), added at Matt's direction.
       recent: [
         {
           title: 'Building a Good Team',
@@ -121,6 +123,19 @@ export default function speakingContent(site) {
           speaker: 'Josh Muller',
           detail: 'A morning business training session for owners and leaders in the trades on handing off work: what a good team looks like, the right people in the right seats, and giving work away so it does not come back. The day\u2019s featured conversation, Built to Last, was with David Kohler, Chair and CEO of Kohler Co., and Marc and Brian Blaushild of Famous Supply.',
         },
+        {
+          title: 'Unlocking Team Performance Through the Six Types of Working Genius',
+          event: 'Private Physicians Alliance 2026 Annual Meeting',
+          place: 'St. Petersburg, Florida',
+          region: 'FL',
+          date: 'November 7, 2026',
+          isoDate: '2026-11-07T09:00:00-05:00',
+          isoEnd: '2026-11-07T10:30:00-05:00',
+          venue: 'The Vinoy',
+          speaker: 'Matt LaFleur and Greg Snyder',
+          speakerIds: ['matt', 'greg'],
+          detail: 'A 90-minute general session for physician-owners and practice leaders of concierge, direct primary care, and hybrid practices, on using The 6 Types of Working Genius to put each person on the work that gives them energy and to find where work stalls in a practice team.',
+        },
       ],
       presentedHeading: 'Groups Josh has presented to in Northeast Ohio',
       // Supplied by Matt on 2026-11-15. Names only; no dates, titles, or results claimed.
@@ -129,8 +144,8 @@ export default function speakingContent(site) {
       speakersHeading: 'Our speakers',
       speakerNotes: {
         josh: 'Josh built and sold a construction company before coaching owners. A Certified EOS Implementer, he speaks on building a good team, owner freedom, and running on a clear operating system, and has presented to the Akron Executives Association, NCBI, and the Greater Akron Chamber.',
-        matt: 'Matt is a CPA licensed in Ohio and California and a fractional CFO. He speaks on profit, pricing, cash, and making the numbers useful to owners.',
-        greg: 'Greg is a Certified Working Genius Facilitator and engaging speaker with more than 30 years in entrepreneurship, sales, marketing, and leadership. He speaks on Working Genius, culture, and teams.',
+        matt: 'Matt is a CPA licensed in Ohio and California and a fractional CFO. He speaks on profit, pricing, cash, and making the numbers useful to owners, and presented Working Genius with Greg at the Private Physicians Alliance 2026 Annual Meeting.',
+        greg: 'Greg is a Certified Working Genius Facilitator and engaging speaker with more than 30 years in entrepreneurship, sales, marketing, and leadership. He speaks on Working Genius, culture, and teams, most recently with Matt at the Private Physicians Alliance 2026 Annual Meeting.',
       },
 
       planHeading: 'Tell us about your group.',
@@ -157,7 +172,7 @@ export default function speakingContent(site) {
         },
         {
           q: 'Who are your speakers?',
-          a: 'Josh Muller, a Certified EOS Implementer who built and sold a construction company and has presented to groups including the Akron Executives Association, the Northcoast Business Initiative, and the Greater Akron Chamber; Matt LaFleur, a CPA and fractional CFO; and Greg Snyder, a Certified Working Genius Facilitator.',
+          a: 'Josh Muller, a Certified EOS Implementer who built and sold a construction company and has presented to groups including the Akron Executives Association, the Northcoast Business Initiative, and the Greater Akron Chamber; Matt LaFleur, a CPA and fractional CFO; and Greg Snyder, a Certified Working Genius Facilitator. Matt and Greg presented Working Genius at the Private Physicians Alliance 2026 Annual Meeting.',
         },
         {
           q: 'Do attendees take the Working Genius assessment?',
