@@ -1,6 +1,6 @@
 // Copy for /guides/ and the guide articles under it. Drafted 2026-11-18 at Matt's direction, following the
 // competitor research (Vistage and EO win searches with practical, answer-first guides).
-// DRAFT: unlisted and noindex until Matt approves; each article names the person who should review it.
+// Published 2026-11-18 at Matt's direction. Each article names its reviewers.
 // House style: answer first, our own experience, no statistics we cannot source, no promised results,
 // no prices, no em dashes. EOS terms are referenced, not taught, per EOS Worldwide's public guidelines.
 

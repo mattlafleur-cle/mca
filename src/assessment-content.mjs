@@ -169,7 +169,7 @@ export default function assessmentContent(site) {
       ctaHeading: 'Want to talk through your results?',
       ctaBody: 'A 20-minute conversation with Josh or Matt is a good place to start. Bring your two lowest areas, and we will help you see what to do first, whether or not we ever work together.',
       ctaButton: 'Talk through my results',
-      roadmapNote: 'For owners who want a full plan, our Owner Freedom Roadmap goes deeper: your goals, your team, and three years of your numbers, in a one-page plan for the next 12 months.',
+      roadmapNote: 'For owners who want to go deeper, ask us about a full plan: your goals, your team, and three years of your numbers, turned into a one-page plan for the next 12 months.',
       emailButton: 'Email us my results',
       emailNote: 'This opens a draft in your own email app with your scores filled in. Nothing is sent until you send it, and you can edit or delete anything first.',
       emailSubject: 'My Owner Freedom Assessment results',

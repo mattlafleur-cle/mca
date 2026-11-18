@@ -1,6 +1,7 @@
 // Copy for /physician-practices/: business help for physician-owners of concierge, direct primary care, and hybrid
 // practices. Drafted 2026-11-18 at Matt's direction from the Practice Owner Edition planning documents.
-// DRAFT: unlisted and noindex until Matt approves the offer (Roadmap scope and fee, cohort details).
+// Published 2026-11-18 at Matt's direction. The plan and the peer group are described softly ("ask us") until their
+// scope and fees are set; firm them up here once they are.
 // Positioning: complements physician networks and alliances; never clinical care, billing, coding, or compliance.
 // House style: no prices, no promised results, no statistics, no client names, no em dashes.
 
@@ -38,9 +39,9 @@ export default function physicianContent(site) {
       howHeading: 'How it works',
       how: [
         { title: 'Owner Freedom Assessment', body: 'A free, 10-minute self-check on six areas, from your numbers to your own week.', key: 'assessment' },
-        { title: 'A practice Roadmap', body: 'Your goals, your team, and your numbers, turned into a one-page plan for the next 12 months.' },
+        { title: 'A plan for the year ahead', body: 'If you want to go deeper, ask us about turning your goals, your team, and your numbers into a one-page plan for the next 12 months.' },
         { title: 'Ongoing work', body: 'Monthly coaching and numbers reviews, team sessions, and support for your practice manager.' },
-        { title: 'A physician-owner peer group', body: 'A small group of practice owners from non-competing markets, meeting monthly to grow as leaders, with a retreat each year.' },
+        { title: 'Peers who understand', body: 'We are bringing together a small group of physician-owners from non-competing markets to grow as leaders together. Ask us if you would like to hear more.' },
       ],
 
       proofHeading: 'Recent work with physicians',

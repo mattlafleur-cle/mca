@@ -145,6 +145,18 @@ async function main() {
               '',
             ]
           : []),
+        ...(routes(site).some((r) => r.article)
+          ? [
+              '## Guides for owners',
+              ...routes(site)
+                .filter((r) => r.article && !r.hidden)
+                .map((r) => `- [${copy[r.key].headline}](${site.canonicalDomain}${r.path}): ${copy[r.key].description}`),
+              '',
+            ]
+          : []),
+        ...(routes(site).some((r) => r.key === 'physicianPractices' && !r.hidden)
+          ? ['## For physician practice owners', `- [${copy.physicianPractices.title.split(' | ')[0]}](${site.canonicalDomain}/physician-practices/): ${copy.physicianPractices.description}`, '']
+          : []),
         '## About',
         `- [Josh Muller and Matt LaFleur](${site.canonicalDomain}/about/)`,
         `- [How we work](${site.canonicalDomain}/how-we-work/)`,

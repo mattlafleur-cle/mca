@@ -19,8 +19,6 @@ function ownerGuideRoutes(site) {
       file: `guides-${slug}.html`,
       out: `guides/${slug}/index.html`,
       standalone: true,
-      hidden: true,
-      noindex: true,
       template: 'guideArticle',
       parent: 'guides',
       article: true,
@@ -84,10 +82,9 @@ export function routes(site) {
     // Working Genius guides: one page per type and per industry, under /working-genius/. Indexed and in the
     // sitemap; reached from the Working Genius page. `template` names the shared renderer in src/pages.mjs.
     ...guideRoutes(site),
-    // DRAFTS (2026-11-18): the physician practice page and the owner guides. Unlisted and noindex until Matt approves.
-    // To publish: drop hidden and noindex (keep standalone) so they join the sitemap; link them from Services or Home.
-    { key: 'physicianPractices', label: 'Physician practice owners', path: '/physician-practices/', file: 'physician-practices.html', out: 'physician-practices/index.html', standalone: true, hidden: true, noindex: true },
-    { key: 'guides', label: 'Guides', path: '/guides/', file: 'guides.html', out: 'guides/index.html', standalone: true, hidden: true, noindex: true },
+    // Physician practice page and owner guides (published 2026-11-18). Indexed, in the sitemap, and in the footer.
+    { key: 'physicianPractices', label: 'Physician practices', path: '/physician-practices/', file: 'physician-practices.html', out: 'physician-practices/index.html', standalone: true, footer: true },
+    { key: 'guides', label: 'Guides', path: '/guides/', file: 'guides.html', out: 'guides/index.html', standalone: true, footer: true },
     ...ownerGuideRoutes(site),
     { key: 'notFound', label: 'Page not found', path: '/404.html', file: '404.html', out: '404.html', hidden: true },
   ];
@@ -241,7 +238,7 @@ function header(site, link, current) {
 
 function footer(site, link) {
   const items = routes(site).filter((r) => !r.hidden && !r.service && !r.standalone);
-  const services = routes(site).filter((r) => r.service);
+  const services = routes(site).filter((r) => r.service || r.footer);
   const year = new Date().getFullYear();
   return `<footer class="site-footer">
   <div class="wrap footer-inner">
