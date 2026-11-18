@@ -1246,3 +1246,21 @@ h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
 .oa-priority p { margin: 0.4rem 0 0; }
 .oa-lead { font-size: var(--step--1); color: var(--ink-muted); }
 .oa-strength { margin-top: 0.75rem; }
+
+/* Owner guides and the physician practice page. */
+.guide-table-wrap { overflow-x: auto; margin: 1.25rem 0; }
+.guide-table { width: 100%; min-width: 36rem; border-collapse: collapse; table-layout: fixed; background: var(--paper); }
+.guide-table th, .guide-table td { text-align: left; vertical-align: top; padding: 0.8rem 0.9rem; border-bottom: 1px solid var(--rule); }
+.guide-table thead th { background: var(--evergreen); color: var(--on-dark); font-size: var(--step--1); font-weight: 600; }
+.guide-table th[scope='row'] { width: 22%; font-weight: 700; }
+.guide-table tbody tr:nth-child(even) { background: var(--paper-card); }
+.guide-cards { grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
+@media (max-width: 40rem) {
+  .guide-table { min-width: 0; table-layout: auto; }
+  .guide-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .guide-table, .guide-table tbody, .guide-table tr, .guide-table th, .guide-table td { display: block; width: 100%; }
+  .guide-table tr { border: 1px solid var(--rule); border-top: 3px solid var(--maple); margin-bottom: 0.75rem; }
+  .guide-table th[scope='row'] { width: 100%; border-bottom: 0; padding-bottom: 0.25rem; }
+  .guide-table td { border-bottom: 0; padding-top: 0.35rem; }
+  .guide-table td[data-label]::before { content: attr(data-label); display: block; font-size: var(--step--1); font-weight: 600; color: var(--ink-muted); }
+}

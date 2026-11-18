@@ -2,9 +2,31 @@
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import workingGeniusGuides, { typeSlugs, industrySlugs } from './working-genius-guides-content.mjs';
+import guidesContent, { guideSlugs } from './guides-content.mjs';
 
 export const esc = (value) =>
   String(value ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+
+// Owner guides under /guides/ (src/guides-content.mjs), rendered by the shared guideArticle template.
+function ownerGuideRoutes(site) {
+  const guides = guidesContent(site);
+  return guideSlugs.map((slug) => {
+    const g = guides[`guide-${slug}`];
+    return {
+      key: `guide-${slug}`,
+      label: g.headline,
+      path: `/guides/${slug}/`,
+      file: `guides-${slug}.html`,
+      out: `guides/${slug}/index.html`,
+      standalone: true,
+      hidden: true,
+      noindex: true,
+      template: 'guideArticle',
+      parent: 'guides',
+      article: true,
+    };
+  });
+}
 
 // Route table. `path` is the clean production URL; `file` is the flat file used for the artifact preview.
 function guideRoutes(site) {
@@ -62,6 +84,11 @@ export function routes(site) {
     // Working Genius guides: one page per type and per industry, under /working-genius/. Indexed and in the
     // sitemap; reached from the Working Genius page. `template` names the shared renderer in src/pages.mjs.
     ...guideRoutes(site),
+    // DRAFTS (2026-11-18): the physician practice page and the owner guides. Unlisted and noindex until Matt approves.
+    // To publish: drop hidden and noindex (keep standalone) so they join the sitemap; link them from Services or Home.
+    { key: 'physicianPractices', label: 'Physician practice owners', path: '/physician-practices/', file: 'physician-practices.html', out: 'physician-practices/index.html', standalone: true, hidden: true, noindex: true },
+    { key: 'guides', label: 'Guides', path: '/guides/', file: 'guides.html', out: 'guides/index.html', standalone: true, hidden: true, noindex: true },
+    ...ownerGuideRoutes(site),
     { key: 'notFound', label: 'Page not found', path: '/404.html', file: '404.html', out: '404.html', hidden: true },
   ];
   return list.filter((r) => r.key !== 'build' || site.build.showPage);
@@ -397,6 +424,22 @@ export function structuredData(site, route, meta) {
       about: route.guide === 'type' ? { '@id': `${base}${route.path}#term` } : meta.serviceType ? { '@id': `${base}${route.path}#service` } : { '@id': orgId },
       ...(route.parent ? { breadcrumb: { '@id': `${base}${route.path}#breadcrumb` } } : {}),
       ...(reviewers.length ? { reviewedBy: reviewers.map((id) => ({ '@id': `${base}/about/#${id}` })) } : {}),
+    });
+  }
+  // Owner guides: an Article attributed to the reviewing team members.
+  if (route.article) {
+    const people = [...site.founders, ...(site.team || [])];
+    const authors = (meta.reviewedBy || []).filter((id) => people.some((p) => p.id === id));
+    graph.push({
+      '@type': 'Article',
+      '@id': `${base}${route.path}#article`,
+      headline: meta.headline,
+      description: meta.description,
+      url: `${base}${route.path}`,
+      ...(meta.dateModified ? { dateModified: meta.dateModified } : {}),
+      ...(authors.length ? { author: authors.map((id) => ({ '@id': `${base}/about/#${id}` })) } : {}),
+      publisher: { '@id': orgId },
+      mainEntityOfPage: { '@id': `${base}${route.path}#webpage` },
     });
   }
   if (meta.datePublished) {

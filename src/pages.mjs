@@ -1,6 +1,7 @@
 // Page bodies. Copy comes from src/content.mjs; facts come from site.config.mjs.
 import { esc, ctaButton, contourSvg, lanesDiagram, mailtoHref } from './layout.mjs';
 import { typeSlugs, industrySlugs } from './working-genius-guides-content.mjs';
+import { guideSlugs } from './guides-content.mjs';
 
 const paras = (list) => list.map((p) => `<p>${esc(p)}</p>`).join('');
 
@@ -1492,9 +1493,9 @@ export function profit({ site, link, copy }) {
 }
 
 // Working Genius guides (/working-genius/<type>/ and /working-genius/<industry>/). Shared helpers first.
-function breadcrumb(link, route) {
+function breadcrumb(link, route, parentLabel = 'The 6 Types of Working Genius') {
   if (!route?.parent || !link.has(route.parent)) return '';
-  return `<nav class="breadcrumb" aria-label="Breadcrumb"><div class="wrap"><ol><li><a href="${esc(link.page('home'))}">Home</a></li><li><a href="${esc(link.page(route.parent))}">The 6 Types of Working Genius</a></li><li aria-current="page">${esc(route.label)}</li></ol></div></nav>`;
+  return `<nav class="breadcrumb" aria-label="Breadcrumb"><div class="wrap"><ol><li><a href="${esc(link.page('home'))}">Home</a></li><li><a href="${esc(link.page(route.parent))}">${esc(parentLabel)}</a></li><li aria-current="page">${esc(route.label)}</li></ol></div></nav>`;
 }
 function guideList(id, heading, items, ordered = false) {
   const tag = ordered ? 'ol' : 'ul';
@@ -1838,4 +1839,94 @@ export function assessment({ site, link, copy }) {
 <div class="tool-dock" data-target="oa-results" hidden><span class="tool-dock-text" aria-hidden="true"></span><a class="tool-dock-link" href="#oa-results">See results <span aria-hidden="true">&darr;</span></a></div>
 <script type="application/json" id="oa-strings">${JSON.stringify(strings).replace(/</g, '\\u003c')}</script>
 <script src="${esc(link.versioned('owner-assessment.js'))}" defer></script>`;
+}
+
+// Guides hub (/guides/): a card for each owner guide, in the order of guideSlugs.
+export function guides({ site, link, copy }) {
+  const c = copy.guides;
+  const items = guideSlugs.map((s) => `guide-${s}`).filter((k) => link.has(k));
+  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, seed: 131 })}
+<section class="section" aria-label="All guides">
+  <div class="wrap">
+    <ul class="tool-cards guide-cards">${items
+      .map((k) => `<li><a class="tool-card" href="${esc(link.page(k))}"><span class="tool-card-name">${esc(copy[k].eyebrow)}</span><span class="tool-card-question">${esc(copy[k].headline)}</span><span class="tool-card-body">${esc(copy[k].description)}</span><span class="tool-card-cta">${esc(c.cardCta)}</span></a></li>`)
+      .join('')}</ul>
+  </div>
+</section>
+${closing(link, c.closingHeading, c.closingBody)}`;
+}
+
+// One owner guide (/guides/<slug>/). Sections are data: paragraphs, a list (ordered or not), or a table.
+export function guideArticle({ site, link, copy, route }) {
+  const c = copy[route.key];
+  const id = (i) => `${route.key}-s${i}`;
+  const section = (s, i) => {
+    const body = [
+      s.paras ? paras(s.paras) : '',
+      s.list ? `<${s.ordered ? 'ol' : 'ul'} class="check-list">${s.list.map((x) => `<li>${esc(x)}</li>`).join('')}</${s.ordered ? 'ol' : 'ul'}>` : '',
+      s.table
+        ? `<div class="guide-table-wrap"><table class="guide-table"><thead><tr>${s.table.head.map((h) => `<th scope="col">${esc(h)}</th>`).join('')}</tr></thead><tbody>${s.table.rows
+            .map((r) => `<tr>${r.map((cell, j) => (j === 0 ? `<th scope="row">${esc(cell)}</th>` : `<td data-label="${esc(s.table.head[j])}">${esc(cell)}</td>`)).join('')}</tr>`)
+            .join('')}</tbody></table></div>`
+        : '',
+      s.note ? `<p class="service-note">${esc(s.note)}</p>` : '',
+    ].join('');
+    return `<section class="section${i % 2 ? ' section-alt' : ''}" aria-labelledby="${id(i)}"><div class="wrap svc-block"><h2 id="${id(i)}" class="section-title">${esc(s.heading)}</h2>${body}</div></section>`;
+  };
+  const related = (c.related || []).filter((r) => link.has(r.key));
+  return `${breadcrumb(link, route, 'Guides')}
+${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, seed: 140 + guideSlugs.indexOf(c.slug) })}
+${answerBlock(site, c)}
+${c.sections.map(section).join('\n')}
+${guideFaq(`${route.key}-faq`, c.faq)}
+${related.length ? `<section class="section section-alt" aria-labelledby="${route.key}-more">
+  <div class="wrap svc-related">
+    <h2 id="${route.key}-more" class="section-title">Keep exploring</h2>
+    <ul>${related.map((r) => `<li><a class="text-link" href="${esc(link.page(r.key))}">${esc(r.text)}</a></li>`).join('')}${link.has('guides') ? `<li><a class="text-link" href="${esc(link.page('guides'))}">All guides</a></li>` : ''}</ul>
+  </div>
+</section>` : ''}
+${closing(link, 'Want help applying this?', 'A 20-minute conversation with Josh or Matt is a good place to start. You will leave with a practical next step, whether or not we ever work together.')}`;
+}
+
+// Physician practice owners (/physician-practices/): business help for concierge, direct primary care, and hybrid practices.
+export function physicianPractices({ site, link, copy }) {
+  const c = copy.physicianPractices;
+  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `<div class="actions">${ctaButton(link, { text: c.button })}${link.has('assessment') ? `<a class="button button-secondary" href="${esc(link.page('assessment'))}">Take the Owner Freedom Assessment</a>` : ''}</div>`, seed: 151 })}
+${answerBlock(site, c)}
+<section class="section" aria-labelledby="pp-areas">
+  <div class="wrap">
+    <h2 id="pp-areas" class="section-title">${esc(c.areasHeading)}</h2>
+    <ul class="departments" style="--cols:3">${c.areas.map((a) => `<li><h3>${esc(a.name)}</h3><ul class="check-list">${a.items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul></li>`).join('')}</ul>
+  </div>
+</section>
+<section class="section section-alt" aria-labelledby="pp-toward">
+  <div class="wrap">
+    <h2 id="pp-toward" class="section-title">${esc(c.towardHeading)}</h2>
+    <p>${esc(c.towardIntro)}</p>
+    <div class="guide-table-wrap"><table class="guide-table">
+      <thead><tr><th scope="col">When</th><th scope="col">For the physician-owner</th><th scope="col">For the practice manager</th></tr></thead>
+      <tbody>${c.toward.map((t) => `<tr><th scope="row">${esc(t.when)}</th><td data-label="For the physician-owner">${esc(t.owner)}</td><td data-label="For the practice manager">${esc(t.operator)}</td></tr>`).join('')}</tbody>
+    </table></div>
+  </div>
+</section>
+<section class="section" aria-labelledby="pp-how">
+  <div class="wrap">
+    <h2 id="pp-how" class="section-title">${esc(c.howHeading)}</h2>
+    <ol class="departments" style="--cols:4">${c.how.map((h) => `<li><h3>${esc(h.title)}</h3><p>${esc(h.body)}</p>${h.key && link.has(h.key) ? `<p><a class="text-link" href="${esc(link.page(h.key))}">Take it now</a></p>` : ''}</li>`).join('')}</ol>
+    ${c.guideLink && link.has(c.guideLink.key) ? `<p><a class="text-link" href="${esc(link.page(c.guideLink.key))}">${esc(c.guideLink.text)}</a></p>` : ''}
+  </div>
+</section>
+<section class="section section-alt" aria-labelledby="pp-proof">
+  <div class="wrap svc-block">
+    <h2 id="pp-proof" class="section-title">${esc(c.proofHeading)}</h2>
+    <p>${esc(c.proof)}</p>
+    ${link.has(c.proofLink.key) ? `<p><a class="text-link" href="${esc(link.page(c.proofLink.key))}">${esc(c.proofLink.text)}</a></p>` : ''}
+    <h3>${esc(c.othersHeading)}</h3>
+    <p>${esc(c.others)}</p>
+  </div>
+</section>
+${leadsSection({ site, link, id: 'pp-leads', heading: c.leadsHeading, ids: c.leads })}
+${guideFaq('pp-faq', c.faq)}
+${closing(link, c.closingHeading, c.closingBody)}
+<section class="section" aria-label="Trademarks"><div class="wrap"><p class="service-note">${esc(c.credit)}</p></div></section>`;
 }

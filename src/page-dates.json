@@ -66,5 +66,25 @@
   "assessment": {
     "hash": "2536fb08fe6b",
     "date": "2026-11-16"
+  },
+  "physicianPractices": {
+    "hash": "dd46041b976a",
+    "date": "2026-11-17"
+  },
+  "guides": {
+    "hash": "675d1e72dcdb",
+    "date": "2026-11-17"
+  },
+  "guide-coach-eos-implementer-or-fractional-cfo": {
+    "hash": "7e31ad3a16b4",
+    "date": "2026-11-17"
+  },
+  "guide-stop-being-the-bottleneck": {
+    "hash": "b3e430720596",
+    "date": "2026-11-17"
+  },
+  "guide-membership-practice-numbers": {
+    "hash": "8b126565eb31",
+    "date": "2026-11-17"
   }
 }
