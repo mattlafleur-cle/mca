@@ -1893,13 +1893,19 @@ export function physicianPractices({ site, link, copy }) {
   const c = copy.physicianPractices;
   return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `<div class="actions">${ctaButton(link, { text: c.button })}${link.has('assessment') ? `<a class="button button-secondary" href="${esc(link.page('assessment'))}">Take the Owner Freedom Assessment</a>` : ''}</div>`, seed: 151 })}
 ${answerBlock(site, c)}
-<section class="section" aria-labelledby="pp-areas">
+<section class="section" aria-labelledby="pp-why">
+  <div class="wrap">
+    <h2 id="pp-why" class="section-title">${esc(c.whyHeading)}</h2>
+    <ul class="departments" style="--cols:3">${c.why.map((w) => `<li><h3>${esc(w.name)}</h3><p>${esc(w.body)}</p></li>`).join('')}</ul>
+  </div>
+</section>
+<section class="section section-alt" aria-labelledby="pp-areas">
   <div class="wrap">
     <h2 id="pp-areas" class="section-title">${esc(c.areasHeading)}</h2>
     <ul class="departments" style="--cols:3">${c.areas.map((a) => `<li><h3>${esc(a.name)}</h3><ul class="check-list">${a.items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul></li>`).join('')}</ul>
   </div>
 </section>
-<section class="section section-alt" aria-labelledby="pp-toward">
+<section class="section" aria-labelledby="pp-toward">
   <div class="wrap">
     <h2 id="pp-toward" class="section-title">${esc(c.towardHeading)}</h2>
     <p>${esc(c.towardIntro)}</p>
@@ -1909,11 +1915,28 @@ ${answerBlock(site, c)}
     </table></div>
   </div>
 </section>
-<section class="section" aria-labelledby="pp-how">
+<section class="section section-alt" aria-labelledby="pp-how">
   <div class="wrap">
     <h2 id="pp-how" class="section-title">${esc(c.howHeading)}</h2>
-    <ol class="departments" style="--cols:4">${c.how.map((h) => `<li><h3>${esc(h.title)}</h3><p>${esc(h.body)}</p>${h.key && link.has(h.key) ? `<p><a class="text-link" href="${esc(link.page(h.key))}">Take it now</a></p>` : ''}</li>`).join('')}</ol>
+    ${c.howIntro ? `<p>${esc(c.howIntro)}</p>` : ''}
+    <ol class="departments" style="--cols:3">${c.how
+      .map((h) => {
+        const href = h.key && link.has(h.key) ? link.page(h.key) : h.anchor ? `#${h.anchor}` : '';
+        return `<li><h3>${esc(h.title)}</h3><p>${esc(h.body)}</p>${href ? `<p><a class="text-link" href="${esc(href)}">${esc(h.linkText || 'Learn more')}</a></p>` : ''}</li>`;
+      })
+      .join('')}</ol>
     ${c.guideLink && link.has(c.guideLink.key) ? `<p><a class="text-link" href="${esc(link.page(c.guideLink.key))}">${esc(c.guideLink.text)}</a></p>` : ''}
+  </div>
+</section>
+<section class="section" aria-labelledby="pp-forum-h" id="pp-forum">
+  <div class="wrap">
+    <article class="grow-offer">
+      <p class="brand-tag">${esc(c.forumTag)}</p>
+      <h2 id="pp-forum-h" class="section-title">${esc(c.forumHeading)}</h2>
+      <p>${esc(c.forumBody)}</p>
+      <ul class="check-list">${c.forumItems.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>
+      <div class="actions"><a class="button button-primary" href="${esc(mailtoHref(site, c.forumSubject))}">${esc(c.forumButton)}</a>${ctaButton(link, { variant: 'secondary', text: 'Schedule a conversation' })}</div>
+    </article>
   </div>
 </section>
 <section class="section section-alt" aria-labelledby="pp-proof">
