@@ -89,11 +89,12 @@ export default {
     retreatUrl: 'https://buildowners.com/#retreat-to-advance',
     urlLabel: 'Visit the BUILD website',
     // Formats from buildowners.com and places from the BUILD plan Matt shared, both 2026-10-02.
+    // 2027 rooms added 2026-11-25 to match buildowners.com: breakfasts in Avon or Westlake and Medina, lunch in Parma.
     // Leave places empty where none is set. Update as gatherings change.
     fullName: 'Business United in Leadership Development',
     gatherings: [
-      { format: 'Breakfast', detail: 'Monthly, first thing. The mastermind feel, opened up to more people.', places: 'Akron and Independence' },
-      { format: 'Lunch', detail: 'A noon table for owners who cannot do mornings.', places: 'Akron' },
+      { format: 'Breakfast', detail: 'Monthly, first thing. The mastermind feel, opened up to more people.', places: 'Akron and Independence. Starting in 2027: Avon or Westlake, and Medina.' },
+      { format: 'Lunch', detail: 'A midday table for owners who cannot do mornings.', places: 'Akron. Starting in 2027: Parma.' },
       { format: 'Happy hour', detail: 'Relaxed networking with other owners.', places: 'Akron and Norton / Cuyahoga Falls' },
       { format: 'Workshop', detail: 'Quarterly, built around one specific need, with a speaker and lunch.', places: '' },
       { format: 'Mastermind Club', detail: 'Five to eight owners, monthly, in depth. Members join one at a time.', places: '' },
