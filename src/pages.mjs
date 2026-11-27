@@ -68,6 +68,20 @@ export function home({ site, link, copy }) {
     </div>
   </div>
 </section>
+${c.events?.some((e) => link.has(e.key))
+  ? `<section class="section home-events" aria-labelledby="events-heading">
+  <div class="wrap">
+    <div class="section-head section-head-row">
+      <h2 id="events-heading" class="section-title">${esc(c.eventsHeading)}</h2>
+      <p class="home-events-place">${esc(c.eventsPlace)}</p>
+    </div>
+    <ul class="event-cards">${c.events
+      .filter((e) => link.has(e.key))
+      .map((e) => `<li><a class="event-card" href="${esc(link.page(e.key))}"><span class="event-date"><strong>${esc(e.date)}</strong><span>${esc(e.time)}</span></span><span class="event-body"><span class="event-name">${esc(e.name)}</span><span class="event-line">${esc(e.line)}</span><span class="tool-card-cta">${esc(e.cta)}</span></span></a></li>`)
+      .join('')}</ul>
+  </div>
+</section>`
+  : ''}
 
 <section class="section" aria-labelledby="situations-heading">
   <div class="wrap">
@@ -1982,4 +1996,52 @@ ${answerBlock(site, c)}
 </section>
 ${closing(link, c.closingHeading, c.closingBody)}
 <section class="section" aria-label="Trademarks"><div class="wrap"><p class="service-note">${esc(c.credit)}</p></div></section>`;
+}
+
+// Event pages (/working-genius-workshop/, /holiday-party/): one shared, visual-first template. Facts at a glance,
+// a calendar file, a short "why come," and a registration or RSVP block. The workshop's registration embed is
+// inserted as-is from the content file once Matt supplies it.
+export function eventPage({ site, link, copy, route }) {
+  const c = copy[route.key];
+  const v = c.venue;
+  const regId = 'register';
+  const primary = c.registerButton
+    ? `<a class="button button-primary" href="#${regId}">${esc(c.registerButton)}</a>`
+    : `<a class="button button-primary" href="${esc(mailtoHref(site, c.rsvpSubject))}">${esc(c.rsvpButton)}</a>`;
+  const facts = [
+    { k: 'When', v: `${c.when}`, sub: c.time },
+    { k: 'Where', v: v.name, sub: `${v.street}, ${v.town}, Ohio`, href: v.mapUrl, hrefText: 'Map' },
+    c.price ? { k: 'Cost', v: c.price, sub: `Includes ${c.includes.map((i) => i.charAt(0).toLowerCase() + i.slice(1)).join(', ').replace(/, ([^,]*)$/, ', and $1')}` } : { k: 'Hosts', v: c.hosts, sub: '' },
+  ];
+  const build = c.hosts && site.build?.url ? `<p class="ev-note">BUILD is the owner community of ${esc(site.siteName)}. <a class="text-link" href="${esc(site.build.url)}" rel="noopener">Visit BUILD</a></p>` : '';
+  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `<div class="actions">${primary}<a class="button button-secondary" href="${esc(link.asset(c.calendar.file))}" download>${esc(c.calendar.text)}</a></div>`, seed: 171 })}
+<section class="section" aria-label="Event details">
+  <div class="wrap">
+    <dl class="ev-facts">${facts
+      .map((f) => `<div><dt>${esc(f.k)}</dt><dd><strong>${esc(f.v)}</strong>${f.sub ? `<span>${esc(f.sub)}</span>` : ''}${f.href ? `<a class="text-link" href="${esc(f.href)}" rel="noopener">${esc(f.hrefText)}</a>` : ''}</dd></div>`)
+      .join('')}</dl>
+    <p class="ev-note">${esc(v.name)} is ${esc(v.note.charAt(0).toLowerCase() + v.note.slice(1))}.</p>
+    ${build}
+  </div>
+</section>
+${c.learn ? `<section class="section section-alt" aria-labelledby="ev-learn">
+  <div class="wrap">
+    <h2 id="ev-learn" class="section-title">${esc(c.learnHeading)}</h2>
+    <ul class="pp-cards">${c.learn.map((l) => `<li>${ppIcon(l.icon)}<h3>${esc(l.name)}</h3><p>${esc(l.line)}</p></li>`).join('')}</ul>
+    <h3 class="ev-for-h">${esc(c.forHeading)}</h3>
+    <p>${esc(c.forLine)}</p>
+  </div>
+</section>` : ''}
+<section class="section${c.learn ? '' : ' section-alt'}" aria-labelledby="ev-${regId}" id="${regId}">
+  <div class="wrap">
+    <div class="pp-forum ev-register">
+      <div>
+        <h2 id="ev-${regId}" class="section-title">${esc(c.registerHeading || 'RSVP')}</h2>
+        ${c.embedHtml ? `<div class="ev-embed">${c.embedHtml}</div>` : `<p>${esc(c.registerFallback || c.rsvpNote)}</p>`}
+      </div>
+      ${c.embedHtml ? '' : `<div class="actions"><a class="button button-primary" href="${esc(mailtoHref(site, c.registerSubject || c.rsvpSubject))}">${esc(c.registerSubject ? 'Email to hold a seat' : c.rsvpButton)}</a></div>`}
+    </div>
+  </div>
+</section>
+${c.credit ? `<section class="section" aria-label="Trademarks"><div class="wrap"><p class="service-note">${esc(c.credit)}</p></div></section>` : ''}`;
 }

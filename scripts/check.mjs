@@ -122,7 +122,8 @@ for (const file of files) {
 
   // The Profit Levers Calculator shows dollar amounts as calculator examples and limits, not prices for
   // our services, so the price rule does not apply to that one page. Every other rule still does.
-  const pricesAllowed = rel === 'profit-levers-calculator/index.html';
+  // The Working Genius workshop page shows its ticket price (an event fee, not a service price).
+  const pricesAllowed = rel === 'profit-levers-calculator/index.html' || rel === 'working-genius-workshop/index.html';
   for (const [re, name] of banned) {
     if (pricesAllowed && name === 'a price') continue;
     if (re.test(text)) errors.push(`${rel}: contains ${name}: "${text.match(re)[0]}"`);

@@ -82,6 +82,10 @@ export function routes(site) {
     // Working Genius guides: one page per type and per industry, under /working-genius/. Indexed and in the
     // sitemap; reached from the Working Genius page. `template` names the shared renderer in src/pages.mjs.
     ...guideRoutes(site),
+    // December 2026 events. Indexed and linked from the home page; retire after the events (drop the routes and the
+    // home cards, or mark them hidden) so past events do not linger.
+    { key: 'workshop', label: 'Working Genius Workshop', path: '/working-genius-workshop/', file: 'working-genius-workshop.html', out: 'working-genius-workshop/index.html', standalone: true, template: 'eventPage' },
+    { key: 'holidayParty', label: 'Holiday Party', path: '/holiday-party/', file: 'holiday-party.html', out: 'holiday-party/index.html', standalone: true, template: 'eventPage' },
     // Physician practice page and owner guides (published 2026-11-18). Indexed, in the sitemap, and in the footer.
     { key: 'physicianPractices', label: 'Physician practices', path: '/physician-practices/', file: 'physician-practices.html', out: 'physician-practices/index.html', standalone: true, footer: true },
     { key: 'guides', label: 'Guides', path: '/guides/', file: 'guides.html', out: 'guides/index.html', standalone: true, footer: true },
@@ -361,6 +365,23 @@ export function structuredData(site, route, meta) {
       url: 'https://www.noalumni.com/',
       description: 'A Northeast Ohio company and movement that celebrates every path to success and helps teams, schools, and organizations build workplaces where people thrive.',
       founder: ['greg', 'matt'].map((id) => ({ '@id': `${base}/about/#${id}` })),
+    });
+  }
+  // Event pages: one upcoming Event node. Town only, no street (scripts/check.mjs keeps addresses out of structured data).
+  if (meta.event && meta.venue) {
+    graph.push({
+      '@type': 'Event',
+      '@id': `${base}${route.path}#event`,
+      name: meta.event.name,
+      description: meta.description,
+      startDate: meta.event.start,
+      endDate: meta.event.end,
+      eventStatus: 'https://schema.org/EventScheduled',
+      eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+      location: { '@type': 'Place', name: meta.venue.name, address: { '@type': 'PostalAddress', addressLocality: meta.venue.town, addressRegion: meta.venue.region, addressCountry: 'US' } },
+      organizer: { '@id': orgId },
+      url: `${base}${route.path}`,
+      ...(meta.event.price ? { offers: { '@type': 'Offer', price: meta.event.price, priceCurrency: 'USD', availability: 'https://schema.org/InStock', url: `${base}${route.path}#register` } } : {}),
     });
   }
   // Speaking page: past sessions with full details as Event nodes, with the speaker as performer.

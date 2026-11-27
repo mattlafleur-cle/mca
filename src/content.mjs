@@ -21,6 +21,7 @@ import profitContent from './profit-content.mjs';
 import assessmentContent from './assessment-content.mjs';
 import guidesContent from './guides-content.mjs';
 import physicianContent from './physician-content.mjs';
+import eventsContent from './events-content.mjs';
 
 export default function content(site) {
   const name = site.siteName;
@@ -37,6 +38,7 @@ export default function content(site) {
     ...assessmentContent(site),
     ...guidesContent(site),
     ...physicianContent(site),
+    ...eventsContent(site),
     church: churchContent(site),
     carts: cartsContent(site),
     sell: sellContent(site),
@@ -78,6 +80,12 @@ export default function content(site) {
       chooserStartLabel: 'Start with',
       chooserUnsure: 'Not sure which one fits? That is what the first conversation is for.',
       toolsEyebrow: 'Tools for owners',
+      eventsHeading: 'Upcoming events',
+      events: [
+        { key: 'workshop', date: 'Tue, Dec 15', time: '9:00 AM to noon', name: 'Working Genius Workshop', line: 'A hands-on morning for small business owners and leaders. Includes your own assessment and report.', cta: 'Details and registration' },
+        { key: 'holidayParty', date: 'Thu, Dec 17', time: '4:00 to 7:00 PM', name: 'Holiday Party with BUILD', line: 'Celebrate the year with business owners and leaders from across the region.', cta: 'Details and RSVP' },
+      ],
+      eventsPlace: 'Both at The Commons, Cuyahoga Falls',
       toolsHeading: 'Three quick ways to look at your business differently.',
       toolsIntro: 'Each takes a few minutes and runs entirely in your browser. We never see your answers.',
       tools: [

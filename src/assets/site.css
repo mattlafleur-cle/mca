@@ -1334,3 +1334,35 @@ h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
   .pp-cards, .pp-help-cols, .pp-timeline { grid-template-columns: 1fr; }
   .pp-stairs { grid-template-columns: 1fr; }
 }
+
+/* Home: upcoming events strip. Event pages. */
+.home-events { padding-block: clamp(1.75rem, 1.25rem + 2vw, 2.75rem); background: var(--paper-deep); }
+.home-events-place { margin: 0; color: var(--ink-muted); }
+.event-cards { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.event-card { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1rem; height: 100%; padding: 1.1rem; background: var(--paper); border: 1px solid var(--rule); border-left: 5px solid var(--maple); color: var(--ink); text-decoration: none; }
+.event-cards li:nth-child(2) .event-card { border-left-color: var(--brand-red); }
+.event-card:hover { border-color: var(--evergreen); }
+.event-date { display: grid; align-content: start; gap: 0.2rem; }
+.event-date strong { font-size: var(--step-1); }
+.event-date span { font-size: var(--step--1); color: var(--ink-muted); }
+.event-body { display: grid; gap: 0.35rem; align-content: start; }
+.event-name { font-weight: 700; font-size: var(--step-1); }
+.event-line { color: var(--ink-muted); }
+.ev-facts { margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.ev-facts > div { padding: 1.1rem 1.25rem; background: var(--paper-card); border: 1px solid var(--rule); border-top: 4px solid var(--maple); }
+.ev-facts > div:nth-child(2) { border-top-color: var(--brand-orange); }
+.ev-facts > div:nth-child(3) { border-top-color: var(--brand-red); }
+.ev-facts dt { font-size: var(--step--1); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--maple-ink); }
+.ev-facts dd { margin: 0.4rem 0 0; display: grid; gap: 0.25rem; }
+.ev-facts dd strong { font-size: var(--step-1); }
+.ev-facts dd span { color: var(--ink-muted); }
+.ev-facts .text-link { justify-self: start; }
+.ev-note { margin-top: 1rem; color: var(--ink-muted); }
+.ev-for-h { margin-top: 2rem; }
+.ev-register { grid-template-columns: minmax(0, 1fr) auto; }
+.ev-embed { margin-top: 1rem; }
+@media (max-width: 48rem) {
+  .event-cards, .ev-facts { grid-template-columns: 1fr; }
+  .event-card { grid-template-columns: 1fr; gap: 0.5rem; }
+  .ev-register { grid-template-columns: 1fr; }
+}
