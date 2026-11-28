@@ -1405,7 +1405,10 @@ h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
 .ev-hero-media img { display: block; width: 100%; aspect-ratio: 4 / 3; height: auto; object-fit: cover; object-position: 50% 40%; border-radius: var(--radius); box-shadow: 0 18px 40px rgb(35 31 32 / 0.18); }
 .ev-hero-media figcaption { margin-top: 0.5rem; font-size: var(--step--1); color: var(--ink-muted); }
 .ev-hero-logo svg { display: block; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 18px 40px rgb(35 31 32 / 0.25); }
-.ev-sec { padding-block: clamp(1.75rem, 1.25rem + 1.75vw, 3rem); }
+.ev-sec { padding-block: clamp(1.25rem, 0.9rem + 1.1vw, 2rem); }
+/* Tighter still between the hero and the event facts, and below the facts (Matt's review of the party page, 2026-11-28). */
+.page-hero.ev-hero { padding-bottom: clamp(1.5rem, 1.1rem + 1.25vw, 2.25rem); }
+.ev-hero + .ev-sec { padding-top: clamp(1.25rem, 0.9rem + 1vw, 1.75rem); padding-bottom: clamp(1rem, 0.75rem + 0.75vw, 1.5rem); }
 .ev-credit { padding-block: 0 clamp(1.5rem, 1rem + 1vw, 2rem); }
 @media (max-width: 56rem) {
   .ev-hero-inner { grid-template-columns: 1fr; }
