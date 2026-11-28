@@ -2037,7 +2037,7 @@ export function eventPage({ site, link, copy, route }) {
     { k: 'Where', v: v.name, sub: `${v.street}, ${v.town}, Ohio`, href: v.mapUrl, hrefText: 'Map' },
     c.price ? { k: 'Cost', v: c.price, sub: c.includesLine } : { k: 'Cost', v: c.cost, sub: c.hosts },
   ];
-  const calendarLinks = `<a class="button button-secondary" href="${esc(c.google)}" rel="noopener">Google Calendar</a><a class="button button-secondary" href="${esc(link.asset(c.calendar.file))}" download>${esc(c.calendar.text)}</a>`;
+  const calendarLinks = `<p class="ev-cal">Add to calendar: <a class="text-link" href="${esc(c.google)}" rel="noopener">Google</a> <span aria-hidden="true">·</span> <a class="text-link" href="${esc(link.asset(c.calendar.file))}" download>${esc(c.calendar.text)}</a></p>`;
   const photo = c.photo
     ? `<figure class="ev-photo"><picture><source type="image/webp" srcset="${esc(link.asset(c.photo.small))} 800w, ${esc(link.asset(c.photo.webp))} 1600w" sizes="(min-width: 64rem) 60rem, 100vw"><img src="${esc(link.asset(c.photo.src))}" width="${c.photo.width}" height="${c.photo.height}" alt="${esc(c.photo.alt)}" loading="lazy" decoding="async"></picture><figcaption>${esc(c.photo.caption)}</figcaption></figure>`
     : '';
@@ -2050,7 +2050,7 @@ export function eventPage({ site, link, copy, route }) {
     ${c.dress ? `<p class="ev-dress">${esc(c.dress)}</p>` : ''}
   </div>
 </section>`;
-  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `${c.badge ? `<p class="ev-badge">${esc(c.badge)}</p>` : ''}<div class="actions"><a class="button button-primary" href="#${regId}">${esc(c.registerButton || c.rsvpButton)}</a>${calendarLinks}</div>`, seed: 171 })}
+  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `${c.badge ? `<p class="ev-badge">${esc(c.badge)}</p>` : ''}<div class="actions"><a class="button button-primary" href="#${regId}">${esc(c.registerButton || c.rsvpButton)}</a></div>${calendarLinks}`, seed: 171 })}
 <section class="section" aria-label="Event details">
   <div class="wrap">
     <dl class="ev-facts">${facts
@@ -2105,5 +2105,6 @@ ${c.faq ? `<section class="section" aria-labelledby="ev-faq">
     ${c.faq.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('')}
   </div>
 </section>` : ''}
-${c.credit ? `<section class="section" aria-label="Trademarks"><div class="wrap"><p class="service-note">${esc(c.credit)}</p></div></section>` : ''}`;
+${c.credit ? `<section class="section" aria-label="Trademarks"><div class="wrap"><p class="service-note">${esc(c.credit)}</p></div></section>` : ''}
+<div class="tool-dock" data-target="${regId}" data-text="${esc(c.dock)}" hidden><span class="tool-dock-text" aria-hidden="true"></span><a class="tool-dock-link" href="#${regId}">${esc(c.registerButton || c.rsvpButton)} <span aria-hidden="true">&darr;</span></a></div>`;
 }

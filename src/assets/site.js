@@ -51,7 +51,9 @@
     var dockText = dock.querySelector('.tool-dock-text');
     var dockTarget = document.getElementById(dock.getAttribute('data-target'));
     var narrow = window.matchMedia('(max-width: 56rem)');
-    var summary = null;
+    // Event pages set a fixed summary on the bar itself (data-text); calculators send theirs as results change.
+    var summary = dock.getAttribute('data-text') || null;
+    if (summary) dockText.textContent = summary;
     var targetBelow = true;
     var refreshDock = function () {
       var show = Boolean(summary) && narrow.matches && targetBelow;

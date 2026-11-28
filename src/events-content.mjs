@@ -52,6 +52,7 @@ export default function eventsContent(site) {
       price: '$99 per person',
       includesLine: 'Includes your own Working Genius assessment and personal report, plus light breakfast, coffee, snacks, and refreshments.',
       registerButton: 'Register now',
+      dock: 'Dec 15 · Limited seats',
       photo: { src: 'photos/events/commons-session.jpg', webp: 'photos/events/commons-session.webp', small: 'photos/events/commons-session-small.webp', width: 1600, height: 1200, alt: 'Josh Muller presenting to a room of business owners and leaders at The Commons in Cuyahoga Falls', caption: 'Josh Muller presenting at The Commons, where the workshop will be held.' },
 
       learnHeading: 'What you will take away',
@@ -129,6 +130,7 @@ export default function eventsContent(site) {
       cost: 'Free',
       hosts: `Co-hosted by ${name} and BUILD`,
       rsvpButton: 'RSVP',
+      dock: 'Dec 17 · Free',
 
       expectHeading: 'What to expect',
       expect: [
