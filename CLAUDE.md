@@ -27,9 +27,14 @@ Standing instructions for any Claude session working on maplecreekadvisors.com (
 - Offices: Cuyahoga Falls, Elyria, and Lakewood (`site.config.mjs`).
 - Keep private event details off the pages: workshop capacity (about 50) and the refund policy.
 
+## Mobile, tablet, and desktop
+
+- Every page, site, and web asset built here must be optimized for phones, tablets, and desktop browsers. This is a requirement, not a nice-to-have.
+- Before asking to publish any layout or new page, check it in Playwright at phone (iPhone 13 and 360 px wide), tablet (iPad Mini portrait and 1024 px landscape), and desktop (1280 and 1600 px): no sideways scrolling, readable text, tap targets at least 44 px, images sized and cropped well, nothing overlapping.
+- Same standard for emails (desktop and phone widths) and anything else people open on a screen.
+
 ## Working on the site
 
 - `npm run build`, `npm run check` (must pass), `npm run preview` (local at http://localhost:4173/).
 - Copy lives in `src/*-content.mjs`; layouts in `src/pages.mjs`; routes and structured data in `src/layout.mjs`; settings in `site.config.mjs`; styles in `src/assets/site.css`.
-- Check layout changes on phone, tablet, and desktop before asking to publish.
 - Open launch items: `LAUNCH_CHECKLIST.md`.
