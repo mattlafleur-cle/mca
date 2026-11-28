@@ -69,7 +69,7 @@ export default function guidesContent(site) {
             'Meetings feel like updates rather than places where problems get solved',
             'You want a complete, proven operating system rather than building your own',
           ],
-          note: 'EOS® and Entrepreneurial Operating System® are registered trademarks of EOS Worldwide. Only licensed EOS Implementers teach the full EOS process. Josh Muller is a Certified EOS Implementer.',
+          note: 'EOS® and Entrepreneurial Operating System® are registered trademarks of EOS Worldwide. Only licensed EOS Implementers teach the full EOS process. Josh Muller is an EOS Implementer.',
         },
         {
           heading: 'Signs you need a fractional CFO',

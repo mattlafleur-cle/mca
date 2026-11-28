@@ -140,7 +140,7 @@ export default {
       // Structured data only (search and AI answers): expertise and credentials.
       knowsAbout: ['Business coaching', 'Entrepreneurial Operating System (EOS)', 'Leadership team facilitation', 'Strategic planning', 'BUILD peer groups for business owners'],
       affiliations: [{ name: 'No Alumni', url: 'https://www.noalumni.com/' }],
-      credentials: [{ name: 'Certified EOS Implementer', recognizedBy: { name: 'EOS Worldwide', url: 'https://www.eosworldwide.com/' } }],
+      credentials: [{ name: 'EOS Implementer', recognizedBy: { name: 'EOS Worldwide', url: 'https://www.eosworldwide.com/' } }],
       photo: { src: 'photos/josh-muller.jpg', width: 480, height: 480, alt: 'Josh Muller, smiling, outdoors in front of green trees' },
       short:
         'Josh built and sold a construction company before he started coaching owners and facilitating leadership teams. He knows the weight of owner decisions because he has carried it.',

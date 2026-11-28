@@ -51,7 +51,7 @@ export default function jtecContent(site) {
       { name: 'Working Genius for you', body: 'Take the assessment and walk through your results with us, so you know which work to keep and which to hand off.' },
       { name: 'A map of your whole team', body: 'Everyone takes the assessment. The team map shows where work stalls between the office and the field, and who can move it.' },
       { name: 'A team workshop', body: 'A working session that turns the map into real changes in roles, meetings, and handoffs.' },
-      { name: 'Coaching with Josh', body: 'One-to-one coaching for owners on delegation, accountability, and running the business on EOS, from a Certified EOS Implementer who built and sold a construction company.' },
+      { name: 'Coaching with Josh', body: 'One-to-one coaching for owners on delegation, accountability, and running the business on EOS, from an EOS Implementer who built and sold a construction company.' },
     ],
     buildNote: 'Prefer to learn alongside other owners first? BUILD is Josh’s peer community for business owners, open whether or not you work with us.',
     buildLink: 'Visit BUILD',

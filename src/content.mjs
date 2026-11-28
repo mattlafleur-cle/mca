@@ -182,7 +182,7 @@ export default function content(site) {
           line: 'For the owner and the leadership team.',
           items: [
             { text: 'Business coaching', key: 'coaching' },
-            { text: 'EOS with a Certified EOS Implementer', key: 'growBusiness' },
+            { text: 'EOS with an EOS Implementer', key: 'growBusiness' },
             { text: 'Retreat to Advance: custom retreats', anchor: 'retreats' },
             { text: 'Keynotes, workshops, and team sessions', key: 'speaking' },
           ],
@@ -268,7 +268,7 @@ export default function content(site) {
           lane: 'Led by Josh',
           title: 'EOS and an operating rhythm',
           body: [
-            'Josh Muller is a Certified EOS Implementer with deep experience running businesses on EOS. He teaches leadership teams the Entrepreneurial Operating System (EOS\u00ae) and helps them use it to grow without more chaos. Our Time-Rich Company framework helps teams cut wasted time and spend their best hours on the work that matters most.',
+            'Josh Muller is an EOS Implementer with deep experience running businesses on EOS. He teaches leadership teams the Entrepreneurial Operating System (EOS\u00ae) and helps them use it to grow without more chaos. Our Time-Rich Company framework helps teams cut wasted time and spend their best hours on the work that matters most.',
           ],
           listHeading: 'Work can include',
           items: [

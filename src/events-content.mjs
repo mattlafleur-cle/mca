@@ -76,7 +76,7 @@ export default function eventsContent(site) {
       leadsHeading: 'Your facilitators',
       leads: [
         { id: 'greg', line: 'Certified Working Genius Facilitator' },
-        { id: 'josh', line: 'Certified EOS Implementer who built and sold his own company' },
+        { id: 'josh', line: 'EOS Implementer who built and sold his own company' },
         { id: 'matt', line: 'Fractional CFO and leader, experienced in teaching Working Genius' },
       ],
 

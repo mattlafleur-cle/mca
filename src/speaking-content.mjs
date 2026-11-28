@@ -65,7 +65,7 @@ export default function speakingContent(site) {
           title: 'Running on a Clear Operating System',
           speakers: ['josh'],
           topic: 'EOS and operating rhythm',
-          body: 'From a Certified EOS Implementer: how a shared vision, quarterly priorities, a weekly scorecard, and a weekly meeting help a leadership team grow without more chaos.',
+          body: 'From an EOS Implementer: how a shared vision, quarterly priorities, a weekly scorecard, and a weekly meeting help a leadership team grow without more chaos.',
           takeaways: [
             'Getting a leadership team on the same page',
             'Quarterly Rocks and a weekly Scorecard',
@@ -143,7 +143,7 @@ export default function speakingContent(site) {
 
       speakersHeading: 'Our speakers',
       speakerNotes: {
-        josh: 'Josh built and sold a construction company before coaching owners. A Certified EOS Implementer, he speaks on building a good team, owner freedom, and running on a clear operating system, and has presented to the Akron Executives Association, NCBI, and the Greater Akron Chamber.',
+        josh: 'Josh built and sold a construction company before coaching owners. An EOS Implementer, he speaks on building a good team, owner freedom, and running on a clear operating system, and has presented to the Akron Executives Association, NCBI, and the Greater Akron Chamber.',
         matt: 'Matt is a CPA licensed in Ohio and California and a fractional CFO. He speaks on profit, pricing, cash, and making the numbers useful to owners, and presented Working Genius with Greg at the Private Physicians Alliance 2026 Annual Meeting.',
         greg: 'Greg is a Certified Working Genius Facilitator and engaging speaker with more than 30 years in entrepreneurship, sales, marketing, and leadership. He speaks on Working Genius, culture, and teams, most recently with Matt at the Private Physicians Alliance 2026 Annual Meeting.',
       },
@@ -172,7 +172,7 @@ export default function speakingContent(site) {
         },
         {
           q: 'Who are your speakers?',
-          a: 'Josh Muller, a Certified EOS Implementer who built and sold a construction company and has presented to groups including the Akron Executives Association, the Northcoast Business Initiative, and the Greater Akron Chamber; Matt LaFleur, a CPA and fractional CFO; and Greg Snyder, a Certified Working Genius Facilitator. Matt and Greg presented Working Genius at the Private Physicians Alliance 2026 Annual Meeting.',
+          a: 'Josh Muller, an EOS Implementer who built and sold a construction company and has presented to groups including the Akron Executives Association, the Northcoast Business Initiative, and the Greater Akron Chamber; Matt LaFleur, a CPA and fractional CFO; and Greg Snyder, a Certified Working Genius Facilitator. Matt and Greg presented Working Genius at the Private Physicians Alliance 2026 Annual Meeting.',
         },
         {
           q: 'Do attendees take the Working Genius assessment?',

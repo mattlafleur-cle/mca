@@ -1,15 +1,15 @@
 {
   "services": {
-    "hash": "02d8e9944e40",
-    "date": "2026-11-27"
+    "hash": "25d932095aa1",
+    "date": "2026-11-28"
   },
   "growTeam": {
     "hash": "5d22b3cf8afb",
     "date": "2026-11-10"
   },
   "growBusiness": {
-    "hash": "11fd048244aa",
-    "date": "2026-11-10"
+    "hash": "c2c93e4f0320",
+    "date": "2026-11-28"
   },
   "growFinance": {
     "hash": "8444bf9ea063",
@@ -56,8 +56,8 @@
     "date": "2026-11-15"
   },
   "speaking": {
-    "hash": "ee74053a633a",
-    "date": "2026-11-17"
+    "hash": "f72bb6e66346",
+    "date": "2026-11-28"
   },
   "noAlumni": {
     "hash": "6564a4a3d2d7",
@@ -68,16 +68,16 @@
     "date": "2026-11-17"
   },
   "physicianPractices": {
-    "hash": "cb2519a4d4c6",
-    "date": "2026-11-18"
+    "hash": "50ff22dc5780",
+    "date": "2026-11-28"
   },
   "guides": {
     "hash": "675d1e72dcdb",
     "date": "2026-11-17"
   },
   "guide-coach-eos-implementer-or-fractional-cfo": {
-    "hash": "7e31ad3a16b4",
-    "date": "2026-11-17"
+    "hash": "4f7b5b4ec782",
+    "date": "2026-11-28"
   },
   "guide-stop-being-the-bottleneck": {
     "hash": "b3e430720596",
@@ -88,7 +88,7 @@
     "date": "2026-11-17"
   },
   "workshop": {
-    "hash": "f1d63f4895bd",
+    "hash": "933abd0686c4",
     "date": "2026-11-28"
   },
   "holidayParty": {

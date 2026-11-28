@@ -81,7 +81,7 @@ export default function growContent(site) {
       description: `EOS, the Time-Rich Company framework, and practical systems and AI for owner-led businesses in ${region}: growth without more chaos.`,
       serviceType: 'Business operating system, productivity, and systems consulting',
       eyebrow: 'Grow your business',
-      answer: 'Growing your business without more chaos takes a clear operating system, time back for the people running it, and systems that work together. Maple Creek Advisors teaches leadership teams EOS through a Certified EOS Implementer, runs the Time-Rich Company framework, and sets up practical systems and AI.',
+      answer: 'Growing your business without more chaos takes a clear operating system, time back for the people running it, and systems that work together. Maple Creek Advisors teaches leadership teams EOS through an EOS Implementer, runs the Time-Rich Company framework, and sets up practical systems and AI.',
       // Dated automatically from content changes (src/page-dates.json); shown in search data only, not on the page.
       dated: true,
       hideDate: true,
@@ -91,7 +91,7 @@ export default function growContent(site) {
         {
           tag: 'Operating system',
           heading: 'Run your team on EOS®',
-          body: 'Josh Muller is a Certified EOS Implementer with deep experience running businesses on EOS. He teaches your leadership team the Entrepreneurial Operating System (EOS®) and helps you use it to scale your business.',
+          body: 'Josh Muller is an EOS Implementer with deep experience running businesses on EOS. He teaches your leadership team the Entrepreneurial Operating System (EOS®) and helps you use it to scale your business.',
           list: [
             'One clear vision your leadership team agrees on and can share',
             'Quarterly Rocks, a weekly Scorecard on the numbers that drive the business, and a weekly meeting that solves issues instead of circling them',

@@ -17,7 +17,7 @@ export default function physicianContent(site) {
       eyebrow: 'Concierge · Direct primary care · Hybrid',
       headline: 'Build the practice of your dreams, and the life that goes with it.',
       lead: 'For physician-owners of membership practices. Get unstuck, find more freedom, and take your practice where you want it to go.',
-      answer: `${name} helps physician-owners of concierge, direct primary care, and hybrid practices get unstuck, find more freedom, and build the practice they want. A CPA and fractional CFO, a Certified EOS Implementer, and a Certified Working Genius Facilitator work on the owner, the people, and the numbers together, never on clinical care, billing, or compliance.`,
+      answer: `${name} helps physician-owners of concierge, direct primary care, and hybrid practices get unstuck, find more freedom, and build the practice they want. A CPA and fractional CFO, an EOS Implementer, and a Certified Working Genius Facilitator work on the owner, the people, and the numbers together, never on clinical care, billing, or compliance.`,
       dated: true,
       hideDate: true,
       button: 'Talk about your practice',
@@ -77,7 +77,7 @@ export default function physicianContent(site) {
       teamHeading: 'Who you work with',
       team: [
         { id: 'matt', line: 'CPA and fractional CFO' },
-        { id: 'josh', line: 'Certified EOS Implementer who built and sold his own company' },
+        { id: 'josh', line: 'EOS Implementer who built and sold his own company' },
         { id: 'greg', line: 'Certified Working Genius Facilitator' },
       ],
 
