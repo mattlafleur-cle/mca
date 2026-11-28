@@ -158,6 +158,9 @@ export default function eventsContent(site) {
       sponsorSubject: 'Holiday Party sponsorship',
 
       registerHeading: 'RSVP',
+      // RSVP form on RegFox (BUILD's account), sent by Matt 2026-11-28; checked that day: Thursday, December 17, 2026, Individual RSVP.
+      registerUrl: 'https://buildowners.regfox.com/holiday-party-2026',
+      registerLine: 'It is free. Please RSVP by December 14 so we can plan for you. The RSVP form opens in a new tab.',
       embedHtml: '',
       registerFallback: 'Online RSVP will appear here shortly. For now, a quick email lets us plan for you.',
       rsvpSubject: 'Holiday Party RSVP, December 17',
@@ -168,6 +171,7 @@ export default function eventsContent(site) {
         start: '2026-12-17T16:00:00-05:00',
         end: '2026-12-17T19:00:00-05:00',
         free: true,
+        offerUrl: 'https://buildowners.regfox.com/holiday-party-2026',
         validThrough: '2026-12-14T23:59:00-05:00',
       },
       home: { date: 'Thu, Dec 17', time: '4:00 to 7:00 PM', name: 'Holiday Party with BUILD', line: 'Free. Food, beverages, and festive mingling. Please RSVP by December 14.', cta: 'Details and RSVP' },
