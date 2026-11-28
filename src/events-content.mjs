@@ -8,9 +8,9 @@
 // scripts/check.mjs allows a price on that one page.
 
 const venue = {
-  name: 'The Commons',
+  name: 'The Business Commons of Cuyahoga Falls',
   note: 'A co-working space owned and operated by the Greater Akron Chamber',
-  street: '111 Stow Avenue',
+  street: '111 Stow Avenue, Suite 200',
   town: 'Cuyahoga Falls',
   region: 'OH',
   mapUrl: 'https://www.google.com/maps/search/?api=1&query=111+Stow+Avenue+Cuyahoga+Falls+OH',
@@ -18,7 +18,7 @@ const venue = {
 
 // Google Calendar "add event" link (times in Eastern).
 const gcal = ({ text, start, end, details }) =>
-  `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(text)}&dates=${start}/${end}&ctz=America/New_York&location=${encodeURIComponent('The Commons, 111 Stow Avenue, Cuyahoga Falls, OH')}&details=${encodeURIComponent(details)}`;
+  `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(text)}&dates=${start}/${end}&ctz=America/New_York&location=${encodeURIComponent('The Business Commons of Cuyahoga Falls, 111 Stow Avenue, Suite 200, Cuyahoga Falls, OH')}&details=${encodeURIComponent(details)}`;
 
 export default function eventsContent(site) {
   const name = site.siteName;
