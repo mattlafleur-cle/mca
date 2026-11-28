@@ -421,7 +421,7 @@ export default function content(site) {
         },
         {
           q: 'Do you only work in Northeast Ohio?',
-          a: 'Our offices are in Cuyahoga Falls and Elyria, and we work with owners across Northeast Ohio in person and remotely. Much of the work can also happen remotely for owners farther away.',
+          a: 'Our offices are in Cuyahoga Falls, Elyria, and Lakewood, and we work with owners across Northeast Ohio in person and remotely. Much of the work can also happen remotely for owners farther away.',
         },
         {
           q: 'Do you prepare taxes or perform audits?',
@@ -482,7 +482,7 @@ export default function content(site) {
         },
         {
           q: 'Where are you located, and do you work outside Northeast Ohio?',
-          a: 'We have offices in Cuyahoga Falls and Elyria and work with owners across Northeast Ohio. Much of the work can also happen remotely, so owners elsewhere are welcome too.',
+          a: 'We have offices in Cuyahoga Falls, Elyria, and Lakewood and work with owners across Northeast Ohio. Much of the work can also happen remotely, so owners elsewhere are welcome too.',
         },
       ],
     },
@@ -502,7 +502,7 @@ export default function content(site) {
       ],
       whoHeading: 'Who we work with',
       who:
-        'Business owners, entrepreneurs, and leadership teams of owner-led companies, typically 5 to 50 people, in any industry. We have offices in Cuyahoga Falls and Elyria, work across Northeast Ohio, and much of the work can also happen remotely.',
+        'Business owners, entrepreneurs, and leadership teams of owner-led companies, typically 5 to 50 people, in any industry. We have offices in Cuyahoga Falls, Elyria, and Lakewood, work across Northeast Ohio, and much of the work can also happen remotely.',
       valuesHeading: 'What we care about',
       values: [
         { title: 'Honest conversations', body: 'We say what we see, respectfully, and expect the same from you.' },
@@ -567,7 +567,7 @@ export default function content(site) {
       linkIntro: 'The current schedule and more are on the BUILD website.',
     },
     contact: {
-      title: `Contact ${name} | Cuyahoga Falls and Elyria, Ohio`,
+      title: `Contact ${name} | Cuyahoga Falls, Elyria, and Lakewood, Ohio`,
       description:
         'Schedule an intro conversation or email Josh Muller and Matt LaFleur at Maple Creek Advisors about leadership, the numbers, or the way your business runs.',
       eyebrow: 'Contact',

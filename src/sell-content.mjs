@@ -93,7 +93,7 @@ export default function sellContent(site) {
     ],
 
     audiencesHeading: 'Where we help owners sell',
-    audiencesIntro: 'We have offices in Cuyahoga Falls and Elyria, which puts us close to owners on both sides of the region. Meetings can happen at your business, at our offices, or remotely.',
+    audiencesIntro: 'We have offices in Cuyahoga Falls, Elyria, and Lakewood, which puts us close to owners across the region. Meetings can happen at your business, at our offices, or remotely.',
     audiences: [
       { name: 'Akron and Summit County', body: 'Akron, Cuyahoga Falls, Stow, Hudson, Fairlawn, Green, and Kent.' },
       { name: 'West side of Cleveland', body: 'Lakewood, Rocky River, Bay Village, Westlake, North Olmsted, Fairview Park, and Strongsville.' },
@@ -160,7 +160,7 @@ export default function sellContent(site) {
       },
       {
         q: 'Do you help owners in Akron and on the west side of Cleveland?',
-        a: 'Yes. Our offices are in Cuyahoga Falls and Elyria. We work with owners in Akron and Summit County, on the west side of Cleveland from Lakewood to Westlake and Strongsville, in Lorain County, and across Northeast Ohio, in person and remotely.',
+        a: 'Yes. Our offices are in Cuyahoga Falls, Elyria, and Lakewood. We work with owners in Akron and Summit County, on the west side of Cleveland from Lakewood to Westlake and Strongsville, in Lorain County, and across Northeast Ohio, in person and remotely.',
       },
     ],
 

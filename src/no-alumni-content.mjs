@@ -28,7 +28,7 @@ export default function noAlumniContent(site) {
         {
           name,
           tag: 'Coaching, financial clarity, and operating guidance',
-          body: 'An advisory firm for owner-led businesses, typically 5 to 50 people, with offices in Cuyahoga Falls and Elyria.',
+          body: 'An advisory firm for owner-led businesses, typically 5 to 50 people, with offices in Cuyahoga Falls, Elyria, and Lakewood.',
           items: [
             'Business coaching, EOS, and leadership team facilitation',
             'Fractional CFO support and financial operations',
@@ -99,7 +99,7 @@ export default function noAlumniContent(site) {
         },
         {
           q: `Where are ${name} and No Alumni based?`,
-          a: `Both are based in Northeast Ohio. ${name} has offices in Cuyahoga Falls and Elyria, and both work with clients well beyond the region.`,
+          a: `Both are based in Northeast Ohio. ${name} has offices in Cuyahoga Falls, Elyria, and Lakewood, and both work with clients well beyond the region.`,
         },
       ],
 

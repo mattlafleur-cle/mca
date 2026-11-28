@@ -42,11 +42,11 @@ export default {
   // Location language shown in the footer and About page. No street address or phone is published.
   location: {
     region: 'Northeast Ohio',
-    serviceLine: 'Based in Northeast Ohio, with offices in Cuyahoga Falls and Elyria. Serving clients across the country and around the world, in person and remotely.',
+    serviceLine: 'Based in Northeast Ohio, with offices in Cuyahoga Falls, Elyria, and Lakewood. Serving clients across the country and around the world, in person and remotely.',
     // The town list stays in structured data (areaServed) and llms.txt; Matt asked to drop it from the visible footer (2026-11-28).
     showAreasInFooter: false,
-    // Office towns (confirmed by Matt, 2026-10-02). Street addresses and phone are not published yet.
-    offices: ['Cuyahoga Falls', 'Elyria'],
+    // Office towns (confirmed by Matt, 2026-10-02; Lakewood added 2026-11-28). Street addresses and phone are not published.
+    offices: ['Cuyahoga Falls', 'Elyria', 'Lakewood'],
     // Towns named on the site and in structured data. Add towns as the practice expands.
     areasServed: [
       'Akron', 'Cuyahoga Falls', 'Cleveland', 'Elyria', 'Lakewood', 'Rocky River', 'Westlake', 'Bay Village',

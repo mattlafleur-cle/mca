@@ -134,7 +134,7 @@ export default function churchContent(site) {
       },
       {
         q: 'Where do you serve?',
-        a: `We have offices in Cuyahoga Falls and Elyria and serve churches across ${region}, in person and remotely.`,
+        a: `We have offices in Cuyahoga Falls, Elyria, and Lakewood and serve churches across ${region}, in person and remotely.`,
       },
     ],
 

@@ -73,7 +73,7 @@ export default function servicePages(site) {
         },
         {
           q: 'Do you only work in Akron and Cleveland?',
-          a: `No. We have offices in Cuyahoga Falls and Elyria and work with owners across ${region}, in person and remotely.`,
+          a: `No. We have offices in Cuyahoga Falls, Elyria, and Lakewood and work with owners across ${region}, in person and remotely.`,
         },
       ],
     },
@@ -131,7 +131,7 @@ export default function servicePages(site) {
         },
         {
           q: 'Where do you work?',
-          a: `We have offices in Cuyahoga Falls and Elyria and work with owners across ${region}, in person and remotely.`,
+          a: `We have offices in Cuyahoga Falls, Elyria, and Lakewood and work with owners across ${region}, in person and remotely.`,
         },
       ],
     },
@@ -207,7 +207,7 @@ export default function servicePages(site) {
         },
         {
           q: 'Is coaching in person or remote?',
-          a: `Either. We have offices in Cuyahoga Falls and Elyria, work across ${region}, and coach by video when that fits better.`,
+          a: `Either. We have offices in Cuyahoga Falls, Elyria, and Lakewood, work across ${region}, and coach by video when that fits better.`,
         },
       ],
     },

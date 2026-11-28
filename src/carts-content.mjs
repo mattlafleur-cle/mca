@@ -175,7 +175,7 @@ export default function cartsContent(site) {
       },
       {
         q: 'Do you work outside Northeast Ohio?',
-        a: `Yes. We have offices in Cuyahoga Falls and Elyria and work with owners across ${region}. Much of the work can happen remotely, so golf cart businesses elsewhere are welcome too.`,
+        a: `Yes. We have offices in Cuyahoga Falls, Elyria, and Lakewood and work with owners across ${region}. Much of the work can happen remotely, so golf cart businesses elsewhere are welcome too.`,
       },
     ],
 

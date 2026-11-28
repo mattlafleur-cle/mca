@@ -57,7 +57,7 @@ export default function announcementContent(site) {
       },
       {
         q: 'Where are you located?',
-        a: `We have offices in Cuyahoga Falls and Elyria and work with owners across ${region}, in person and remotely.`,
+        a: `We have offices in Cuyahoga Falls, Elyria, and Lakewood and work with owners across ${region}, in person and remotely.`,
       },
     ],
 
