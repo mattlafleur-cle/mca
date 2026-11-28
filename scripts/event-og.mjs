@@ -27,21 +27,21 @@ h1{font-size:62px;line-height:1.05;margin:18px 0 22px;font-weight:800}
 .bar{position:absolute;left:0;top:0;bottom:0;width:10px;background:#f0b323}
 </style><div class="bg"></div><div class="shade"></div><div class="bar"></div>
 <div class="c"><div class="eb">Working Genius Workshop</div><h1>Discover your Working Genius, and your team’s.</h1>
-<div class="m">Tuesday, December 15 · 9:00 AM to noon<br>The Commons, Cuyahoga Falls</div><div class="pill">Limited seats · Register by Dec 11</div></div>
+<div class="m">Tuesday, December 15 · 9:00 AM to noon<br>The Business Commons of Cuyahoga Falls</div><div class="pill">Limited seats · Register by Dec 11</div></div>
 <div class="logo"><img src="${a('logo-header.png')}" alt="">Maple Creek Advisors</div>`;
 
 const party = `<style>${base}
 body{background:radial-gradient(circle at 70% 20%,#2d2526,#141011)}
 .l{position:absolute;left:56px;top:50%;transform:translateY(-50%);width:640px}
 .l svg{width:640px;height:auto;display:block}
-.r{position:absolute;left:740px;top:96px;width:410px;color:#fff}
+.r{position:absolute;left:740px;top:72px;width:410px;color:#fff}
 .eb{font-size:20px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#f0b323}
 h1{font-size:50px;line-height:1.08;margin:16px 0 22px;font-weight:800}
 .m{font-size:26px;line-height:1.45;color:#efe9e4}
 .pill{display:inline-block;margin-top:24px;padding:10px 20px;background:#2f7d4f;border-radius:999px;font-size:21px;font-weight:700}
 .co{position:absolute;left:740px;bottom:52px;color:#cfc8c1;font-size:20px}
 </style><div class="l">${buildHolidayLogo({ idPrefix: 'og' })}</div>
-<div class="r"><div class="eb">You are invited</div><h1>Holiday Party</h1><div class="m">Thursday, December 17<br>4:00 to 7:00 PM<br>The Commons, Cuyahoga Falls</div><div class="pill">Free · RSVP by Dec 14</div></div>
+<div class="r"><div class="eb">You are invited</div><h1>Holiday Party</h1><div class="m">Thursday, December 17<br>4:00 to 7:00 PM<br>The Business Commons<br>of Cuyahoga Falls</div><div class="pill">Free · RSVP by Dec 14</div></div>
 <div class="co">Hosted by Maple Creek Advisors and BUILD</div>`;
 
 const b = await pw.chromium.launch();
