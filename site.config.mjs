@@ -12,7 +12,9 @@ export default {
 
   // Disclosure shown in every page footer. Added 2026-09-29 at Matt's direction so the individual CPA
   // license in his bio is not read as the practice holding itself out as a CPA firm (Ohio R.C. 4701.14).
-  footerNote: 'Maple Creek Advisors is not a registered CPA firm and does not provide attest services.',
+  // Footer disclosure removed 2026-11-28 at Matt's direction (option A). The "Are you a CPA firm?" answers on the
+  // Services, service, church, carts, and announcement pages still state it. Set footerNote again to restore the line.
+  footerNote: '',
 
   // Domain the site is served from (no trailing slash). Set 2026-09-29 at Matt's direction so the
   // founders can review the live site on the real domain. Hosting: GitHub Pages (see README).
