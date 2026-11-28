@@ -89,7 +89,10 @@ export default function eventsContent(site) {
         { q: 'When does registration close?', a: 'December 11, 2026, or sooner if seats fill.' },
       ],
       registerHeading: 'Register',
-      // Paste the registration embed HTML here when it arrives; until then the fallback below shows.
+      // Online registration on RegFox (BUILD's account), sent by Matt 2026-11-28. The hero button, the sticky dock,
+      // and the Register section all link straight to it, styled as the site's own buttons.
+      registerUrl: 'https://buildowners.regfox.com/working-genius-event-12-15-26',
+      registerLine: 'Seats are limited, and registration closes December 11. Registration opens in a new tab.',
       embedHtml: '',
       registerFallback: 'Online registration will appear here shortly. Seats are limited, so to hold yours now, email us and we will confirm it.',
       registerSubject: 'Working Genius Workshop, December 15',
@@ -100,6 +103,7 @@ export default function eventsContent(site) {
         start: '2026-12-15T09:00:00-05:00',
         end: '2026-12-15T12:00:00-05:00',
         price: '99',
+        offerUrl: 'https://buildowners.regfox.com/working-genius-event-12-15-26',
         validThrough: '2026-12-11T23:59:00-05:00',
         availability: 'https://schema.org/LimitedAvailability',
         performers: ['greg', 'josh', 'matt'],

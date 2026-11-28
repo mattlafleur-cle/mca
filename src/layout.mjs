@@ -389,7 +389,7 @@ export function structuredData(site, route, meta) {
         price: meta.event.price || '0',
         priceCurrency: 'USD',
         availability: meta.event.availability || 'https://schema.org/InStock',
-        url: `${base}${route.path}#register`,
+        url: meta.event.offerUrl || `${base}${route.path}#register`,
         ...(meta.event.validThrough ? { validThrough: meta.event.validThrough } : {}),
       },
     });

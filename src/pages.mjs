@@ -2059,7 +2059,7 @@ export function eventPage({ site, link, copy, route }) {
       <h1>${esc(c.headline)}</h1>
       <p class="lead">${esc(c.lead)}</p>
       ${c.badge ? `<p class="ev-badge">${esc(c.badge)}</p>` : ''}
-      <div class="actions"><a class="button button-primary" href="#${regId}">${esc(c.registerButton || c.rsvpButton)}</a></div>
+      <div class="actions"><a class="button button-primary" href="${c.registerUrl ? esc(c.registerUrl) : `#${regId}`}"${c.registerUrl ? ' target="_blank" rel="noopener"' : ''}>${esc(c.registerButton || c.rsvpButton)}</a></div>
       ${calendarLinks}
     </div>
     ${heroMedia}
@@ -2101,9 +2101,9 @@ ${c.leads ? `<section class="section ev-sec section-alt" aria-labelledby="ev-lea
     <div class="pp-forum ev-register">
       <div>
         <h2 id="ev-${regId}" class="section-title">${esc(c.registerHeading)}</h2>
-        ${c.embedHtml ? `<div class="ev-embed">${c.embedHtml}</div>` : `<p>${esc(c.registerFallback)}</p>`}
+        ${c.registerUrl ? `<p>${esc(c.registerLine)}</p>` : c.embedHtml ? `<div class="ev-embed">${c.embedHtml}</div>` : `<p>${esc(c.registerFallback)}</p>`}
       </div>
-      ${c.embedHtml ? '' : `<div class="actions"><a class="button button-primary" href="${esc(mailtoHref(site, c.registerSubject || c.rsvpSubject))}">${esc(c.registerSubject ? 'Email to hold a seat' : 'RSVP by email')}</a></div>`}
+      ${c.registerUrl ? `<div class="actions"><a class="button button-primary" href="${esc(c.registerUrl)}" target="_blank" rel="noopener">${esc(c.registerButton)}</a></div>` : c.embedHtml ? '' : `<div class="actions"><a class="button button-primary" href="${esc(mailtoHref(site, c.registerSubject || c.rsvpSubject))}">${esc(c.registerSubject ? 'Email to hold a seat' : 'RSVP by email')}</a></div>`}
     </div>
   </div>
 </section>
@@ -2120,5 +2120,5 @@ ${c.faq ? `<section class="section ev-sec" aria-labelledby="ev-faq">
   </div>
 </section>` : ''}
 ${c.credit ? `<section class="section ev-sec ev-credit" aria-label="Trademarks"><div class="wrap"><p class="service-note">${esc(c.credit)}</p></div></section>` : ''}
-<div class="tool-dock" data-target="${regId}" data-after=".ev-hero .actions" data-text="${esc(c.dock)}" hidden><span class="tool-dock-text" aria-hidden="true"></span><a class="tool-dock-link" href="#${regId}">${esc(c.registerButton || c.rsvpButton)} <span aria-hidden="true">&darr;</span></a></div>`;
+<div class="tool-dock" data-target="${regId}" data-after=".ev-hero .actions" data-text="${esc(c.dock)}" hidden><span class="tool-dock-text" aria-hidden="true"></span><a class="tool-dock-link" href="${c.registerUrl ? esc(c.registerUrl) : `#${regId}`}"${c.registerUrl ? ' target="_blank" rel="noopener"' : ''}>${esc(c.registerButton || c.rsvpButton)}${c.registerUrl ? '' : ' <span aria-hidden="true">&darr;</span>'}</a></div>`;
 }
