@@ -166,7 +166,7 @@ async function main() {
         `- [BUILD owner community](${site.canonicalDomain}/build/)`,
         '',
         '## Areas served',
-        `${(site.location.areasServed || []).join(', ')}, and communities across ${site.location.region}.`,
+        `${(site.location.areasServed || []).join(', ')}, and communities across ${site.location.region}, with clients across the country and around the world.`,
         '',
         '## Contact',
         site.bookingUrl ? `- Schedule a conversation: ${site.bookingUrl}` : `- Contact: ${site.canonicalDomain}/contact/`,

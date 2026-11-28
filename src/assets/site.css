@@ -1313,7 +1313,7 @@ h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
 .pp-team .portrait { width: 5rem; height: 5rem; object-fit: cover; border-radius: 50%; }
 .pp-team h3 { margin: 0; font-size: var(--step-1); }
 .pp-team p { margin: 0.2rem 0; color: var(--ink-muted); font-size: var(--step--1); }
-.pp-faq { max-width: 52rem; }
+.pp-faq > * { max-width: 52rem; }
 .pp-faq details { border-bottom: 1px solid var(--rule); }
 .pp-faq summary { cursor: pointer; padding: 1rem 0; font-weight: 600; font-size: var(--step-0); list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
 .pp-faq summary::-webkit-details-marker { display: none; }
@@ -1396,3 +1396,19 @@ h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
 .pp-team .text-link, .ev-note .text-link, .ev-facts .text-link { display: inline-block; padding-block: 0.35rem; }
 @media (max-width: 48rem) and (min-width: 40.0625rem) { .ev-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (min-width: 48.0625rem) and (max-width: 64rem) { .pp-team { grid-template-columns: repeat(3, minmax(0, 1fr)); } .pp-team li { grid-template-columns: 1fr; justify-items: start; } }
+/* Event pages: hero with media, tighter rhythm (Matt's review, 2026-11-28). */
+.ev-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: clamp(1.5rem, 1rem + 3vw, 3.5rem); align-items: center; }
+.ev-hero-copy { display: grid; gap: 1rem; align-content: start; }
+.ev-hero-copy > * { margin: 0; }
+.ev-hero-copy .ev-cal { margin-top: -0.25rem; }
+.ev-hero-media { margin: 0; }
+.ev-hero-media img { display: block; width: 100%; aspect-ratio: 4 / 3; height: auto; object-fit: cover; object-position: 50% 40%; border-radius: var(--radius); box-shadow: 0 18px 40px rgb(35 31 32 / 0.18); }
+.ev-hero-media figcaption { margin-top: 0.5rem; font-size: var(--step--1); color: var(--ink-muted); }
+.ev-hero-logo svg { display: block; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 18px 40px rgb(35 31 32 / 0.25); }
+.ev-sec { padding-block: clamp(1.75rem, 1.25rem + 1.75vw, 3rem); }
+.ev-credit { padding-block: 0 clamp(1.5rem, 1rem + 1vw, 2rem); }
+@media (max-width: 56rem) {
+  .ev-hero-inner { grid-template-columns: 1fr; }
+  .ev-hero-media img { aspect-ratio: 16 / 10; }
+  .ev-hero-media figcaption { display: none; }
+}

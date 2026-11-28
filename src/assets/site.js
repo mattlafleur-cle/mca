@@ -55,8 +55,11 @@
     var summary = dock.getAttribute('data-text') || null;
     if (summary) dockText.textContent = summary;
     var targetBelow = true;
+    // Optional data-after: show the bar only once that element (such as a hero button) has scrolled away.
+    var afterEl = dock.getAttribute('data-after') ? document.querySelector(dock.getAttribute('data-after')) : null;
+    var afterPassed = !afterEl;
     var refreshDock = function () {
-      var show = Boolean(summary) && narrow.matches && targetBelow;
+      var show = Boolean(summary) && narrow.matches && targetBelow && afterPassed;
       dock.hidden = !show;
       document.body.classList.toggle('has-tool-dock', show);
     };
@@ -71,6 +74,13 @@
         targetBelow = !e.isIntersecting && e.boundingClientRect.top > 0;
         refreshDock();
       }).observe(dockTarget);
+    }
+    if (afterEl && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        var e = entries[0];
+        afterPassed = !e.isIntersecting && e.boundingClientRect.top < 0;
+        refreshDock();
+      }).observe(afterEl);
     }
     if (narrow.addEventListener) narrow.addEventListener('change', refreshDock);
   }

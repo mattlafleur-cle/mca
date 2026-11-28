@@ -2038,10 +2038,7 @@ export function eventPage({ site, link, copy, route }) {
     c.price ? { k: 'Cost', v: c.price, sub: c.includesLine } : { k: 'Cost', v: c.cost, sub: c.hosts },
   ];
   const calendarLinks = `<p class="ev-cal">Add to calendar: <a class="text-link" href="${esc(c.google)}" rel="noopener">Google</a> <span aria-hidden="true">·</span> <a class="text-link" href="${esc(link.asset(c.calendar.file))}" download>${esc(c.calendar.text)}</a></p>`;
-  const photo = c.photo
-    ? `<figure class="ev-photo"><picture><source type="image/webp" srcset="${esc(link.asset(c.photo.small))} 800w, ${esc(link.asset(c.photo.webp))} 1600w" sizes="(min-width: 64rem) 60rem, 100vw"><img src="${esc(link.asset(c.photo.src))}" width="${c.photo.width}" height="${c.photo.height}" alt="${esc(c.photo.alt)}" loading="lazy" decoding="async"></picture><figcaption>${esc(c.photo.caption)}</figcaption></figure>`
-    : '';
-  const cards = (heading, items, id) => `<section class="section section-alt" aria-labelledby="${id}">
+  const cards = (heading, items, id) => `<section class="section ev-sec section-alt" aria-labelledby="${id}">
   <div class="wrap">
     <h2 id="${id}" class="section-title">${esc(heading)}</h2>
     <ul class="pp-cards">${items.map((l) => `<li>${ppIcon(l.icon)}<h3>${esc(l.name)}</h3><p>${esc(l.line)}</p></li>`).join('')}</ul>
@@ -2050,27 +2047,44 @@ export function eventPage({ site, link, copy, route }) {
     ${c.dress ? `<p class="ev-dress">${esc(c.dress)}</p>` : ''}
   </div>
 </section>`;
-  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `${c.badge ? `<p class="ev-badge">${esc(c.badge)}</p>` : ''}<div class="actions"><a class="button button-primary" href="#${regId}">${esc(c.registerButton || c.rsvpButton)}</a></div>${calendarLinks}`, seed: 171 })}
-<section class="section" aria-label="Event details">
+  const heroMedia = c.festiveLogo
+    ? `<div class="ev-hero-media ev-hero-logo">${buildHolidayLogo()}</div>`
+    : c.photo
+      ? `<figure class="ev-hero-media"><picture><source type="image/webp" srcset="${esc(link.asset(c.photo.small))} 800w, ${esc(link.asset(c.photo.webp))} 1600w" sizes="(min-width: 56rem) 34rem, 100vw"><img src="${esc(link.asset(c.photo.src))}" width="${c.photo.width}" height="${c.photo.height}" alt="${esc(c.photo.alt)}" fetchpriority="high" decoding="async"></picture><figcaption>${esc(c.photo.caption)}</figcaption></figure>`
+      : '';
+  return `<section class="page-hero ev-hero">
+  <div class="wrap ev-hero-inner">
+    <div class="ev-hero-copy">
+      <p class="eyebrow">${esc(c.eyebrow)}</p>
+      <h1>${esc(c.headline)}</h1>
+      <p class="lead">${esc(c.lead)}</p>
+      ${c.badge ? `<p class="ev-badge">${esc(c.badge)}</p>` : ''}
+      <div class="actions"><a class="button button-primary" href="#${regId}">${esc(c.registerButton || c.rsvpButton)}</a></div>
+      ${calendarLinks}
+    </div>
+    ${heroMedia}
+  </div>
+  ${contourSvg({ width: 900, height: 320, lines: 7, seed: 171, className: 'contours contours-hero' })}
+</section>
+<section class="section ev-sec" aria-label="Event details">
   <div class="wrap">
     <dl class="ev-facts">${facts
       .map((f) => `<div><dt>${esc(f.k)}</dt><dd><strong>${esc(f.v)}</strong>${f.sub ? `<span>${esc(f.sub)}</span>` : ''}${f.href ? `<a class="text-link" href="${esc(f.href)}" rel="noopener">${esc(f.hrefText)}</a>` : ''}</dd></div>`)
       .join('')}</dl>
     <p class="ev-note"><strong>${esc(c.deadline)}.</strong> ${esc(c.dayOf)} ${esc(v.name)} is ${esc(v.note.charAt(0).toLowerCase() + v.note.slice(1))}.</p>
-    ${c.festiveLogo ? `<div class="ev-logo">${buildHolidayLogo()}</div>${site.build?.url ? `<p class="ev-note">BUILD is the owner community of ${esc(site.siteName)}. <a class="text-link" href="${esc(site.build.url)}" rel="noopener">Visit BUILD</a></p>` : ''}` : ''}
-    ${photo}
+    ${c.festiveLogo && site.build?.url ? `<p class="ev-note">BUILD is the owner community of ${esc(site.siteName)}. <a class="text-link" href="${esc(site.build.url)}" rel="noopener">Visit BUILD</a></p>` : ''}
   </div>
 </section>
 ${c.learn ? cards(c.learnHeading, c.learn, 'ev-learn') : ''}
 ${c.expect ? cards(c.expectHeading, c.expect, 'ev-expect') : ''}
-${c.agenda ? `<section class="section" aria-labelledby="ev-agenda">
+${c.agenda ? `<section class="section ev-sec" aria-labelledby="ev-agenda">
   <div class="wrap">
     <h2 id="ev-agenda" class="section-title">${esc(c.agendaHeading)}</h2>
     <ol class="ev-agenda">${c.agenda.map((a) => `<li><h3>${esc(a.title)}</h3><p>${esc(a.line)}</p></li>`).join('')}</ol>
     <p class="pp-proof">${esc(c.assessmentNote)}</p>
   </div>
 </section>` : ''}
-${c.leads ? `<section class="section section-alt" aria-labelledby="ev-leads">
+${c.leads ? `<section class="section ev-sec section-alt" aria-labelledby="ev-leads">
   <div class="wrap">
     <h2 id="ev-leads" class="section-title">${esc(c.leadsHeading)}</h2>
     <ul class="pp-team">${c.leads
@@ -2082,7 +2096,7 @@ ${c.leads ? `<section class="section section-alt" aria-labelledby="ev-leads">
       .join('')}</ul>
   </div>
 </section>` : ''}
-<section class="section" aria-labelledby="ev-${regId}" id="${regId}">
+<section class="section ev-sec" aria-labelledby="ev-${regId}" id="${regId}">
   <div class="wrap">
     <div class="pp-forum ev-register">
       <div>
@@ -2093,18 +2107,18 @@ ${c.leads ? `<section class="section section-alt" aria-labelledby="ev-leads">
     </div>
   </div>
 </section>
-${c.sponsorHeading ? `<section class="section section-alt" aria-labelledby="ev-sponsor">
+${c.sponsorHeading ? `<section class="section ev-sec section-alt" aria-labelledby="ev-sponsor">
   <div class="wrap ev-sponsor">
     <div><h2 id="ev-sponsor" class="section-title">${esc(c.sponsorHeading)}</h2><p>${esc(c.sponsorLine)}</p></div>
     <div class="actions"><a class="button button-secondary" href="${esc(mailtoHref(site, c.sponsorSubject))}">${esc(c.sponsorButton)}</a></div>
   </div>
 </section>` : ''}
-${c.faq ? `<section class="section" aria-labelledby="ev-faq">
+${c.faq ? `<section class="section ev-sec" aria-labelledby="ev-faq">
   <div class="wrap pp-faq">
     <h2 id="ev-faq" class="section-title">${esc(c.faqHeading)}</h2>
     ${c.faq.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('')}
   </div>
 </section>` : ''}
-${c.credit ? `<section class="section" aria-label="Trademarks"><div class="wrap"><p class="service-note">${esc(c.credit)}</p></div></section>` : ''}
-<div class="tool-dock" data-target="${regId}" data-text="${esc(c.dock)}" hidden><span class="tool-dock-text" aria-hidden="true"></span><a class="tool-dock-link" href="#${regId}">${esc(c.registerButton || c.rsvpButton)} <span aria-hidden="true">&darr;</span></a></div>`;
+${c.credit ? `<section class="section ev-sec ev-credit" aria-label="Trademarks"><div class="wrap"><p class="service-note">${esc(c.credit)}</p></div></section>` : ''}
+<div class="tool-dock" data-target="${regId}" data-after=".ev-hero .actions" data-text="${esc(c.dock)}" hidden><span class="tool-dock-text" aria-hidden="true"></span><a class="tool-dock-link" href="#${regId}">${esc(c.registerButton || c.rsvpButton)} <span aria-hidden="true">&darr;</span></a></div>`;
 }

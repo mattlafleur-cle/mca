@@ -260,7 +260,7 @@ function footer(site, link) {
       <ul>${site.contact.recipients.map((e) => `<li><a href="mailto:${esc(e)}">${esc(e)}</a></li>`).join('')}</ul>
     </div>
   </div>
-  ${site.location.areasServed?.length ? `<div class="wrap footer-areas"><p><span class="footer-label">Areas we serve</span> ${esc(site.location.areasServed.join(', '))}, and communities across ${esc(site.location.region)}.</p></div>` : ''}
+  ${site.location.showAreasInFooter && site.location.areasServed?.length ? `<div class="wrap footer-areas"><p><span class="footer-label">Areas we serve</span> ${esc(site.location.areasServed.join(', '))}, and communities across ${esc(site.location.region)}.</p></div>` : ''}
   <div class="wrap footer-base"><p>&copy; ${year} ${esc(site.siteName)}</p>${site.footerNote ? `<p>${esc(site.footerNote)}</p>` : ''}</div>
 </footer>`;
 }

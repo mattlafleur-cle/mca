@@ -52,7 +52,7 @@ export default function eventsContent(site) {
       price: '$99 per person',
       includesLine: 'Includes your own Working Genius assessment and personal report, plus light breakfast, coffee, snacks, and refreshments.',
       registerButton: 'Register now',
-      dock: 'Dec 15 · Limited seats',
+      dock: 'Dec 15 · $99',
       photo: { src: 'photos/events/commons-session.jpg', webp: 'photos/events/commons-session.webp', small: 'photos/events/commons-session-small.webp', width: 1600, height: 1200, alt: 'Josh Muller presenting to a room of business owners and leaders at The Commons in Cuyahoga Falls', caption: 'Josh Muller presenting at The Commons, where the workshop will be held.' },
 
       learnHeading: 'What you will take away',
@@ -77,7 +77,7 @@ export default function eventsContent(site) {
       leads: [
         { id: 'greg', line: 'Certified Working Genius Facilitator' },
         { id: 'josh', line: 'Certified EOS Implementer who built and sold his own company' },
-        { id: 'matt', line: 'CPA and fractional CFO who has completed the Working Genius certification course' },
+        { id: 'matt', line: 'Fractional CFO and leader, experienced in teaching Working Genius' },
       ],
 
       faqHeading: 'Questions',
@@ -93,7 +93,7 @@ export default function eventsContent(site) {
       embedHtml: '',
       registerFallback: 'Online registration will appear here shortly. Seats are limited, so to hold yours now, email us and we will confirm it.',
       registerSubject: 'Working Genius Workshop, December 15',
-      calendar: { file: 'events/working-genius-workshop-2026-12-15.ics', text: 'Apple or Outlook calendar' },
+      calendar: { file: 'events/working-genius-workshop-2026-12-15.ics', text: 'Apple or Outlook' },
       google: gcal({ text: 'Working Genius Workshop (Maple Creek Advisors)', start: '20261215T090000', end: '20261215T120000', details: 'The 6 Types of Working Genius workshop. Details: https://maplecreekadvisors.com/working-genius-workshop/' }),
       event: {
         name: 'The 6 Types of Working Genius Workshop',
@@ -151,7 +151,7 @@ export default function eventsContent(site) {
       embedHtml: '',
       registerFallback: 'Online RSVP will appear here shortly. For now, a quick email lets us plan for you.',
       rsvpSubject: 'Holiday Party RSVP, December 17',
-      calendar: { file: 'events/holiday-party-2026-12-17.ics', text: 'Apple or Outlook calendar' },
+      calendar: { file: 'events/holiday-party-2026-12-17.ics', text: 'Apple or Outlook' },
       google: gcal({ text: 'Maple Creek Advisors and BUILD Holiday Party', start: '20261217T160000', end: '20261217T190000', details: 'Holiday party co-hosted by Maple Creek Advisors and BUILD. Details: https://maplecreekadvisors.com/holiday-party/' }),
       event: {
         name: `${name} and BUILD Holiday Party`,
