@@ -2072,7 +2072,7 @@ export function eventPage({ site, link, copy, route }) {
       .map((f) => `<div><dt>${esc(f.k)}</dt><dd><strong>${esc(f.v)}</strong>${f.sub ? `<span>${esc(f.sub)}</span>` : ''}${f.href ? `<a class="text-link" href="${esc(f.href)}" rel="noopener">${esc(f.hrefText)}</a>` : ''}</dd></div>`)
       .join('')}</dl>
     <p class="ev-note"><strong>${esc(c.deadline)}.</strong> ${esc(c.dayOf)} ${esc(v.name)} is ${esc(v.note.charAt(0).toLowerCase() + v.note.slice(1))}.</p>
-    ${c.festiveLogo && site.build?.url ? `<p class="ev-note">BUILD is the owner community of ${esc(site.siteName)}. <a class="text-link" href="${esc(site.build.url)}" rel="noopener">Visit BUILD</a></p>` : ''}
+    ${c.buildInvite && site.build?.url ? `<p class="ev-note ev-invite"><strong>${esc(c.buildInvite.lead)}</strong> ${esc(c.buildInvite.body)} <a class="text-link" href="${esc(site.build.url)}" rel="noopener">${esc(c.buildInvite.linkText)}</a></p>` : ''}
   </div>
 </section>
 ${c.learn ? cards(c.learnHeading, c.learn, 'ev-learn') : ''}

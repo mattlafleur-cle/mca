@@ -122,6 +122,12 @@ export default function eventsContent(site) {
       hideDate: true,
       upcomingUntil: '2026-12-17',
       festiveLogo: true,
+      // Invitation to BUILD under the event facts (Matt, 2026-11-28: use the party to invite new owners in).
+      buildInvite: {
+        lead: 'New to BUILD? You are invited.',
+        body: 'BUILD is where business owners come so they never build alone, with breakfasts, lunches, happy hours, and workshops across Northeast Ohio. This party is the easiest way to meet the community, so bring a fellow owner with you.',
+        linkText: 'Find a BUILD gathering near you',
+      },
       when: 'Thursday, December 17, 2026',
       time: '4:00 to 7:00 PM',
       deadline: 'Please RSVP by December 14',

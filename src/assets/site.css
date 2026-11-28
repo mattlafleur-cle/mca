@@ -1358,6 +1358,8 @@ h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
 .ev-facts dd span { color: var(--ink-muted); }
 .ev-facts .text-link { justify-self: start; }
 .ev-note { margin-top: 1rem; color: var(--ink-muted); }
+.ev-invite { margin-top: 1.25rem; padding: 0.9rem 1.1rem; background: var(--paper-card); border: 1px solid var(--rule); border-left: 4px solid var(--brand-red); color: var(--ink); }
+.ev-invite strong { color: var(--maple-ink); }
 .ev-for-h { margin-top: 2rem; }
 .ev-register { grid-template-columns: minmax(0, 1fr) auto; }
 .ev-embed { margin-top: 1rem; }
