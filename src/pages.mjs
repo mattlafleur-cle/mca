@@ -2,6 +2,7 @@
 import { esc, ctaButton, contourSvg, lanesDiagram, mailtoHref } from './layout.mjs';
 import { typeSlugs, industrySlugs } from './working-genius-guides-content.mjs';
 import { guideSlugs } from './guides-content.mjs';
+import { buildHolidayLogo } from './build-holiday-logo.mjs';
 
 const paras = (list) => list.map((p) => `<p>${esc(p)}</p>`).join('');
 
@@ -68,20 +69,25 @@ export function home({ site, link, copy }) {
     </div>
   </div>
 </section>
-${c.events?.some((e) => link.has(e.key))
-  ? `<section class="section home-events" aria-labelledby="events-heading">
+${(() => {
+  const evs = (c.events || []).filter((k) => link.has(k) && isUpcoming(copy[k]));
+  return evs.length
+    ? `<section class="section home-events" aria-labelledby="events-heading">
   <div class="wrap">
     <div class="section-head section-head-row">
       <h2 id="events-heading" class="section-title">${esc(c.eventsHeading)}</h2>
       <p class="home-events-place">${esc(c.eventsPlace)}</p>
     </div>
-    <ul class="event-cards">${c.events
-      .filter((e) => link.has(e.key))
-      .map((e) => `<li><a class="event-card" href="${esc(link.page(e.key))}"><span class="event-date"><strong>${esc(e.date)}</strong><span>${esc(e.time)}</span></span><span class="event-body"><span class="event-name">${esc(e.name)}</span><span class="event-line">${esc(e.line)}</span><span class="tool-card-cta">${esc(e.cta)}</span></span></a></li>`)
+    <ul class="event-cards">${evs
+      .map((k) => {
+        const e = copy[k].home;
+        return `<li><a class="event-card" href="${esc(link.page(k))}"><span class="event-date"><strong>${esc(e.date)}</strong><span>${esc(e.time)}</span></span><span class="event-body"><span class="event-name">${esc(e.name)}</span><span class="event-line">${esc(e.line)}</span><span class="tool-card-cta">${esc(e.cta)}</span></span></a></li>`;
+      })
       .join('')}</ul>
   </div>
 </section>`
-  : ''}
+    : '';
+})()}
 
 <section class="section" aria-labelledby="situations-heading">
   <div class="wrap">
@@ -1998,50 +2004,106 @@ ${closing(link, c.closingHeading, c.closingBody)}
 <section class="section" aria-label="Trademarks"><div class="wrap"><p class="service-note">${esc(c.credit)}</p></div></section>`;
 }
 
+// Events: is today (Eastern time, at build) on or before the event's last day? Past events drop off the home page
+// and related pages at the next build. The event pages themselves stay until they are retired by hand.
+const todayEastern = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(new Date());
+function isUpcoming(c) {
+  return Boolean(c) && (!c.upcomingUntil || todayEastern <= c.upcomingUntil);
+}
+
+// Callouts for upcoming events on related pages (copy.eventCallouts maps page key to event keys).
+// scripts/build.mjs places the result after the page's first section.
+export function eventCallouts({ link, copy, key }) {
+  const keys = (copy.eventCallouts?.[key] || []).filter((k) => link.has(k) && isUpcoming(copy[k]));
+  if (!keys.length) return '';
+  return keys
+    .map((k) => {
+      const e = copy[k];
+      return `<aside class="event-callout" aria-label="Upcoming event"><div class="wrap event-callout-inner"><p><strong>${esc(e.home.date)} · ${esc(e.home.name)}.</strong> ${esc(e.callout)}</p><a class="text-link" href="${esc(link.page(k))}">${esc(e.home.cta)}</a></div></aside>`;
+    })
+    .join('\n');
+}
+
 // Event pages (/working-genius-workshop/, /holiday-party/): one shared, visual-first template. Facts at a glance,
-// a calendar file, a short "why come," and a registration or RSVP block. The workshop's registration embed is
-// inserted as-is from the content file once Matt supplies it.
+// calendar links, a photo or festive logo, the program, the people, questions, and a registration or RSVP block.
+// Registration and RSVP embeds are inserted as-is from the content file once Matt supplies them.
 export function eventPage({ site, link, copy, route }) {
   const c = copy[route.key];
   const v = c.venue;
+  const people = [...site.founders, ...(site.team || [])];
   const regId = 'register';
-  const primary = c.registerButton
-    ? `<a class="button button-primary" href="#${regId}">${esc(c.registerButton)}</a>`
-    : `<a class="button button-primary" href="${esc(mailtoHref(site, c.rsvpSubject))}">${esc(c.rsvpButton)}</a>`;
   const facts = [
-    { k: 'When', v: `${c.when}`, sub: c.time },
+    { k: 'When', v: c.when, sub: c.time },
     { k: 'Where', v: v.name, sub: `${v.street}, ${v.town}, Ohio`, href: v.mapUrl, hrefText: 'Map' },
-    c.price ? { k: 'Cost', v: c.price, sub: `Includes ${c.includes.map((i) => i.charAt(0).toLowerCase() + i.slice(1)).join(', ').replace(/, ([^,]*)$/, ', and $1')}` } : { k: 'Hosts', v: c.hosts, sub: '' },
+    c.price ? { k: 'Cost', v: c.price, sub: c.includesLine } : { k: 'Cost', v: c.cost, sub: c.hosts },
   ];
-  const build = c.hosts && site.build?.url ? `<p class="ev-note">BUILD is the owner community of ${esc(site.siteName)}. <a class="text-link" href="${esc(site.build.url)}" rel="noopener">Visit BUILD</a></p>` : '';
-  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `<div class="actions">${primary}<a class="button button-secondary" href="${esc(link.asset(c.calendar.file))}" download>${esc(c.calendar.text)}</a></div>`, seed: 171 })}
+  const calendarLinks = `<a class="button button-secondary" href="${esc(c.google)}" rel="noopener">Google Calendar</a><a class="button button-secondary" href="${esc(link.asset(c.calendar.file))}" download>${esc(c.calendar.text)}</a>`;
+  const photo = c.photo
+    ? `<figure class="ev-photo"><picture><source type="image/webp" srcset="${esc(link.asset(c.photo.small))} 800w, ${esc(link.asset(c.photo.webp))} 1600w" sizes="(min-width: 64rem) 60rem, 100vw"><img src="${esc(link.asset(c.photo.src))}" width="${c.photo.width}" height="${c.photo.height}" alt="${esc(c.photo.alt)}" loading="lazy" decoding="async"></picture><figcaption>${esc(c.photo.caption)}</figcaption></figure>`
+    : '';
+  const cards = (heading, items, id) => `<section class="section section-alt" aria-labelledby="${id}">
+  <div class="wrap">
+    <h2 id="${id}" class="section-title">${esc(heading)}</h2>
+    <ul class="pp-cards">${items.map((l) => `<li>${ppIcon(l.icon)}<h3>${esc(l.name)}</h3><p>${esc(l.line)}</p></li>`).join('')}</ul>
+    ${c.forLine ? `<h3 class="ev-for-h">${esc(c.forHeading)}</h3><p>${esc(c.forLine)}</p>` : ''}
+    ${c.who ? `<h3 class="ev-for-h">${esc(c.whoHeading)}</h3><p>${esc(c.who)}</p>` : ''}
+    ${c.dress ? `<p class="ev-dress">${esc(c.dress)}</p>` : ''}
+  </div>
+</section>`;
+  return `${pageHero({ eyebrow: c.eyebrow, headline: c.headline, lead: c.lead, extra: `${c.badge ? `<p class="ev-badge">${esc(c.badge)}</p>` : ''}<div class="actions"><a class="button button-primary" href="#${regId}">${esc(c.registerButton || c.rsvpButton)}</a>${calendarLinks}</div>`, seed: 171 })}
 <section class="section" aria-label="Event details">
   <div class="wrap">
     <dl class="ev-facts">${facts
       .map((f) => `<div><dt>${esc(f.k)}</dt><dd><strong>${esc(f.v)}</strong>${f.sub ? `<span>${esc(f.sub)}</span>` : ''}${f.href ? `<a class="text-link" href="${esc(f.href)}" rel="noopener">${esc(f.hrefText)}</a>` : ''}</dd></div>`)
       .join('')}</dl>
-    <p class="ev-note">${esc(v.name)} is ${esc(v.note.charAt(0).toLowerCase() + v.note.slice(1))}.</p>
-    ${build}
+    <p class="ev-note"><strong>${esc(c.deadline)}.</strong> ${esc(c.dayOf)} ${esc(v.name)} is ${esc(v.note.charAt(0).toLowerCase() + v.note.slice(1))}.</p>
+    ${c.festiveLogo ? `<div class="ev-logo">${buildHolidayLogo()}</div>${site.build?.url ? `<p class="ev-note">BUILD is the owner community of ${esc(site.siteName)}. <a class="text-link" href="${esc(site.build.url)}" rel="noopener">Visit BUILD</a></p>` : ''}` : ''}
+    ${photo}
   </div>
 </section>
-${c.learn ? `<section class="section section-alt" aria-labelledby="ev-learn">
+${c.learn ? cards(c.learnHeading, c.learn, 'ev-learn') : ''}
+${c.expect ? cards(c.expectHeading, c.expect, 'ev-expect') : ''}
+${c.agenda ? `<section class="section" aria-labelledby="ev-agenda">
   <div class="wrap">
-    <h2 id="ev-learn" class="section-title">${esc(c.learnHeading)}</h2>
-    <ul class="pp-cards">${c.learn.map((l) => `<li>${ppIcon(l.icon)}<h3>${esc(l.name)}</h3><p>${esc(l.line)}</p></li>`).join('')}</ul>
-    <h3 class="ev-for-h">${esc(c.forHeading)}</h3>
-    <p>${esc(c.forLine)}</p>
+    <h2 id="ev-agenda" class="section-title">${esc(c.agendaHeading)}</h2>
+    <ol class="ev-agenda">${c.agenda.map((a) => `<li><h3>${esc(a.title)}</h3><p>${esc(a.line)}</p></li>`).join('')}</ol>
+    <p class="pp-proof">${esc(c.assessmentNote)}</p>
   </div>
 </section>` : ''}
-<section class="section${c.learn ? '' : ' section-alt'}" aria-labelledby="ev-${regId}" id="${regId}">
+${c.leads ? `<section class="section section-alt" aria-labelledby="ev-leads">
+  <div class="wrap">
+    <h2 id="ev-leads" class="section-title">${esc(c.leadsHeading)}</h2>
+    <ul class="pp-team">${c.leads
+      .map((t) => {
+        const f = people.find((p) => p.id === t.id);
+        if (!f) return '';
+        return `<li>${portrait(f, link)}<div><h3>${esc(f.name)}</h3><p>${esc(t.line)}</p>${link.has('about') ? `<a class="text-link" href="${esc(link.page('about', f.id))}">More about ${esc(f.name.split(' ')[0])}</a>` : ''}</div></li>`;
+      })
+      .join('')}</ul>
+  </div>
+</section>` : ''}
+<section class="section" aria-labelledby="ev-${regId}" id="${regId}">
   <div class="wrap">
     <div class="pp-forum ev-register">
       <div>
-        <h2 id="ev-${regId}" class="section-title">${esc(c.registerHeading || 'RSVP')}</h2>
-        ${c.embedHtml ? `<div class="ev-embed">${c.embedHtml}</div>` : `<p>${esc(c.registerFallback || c.rsvpNote)}</p>`}
+        <h2 id="ev-${regId}" class="section-title">${esc(c.registerHeading)}</h2>
+        ${c.embedHtml ? `<div class="ev-embed">${c.embedHtml}</div>` : `<p>${esc(c.registerFallback)}</p>`}
       </div>
-      ${c.embedHtml ? '' : `<div class="actions"><a class="button button-primary" href="${esc(mailtoHref(site, c.registerSubject || c.rsvpSubject))}">${esc(c.registerSubject ? 'Email to hold a seat' : c.rsvpButton)}</a></div>`}
+      ${c.embedHtml ? '' : `<div class="actions"><a class="button button-primary" href="${esc(mailtoHref(site, c.registerSubject || c.rsvpSubject))}">${esc(c.registerSubject ? 'Email to hold a seat' : 'RSVP by email')}</a></div>`}
     </div>
   </div>
 </section>
+${c.sponsorHeading ? `<section class="section section-alt" aria-labelledby="ev-sponsor">
+  <div class="wrap ev-sponsor">
+    <div><h2 id="ev-sponsor" class="section-title">${esc(c.sponsorHeading)}</h2><p>${esc(c.sponsorLine)}</p></div>
+    <div class="actions"><a class="button button-secondary" href="${esc(mailtoHref(site, c.sponsorSubject))}">${esc(c.sponsorButton)}</a></div>
+  </div>
+</section>` : ''}
+${c.faq ? `<section class="section" aria-labelledby="ev-faq">
+  <div class="wrap pp-faq">
+    <h2 id="ev-faq" class="section-title">${esc(c.faqHeading)}</h2>
+    ${c.faq.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('')}
+  </div>
+</section>` : ''}
 ${c.credit ? `<section class="section" aria-label="Trademarks"><div class="wrap"><p class="service-note">${esc(c.credit)}</p></div></section>` : ''}`;
 }

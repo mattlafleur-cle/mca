@@ -381,7 +381,17 @@ export function structuredData(site, route, meta) {
       location: { '@type': 'Place', name: meta.venue.name, address: { '@type': 'PostalAddress', addressLocality: meta.venue.town, addressRegion: meta.venue.region, addressCountry: 'US' } },
       organizer: { '@id': orgId },
       url: `${base}${route.path}`,
-      ...(meta.event.price ? { offers: { '@type': 'Offer', price: meta.event.price, priceCurrency: 'USD', availability: 'https://schema.org/InStock', url: `${base}${route.path}#register` } } : {}),
+      ...(meta.ogImage ? { image: `${base}/assets/${meta.ogImage}` } : {}),
+      ...(meta.event.performers?.length ? { performer: meta.event.performers.map((id) => ({ '@id': `${base}/about/#${id}` })) } : {}),
+      ...(meta.event.free ? { isAccessibleForFree: true } : {}),
+      offers: {
+        '@type': 'Offer',
+        price: meta.event.price || '0',
+        priceCurrency: 'USD',
+        availability: meta.event.availability || 'https://schema.org/InStock',
+        url: `${base}${route.path}#register`,
+        ...(meta.event.validThrough ? { validThrough: meta.event.validThrough } : {}),
+      },
     });
   }
   // Speaking page: past sessions with full details as Event nodes, with the speaker as performer.
@@ -498,9 +508,9 @@ export function pageShell({ site, link, mode, route, meta, body }) {
     `<meta property="og:description" content="${esc(meta.description)}">`,
     `<meta property="og:locale" content="en_US">`,
     canonical ? `<meta property="og:url" content="${esc(canonical)}">` : '',
-    site.canonicalDomain && site.ogImage ? `<meta property="og:image" content="${esc(site.canonicalDomain)}/assets/${esc(site.ogImage)}">` : '',
-    site.canonicalDomain && site.ogImage ? `<meta property="og:image:alt" content="${esc(site.siteName)}">` : '',
-    site.canonicalDomain && site.ogImage ? `<meta name="twitter:card" content="summary_large_image">` : '',
+    site.canonicalDomain && (meta.ogImage || site.ogImage) ? `<meta property="og:image" content="${esc(site.canonicalDomain)}/assets/${esc(meta.ogImage || site.ogImage)}">` : '',
+    site.canonicalDomain && (meta.ogImage || site.ogImage) ? `<meta property="og:image:alt" content="${esc(meta.ogAlt || site.siteName)}">` : '',
+    site.canonicalDomain && (meta.ogImage || site.ogImage) ? `<meta name="twitter:card" content="summary_large_image">` : '',
     `<meta name="theme-color" content="#231f20">`,
     `<link rel="icon" href="${esc(link.asset('favicon.svg'))}" type="image/svg+xml">`,
     `<link rel="apple-touch-icon" href="${esc(link.asset('apple-touch-icon.png'))}">`,

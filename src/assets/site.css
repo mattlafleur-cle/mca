@@ -1366,3 +1366,27 @@ h3 { font-size: 1.15rem; letter-spacing: -0.005em; }
   .event-card { grid-template-columns: 1fr; gap: 0.5rem; }
   .ev-register { grid-template-columns: 1fr; }
 }
+.ev-badge { display: inline-block; width: fit-content; justify-self: start; align-self: flex-start; margin: 0.75rem 0 0; padding: 0.4rem 0.85rem; border-radius: 999px; background: var(--brand-red); color: var(--on-dark); font-weight: 700; font-size: var(--step--1); }
+.ev-photo { margin: 1.75rem 0 0; }
+.ev-photo img { display: block; width: 100%; height: auto; max-height: 34rem; object-fit: cover; border-radius: var(--radius); }
+.ev-photo figcaption { margin-top: 0.5rem; font-size: var(--step--1); color: var(--ink-muted); }
+.ev-logo { margin-top: 1.75rem; max-width: 40rem; }
+.ev-logo svg { display: block; width: 100%; height: auto; }
+.ev-dress { margin-top: 1rem; font-weight: 600; }
+.ev-agenda { list-style: none; counter-reset: ev; margin: 1.25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.ev-agenda li { counter-increment: ev; display: grid; gap: 0.35rem; align-content: start; padding-top: 1rem; border-top: 4px solid var(--maple); }
+.ev-agenda li:nth-child(2) { border-top-color: var(--brand-orange); }
+.ev-agenda li:nth-child(3) { border-top-color: var(--brand-red); }
+.ev-agenda li:nth-child(4) { border-top-color: var(--evergreen); }
+.ev-agenda li::before { content: counter(ev); font-weight: 800; font-size: var(--step-2); line-height: 1; color: var(--brand-orange); }
+.ev-agenda h3 { margin: 0; font-size: var(--step-1); }
+.ev-agenda p { margin: 0; color: var(--ink-muted); }
+.ev-sponsor { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem 2rem; align-items: center; }
+.ev-sponsor p { margin: 0.5rem 0 0; }
+.event-callout { background: var(--evergreen); color: var(--on-dark); }
+.event-callout-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1.5rem; padding-block: 0.9rem; }
+.event-callout p { margin: 0; }
+.event-callout strong { color: var(--maple); }
+.event-callout .text-link { color: var(--on-dark); }
+@media (max-width: 56rem) { .ev-agenda { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 40rem) { .ev-agenda, .ev-sponsor { grid-template-columns: 1fr; } }

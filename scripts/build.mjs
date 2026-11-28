@@ -80,6 +80,9 @@ async function main() {
     // The private preview is listed by its page title, so the entry page carries a plain name there.
     let meta = mode === 'artifact' && route.key === 'home' ? { ...copy.home, title: `${site.siteName} Preview` } : copy[key];
     let body = render({ site, link, copy, route });
+    // Upcoming-event callouts on related pages (src/events-content.mjs), placed after the page's first section.
+    const callout = pages.eventCallouts({ site, link, copy, key });
+    if (callout) body = body.replace('</section>', `</section>\n${callout}`);
     if (route.renderAs) {
       // Style previews reuse a real page; label them so they are never mistaken for the live page.
       meta = { ...meta, title: `${route.label}: ${meta.title}`, description: `Private ${route.label.toLowerCase()}. ${meta.description}`, faq: undefined };
