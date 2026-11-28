@@ -84,7 +84,7 @@ export default function eventsContent(site) {
       faq: [
         { q: 'What should I bring?', a: 'Your assessment results, if you have taken it, and a few real situations from your team you would like to think through. Taking the assessment beforehand is encouraged but not required.' },
         { q: 'Can I bring colleagues from my team?', a: 'Yes. Each person registers individually, and coming with other leaders from your business is a great way to put what you learn to work together.' },
-        { q: 'Is this a fit for nonprofit, church, or ministry leaders?', a: 'Yes. The six types of work apply to every team, so leaders of nonprofits, churches, and ministries are welcome.' },
+        { q: 'Is this a fit for nonprofit leaders?', a: 'Yes. The six types of work apply to every team, so nonprofit leaders are welcome.' },
         { q: 'Where do I park?', a: 'Parking and day-of details are sent after you register.' },
         { q: 'When does registration close?', a: 'December 11, 2026, or sooner if seats fill.' },
       ],
