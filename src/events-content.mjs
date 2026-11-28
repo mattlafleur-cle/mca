@@ -36,7 +36,7 @@ export default function eventsContent(site) {
       title: `Working Genius Workshop in Cuyahoga Falls, December 15 | ${name}`,
       description: 'A morning Working Genius workshop for small business owners and leaders in the Akron and Canton area, with your own assessment and report. December 15.',
       ogImage: 'events/og-working-genius-workshop.jpg',
-      ogAlt: 'Working Genius Workshop, Tuesday, December 15, at The Commons in Cuyahoga Falls',
+      ogAlt: 'Working Genius Workshop, Tuesday, December 15, at The Business Commons of Cuyahoga Falls',
       eyebrow: 'Workshop · Tuesday, December 15',
       headline: 'Discover your Working Genius, and your team’s.',
       lead: 'A hands-on morning for small business owners and leaders in the Greater Akron and Canton area. Find your two geniuses, learn the six types of work, and leave knowing how to put your people on the work that gives them energy.',
@@ -53,7 +53,7 @@ export default function eventsContent(site) {
       includesLine: 'Includes your own Working Genius assessment and personal report, plus light breakfast, coffee, snacks, and refreshments.',
       registerButton: 'Register now',
       dock: 'Dec 15 · $99',
-      photo: { src: 'photos/events/commons-session.jpg', webp: 'photos/events/commons-session.webp', small: 'photos/events/commons-session-small.webp', width: 1600, height: 1200, alt: 'Josh Muller presenting to a room of business owners and leaders at The Commons in Cuyahoga Falls', caption: 'Josh Muller presenting at The Commons, where the workshop will be held.' },
+      photo: { src: 'photos/events/commons-session.jpg', webp: 'photos/events/commons-session.webp', small: 'photos/events/commons-session-small.webp', width: 1600, height: 1200, alt: 'Josh Muller presenting to a room of business owners and leaders at The Business Commons of Cuyahoga Falls', caption: 'Josh Muller presenting at The Business Commons of Cuyahoga Falls, where the workshop will be held.' },
 
       learnHeading: 'What you will take away',
       learn: [
@@ -115,9 +115,9 @@ export default function eventsContent(site) {
 
     holidayParty: {
       title: `Holiday Party with BUILD, December 17 in Cuyahoga Falls | ${name}`,
-      description: 'Join Maple Creek Advisors and BUILD for a free holiday party at The Commons in Cuyahoga Falls on Thursday, December 17, from 4:00 to 7:00 PM.',
+      description: 'Join Maple Creek Advisors and BUILD for a free holiday party at The Business Commons of Cuyahoga Falls on Thursday, December 17, from 4:00 to 7:00 PM.',
       ogImage: 'events/og-holiday-party.jpg',
-      ogAlt: 'Maple Creek Advisors and BUILD Holiday Party, Thursday, December 17, at The Commons in Cuyahoga Falls',
+      ogAlt: 'Maple Creek Advisors and BUILD Holiday Party, Thursday, December 17, at The Business Commons of Cuyahoga Falls',
       eyebrow: 'Holiday party · Thursday, December 17',
       headline: 'Celebrate the season with us.',
       lead: `${name} and BUILD (Business United in Leadership Development) invite our clients, partners, and the people and companies we work with to an evening celebrating the year together.`,

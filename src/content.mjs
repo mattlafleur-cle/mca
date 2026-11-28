@@ -83,7 +83,7 @@ export default function content(site) {
       eventsHeading: 'Upcoming events',
       // Route keys; each card uses that event's `home` copy and disappears after its date (src/events-content.mjs).
       events: ['workshop', 'holidayParty'],
-      eventsPlace: 'Both at The Commons, Cuyahoga Falls',
+      eventsPlace: 'Both at The Business Commons of Cuyahoga Falls',
       toolsHeading: 'Three quick ways to look at your business differently.',
       toolsIntro: 'Each takes a few minutes and runs entirely in your browser. We never see your answers.',
       tools: [
